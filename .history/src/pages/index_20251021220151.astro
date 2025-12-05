@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSheetData } from '../lib/getSheetData.js';
+
+const rows = await getSheetData();
+
+// Group rows by learnerCategory
+const grouped = rows.reduce((acc, row) => {
+  const category = row.learnerCategory || 'Uncategorized';
+  if (!acc[category]) acc[category] = [];
+  acc[category].push(row);
+  return acc;
+}, {});
+---
+
+<BaseLayout title="Home">
+  <h1 style="margin-bottom:2rem; font-size:2.5rem; font-weight:700; color:#015581;">Latest Lessons</h1>
+
+  {Object.entries(grouped).map(([category, lessons]) => (
+    <div class="folder">
+      <div class="folder-header" onclick="toggleFolder(this)">
+        <span class="folder-label">{category}</span>
+        <span class="arrow">▼</span>
+      </div>
+
+      <div class="folder-content">
+        {lessons.slice(0, 5).map(row => (
+          <a href={row.url} target="_blank" class="card-link">
+            <div class="card">
+              <h2>{row.name || 'No Name'}</h2>
+              <h4>{row.learnerCategory || 'No Category'}</h4>
+              <h5>Topic: {row.Topic || 'No Topic'}</h5>
+              <p>{row.description || 'No Description'}</p>
+              <div class="extra-info">
+                <span>Audience: {row.audience || 'N/A'}</span>
+                <span>OSPO Relevance: {row['OSPO Relevance'] || 'N/A'}</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  ))}
+
+  <script>
+    function toggleFolder(header) {
+      const content = header.nextElementSibling;
+      const arrow = header.querySelector('.arrow');
+      const isOpen = content.style.maxHeight;
+
+      if (isOpen) {
+        content.style.maxHeight = null;
+        arrow.style.transform = 'rotate(0deg)';
+      } else {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        arrow.style.transform = 'rotate(180deg)';
+      }
+    }
+  </script>
+
+  <style>
+    .folder {
+      margin-bottom: 1.5rem;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      background: #f8f9fa;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      transition: all 0.2s ease;
+    }
+
+    .folder-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      background: linear-gradient(to bottom, #fff, #f0f0f0);
+      cursor: pointer;
+      font-weight: 600;
+      color: #015581;
+      border-bottom: 1px solid #e0e0e0;
+      position: relative;
+    }
+
+    .folder-header:hover {
+      background: #e9f3f8;
+    }
+
+    .arrow {
+      transition: transform 0.2s ease;
+    }
+
+    .folder-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: #fff;
+    }
+
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card {
+      border-bottom: 1px solid #eee;
+      padding: 1.5rem;
+      transition: background 0.2s ease;
+    }
+
+    .card:last-child {
+      border-bottom: none;
+    }
+
+    .card:hover {
+      background: #fafafa;
+    }
+
+    .card h2 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #015581;
+    }
+
+    .card h4 {
+      margin: 0 0 0.75rem 0;
+      color: #666;
+      font-weight: 500;
+    }
+
+    .card h5 {
+      margin: 0 0 0.5rem 0;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .card p {
+      color: #333;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .extra-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: #777;
+      border-top: 1px solid #eee;
+      padding-top: 0.5rem;
+    }
+  </style>
+</BaseLayout>

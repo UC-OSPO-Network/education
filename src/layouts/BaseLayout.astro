@@ -1,0 +1,29 @@
+---
+const { title } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Link to global CSS -->
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header style="padding:1rem; border-bottom:1px solid #333; display:flex; justify-content:space-between; align-items:center;">
+      <h1 style="margin:0; font-size:1.75rem;">OSPO Website</h1>
+      <nav>
+        <a href="/">Home</a> | <a href="/lessons">Lessons</a>
+      </nav>
+    </header>
+
+    <main style="padding:2rem;">
+      <slot />
+    </main>
+
+    <footer style="padding:1rem; border-top:1px solid #333; text-align:center;">
+      © 2025 OSPO
+    </footer>
+  </body>
+</html>

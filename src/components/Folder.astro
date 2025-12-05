@@ -1,0 +1,183 @@
+---
+const { category, posts } = Astro.props;
+
+// For demo icons — could be replaced with category-specific ones later
+const categoryIcons = {
+  "Beginner": "📘",
+  "Intermediate": "📙",
+  "Advanced": "📗",
+  "Uncategorized": "📁"
+};
+
+const icon = categoryIcons[category] || "📁";
+---
+
+<style>
+  /* === GLOBAL DARK THEME === */
+  :root {
+    --bg: #1E1E1E;
+    --text: #FFFFFF;
+    --folder-bg: #2A2A2A;
+    --tab-bg: #333;
+    --hover-bg: #3C3C3C;
+    --accent: #007ACC;
+  }
+
+  .folder-stack {
+    position: relative;
+    margin-bottom: 3rem;
+    perspective: 1000px;
+  }
+
+  .folder {
+    position: relative;
+    background: var(--folder-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    color: var(--text);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  /* Slight stacking illusion — offset layers behind the top folder */
+  .folder::before,
+  .folder::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    background: #1C1C1C;
+    border-radius: 12px;
+    z-index: -1;
+    transition: all 0.3s ease;
+  }
+
+  .folder::after {
+    top: 12px;
+    left: 12px;
+    background: #161616;
+    z-index: -2;
+  }
+
+  .folder:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  }
+
+  .folder-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: var(--tab-bg);
+    border-bottom: 1px solid #444;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.3px;
+    position: relative;
+  }
+
+  /* Tab shape illusion */
+  .folder-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 60%;
+    background: var(--tab-bg);
+    border-radius: 8px 8px 0 0;
+  }
+
+  .folder-header:hover {
+    background: var(--hover-bg);
+  }
+
+  .folder-header span.icon {
+    font-size: 1.4rem;
+  }
+
+  .arrow {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+  }
+
+  .arrow.open {
+    transform: rotate(180deg);
+  }
+
+  .folder-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background: #2B2B2B;
+  }
+
+  .folder-content.open {
+    max-height: 1000px;
+  }
+
+  .post {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid #3A3A3A;
+    color: var(--text);
+  }
+
+  .post h3 {
+    margin: 0 0 0.3rem 0;
+    color: var(--accent);
+  }
+
+  .post p {
+    margin: 0.25rem 0;
+    color: #CCCCCC;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .post small {
+    color: #888;
+  }
+</style>
+
+<div class="folder-stack">
+  <div class="folder" data-category={category}>
+    <div class="folder-header">
+      <span class="icon">{icon}</span>
+      {category}
+      <span class="arrow">▼</span>
+    </div>
+
+    <div class="folder-content">
+      {posts.slice(0, 5).map(post => (
+        <div class="post">
+          <a href={post.url} target="_blank" style="text-decoration:none; color:inherit;">
+            <h3>{post.name || 'Untitled'}</h3>
+            <p><strong>Topic:</strong> {post.Topic || 'N/A'}</p>
+            <p>{post.description || 'No description'}</p>
+            <small>Audience: {post.audience || 'N/A'} | OSPO Relevance: {post['OSPO Relevance'] || 'N/A'}</small>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const folders = document.querySelectorAll(".folder");
+    folders.forEach(folder => {
+      const header = folder.querySelector(".folder-header");
+      const content = folder.querySelector(".folder-content");
+      const arrow = folder.querySelector(".arrow");
+
+      header.addEventListener("click", () => {
+        const isOpen = content.classList.toggle("open");
+        arrow.classList.toggle("open", isOpen);
+      });
+    });
+  });
+</script>

@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSheetData } from '../lib/getSheetData.js';
+import Folder from '../components/Folder.astro';
+
+const rows = await getSheetData();
+
+// Group by learnerCategory
+const categories = rows.reduce((acc, row) => {
+  const category = row.learnerCategory || 'Uncategorized';
+  if (!acc[category]) acc[category] = [];
+  acc[category].push(row);
+  return acc;
+}, {});
+---
+
+<BaseLayout title="Home">
+  <h1 style="margin-bottom:2rem; font-size:2.5rem; font-weight:700; color:#015581;">Lessons by Category</h1>
+
+  {Object.entries(categories).map(([category, posts]) => (
+    <Folder category={category} posts={posts} />
+  ))}
+</BaseLayout>
