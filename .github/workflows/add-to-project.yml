@@ -1,0 +1,21 @@
+name: Add to Project
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+jobs:
+  add_to_project:
+    name: Add to Project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/add-to-project@v1.0.0
+        with:
+          # The URL of the GitHub Project
+          project-url: https://github.com/orgs/UC-OSPO-Network/projects/1
+          
+          # THIS IS CRITICAL: You must create this secret in your repo settings!
+          # The default GITHUB_TOKEN cannot typically access Org-level projects.
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
