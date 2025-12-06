@@ -41,6 +41,15 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## Community & Contributing
+
+We welcome contributions! Please see our guides below:
+
+*   **[Contributing Guide](CONTRIBUTING.md)**: How to get started with contributing to this project.
+*   **[Code of Conduct](CODE_OF_CONDUCT.md)**: Expectations for behavior within our community.
+*   **[Code of Conduct Guide](docs/CODE_OF_CONDUCT_GUIDE.md)**: A guide for understanding and adapting our Code of Conduct.
+*   **[License](LICENSE)**: Project licensing information.
+
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
