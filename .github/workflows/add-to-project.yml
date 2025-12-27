@@ -11,11 +11,20 @@ jobs:
     name: Add to Project
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/add-to-project@v1.0.0
+      - uses: actions/add-to-project@v1.0.2
         with:
           # The URL of the GitHub Project
           project-url: https://github.com/orgs/UC-OSPO-Network/projects/1
-          
+
           # THIS IS CRITICAL: You must create this secret in your repo settings!
           # The default GITHUB_TOKEN cannot typically access Org-level projects.
           github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
+
+          # Optional: Add labels to the issue/PR when added to project
+          labeled: education
+
+          # Set the Status field to "Todo" for new issues
+          # Note: If your project has both a Status field and Education swimlane,
+          # you may need to manually set the Education swimlane in the project UI
+          # or adjust this to match your project's primary status field name
+          project-column-name: Todo
