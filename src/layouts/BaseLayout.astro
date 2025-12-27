@@ -1,6 +1,110 @@
 ---
+import UnifiedNav from '../components/UnifiedNav.astro';
 const { title } = Astro.props;
 ---
+
+<style>
+  .unified-footer {
+    padding: 3rem 2rem 2rem;
+    border-top: 3px solid var(--uc-gold);
+    background: var(--uc-blue);
+    margin-top: 4rem;
+    color: var(--uc-white);
+  }
+
+  .footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-section h3 {
+    color: var(--uc-gold);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-links li {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-links a {
+    color: var(--uc-white);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-size: 0.95rem;
+  }
+
+  .footer-links a:hover {
+    color: var(--uc-gold);
+    text-decoration: underline;
+  }
+
+  .footer-campus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .footer-social a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--uc-white);
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+
+  .footer-social a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .footer-bottom p {
+    margin: 0.25rem 0;
+    color: var(--uc-light-gray);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-campus-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
 
 <html lang="en">
   <head>
@@ -12,32 +116,77 @@ const { title } = Astro.props;
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <header style="padding:1.5rem 2rem; border-bottom:3px solid var(--uc-gold); display:flex; justify-content:space-between; align-items:center; flex-wrap: wrap; gap: 1rem;">
-      <div style="display: flex; align-items: center; gap: 0.5rem;">
-        <h1 style="margin:0; font-size:1.5rem; font-weight: 700;">
-          UC OSPO
-          <span style="color: var(--uc-gold); font-weight: 400;"> | Education</span>
-        </h1>
-      </div>
-      <nav style="display: flex; gap: 0.5rem;">
-        <a href="/">Home</a>
-        <a href="/lessons">All Lessons</a>
-        <a href="/pathways">Pathways</a>
-        <a href="/develop-a-lesson" style="color: var(--uc-gold); font-weight: 600;">Develop a Lesson</a>
-      </nav>
-    </header>
+    <UnifiedNav />
 
     <main style="min-height: calc(100vh - 200px);">
       <slot />
     </main>
 
-    <footer style="padding:2rem; border-top:3px solid var(--uc-gold); text-align:center; background: var(--uc-blue); margin-top: 4rem;">
-      <p style="margin: 0 0 0.5rem 0; color: var(--uc-white);">
-        © 2025 University of California Open Source Program Office
-      </p>
-      <p style="margin: 0; color: var(--uc-light-gray); font-size: 0.9rem;">
-        Supporting open source education and collaboration across the UC system
-      </p>
+    <footer class="unified-footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <!-- About Section -->
+          <div class="footer-section">
+            <h3>UC OSPO Network</h3>
+            <ul class="footer-links">
+              <li><a href="https://ucospo.net/about">About</a></li>
+              <li><a href="https://ucospo.net/about/guiding-themes">Guiding Themes</a></li>
+              <li><a href="https://ucospo.net/events">Events</a></li>
+              <li><a href="https://ucospo.net/blog">Blog</a></li>
+            </ul>
+          </div>
+
+          <!-- Education Section -->
+          <div class="footer-section">
+            <h3>Education</h3>
+            <ul class="footer-links">
+              <li><a href="/education">Learning Pathways</a></li>
+              <li><a href="/education/lessons">Browse Lessons</a></li>
+              <li><a href="/education/pathways">All Pathways</a></li>
+              <li><a href="/education/develop-a-lesson">Develop a Lesson</a></li>
+            </ul>
+          </div>
+
+          <!-- UC Campuses -->
+          <div class="footer-section">
+            <h3>UC Campuses</h3>
+            <ul class="footer-campus-grid">
+              <li><a href="https://ucospo.net/berkeley">Berkeley</a></li>
+              <li><a href="https://ucospo.net/davis">Davis</a></li>
+              <li><a href="https://ucospo.net/los-angeles">Los Angeles</a></li>
+              <li><a href="https://ucospo.net/san-diego">San Diego</a></li>
+              <li><a href="https://ucospo.net/santa-barbara">Santa Barbara</a></li>
+              <li><a href="https://ucospo.net/santa-cruz">Santa Cruz</a></li>
+            </ul>
+          </div>
+
+          <!-- Connect Section -->
+          <div class="footer-section">
+            <h3>Connect</h3>
+            <div class="footer-social">
+              <a href="https://github.com/UC-OSPO-Network" target="_blank" rel="noopener" aria-label="GitHub">
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                </svg>
+              </a>
+              <a href="https://ucospo.net/atom.xml" target="_blank" rel="noopener" aria-label="RSS Feed">
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p style="margin-bottom: 0.5rem; color: var(--uc-white); font-weight: 500;">
+            © 2025 UC OSPO Network. All rights reserved.
+          </p>
+          <p>
+            Supporting open source education and collaboration across the University of California system
+          </p>
+        </div>
+      </div>
     </footer>
   </body>
 </html>

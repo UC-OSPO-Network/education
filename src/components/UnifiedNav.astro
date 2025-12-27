@@ -1,0 +1,404 @@
+---
+// Unified navigation for UC OSPO Network sites
+// Includes main site links + Education dropdown
+const currentPath = Astro.url.pathname;
+---
+
+<style>
+  .unified-header {
+    background: var(--uc-blue);
+    color: var(--uc-white);
+    border-bottom: 3px solid var(--uc-gold);
+  }
+
+  .header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .logo-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .logo-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: opacity 0.2s;
+  }
+
+  .logo-link:hover {
+    opacity: 0.85;
+  }
+
+  .logo-placeholder {
+    width: 48px;
+    height: 48px;
+    background: var(--uc-white);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--uc-blue);
+    font-size: 1.2rem;
+  }
+
+  .site-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--uc-white);
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .site-subtitle {
+    font-size: 0.85rem;
+    color: var(--uc-light-blue);
+    font-weight: 400;
+  }
+
+  .header-social {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .social-link {
+    color: var(--uc-white);
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .social-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .main-nav {
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 1rem 1.25rem;
+    color: var(--uc-white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    border-radius: 4px 4px 0 0;
+    white-space: nowrap;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-link.current-site {
+    background-color: var(--uc-gold);
+    color: var(--uc-dark-gray);
+    font-weight: 700;
+  }
+
+  .nav-link.current-site:hover {
+    background-color: var(--uc-light-gold);
+  }
+
+  .dropdown-arrow {
+    font-size: 0.7rem;
+    transition: transform 0.2s;
+  }
+
+  .nav-item:hover .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--uc-white);
+    border: 2px solid var(--uc-blue);
+    border-radius: 0 8px 8px 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    min-width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    z-index: 1000;
+    padding: 0.5rem 0;
+  }
+
+  .nav-item:hover .dropdown-menu,
+  .nav-item:focus-within .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .dropdown-link {
+    display: block;
+    padding: 0.75rem 1.25rem;
+    color: var(--uc-dark-gray);
+    text-decoration: none;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .dropdown-link:hover {
+    background-color: var(--uc-light-blue);
+    color: var(--uc-white);
+    padding-left: 1.5rem;
+  }
+
+  .dropdown-link.active {
+    background-color: var(--uc-gold);
+    color: var(--uc-dark-gray);
+    font-weight: 600;
+  }
+
+  .mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: 2px solid var(--uc-white);
+    color: var(--uc-white);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .mobile-menu-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  @media (max-width: 968px) {
+    .mobile-menu-toggle {
+      display: block;
+    }
+
+    .main-nav {
+      display: none;
+    }
+
+    .main-nav.mobile-open {
+      display: block;
+    }
+
+    .nav-list {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .nav-link {
+      border-radius: 0;
+      padding: 1rem 1.25rem;
+    }
+
+    .dropdown-menu {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      border: none;
+      border-left: 3px solid var(--uc-gold);
+      box-shadow: none;
+      background: rgba(0, 0, 0, 0.1);
+      margin-left: 1rem;
+      display: none;
+    }
+
+    .nav-item:hover .dropdown-menu,
+    .nav-item.mobile-expanded .dropdown-menu {
+      display: block;
+    }
+
+    .header-social {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header-container {
+      padding: 0 1rem;
+    }
+
+    .site-title {
+      font-size: 1.2rem;
+    }
+
+    .logo-placeholder {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<header class="unified-header">
+  <div class="header-container">
+    <!-- Top section: Logo + Social -->
+    <div class="header-top">
+      <div class="logo-section">
+        <a href="https://ucospo.net/" class="logo-link">
+          <!-- TODO: Replace with actual UC OSPO logo -->
+          <div class="logo-placeholder">UC</div>
+          <div>
+            <h1 class="site-title">
+              UC OSPO Network
+              <div class="site-subtitle">University of California Open Source Program Office</div>
+            </h1>
+          </div>
+        </a>
+      </div>
+
+      <div class="header-social">
+        <a href="https://github.com/UC-OSPO-Network" class="social-link" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          GitHub
+        </a>
+        <a href="https://ucospo.net/atom.xml" class="social-link" target="_blank" rel="noopener" aria-label="RSS Feed">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+          </svg>
+          RSS
+        </a>
+      </div>
+
+      <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+        Menu ☰
+      </button>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav" id="main-nav" role="navigation" aria-label="Main navigation">
+      <ul class="nav-list">
+        <!-- About Dropdown -->
+        <li class="nav-item">
+          <a href="https://ucospo.net/about" class="nav-link">
+            About
+            <span class="dropdown-arrow">▼</span>
+          </a>
+          <div class="dropdown-menu">
+            <a href="https://ucospo.net/about" class="dropdown-link">About UC OSPO Network</a>
+            <a href="https://ucospo.net/about/guiding-themes" class="dropdown-link">Guiding Themes</a>
+          </div>
+        </li>
+
+        <!-- Events -->
+        <li class="nav-item">
+          <a href="https://ucospo.net/events" class="nav-link">Events</a>
+        </li>
+
+        <!-- Blog -->
+        <li class="nav-item">
+          <a href="https://ucospo.net/blog" class="nav-link">Blog</a>
+        </li>
+
+        <!-- Resources Dropdown -->
+        <li class="nav-item">
+          <a href="https://ucospo.net/oss-resources" class="nav-link">
+            Resources
+            <span class="dropdown-arrow">▼</span>
+          </a>
+          <div class="dropdown-menu">
+            <a href="https://ucospo.net/oss-resources" class="dropdown-link">OSS Resources</a>
+          </div>
+        </li>
+
+        <!-- Education Dropdown (Current Site) -->
+        <li class="nav-item">
+          <a href="/education" class="nav-link current-site">
+            Education
+            <span class="dropdown-arrow">▼</span>
+          </a>
+          <div class="dropdown-menu">
+            <a href="/education" class="dropdown-link" data-path="/education">All Pathways</a>
+            <a href="/education/lessons" class="dropdown-link" data-path="/education/lessons">All Lessons</a>
+            <a href="/education/pathways" class="dropdown-link" data-path="/education/pathways">Browse Pathways</a>
+            <a href="/education/develop-a-lesson" class="dropdown-link" data-path="/education/develop-a-lesson">Develop a Lesson</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mainNav = document.getElementById('main-nav');
+
+  if (menuBtn && mainNav) {
+    menuBtn.addEventListener('click', () => {
+      mainNav.classList.toggle('mobile-open');
+      const isOpen = mainNav.classList.contains('mobile-open');
+      menuBtn.textContent = isOpen ? 'Close ✕' : 'Menu ☰';
+      menuBtn.setAttribute('aria-expanded', isOpen.toString());
+    });
+  }
+
+  // Highlight active page in dropdown
+  const currentPath = window.location.pathname;
+  const dropdownLinks = document.querySelectorAll('.dropdown-link[data-path]');
+  dropdownLinks.forEach(link => {
+    const linkPath = link.getAttribute('data-path');
+    if (currentPath === linkPath || currentPath.startsWith(linkPath + '/')) {
+      link.classList.add('active');
+    }
+  });
+
+  // Mobile dropdown toggle (for touch devices)
+  if (window.innerWidth <= 968) {
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+      const link = item.querySelector('.nav-link');
+      if (link && item.querySelector('.dropdown-menu')) {
+        link.addEventListener('click', (e) => {
+          if (window.innerWidth <= 968) {
+            e.preventDefault();
+            item.classList.toggle('mobile-expanded');
+          }
+        });
+      }
+    });
+  }
+</script>
