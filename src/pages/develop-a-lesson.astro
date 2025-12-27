@@ -3,11 +3,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <style>
+  .page-wrapper {
+    background-color: var(--uc-dark-gray);
+    min-height: 100vh;
+  }
+
   .hero {
     text-align: center;
     padding: 4rem 2rem 3rem;
     max-width: 900px;
     margin: 0 auto;
+    background-color: var(--uc-dark-gray);
   }
 
   .hero h1 {
@@ -286,7 +292,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </style>
 
 <BaseLayout title="Develop a Lesson - UC OSPO">
-  <div class="hero">
+  <div class="page-wrapper">
+    <div class="hero">
     <h1>Develop an Open Source Lesson</h1>
     <p class="subtitle">Join the 2026 UC OSPO Collaborative Lesson Development Program</p>
     <p class="tagline">
@@ -524,5 +531,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         Questions? Contact Tim Dennis or open a discussion on GitHub.
       </p>
     </div>
+  </div>
   </div>
 </BaseLayout>
