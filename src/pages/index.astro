@@ -1,23 +1,145 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getSheetData } from '../lib/getSheetData.js';
-import Folder from '../components/Folder.astro';
-
-const rows = await getSheetData();
-
-// Group posts by learnerCategory
-const grouped = rows.reduce((acc, row) => {
-  const category = row.learnerCategory || "Uncategorized";
-  acc[category] = acc[category] || [];
-  acc[category].push(row);
-  return acc;
-}, {});
+import StackedPathways from '../components/StackedPathways.jsx';
 ---
 
-<BaseLayout title="Home">
-  <h1 style="margin-bottom:2rem; font-size:2.5rem; font-weight:700; color:#FFFFFF;">Latest Lessons</h1>
+<style>
+  .hero {
+    text-align: left;
+    padding: 4rem 2rem 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
 
-  {Object.entries(grouped).map(([category, posts]) => (
-    <Folder category={category} posts={posts} />
-  ))}
+  .hero h1 {
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: var(--uc-white);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    letter-spacing: 0.5px;
+  }
+
+  .hero .subtitle {
+    font-size: 1.3rem;
+    color: var(--uc-light-blue);
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    line-height: 1.5;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .cta-primary,
+  .cta-secondary {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .cta-primary {
+    background: var(--uc-gold);
+    color: var(--uc-dark-gray);
+  }
+
+  .cta-primary:hover {
+    background: var(--uc-light-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 181, 17, 0.4);
+    text-decoration: none;
+  }
+
+  .cta-secondary {
+    background: transparent;
+    color: var(--uc-white);
+    border: 2px solid var(--uc-white);
+  }
+
+  .cta-secondary:hover {
+    background: var(--uc-white);
+    color: var(--uc-dark-gray);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+  }
+
+  .pathways-section {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .browse-all {
+    text-align: center;
+    margin: 3rem 0 4rem;
+    padding: 0 2rem;
+  }
+
+  .browse-button {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background: var(--uc-light-gray);
+    color: var(--uc-dark-gray);
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .browse-button:hover {
+    background: var(--uc-white);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 3rem 1.5rem 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .hero .subtitle {
+      font-size: 1.1rem;
+    }
+  }
+</style>
+
+<BaseLayout title="Open Source Learning Pathways">
+  <div class="hero">
+    <h1>OPEN SOURCE EDUCATION, CURATED</h1>
+    <p class="subtitle">
+      Quality-vetted lessons on contributing, licensing, governance, and community practices—structured into pathways for teaching or independent learning.
+    </p>
+    <div class="hero-ctas">
+      <a href="/education/pathways" class="cta-primary">Browse Pathways</a>
+      <a href="/education/for-educators" class="cta-secondary">For Educators</a>
+    </div>
+  </div>
+
+  <section id="pathways" class="pathways-section">
+    <StackedPathways client:load />
+
+    <div class="browse-all">
+      <a href="/lessons" class="browse-button">BROWSE ALL LESSONS</a>
+    </div>
+  </section>
 </BaseLayout>

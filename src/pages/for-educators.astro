@@ -1,0 +1,520 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<style>
+  .page-wrapper {
+    background-color: var(--uc-dark-gray);
+    min-height: 100vh;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 4rem 2rem 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--uc-dark-gray);
+  }
+
+  .hero h1 {
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: var(--uc-white);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .hero .subtitle {
+    font-size: 1.3rem;
+    color: var(--uc-light-blue);
+    margin-bottom: 2rem;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .content-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--uc-blue);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0 3rem;
+  }
+
+  .feature-card {
+    background: var(--uc-med-gray);
+    border-left: 4px solid var(--uc-blue);
+    padding: 2rem;
+    border-radius: 8px;
+  }
+
+  .feature-card h3 {
+    color: var(--uc-gold);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .feature-icon {
+    font-size: 1.5rem;
+  }
+
+  .feature-card p {
+    color: var(--uc-white);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .feature-card ul {
+    color: var(--uc-white);
+    line-height: 1.8;
+    margin: 1rem 0 0 0;
+    padding-left: 1.5rem;
+  }
+
+  .use-cases {
+    background: var(--uc-med-gray);
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+  }
+
+  .use-case {
+    border-left: 3px solid var(--uc-gold);
+    padding: 1.5rem 0 1.5rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .use-case:last-child {
+    margin-bottom: 0;
+  }
+
+  .use-case h4 {
+    color: var(--uc-gold);
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  .use-case p {
+    color: var(--uc-white);
+    line-height: 1.6;
+    margin: 0 0 0.75rem 0;
+  }
+
+  .use-case .pathways-list {
+    color: var(--uc-light-blue);
+    font-style: italic;
+    font-size: 0.95rem;
+  }
+
+  .quick-start {
+    background: linear-gradient(135deg, var(--uc-dark-blue), var(--uc-blue));
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+  }
+
+  .quick-start h3 {
+    color: var(--uc-white);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .steps li {
+    color: var(--uc-white);
+    padding: 1rem 0 1rem 3rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .steps li::before {
+    content: attr(data-step);
+    position: absolute;
+    left: 0;
+    top: 0.75rem;
+    background: var(--uc-gold);
+    color: var(--uc-dark-gray);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  .cta-section {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--uc-med-gray);
+    border-radius: 12px;
+    margin: 3rem 0;
+  }
+
+  .cta-section h2 {
+    color: var(--uc-white);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .cta-section p {
+    color: var(--uc-light-blue);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--uc-gold);
+    color: var(--uc-dark-gray);
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(255, 181, 17, 0.3);
+    margin: 0 0.5rem 0.5rem;
+  }
+
+  .cta-button:hover {
+    background: var(--uc-light-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 181, 17, 0.5);
+    text-decoration: none;
+  }
+
+  .cta-button.secondary {
+    background: transparent;
+    color: var(--uc-white);
+    border: 2px solid var(--uc-white);
+  }
+
+  .cta-button.secondary:hover {
+    background: var(--uc-white);
+    color: var(--uc-dark-gray);
+  }
+
+  .info-box {
+    background: rgba(18, 149, 216, 0.1);
+    border: 2px solid var(--uc-blue);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .info-box h4 {
+    color: var(--uc-blue);
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  .info-box p {
+    color: var(--uc-white);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .info-box ul {
+    color: var(--uc-white);
+    line-height: 1.8;
+    margin: 0.5rem 0 0 0;
+    padding-left: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .hero .subtitle {
+      font-size: 1.1rem;
+    }
+
+    .feature-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<BaseLayout title="For Educators - UC OSPO">
+  <div class="page-wrapper">
+    <div class="hero">
+      <h1>Resources for Educators</h1>
+      <p class="subtitle">
+        Quality-vetted open source lessons ready to integrate into your courses, workshops, or training programs.
+      </p>
+    </div>
+
+    <div class="content-section">
+      <h2 class="section-title">Why Use UC OSPO Education Resources?</h2>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3><span class="feature-icon">✓</span> Quality Vetted</h3>
+          <p>
+            All lessons are curated and reviewed by the UC Open Source Program Office network,
+            ensuring accuracy and pedagogical soundness.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3><span class="feature-icon">📚</span> Structured Pathways</h3>
+          <p>
+            Lessons are organized into six learning pathways, from getting started with open source
+            to strategic practices and career development.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3><span class="feature-icon">🆓</span> Free & Open</h3>
+          <p>
+            All resources are freely available under open licenses. You can use, adapt, and
+            remix them for your teaching needs.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3><span class="feature-icon">🔄</span> Ready to Use</h3>
+          <p>
+            Lessons include learning objectives, descriptions, and skill levels. Many have
+            associated materials and can be used as-is or adapted.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3><span class="feature-icon">🎯</span> Diverse Topics</h3>
+          <p>
+            Cover everything from technical contributions to licensing, governance, community
+            building, and sustainable practices.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3><span class="feature-icon">🌐</span> University-Backed</h3>
+          <p>
+            Supported by the University of California Open Source Program Office network,
+            ensuring ongoing curation and quality.
+          </p>
+        </div>
+      </div>
+
+      <h2 class="section-title">How Educators Use These Resources</h2>
+
+      <div class="use-cases">
+        <div class="use-case">
+          <h4>🎓 University Courses</h4>
+          <p>
+            Integrate lessons into computer science, software engineering, or information science courses.
+            Use pathways as course modules or supplement existing curriculum.
+          </p>
+          <p class="pathways-list">
+            Example: "Contributing to a Project" pathway for a software engineering course on collaborative development
+          </p>
+        </div>
+
+        <div class="use-case">
+          <h4>🛠️ Workshops & Training</h4>
+          <p>
+            Design hands-on workshops for students, staff, or community members. Lessons work well
+            for 50-minute sessions, half-day workshops, or multi-day programs.
+          </p>
+          <p class="pathways-list">
+            Example: "Understanding Licensing & Compliance" for tech transfer professionals
+          </p>
+        </div>
+
+        <div class="use-case">
+          <h4>📖 Self-Paced Learning</h4>
+          <p>
+            Assign lessons as homework, asynchronous learning modules, or supplementary reading.
+            Students can work through pathways independently.
+          </p>
+          <p class="pathways-list">
+            Example: Assign "Getting Started with Open Source" as pre-course preparation
+          </p>
+        </div>
+
+        <div class="use-case">
+          <h4>🏫 Bootcamps & Cohorts</h4>
+          <p>
+            Structure intensive learning programs using pathway sequences. Perfect for coding bootcamps,
+            internship programs, or professional development cohorts.
+          </p>
+          <p class="pathways-list">
+            Example: Complete pathway progression for a summer open source internship program
+          </p>
+        </div>
+      </div>
+
+      <h2 class="section-title">Quick Start Guide</h2>
+
+      <div class="quick-start">
+        <h3>Get Started in 5 Steps</h3>
+        <ol class="steps">
+          <li data-step="1">
+            <strong>Browse the pathways</strong> to understand the topic areas and lesson structure.
+            Each pathway focuses on a specific aspect of open source participation.
+          </li>
+          <li data-step="2">
+            <strong>Explore lessons</strong> within relevant pathways. Check learning objectives,
+            skill levels, and descriptions to find lessons that fit your needs.
+          </li>
+          <li data-step="3">
+            <strong>Review lesson metadata</strong> including educational level (Beginner, Intermediate, Advanced),
+            estimated time, and prerequisites.
+          </li>
+          <li data-step="4">
+            <strong>Integrate into your course</strong> by linking directly to lessons, downloading materials
+            (where available), or adapting content to your teaching context.
+          </li>
+          <li data-step="5">
+            <strong>Share feedback</strong> with the UC OSPO team. Let us know what works, what's missing,
+            or suggest new lessons through our proposal process.
+          </li>
+        </ol>
+      </div>
+
+      <div class="info-box">
+        <h4>📋 Lesson Information Includes:</h4>
+        <ul>
+          <li><strong>Learning Objectives:</strong> What students will be able to do</li>
+          <li><strong>Description:</strong> Overview of lesson content and approach</li>
+          <li><strong>Skill Level:</strong> Beginner, Intermediate, or Advanced</li>
+          <li><strong>OSS Role:</strong> Contributor, Maintainer, Community Manager, etc.</li>
+          <li><strong>Pathway:</strong> Which structured learning pathway it belongs to</li>
+          <li><strong>External Link:</strong> Access to the full lesson content</li>
+        </ul>
+      </div>
+
+      <h2 class="section-title">Licensing & Attribution</h2>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Can I Adapt These Lessons?</h3>
+          <p>
+            <strong>Yes!</strong> Lessons are linked from external sources with open licenses (typically CC-BY or similar).
+            Check each lesson's license for specific terms, but most allow adaptation and remixing with attribution.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3>How Do I Attribute?</h3>
+          <p>
+            Provide attribution to the original lesson creator (listed in lesson metadata) and link back to the
+            UC OSPO Education site as the curated source.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Can I Share With Colleagues?</h3>
+          <p>
+            <strong>Absolutely!</strong> Share pathway links, individual lesson links, or the entire site with
+            fellow educators. We encourage broad use of these resources.
+          </p>
+        </div>
+      </div>
+
+      <h2 class="section-title">Teaching Tips by Pathway</h2>
+
+      <div class="use-cases">
+        <div class="use-case">
+          <h4>Getting Started with Open Source</h4>
+          <p>
+            <strong>Best for:</strong> Introductory courses, first-day workshops, pre-program preparation<br>
+            <strong>Tip:</strong> Start here for students with no OSS background. These lessons build foundational understanding.
+          </p>
+        </div>
+
+        <div class="use-case">
+          <h4>Contributing to a Project</h4>
+          <p>
+            <strong>Best for:</strong> Hands-on labs, collaborative assignments, practicum courses<br>
+            <strong>Tip:</strong> Pair lessons with real contribution exercises. Have students practice on actual OSS projects.
+          </p>
+        </div>
+
+        <div class="use-case">
+          <h4>Maintaining & Sustaining Software</h4>
+          <p>
+            <strong>Best for:</strong> Advanced courses, project management, software engineering principles<br>
+            <strong>Tip:</strong> Great for students transitioning from contributors to maintainers or project leads.
+          </p>
+        </div>
+
+        <div class="use-case">
+          <h4>Building Inclusive Communities</h4>
+          <p>
+            <strong>Best for:</strong> Ethics courses, community management, professional skills development<br>
+            <strong>Tip:</strong> Encourage discussion and reflection. These topics benefit from collaborative learning.
+          </p>
+        </div>
+
+        <div class="use-case">
+          <h4>Understanding Licensing & Compliance</h4>
+          <p>
+            <strong>Best for:</strong> Law & technology courses, research compliance, tech transfer training<br>
+            <strong>Tip:</strong> Use real-world examples. Have students analyze licenses for projects they use.
+          </p>
+        </div>
+
+        <div class="use-case">
+          <h4>Strategic Practices & Career Development</h4>
+          <p>
+            <strong>Best for:</strong> Career preparation, professional development, senior capstones<br>
+            <strong>Tip:</strong> Connect to internship preparation and job search strategies. Invite OSS practitioners as guest speakers.
+          </p>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h4>💡 Need Help Getting Started?</h4>
+        <p>
+          We're here to support educators using these resources. If you have questions about integrating
+          lessons into your course, need help finding specific content, or want to collaborate on new
+          lesson development, please reach out!
+        </p>
+      </div>
+
+      <div class="cta-section">
+        <h2>Ready to Explore?</h2>
+        <p>Start browsing curated open source education resources</p>
+        <a href="/education/pathways" class="cta-button">Browse All Pathways</a>
+        <a href="/education/lessons" class="cta-button secondary">View All Lessons</a>
+      </div>
+
+      <div class="cta-section" style="margin-top: 2rem;">
+        <h2>Want to Contribute?</h2>
+        <p>Help us build the curriculum by developing new lessons</p>
+        <a href="/education/develop-a-lesson" class="cta-button">Develop a Lesson</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
