@@ -1,0 +1,528 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 4rem 2rem 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: var(--uc-white);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .hero .subtitle {
+    font-size: 1.3rem;
+    color: var(--uc-light-blue);
+    margin-bottom: 2rem;
+    font-weight: 400;
+  }
+
+  .hero .tagline {
+    font-size: 1.1rem;
+    color: var(--uc-white);
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 1.25rem 3rem;
+    background: var(--uc-gold);
+    color: var(--uc-dark-gray);
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(255, 181, 17, 0.3);
+    margin-top: 1rem;
+  }
+
+  .cta-button:hover {
+    background: var(--uc-white);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 181, 17, 0.5);
+    text-decoration: none;
+  }
+
+  .content-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--uc-blue);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .program-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .detail-card {
+    background: var(--uc-med-gray);
+    border-left: 4px solid var(--uc-blue);
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+
+  .detail-card h3 {
+    color: var(--uc-gold);
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  .detail-card p {
+    color: var(--uc-white);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .detail-card ul {
+    color: var(--uc-white);
+    line-height: 1.8;
+    margin: 0.5rem 0 0 0;
+    padding-left: 1.25rem;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .benefit-item {
+    background: var(--uc-med-gray);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-top: 3px solid var(--uc-gold);
+    text-align: center;
+  }
+
+  .benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .benefit-item h4 {
+    color: var(--uc-blue);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .benefit-item p {
+    color: var(--uc-white);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .gaps-list {
+    background: var(--uc-med-gray);
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+  }
+
+  .gap-item {
+    border-left: 3px solid var(--uc-blue);
+    padding: 1rem 0 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .gap-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .gap-item h4 {
+    color: var(--uc-gold);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .gap-item p {
+    color: var(--uc-white);
+    line-height: 1.6;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .gap-meta {
+    color: var(--uc-light-blue);
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+
+  .timeline {
+    background: linear-gradient(135deg, var(--uc-dark-blue), var(--uc-blue));
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+  }
+
+  .timeline-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    padding-left: 2.5rem;
+    position: relative;
+  }
+
+  .timeline-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--uc-gold);
+    border: 3px solid var(--uc-white);
+  }
+
+  .timeline-quarter {
+    font-weight: 700;
+    color: var(--uc-gold);
+    min-width: 80px;
+    margin-right: 1rem;
+  }
+
+  .timeline-description {
+    color: var(--uc-white);
+    line-height: 1.5;
+  }
+
+  .faq {
+    margin: 3rem 0;
+  }
+
+  .faq-item {
+    background: var(--uc-med-gray);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--uc-blue);
+  }
+
+  .faq-question {
+    color: var(--uc-gold);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .faq-answer {
+    color: var(--uc-white);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .cta-section {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, var(--uc-dark-blue), var(--uc-blue));
+    border-radius: 12px;
+    margin: 3rem 0;
+  }
+
+  .cta-section h2 {
+    color: var(--uc-white);
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .cta-section p {
+    color: var(--uc-light-blue);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .hero .subtitle {
+      font-size: 1.1rem;
+    }
+
+    .program-details {
+      grid-template-columns: 1fr;
+    }
+
+    .timeline-item {
+      flex-direction: column;
+    }
+
+    .timeline-quarter {
+      margin-bottom: 0.5rem;
+    }
+  }
+</style>
+
+<BaseLayout title="Develop a Lesson - UC OSPO">
+  <div class="hero">
+    <h1>Develop an Open Source Lesson</h1>
+    <p class="subtitle">Join the 2026 UC OSPO Collaborative Lesson Development Program</p>
+    <p class="tagline">
+      Help build critical open source education resources through Carpentries-trained
+      collaborative lesson development. Work with a team, receive expert training and mentorship,
+      and publish your lesson to reach learners worldwide.
+    </p>
+    <a href="https://github.com/UC-OSPO-Network/education/issues/new?template=lesson-proposal.yml" class="cta-button">
+      SUBMIT A PROPOSAL
+    </a>
+  </div>
+
+  <div class="content-section">
+    <h2 class="section-title">Program Overview</h2>
+
+    <div class="program-details">
+      <div class="detail-card">
+        <h3>What We're Funding</h3>
+        <p>Through grant support, we're funding the development of <strong>4 new open source lessons</strong> to fill critical gaps in open source education.</p>
+      </div>
+
+      <div class="detail-card">
+        <h3>Who Can Participate</h3>
+        <p>Educators, researchers, practitioners, and subject matter experts from UC campuses and beyond. Teams of up to <strong>4 people per lesson</strong> are encouraged.</p>
+      </div>
+
+      <div class="detail-card">
+        <h3>Training & Support</h3>
+        <ul>
+          <li>Carpentries collaborative lesson development training (online)</li>
+          <li>UC OSPO mentorship and guidance</li>
+          <li>Student developer support</li>
+          <li>Community of practice</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="section-title">What You'll Gain</h2>
+
+    <div class="benefits-grid">
+      <div class="benefit-item">
+        <div class="benefit-icon">🎓</div>
+        <h4>Professional Development</h4>
+        <p>Carpentries lesson development training and hands-on experience</p>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">✍️</div>
+        <h4>Publication Credit</h4>
+        <p>Authorship on published lesson with DOI and citation</p>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">🏆</div>
+        <h4>Recognition</h4>
+        <p>UC OSPO Lesson Developer badge and community acknowledgment</p>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">🤝</div>
+        <h4>Collaboration</h4>
+        <p>Work with peers, build connections, share expertise</p>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">🌍</div>
+        <h4>Global Impact</h4>
+        <p>Reach learners worldwide through open publication</p>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">🚀</div>
+        <h4>Carpentries Pathway</h4>
+        <p>Potential inclusion in Carpentries Incubator and lesson programs</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Identified Lesson Gaps</h2>
+    <p style="text-align: center; color: var(--uc-white); margin-bottom: 2rem;">
+      We've identified these high-priority topics, but we welcome creative proposals that address other critical needs.
+    </p>
+
+    <div class="gaps-list">
+      <div class="gap-item">
+        <h4>Understanding Open Source Licensing and Compliance</h4>
+        <p>Learn OSS license types, obligations, compatibility, and UC-specific policy guidance.</p>
+        <div class="gap-meta">Audience: Faculty, researchers, students, tech transfer, legal staff | Level: Beginner-Intermediate</div>
+      </div>
+
+      <div class="gap-item">
+        <h4>Introduction to Open Source (WTF is Open Source?)</h4>
+        <p>Foundational resource for people new to open source - what it is, why it matters, and how to get started.</p>
+        <div class="gap-meta">Audience: General public, students, anyone new to OSS | Level: Beginner</div>
+      </div>
+
+      <div class="gap-item">
+        <h4>Evaluating OSS for Security and Institutional Use</h4>
+        <p>How to vet open source tools for compliance, security, and alignment with institutional policies.</p>
+        <div class="gap-meta">Audience: IT staff, compliance officers, researchers with sensitive data | Level: Intermediate</div>
+      </div>
+
+      <div class="gap-item">
+        <h4>Governance and Sustainability in OSS Communities</h4>
+        <p>Explore inclusive governance structures, sustainability models, and decision-making processes.</p>
+        <div class="gap-meta">Audience: Community managers, PIs, project leads | Level: Intermediate</div>
+      </div>
+
+      <div class="gap-item">
+        <h4>Software Engineering Best Practices for Open Source</h4>
+        <p>Reproducibility principles, coding best practices, and sustainable software engineering.</p>
+        <div class="gap-meta">Audience: Developers, researchers, contributors | Level: Intermediate</div>
+      </div>
+
+      <div class="gap-item">
+        <h4>Community Development and Building</h4>
+        <p>Strategies for building, growing, and sustaining healthy open source communities.</p>
+        <div class="gap-meta">Audience: Community managers, maintainers, project leads | Level: Intermediate</div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Program Timeline</h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="timeline-quarter">Q1 2026</span>
+        <span class="timeline-description">
+          <strong>Proposal submission and review.</strong> Submit your proposal via GitHub.
+          UC OSPO team reviews all submissions and selects 4 lessons based on impact, need, and team readiness.
+        </span>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-quarter">Q2 2026</span>
+        <span class="timeline-description">
+          <strong>Carpentries training begins.</strong> Selected teams participate in online
+          collaborative lesson development training led by certified Carpentries instructors.
+        </span>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-quarter">Q3-Q4 2026</span>
+        <span class="timeline-description">
+          <strong>Lesson development.</strong> Teams develop lessons collaboratively with UC OSPO
+          mentorship, student developer support, and peer feedback.
+        </span>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-quarter">End 2026</span>
+        <span class="timeline-description">
+          <strong>Publication and launch.</strong> Completed lessons published on UC OSPO Education
+          site, promoted to the community, and submitted to Carpentries Incubator where appropriate.
+        </span>
+      </div>
+    </div>
+
+    <h2 class="section-title">Frequently Asked Questions</h2>
+
+    <div class="faq">
+      <div class="faq-item">
+        <div class="faq-question">Do I need to have a complete team to apply?</div>
+        <div class="faq-answer">
+          No! You can apply as an individual, partial team, or complete team. We can help match
+          individuals with complementary expertise and interests to form teams.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">What if my topic idea isn't on the identified gaps list?</div>
+        <div class="faq-answer">
+          We welcome creative proposals! The gaps list represents known needs, but we're open to
+          proposals that address other critical areas in open source education. Make a strong case
+          for why your topic matters in your proposal.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How much time commitment is required?</div>
+        <div class="faq-answer">
+          Expect to commit approximately 5-10 hours per week during training (Q2 2026) and 3-8 hours
+          per week during development (Q3-Q4 2026). The workload is distributed across your team.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Do I need prior experience developing lessons?</div>
+        <div class="faq-answer">
+          No prior lesson development experience required! That's what the Carpentries training is for.
+          You need subject matter expertise and a commitment to learn collaborative lesson development practices.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">What license will the lessons use?</div>
+        <div class="faq-answer">
+          Lessons will be published under an open license (typically CC-BY 4.0), allowing anyone to
+          use, adapt, and share the materials with attribution to the authors.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Can people outside UC participate?</div>
+        <div class="faq-answer">
+          Yes! While the program is led by UC OSPO, we welcome proposals from educators and subject
+          matter experts at other institutions who share our commitment to open source education.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">What happens if my proposal isn't selected?</div>
+        <div class="faq-answer">
+          We'll provide feedback and may invite you to participate in future cohorts. You're also
+          welcome to develop lessons independently - we can still connect you with resources and community.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Who owns the intellectual property of the lesson?</div>
+        <div class="faq-answer">
+          Authors retain copyright to their work. By participating, you agree to license your lesson
+          openly (CC-BY or similar) so it can be freely used and adapted by the community.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <div class="cta-section">
+      <h2>Ready to Make an Impact?</h2>
+      <p>Submit your lesson proposal and help build the future of open source education.</p>
+      <a href="https://github.com/UC-OSPO-Network/education/issues/new?template=lesson-proposal.yml" class="cta-button">
+        SUBMIT YOUR PROPOSAL
+      </a>
+      <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--uc-white);">
+        Questions? Contact Tim Dennis or open a discussion on GitHub.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

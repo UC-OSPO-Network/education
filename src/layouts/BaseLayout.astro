@@ -5,25 +5,39 @@ const { title } = Astro.props;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>{title}</title>
+    <title>{title} | UC OSPO</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Open Source Learning Pathways from the UC Open Source Program Office" />
     <!-- Link to global CSS -->
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <header style="padding:1rem; border-bottom:1px solid #333; display:flex; justify-content:space-between; align-items:center;">
-      <h1 style="margin:0; font-size:1.75rem;">OSPO Website</h1>
-      <nav>
-        <a href="/">Home</a> | <a href="/lessons">Lessons</a>
+    <header style="padding:1.5rem 2rem; border-bottom:3px solid var(--uc-gold); display:flex; justify-content:space-between; align-items:center; flex-wrap: wrap; gap: 1rem;">
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <h1 style="margin:0; font-size:1.5rem; font-weight: 700;">
+          UC OSPO
+          <span style="color: var(--uc-gold); font-weight: 400;"> | Education</span>
+        </h1>
+      </div>
+      <nav style="display: flex; gap: 0.5rem;">
+        <a href="/">Home</a>
+        <a href="/lessons">All Lessons</a>
+        <a href="/pathways">Pathways</a>
+        <a href="/develop-a-lesson" style="color: var(--uc-gold); font-weight: 600;">Develop a Lesson</a>
       </nav>
     </header>
 
-    <main style="padding:2rem;">
+    <main style="min-height: calc(100vh - 200px);">
       <slot />
     </main>
 
-    <footer style="padding:1rem; border-top:1px solid #333; text-align:center;">
-      © 2025 OSPO
+    <footer style="padding:2rem; border-top:3px solid var(--uc-gold); text-align:center; background: var(--uc-blue); margin-top: 4rem;">
+      <p style="margin: 0 0 0.5rem 0; color: var(--uc-white);">
+        © 2025 University of California Open Source Program Office
+      </p>
+      <p style="margin: 0; color: var(--uc-light-gray); font-size: 0.9rem;">
+        Supporting open source education and collaboration across the UC system
+      </p>
     </footer>
   </body>
 </html>

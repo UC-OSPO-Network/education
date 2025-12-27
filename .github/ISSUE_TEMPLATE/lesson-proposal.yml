@@ -1,0 +1,232 @@
+name: Lesson Development Proposal
+description: Propose a new open source lesson for the 2026 UC OSPO Collaborative Lesson Development Program
+title: "[LESSON PROPOSAL]: "
+labels: ["lesson-proposal", "phase-3-advanced"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## UC OSPO Collaborative Lesson Development Program 2026
+
+        Thank you for your interest in developing an open source lesson! This program supports teams of up to 4 educators to create high-quality learning materials through Carpentries collaborative lesson development training.
+
+        **Program Details:**
+        - 4 lessons total will be selected
+        - Teams of up to 4 people per lesson
+        - Online Carpentries lesson development training
+        - UC OSPO mentorship and student support
+        - Published on UC OSPO Education site
+        - Potential inclusion in Carpentries Incubator
+
+        **Timeline:**
+        - Q1 2026: Proposal review and selection
+        - Q2 2026: Carpentries training begins
+        - Q3-Q4 2026: Lesson development and publication
+
+        ---
+
+  - type: input
+    id: lesson-title
+    attributes:
+      label: Proposed Lesson Title
+      description: What is the working title of your proposed lesson?
+      placeholder: e.g., "Understanding Open Source Licensing and Compliance"
+    validations:
+      required: true
+
+  - type: textarea
+    id: lesson-description
+    attributes:
+      label: Lesson Description
+      description: Provide a brief description of the lesson (2-4 sentences)
+      placeholder: Describe what learners will learn and why this lesson is needed
+    validations:
+      required: true
+
+  - type: dropdown
+    id: gap-area
+    attributes:
+      label: Gap Area
+      description: Which identified gap area does this lesson address?
+      options:
+        - Licensing and Compliance
+        - Introduction to Open Source (WTF is Open Source?)
+        - Security and Institutional Policy
+        - Community Governance and Sustainability
+        - Software Engineering Best Practices
+        - Community Development and Building
+        - Other (describe in notes)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: pathway-alignment
+    attributes:
+      label: Primary Learning Pathway
+      description: Which pathway does this lesson best align with?
+      options:
+        - Getting Started with Open Source
+        - Contributing to a Project
+        - Maintaining & Sustaining Software
+        - Building Inclusive Communities
+        - Understanding Licensing & Compliance
+        - Strategic Practices & Career Development
+        - Multiple pathways
+    validations:
+      required: true
+
+  - type: textarea
+    id: learning-objectives
+    attributes:
+      label: Learning Objectives
+      description: List 3-5 specific learning objectives for this lesson
+      placeholder: |
+        By the end of this lesson, learners will be able to:
+        1.
+        2.
+        3.
+      value: |
+        By the end of this lesson, learners will be able to:
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: educational-level
+    attributes:
+      label: Educational Level
+      description: What is the target skill level?
+      options:
+        - Beginner
+        - Intermediate
+        - Advanced
+        - Mixed (Beginner-Intermediate)
+        - Mixed (Intermediate-Advanced)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: target-audience
+    attributes:
+      label: Target Audience
+      description: Who is the primary audience for this lesson? (Select all that apply)
+      options:
+        - label: Students (undergraduate/graduate)
+        - label: Faculty and researchers
+        - label: IT staff and system administrators
+        - label: Compliance and legal staff
+        - label: Community managers and project leads
+        - label: Tech transfer professionals
+        - label: General public / anyone new to open source
+
+  - type: textarea
+    id: why-matters
+    attributes:
+      label: Why This Lesson Matters
+      description: Explain the importance and impact of this lesson. Who needs it and why?
+      placeholder: Describe the current gap, demand, or critical need this lesson addresses
+    validations:
+      required: true
+
+  - type: input
+    id: primary-contact
+    attributes:
+      label: Primary Contact
+      description: Your name and email
+      placeholder: Jane Doe (jane.doe@university.edu)
+    validations:
+      required: true
+
+  - type: textarea
+    id: team-members
+    attributes:
+      label: Team Members
+      description: List confirmed or potential team members (names, affiliations, expertise). Max 4 people total including primary contact.
+      placeholder: |
+        1. Jane Doe (UC Campus) - Licensing expertise
+        2. John Smith (UC Campus) - Software engineering
+        3. TBD - Looking for community building expert
+      value: |
+        1.
+        2.
+        3.
+        4.
+
+  - type: textarea
+    id: expertise
+    attributes:
+      label: Team Expertise and Qualifications
+      description: Describe your team's relevant expertise, experience, or credentials for developing this lesson
+      placeholder: Include teaching experience, subject matter expertise, prior lesson development, etc.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: team-status
+    attributes:
+      label: Team Formation Status
+      description: Do you have a complete team, or are you looking for collaborators?
+      options:
+        - Complete team ready to go
+        - Partial team, open to additional members
+        - Individual seeking team members
+        - Flexible, open to UC OSPO team matching
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: availability
+    attributes:
+      label: Timeline Availability
+      description: Confirm your availability for the program timeline
+      options:
+        - label: Available Q2 2026 for Carpentries training
+          required: true
+        - label: Available Q3-Q4 2026 for lesson development
+          required: true
+        - label: Committed to completing the lesson by end of 2026
+          required: true
+
+  - type: textarea
+    id: additional-notes
+    attributes:
+      label: Additional Notes
+      description: Any other information, questions, or context you'd like to share?
+      placeholder: Optional - resources you plan to reference, similar lessons, collaboration ideas, etc.
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Program Commitment
+      description: By submitting this proposal, I/we agree to
+      options:
+        - label: Participate in Carpentries collaborative lesson development training
+          required: true
+        - label: Develop the lesson collaboratively with UC OSPO mentorship and support
+          required: true
+        - label: Publish the lesson under an open license (CC-BY or similar)
+          required: true
+        - label: Initially publish the lesson on the UC OSPO Education website
+          required: true
+        - label: Allow the lesson to be submitted to Carpentries Incubator if applicable
+          required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+        ## What Happens Next?
+
+        1. **Review**: UC OSPO team reviews all proposals (Q1 2026)
+        2. **Selection**: 4 lessons selected based on need, impact, and team readiness
+        3. **Notification**: Selected teams notified via email and GitHub
+        4. **Training**: Carpentries collaborative lesson development training begins (Q2 2026)
+        5. **Development**: Teams develop lessons with UC OSPO mentorship and student support (Q3-Q4 2026)
+        6. **Publication**: Completed lessons published on UC OSPO site and promoted to community
+
+        **Questions?** Contact Tim Dennis or comment on this issue.
+
+        Thank you for helping build open source education resources!

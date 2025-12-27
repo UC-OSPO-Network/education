@@ -1,28 +1,53 @@
+/* UC Official Brand Colors */
+:root {
+  --uc-blue: #1295D8;        /* UC Blue (Pantone 299 U) - Primary */
+  --uc-gold: #FFB511;        /* UC Gold (Pantone 116 U) - Primary */
+  --uc-white: #FFFFFF;       /* White */
+  --uc-dark-blue: #005581;   /* Dark Blue (secondary) */
+  --uc-light-blue: #72CDF4;  /* Light Blue (secondary) */
+  --uc-light-gold: #FFE552;  /* Light Gold (secondary) */
+  --uc-dark-gray: #1E1E1E;   /* Dark background */
+  --uc-med-gray: #2A2A2A;    /* Medium gray */
+  --uc-light-gray: #CCCCCC;  /* Light text */
+  --uc-border: #444444;      /* Border color */
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: #1E1E1E; /* dark background */
-  color: #FFFFFF;            /* white text */
+  font-family: 'Kievit', Arial, sans-serif;
+  background-color: var(--uc-dark-gray);
+  color: var(--uc-white);
   margin: 0;
+  line-height: 1.6;
 }
 
 a {
-  color: #007ACC;            /* links */
+  color: var(--uc-light-blue);
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 a:hover {
+  color: var(--uc-gold);
   text-decoration: underline;
 }
 
 header, footer {
-  background-color: #1E1E1E;
-  color: #FFFFFF;
+  background-color: var(--uc-blue);
+  color: var(--uc-white);
 }
 
 nav a {
-  color: #FFFFFF;
+  color: var(--uc-white);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
 }
 
 nav a:hover {
-  text-decoration: underline;
+  background-color: var(--uc-light-blue);
+  text-decoration: none;
 }
