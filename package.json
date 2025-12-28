@@ -6,7 +6,12 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "enhance:phase1": "node scripts/run-phase1.js",
+    "enhance:time": "node scripts/estimate-time-required.js",
+    "enhance:language": "node scripts/standardize-languages.js",
+    "enhance:metadata": "node scripts/scrape-metadata.js",
+    "enhance:slugs": "node scripts/generate-slugs.js"
   },
   "dependencies": {
     "@astrojs/react": "^4.4.0",
