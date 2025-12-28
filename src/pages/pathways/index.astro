@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PathwayCard from '../../components/PathwayCard.astro';
+import { PATHWAYS } from '../../types/lesson.ts';
+---
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, var(--uc-blue) 0%, var(--uc-dark-blue) 100%);
+    padding: 3rem 2rem;
+    text-align: center;
+    border-bottom: 4px solid var(--uc-gold);
+    margin-bottom: 3rem;
+  }
+
+  .page-header h1 {
+    margin: 0 0 1rem 0;
+    font-size: 2.5rem;
+    color: var(--uc-white);
+  }
+
+  .page-header p {
+    margin: 0;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .pathways-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .pathways-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<BaseLayout title="Learning Pathways">
+  <div class="page-header">
+    <h1>Open Source Learning Pathways</h1>
+    <p>
+      Choose a pathway based on your role, interests, and experience level.
+      Each pathway contains curated lessons to guide your learning journey.
+    </p>
+  </div>
+
+  <div class="pathways-grid">
+    {PATHWAYS.map(pathway => (
+      <PathwayCard pathway={pathway} />
+    ))}
+  </div>
+</BaseLayout>

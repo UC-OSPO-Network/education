@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getSheetData } from '../../lib/getSheetData.js';
+import { PATHWAYS } from '../../types/lesson.ts';
+import LessonCard from '../../components/LessonCard.jsx';
+
+export async function getStaticPaths() {
+  const lessons = await getSheetData();
+
+  return PATHWAYS.map(pathway => ({
+    params: { id: pathway.id },
+    props: { pathway, lessons }
+  }));
+}
+
+const { pathway, lessons } = Astro.props;
+
+// Filter lessons for this pathway
+const pathwayLessons = lessons.filter(lesson =>
+  lesson['Keep?']?.includes('Keep') &&
+  pathway.learnerCategories.includes(lesson.learnerCategory)
+);
+
+// Group by subTopic if available
+const groupedLessons = pathwayLessons.reduce((acc, lesson) => {
+  const topic = lesson.subTopic || 'Other';
+  if (!acc[topic]) acc[topic] = [];
+  acc[topic].push(lesson);
+  return acc;
+}, {});
+---
+
+<style>
+  .pathway-header {
+    background: linear-gradient(135deg, var(--uc-blue) 0%, var(--uc-dark-blue) 100%);
+    padding: 3rem 2rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    border-bottom: 4px solid var(--uc-gold);
+  }
+
+  .pathway-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  .pathway-header h1 {
+    margin: 0 0 1rem 0;
+    font-size: 2.5rem;
+    color: var(--uc-white);
+  }
+
+  .pathway-header p {
+    margin: 0;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .pathway-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 2rem;
+  }
+
+  .subtopic-section {
+    margin-bottom: 4rem;
+  }
+
+  .subtopic-header {
+    font-size: 1.4rem;
+    color: var(--uc-white);
+    margin-bottom: 2rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 3px solid var(--uc-gold);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .lesson-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .lesson-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 2rem;
+    color: var(--uc-light-blue);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: var(--uc-gold);
+  }
+
+  .no-lessons {
+    text-align: center;
+    padding: 3rem;
+    color: var(--uc-light-gray);
+  }
+</style>
+
+<BaseLayout title={pathway.name}>
+  <div class="pathway-header">
+    <div class="pathway-icon">{pathway.icon}</div>
+    <h1>{pathway.name}</h1>
+    <p>{pathway.description}</p>
+  </div>
+
+  <div class="pathway-content">
+    <a href="/" class="back-link">← Back to All Pathways</a>
+
+    {Object.keys(groupedLessons).length === 0 ? (
+      <div class="no-lessons">
+        <p style="font-size: 1.2rem;">No lessons available for this pathway yet.</p>
+        <p>Check back soon or <a href="/lessons">browse all lessons</a>.</p>
+      </div>
+    ) : (
+      Object.entries(groupedLessons).map(([subtopic, subtopicLessons]) => (
+        <div class="subtopic-section">
+          <h2 class="subtopic-header">{subtopic}</h2>
+          <div class="lesson-grid">
+            {subtopicLessons.map(lesson => (
+              <LessonCard
+                lesson={lesson}
+                pathwayIcon={pathway.icon}
+                client:load
+              />
+            ))}
+          </div>
+        </div>
+      ))
+    )}
+  </div>
+</BaseLayout>

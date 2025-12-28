@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PathwayCard from '../components/PathwayCard.astro';
+import { PATHWAYS } from '../types/lesson.ts';
+---
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 3rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--uc-white);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .hero .subtitle {
+    font-size: 1.25rem;
+    color: var(--uc-light-gray);
+    margin-bottom: 2rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .cta-button {
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    border: 2px solid transparent;
+  }
+
+  .cta-primary {
+    background: var(--uc-gold);
+    color: var(--uc-blue);
+  }
+
+  .cta-primary:hover {
+    background: #FFD54F;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(253, 181, 21, 0.4);
+    text-decoration: none;
+  }
+
+  .cta-secondary {
+    background: transparent;
+    border-color: var(--uc-light-blue);
+    color: var(--uc-white);
+  }
+
+  .cta-secondary:hover {
+    background: var(--uc-light-blue);
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+
+  .pathways-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+    color: var(--uc-white);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-header p {
+    color: var(--uc-light-gray);
+    font-size: 1.1rem;
+  }
+
+  .pathways-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .browse-all {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .browse-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--uc-blue);
+    color: var(--uc-white);
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid var(--uc-light-blue);
+  }
+
+  .browse-button:hover {
+    background: var(--uc-light-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 126, 161, 0.4);
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .pathways-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<BaseLayout title="Open Source Learning Pathways">
+  <div class="hero">
+    <h1>Welcome to the Open Source Learning Pathways</h1>
+    <p class="subtitle">What are you here to learn today?</p>
+
+    <div class="cta-buttons">
+      <a href="/lessons" class="cta-button cta-primary">
+        Browse All Lessons
+      </a>
+      <a href="#pathways" class="cta-button cta-secondary">
+        Explore by Pathway
+      </a>
+    </div>
+  </div>
+
+  <section id="pathways" class="pathways-section">
+    <div class="section-header">
+      <h2>Choose Your Learning Path</h2>
+      <p>Select a pathway based on your goals and experience level</p>
+    </div>
+
+    <div class="pathways-grid">
+      {PATHWAYS.map(pathway => (
+        <PathwayCard pathway={pathway} />
+      ))}
+    </div>
+
+    <div class="browse-all">
+      <a href="/lessons" class="browse-button">Browse All Lessons</a>
+    </div>
+  </section>
+</BaseLayout>

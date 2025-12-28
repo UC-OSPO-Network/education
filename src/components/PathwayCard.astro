@@ -1,0 +1,83 @@
+---
+interface Props {
+  pathway: {
+    id: string;
+    name: string;
+    description: string;
+    icon: string;
+  };
+}
+
+const { pathway } = Astro.props;
+---
+
+<style>
+  .pathway-card {
+    background: var(--uc-med-gray);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pathway-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--uc-gold);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+  }
+
+  .pathway-card:hover {
+    border-color: var(--uc-light-blue);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 122, 204, 0.3);
+  }
+
+  .pathway-card:hover::before {
+    transform: scaleY(1);
+  }
+
+  .pathway-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .pathway-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .pathway-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--uc-white);
+    margin: 0;
+  }
+
+  .pathway-description {
+    color: var(--uc-light-gray);
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+</style>
+
+<a href={`/pathways/${pathway.id}`} class="pathway-card">
+  <div class="pathway-header">
+    <span class="pathway-icon">{pathway.icon}</span>
+    <h3 class="pathway-title">{pathway.name}</h3>
+  </div>
+  <p class="pathway-description">{pathway.description}</p>
+</a>

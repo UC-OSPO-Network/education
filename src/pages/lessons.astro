@@ -1,8 +1,43 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSheetData } from '../lib/getSheetData.js';
+import LessonFilter from '../components/LessonFilter.jsx';
+
+const lessons = await getSheetData();
+
+// Filter to only include lessons marked as "Keep candidate" or "Keep"
+const activeLessons = lessons.filter(lesson =>
+  lesson['Keep?'] && (lesson['Keep?'].includes('Keep'))
+);
 ---
 
-<BaseLayout title="Lessons">
-  <h2>All Lessons</h2>
-  <p>Placeholder page — you can reuse the live fetch code from Home here.</p>
+<style>
+  .page-header {
+    background: linear-gradient(135deg, var(--uc-blue) 0%, var(--uc-light-blue) 100%);
+    padding: 3rem 2rem;
+    margin: -2rem -2rem 2rem -2rem;
+    text-align: center;
+    border-bottom: 4px solid var(--uc-gold);
+  }
+
+  .page-header h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2.5rem;
+    color: var(--uc-white);
+  }
+
+  .page-header p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+</style>
+
+<BaseLayout title="All Lessons">
+  <div class="page-header">
+    <h1>All Lessons</h1>
+    <p>Browse and filter our complete collection of open source learning materials</p>
+  </div>
+
+  <LessonFilter lessons={activeLessons} client:load />
 </BaseLayout>
