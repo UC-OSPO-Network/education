@@ -1,4 +1,4 @@
-// src/lib/getSheetData.js
+// src/lib/getSheetData.ts
 import fetch from 'node-fetch';
 import Papa from 'papaparse';
 

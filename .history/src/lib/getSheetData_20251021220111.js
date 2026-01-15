@@ -1,4 +1,4 @@
-// src/lib/getSheetData.js
+// src/lib/getSheetData.ts
 import Papa from 'papaparse';
 
 // Public CSV link
