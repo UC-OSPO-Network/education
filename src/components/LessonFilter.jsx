@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import LessonCard from './LessonCard.jsx';
+import Fuse from 'fuse.js';
 
 export default function LessonFilter({ lessons }) {
   const [filters, setFilters] = useState({
@@ -30,37 +31,56 @@ export default function LessonFilter({ lessons }) {
     };
   }, [lessons]);
 
+  const fuse = useMemo(() => {
+    if (!lessons || lessons.length === 0) return null;
+
+    return new Fuse(lessons, {
+      keys: [
+        { name: "name", weight: 0.4 },
+        { name: "description", weight: 0.3 },
+        { name: "keywords", weight: 0.2 },
+        { name: "subTopic", weight: 0.1 },
+      ],
+      threshold: 0.4,        // typo tolerance
+      ignoreLocation: true,
+      includeMatches:true,
+    });
+  }, [lessons]);
+
   // Filter lessons based on current filters
   const filteredLessons = useMemo(() => {
-    return lessons.filter(lesson => {
-      // Search filter
-      if (filters.search) {
-        const searchLower = filters.search.toLowerCase();
-        const matchesSearch =
-          lesson.name?.toLowerCase().includes(searchLower) ||
-          lesson.description?.toLowerCase().includes(searchLower) ||
-          lesson.keywords?.toLowerCase().includes(searchLower);
-        if (!matchesSearch) return false;
-      }
-
-      // OSS Role filter
+    let result = lessons;
+    // Apply fuzzy search first
+    if (filters.search && fuse) {
+      const fuseResults = fuse.search(filters.search);
+      // Build a map for quick lookup
+      const matchedLessonMap = new Map(
+        fuseResults.map(r => [
+          r.item.name,
+          { ...r.item, _matches: r.matches }
+        ])
+      );
+      result = result
+                .filter(lesson => matchedLessonMap.has(lesson.name))
+                .map(lesson => matchedLessonMap.get(lesson.name)
+      );
+    }
+    // Apply remaining filters
+    return result.filter(lesson => {
       if (filters.ossRole) {
         if (!lesson.oss_role?.includes(filters.ossRole)) return false;
       }
-
-      // Educational Level filter
       if (filters.educationalLevel) {
         if (lesson.educationalLevel !== filters.educationalLevel) return false;
       }
-
-      // Learner Category filter
       if (filters.learnerCategory) {
         if (lesson.learnerCategory !== filters.learnerCategory) return false;
       }
-
       return true;
     });
-  }, [lessons, filters]);
+  }, [lessons, filters, fuse]);
+
+      
 
   const handleFilterChange = (filterName, value) => {
     setFilters(prev => ({ ...prev, [filterName]: value }));
@@ -243,6 +263,7 @@ export default function LessonFilter({ lessons }) {
             <LessonCard
               key={index}
               lesson={lesson}
+              matches={lesson._matches}
               pathwayIcon="📚"
             />
           ))

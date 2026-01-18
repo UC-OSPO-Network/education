@@ -3,7 +3,26 @@ import SkillBadge from './SkillBadge.jsx';
 // Lesson card component matching student Figma design
 // Features: dark header, light body, skill badge, tag pills
 
-export default function LessonCard({ lesson, pathwayIcon }) {
+function highlightText(text, matches, field) {
+  if (!matches || !text) return text;
+
+  const match = matches.find(m => m.key === field);
+  if (!match) return text;
+
+  let highlighted = "";
+  let lastIndex = 0;
+
+  match.indices.forEach(([start, end]) => {
+    highlighted += text.slice(lastIndex, start);
+    highlighted += `<mark>${text.slice(start, end + 1)}</mark>`;
+    lastIndex = end + 1;
+  });
+
+  highlighted += text.slice(lastIndex);
+  return highlighted;
+}
+
+export default function LessonCard({ lesson, pathwayIcon,matches }) {
   if (!lesson) return null;
 
   // Determine if lesson appears in multiple pathways
@@ -68,9 +87,15 @@ export default function LessonCard({ lesson, pathwayIcon }) {
           color: '#FFFFFF',
           lineHeight: '1.4',
           flex: 1
-        }}>
-          {lesson.name || 'Untitled Lesson'}
-        </h3>
+        }}
+        dangerouslySetInnerHTML={{
+          __html: highlightText(
+            lesson.name || 'Untitled Lesson',
+            matches,
+            "name"
+          ),
+        }}
+        />
       </div>
 
       {/* Light Body Section */}
