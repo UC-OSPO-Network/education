@@ -1,0 +1,42 @@
+name,sortingId,originalDependsOn,dependsOn,prerequisiteNotes,internalPrerequisites,externalPrerequisites,_hasChanges
+Building Community,1,"Readers should already be familiar with OSS as a concept, and would benefit from having experience as a contributor.",,"Readers should already be familiar with OSS as a concept, and would benefit from having experience as a contributor.",,,false
+Leadership and Governance,2,Strongly recommended: 2—Building Community,leadership-and-governance,,leadership-and-governance,,true
+Social Coding and Open Source Collaboration,4,Readers should already be familiar with OSS as a concept,,Readers should already be familiar with OSS as a concept,,,false
+Writing Documentation for Software Projects,5,Requires Python! I recommend we link to this instead: https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/,https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/,,,https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/,true
+Making Good Pull Requests,6,13—Intro to Git,introduction-to-git,,introduction-to-git,,true
+Issue Tracking with GitHub,7,13—Intro to Git,introduction-to-git,,introduction-to-git,,true
+Collaborative Git for Teams,8,"13—Intro to Git, 14—How to Contribute to Open Source","introduction-to-git, how-to-contribute-to-open-source",,"introduction-to-git, how-to-contribute-to-open-source",,true
+Collaboration in Open Research Projects,9,"This covers literally all of the same content as we're linking to for all Community/Contributing sections and most of the Maintaining section. Should we position this as an all-in-one alternative to the other sort of piecemeal resources, or... ? ",,"This covers literally all of the same content as we're linking to for all Community/Contributing sections and most of the Maintaining section. Should we position this as an all-in-one alternative to the other sort of piecemeal resources, or... ?",,,false
+" Python Packaging",10,13 - Introduction to Git | 39 - Python Basics,"introduction-to-git, python-basics",,"introduction-to-git, python-basics",,true
+Python Packaging for Beginners,11,39 - Python Basics,python-basics,,python-basics,,true
+R Packaging,12,49 - Intermediate R | 40 - R Basics | 13 - Introduction to Git,"intermediate-r, r-basics, introduction-to-git",,"intermediate-r, r-basics, introduction-to-git",,true
+Introduction to Git,13,,,,,,false
+How to Contribute to Open Source,14,13 – Introduction to Git,introduction-to-git,,introduction-to-git,,true
+Continuous Integration and Delivery with GitHub Actions,15,13 - Introduction to Git | 10 - Python Packaging,"introduction-to-git, python-packaging",,"introduction-to-git, python-packaging",,true
+CI/CD for Research Software with GitLab CI,16,13 - Introduction to Git | 10 - Python Packaging | 17 - Unit Testing and TDD in Python,"introduction-to-git, python-packaging, unit-testing-and-tdd-in-python",,"introduction-to-git, python-packaging, unit-testing-and-tdd-in-python",,true
+Unit Testing and TDD in Python,17,48 - Intermediate Python,intermediate-python,,intermediate-python,,true
+Starting an Open Source Project,18,13 - Introduction to Git | 33 - Understanding Software Licensing,"introduction-to-git, understanding-software-licensing",,"introduction-to-git, understanding-software-licensing",,true
+Finding Users for Your Project,19,18 - Starting an Open Source Project,starting-an-open-source-project,,starting-an-open-source-project,,true
+Metrics,20,18 - Starting an Open Source Project,starting-an-open-source-project,,starting-an-open-source-project,,true
+Best Practices for Maintainers,21,1 - Building Community | 7 - Issue Tracking with GitHub,"building-community, issue-tracking-with-github",,"building-community, issue-tracking-with-github",,true
+Effective Code Review,22,8 - Collaborative Git for Teams,collaborative-git-for-teams,,collaborative-git-for-teams,,true
+Python Package Development Best Practices,23,"11,12",,"11,12",,,false
+"Building Better Research Software
+",24,"10, 11, 23, 39 - This is a python based course
+9, 13
+36, 37
+
+Course lists pre-requisites like version control in git and command line, but the course does cover the information with exercises for the student. ",python-basics,,python-basics,,true
+Reproducible Research,25,"No programming experience needed.  It would be best for a student who has experience with research papers and research projects and wants to detailed understanding of terms and concepts, but that is not necessary.",,"No programming experience needed.  It would be best for a student who has experience with research papers and research projects and wants to detailed understanding of terms and concepts, but that is not necessary.",,,false
+Intermediate Research Software Development Skills (Python) Lesson Material,26,"10, 11, 16, 17, 23, 48 - This is a python based course
+9, 13
+35, 37",intermediate-python,,intermediate-python,,true
+Introduction to Docker for Research  NOTE THIS IS NOW CALLED Introduction to Docker and Podman,27,"36,37 for bonus episode",,"36,37 for bonus episode",,,false
+Research Software Engineering with Python  Course,28,"10, 11, 16, 17, 23, 48 - This is a python based course
+9, 13
+35, 37",intermediate-python,,intermediate-python,,true
+Intermediate Python Development,29,39 - Python Basics,python-basics,,python-basics,,true
+Modular Programming with Python,30,48 - Intermediate Python,intermediate-python,,intermediate-python,,true
+Testing and Test-Driven Development,31,39 - Python Basics,python-basics,,python-basics,,true
+Reproducible Computational Environments using Containers,32,25 - Reproducible Research,reproducible-research,,reproducible-research,,true
+Understanding Software Licensing,33,No dependency,,No dependency,,,false

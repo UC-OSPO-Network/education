@@ -1,0 +1,57 @@
+row_number,name,url,issue_count,issues,has_name,has_description,has_url,has_educational_level,has_slug
+2,Building Community,https://opensource.guide/building-community/,1,missing_slug,yes,yes,yes,yes,no
+3,Leadership and Governance,https://opensource.guide/leadership-and-governance/,1,missing_slug,yes,yes,yes,yes,no
+4,Social Coding and Open Source Collaboration,https://coderefinery.github.io/social-coding/,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+5,Writing Documentation for Software Projects,https://intersect-training.org/Documentation/,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+6,Making Good Pull Requests,https://intersect-training.org/Making-Good-PRs/,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+7,Issue Tracking with GitHub,https://intersect-training.org/Issue-Tracking/,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+8,Collaborative Git for Teams,https://coderefinery.github.io/git-collaborative/,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+9,Collaboration in Open Research Projects,https://book.the-turing-way.org/collaboration/collaboration,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+10,Python Packaging,https://carpentries-incubator.github.io/python_packaging,3,missing_description; missing_subTopic; missing_slug,yes,no,yes,yes,no
+11,Python Packaging for Beginners,https://intersect-training.org/packaging/,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+12,R Packaging,https://carpentries-incubator.github.io/lesson-R-packaging/,4,missing_description; missing_educationalLevel; missing_subTopic; missing_slug,yes,no,yes,no,no
+13,Introduction to Git,https://coderefinery.github.io/git-intro/,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+14,How to Contribute to Open Source,https://opensource.guide/how-to-contribute/,4,missing_description; missing_educationalLevel; missing_subTopic; missing_slug,yes,no,yes,no,no
+15,Continuous Integration and Delivery with GitHub Actions,https://intersect-training.org/CI-CD/,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+16,CI/CD for Research Software with GitLab CI,https://hsf-training.github.io/hsf-training-cicd/,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+17,Unit Testing and TDD in Python,https://intersect-training.org/testing/instructor/,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+18,Starting an Open Source Project,https://opensource.guide/starting-a-project/,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+19,Finding Users for Your Project,https://opensource.guide/finding-users/,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+20,Metrics,https://opensource.guide/metrics/,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+21,Best Practices for Maintainers,https://opensource.guide/best-practices/,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+22,Effective Code Review,https://intersect-training.org/Code-Review/,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+23,Python Package Development Best Practices,https://education.molssi.org/python-package-best-practices/,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+24,Building Better Research Software,https://carpentries-incubator.github.io/better-research-software/,3,missing_description; missing_subTopic; missing_slug,yes,no,yes,yes,no
+25,Reproducible Research,https://book.the-turing-way.org/reproducible-research/reproducible-research,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+26,Intermediate Research Software Development Skills (Python) Lesson Material,https://carpentries-incubator.github.io/python-intermediate-development/,3,missing_description; missing_subTopic; missing_slug,yes,no,yes,yes,no
+27,Introduction to Docker for Research  NOTE THIS IS NOW CALLED Introduction to Docker and Podman,https://hsf-training.github.io/hsf-training-docker/index.html,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+28,Research Software Engineering with Python  Course,https://alan-turing-institute.github.io/rse-course/html/index.html,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+29,Intermediate Python Development,https://carpentries-incubator.github.io/python-intermediate-development/,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+30,Modular Programming with Python,https://coderefinery.github.io/modular-type-along/,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+31,Testing and Test-Driven Development,https://coderefinery.github.io/testing/,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+32,Reproducible Computational Environments using Containers,https://carpentries-incubator.github.io/docker-introduction/,4,missing_description; missing_educationalLevel; missing_subTopic; missing_slug,yes,no,yes,no,no
+33,Understanding Software Licensing,https://intersect-training.org/software-licensing/,2,missing_subTopic; missing_slug,yes,yes,yes,yes,no
+34,Reproducibility Principles and Practices,https://ucdavisdatalab.github.io/workshop_reproducible_research/chapters/index.html,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+35,Responsible Data Science,https://ucdavisdatalab.github.io/responsible-data-science/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+36,Introduction to Unix Command Line,https://ucdavisdatalab.github.io/workshop_introduction_to_the_command_line/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+37,Introduction to Version Control with Git.,https://ucdavisdatalab.github.io/workshop_introduction_to_version_control/chapters/index.html,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+38,Reproducible Research for Teams with GitHub,https://ucdavisdatalab.github.io/workshop_git_for_teams/chapters/index.html,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+39,Python Basics,https://ucdavisdatalab.github.io/workshop_python_basics/chapters/index.html,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+40,R Basics,https://ucdavisdatalab.github.io/workshop_r_basics/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+41,Overview of Databases and Data Storage,https://ucdavisdatalab.github.io/workshop_intro_to_databases/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+42,Introduction to SQL for Querying Databases,https://ucdavisdatalab.github.io/workshop_intro_to_sql/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+43,Principles of Data Visualization from PErception to Statistical Graphics,https://ucdavisdatalab.github.io/workshop_data_viz_principles/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+44,Intermediate Python: next-level Data Visualization,https://ucdavisdatalab.github.io/workshop_intermediate_python/chapters/05_viz.html,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+45,Intermediate R: Next-level Data Visualization,https://ucdavisdatalab.github.io/workshop_intermediate_r/data-visualization-in-r.html,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+46,Developing Your Data Science Portfolio,https://ucdavisdatalab.github.io/workshop_portfolios/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+47,Julia Basics,https://ucjug.github.io/workshop_julia_basics/chapters/index.html,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+48,Intermediate Python,https://ucdavisdatalab.github.io/workshop_intermediate_python/chapters/index.html,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+49,Intermediate R,https://ucdavisdatalab.github.io/workshop_intermediate_r/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+50,Overview of Remote and High Performance Computing (HPC),https://video.ucdavis.edu/media/Overview%20of%20Remote%20and%20High%20Performance%20Computing%20(HPC)%20-%202024-02-15/1_zulcobsl,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+51,Introduction to Remote Computing,https://ucdavisdatalab.github.io/workshop_intro_to_remote_computing/chapters/index.html,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+52,Introduction to Desktop GIS with QGIS,https://ucdavisdatalab.github.io/Intro-to-Desktop-GIS-with-QGIS/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+53,Spatial SQL with SpatiaLite,https://ucdavisdatalab.github.io/Spatial_SQL/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+54,Geocoding,https://github.com/ucdavisdatalab/geocoding-workshop/blob/master/README.md,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+55,Coordinate Reference Systems,https://ucdavisdatalab.github.io/workshop_coordinate_reference_systems/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+56,Introduction to Basic Statistics with R,https://ucdavisdatalab.github.io/basic_stats_r_1/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+57,TESTING again,(no url),4,missing_url; missing_educationalLevel; missing_subTopic; missing_slug,yes,yes,no,no,no
