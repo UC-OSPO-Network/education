@@ -43,28 +43,69 @@ function fetchCSV(url, redirectCount = 0) {
 }
 
 function parseCSV(text) {
-  const lines = text.split('\n').filter(line => line.trim());
-  if (lines.length === 0) {
-    throw new Error('CSV is empty');
-  }
-
-  const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
+  // Proper CSV parsing that handles quoted multi-line fields
   const rows = [];
+  let currentRow = [];
+  let currentField = '';
+  let insideQuotes = false;
 
-  for (let i = 1; i < lines.length; i++) {
-    const values = lines[i].split(',').map(v => v.trim().replace(/^"|"$/g, ''));
-    const row = {};
-    headers.forEach((header, index) => {
-      row[header] = values[index] || '';
-    });
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    const nextChar = text[i + 1];
 
-    // Skip completely empty rows
-    if (Object.values(row).some(v => v !== '')) {
-      rows.push(row);
+    if (char === '"') {
+      if (insideQuotes && nextChar === '"') {
+        // Escaped quote
+        currentField += '"';
+        i++; // Skip next quote
+      } else {
+        // Toggle quote state
+        insideQuotes = !insideQuotes;
+      }
+    } else if (char === ',' && !insideQuotes) {
+      // End of field
+      currentRow.push(currentField.trim());
+      currentField = '';
+    } else if ((char === '\n' || char === '\r') && !insideQuotes) {
+      // End of row
+      if (char === '\r' && nextChar === '\n') {
+        i++; // Skip \n in \r\n
+      }
+      if (currentField || currentRow.length > 0) {
+        currentRow.push(currentField.trim());
+        if (currentRow.some(f => f !== '')) {
+          rows.push(currentRow);
+        }
+        currentRow = [];
+        currentField = '';
+      }
+    } else {
+      currentField += char;
     }
   }
 
-  return { headers, rows };
+  // Add last field/row if exists
+  if (currentField || currentRow.length > 0) {
+    currentRow.push(currentField.trim());
+    if (currentRow.some(f => f !== '')) {
+      rows.push(currentRow);
+    }
+  }
+
+  if (rows.length === 0) {
+    throw new Error('CSV is empty');
+  }
+
+  const headers = rows[0];
+  const dataRows = rows.slice(1).map(row => {
+    const obj = {};
+    headers.forEach((header, index) => {
+      obj[header] = row[index] || '';
+    });
+    return obj;
+  });
+
+  return { headers, rows: dataRows };
 }
 
 function validateData(data) {
