@@ -1,0 +1,198 @@
+row_number,name,url,issue_count,issues,has_name,has_description,has_url,has_educational_level,has_slug
+2,Building Community,Discover how to foster a strong and inclusive community around your open source project. This guide covers effective communication,4,missing_description; invalid_url_format; missing_educationalLevel; missing_slug,yes,no,yes,no,no
+3,Leadership and Governance,decision-making processes,4,missing_description; invalid_url_format; missing_educationalLevel; missing_slug,yes,no,yes,no,no
+4,Social Coding and Open Source Collaboration,covering how to collaborate effectively on open-source projects using GitHub,4,invalid_url_format; missing_educationalLevel; missing_subTopic; missing_slug,yes,yes,yes,no,no
+5,Writing Documentation for Software Projects,(no url),4,missing_description; missing_url; missing_educationalLevel; missing_slug,yes,no,no,no,no
+6,Describe different types of documentation (e.g.,(no url),5,missing_description; missing_url; missing_educationalLevel; missing_subTopic; missing_slug,yes,no,no,no,no
+7,Recognize best practices for writing clear,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+8,List tools and formats commonly used for documentation (e.g.,(no url),5,missing_description; missing_url; missing_educationalLevel; missing_subTopic; missing_slug,yes,no,no,no,no
+9,Identify strategies for keeping documentation up to date.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+10,Recognize how to involve community members in contributing to documentation.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+11,Describe the relationship between documentation quality and project sustainability.,PhD Students,4,invalid_url_format; missing_learnerCategory; missing_subTopic; missing_slug,yes,yes,yes,yes,no
+12,Making Good Pull Requests,(no url),4,missing_description; missing_url; missing_educationalLevel; missing_slug,yes,no,no,no,no
+13,Describe the key elements of a well-structured PR (e.g.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+14,Recognize best practices for communicating effectively in PR discussions.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+15,List common mistakes to avoid when submitting a PR.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+16,Identify how to break large changes into smaller,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+17,Describe the role of code review in improving quality and maintaining project standards.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+18,Recognize the importance of linking PRs to related issues or documentation.,PhD Students,4,invalid_url_format; missing_learnerCategory; missing_subTopic; missing_slug,yes,yes,yes,yes,no
+19,Issue Tracking with GitHub,(no url),5,missing_description; missing_url; missing_educationalLevel; missing_subTopic; missing_slug,yes,no,no,no,no
+20,Describe common components of an issue (e.g.,(no url),5,missing_description; missing_url; missing_educationalLevel; missing_subTopic; missing_slug,yes,no,no,no,no
+21,Recognize how to create clear,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+22,List best practices for prioritizing and organizing issues.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+23,Identify strategies for collaborating on issues within a team or community.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+24,Describe how issue tracking supports project planning and sustainability.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+25,Recognize the role of issue templates in standardizing contributions.,Developers,3,invalid_url_format; missing_learnerCategory; missing_slug,yes,yes,yes,yes,no
+26,Collaborative Git for Teams,This lesson covers collaborative Git usage,2,invalid_url_format; missing_slug,yes,yes,yes,yes,no
+27,Collaboration in Open Research Projects,(no url),2,missing_url; missing_slug,yes,yes,no,yes,no
+28,Python Packaging,(no url),4,missing_description; missing_url; missing_educationalLevel; missing_slug,yes,no,no,no,no
+29,Describe the basic structure of a Python package (e.g.,(no url),5,missing_description; missing_url; missing_educationalLevel; missing_subTopic; missing_slug,yes,no,no,no,no
+30,Recognize the role of metadata in package distribution.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+31,List common tools used for packaging (e.g.,(no url),5,missing_description; missing_url; missing_educationalLevel; missing_subTopic; missing_slug,yes,no,no,no,no
+32,Describe how to write and organize code for packaging.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+33,Identify best practices for versioning and dependency management.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+34,Recognize how to build and distribute a package to the Python Package Index (PyPI).,(no url),5,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_slug,yes,no,no,no,no
+35,Python Packaging for Beginners,(no url),4,missing_description; missing_url; missing_educationalLevel; missing_slug,yes,no,no,no,no
+36,Use a task runner to manage environments and run code;,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+37,Create and install a Python package;,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+38,Create and run a test;,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+39,Learn about publishing a package on PyPI;,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+40,Learn about the basics of setting up tests;,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+41,Learn about the basics of setting up static checks;,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+42,Learn how to write reports in the form of a vignette,Intersect Team,2,invalid_url_format; missing_slug,yes,yes,yes,yes,no
+43,R Packaging,(no url),4,missing_description; missing_url; missing_educationalLevel; missing_slug,yes,no,no,no,no
+44,Understand why a package is useful;,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+45,Understand the tools used to create a package;,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+46,Install packages from other locations,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+47,Build,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+48,Learn how to add a license to a new R package;,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+49,Learn how to create a battery of basic tests;,(no url),5,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_slug,yes,no,no,no,no
+50,Introduction to Git,work with repositories,4,invalid_url_format; missing_educationalLevel; missing_subTopic; missing_slug,yes,yes,yes,no,no
+51,How to Contribute to Open Source,https://opensource.guide/how-to-contribute/,4,missing_description; missing_educationalLevel; missing_subTopic; missing_slug,yes,no,yes,no,no
+52,Continuous Integration and Delivery with GitHub Actions,(no url),4,missing_description; missing_url; missing_educationalLevel; missing_slug,yes,no,no,no,no
+53,"Identify types of """"breaking changes"""" in different development contexts.",(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+54,Define deployment in the context of CI/CD and recognize real-world examples.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+55,Apply CI/CD principles to automate workflows beyond code testing (e.g.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+56,Explain why GitHub Actions may be preferred for CI/CD in open-source projects.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+57,Configure a basic CI pipeline using GitHub Actions for code testing and packaging.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+58,Use a matrix strategy in CI to test across multiple Python versions and platforms.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+59,Automate both building and publishing artifacts—like Python packages—using GitHub Actions.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+60,Add and configure status badges to visualize CI/CD workflow health.,PhD Students,4,invalid_url_format; missing_learnerCategory; missing_subTopic; missing_slug,yes,yes,yes,yes,no
+61,CI/CD for Research Software with GitLab CI,https://hsf-training.github.io/hsf-training-cicd/,3,missing_description; missing_subTopic; missing_slug,yes,no,yes,yes,no
+62,Unit Testing and TDD in Python,(no url),4,missing_description; missing_url; missing_educationalLevel; missing_slug,yes,no,no,no,no
+63,Describe different types of tests (e.g.,(no url),5,missing_description; missing_url; missing_educationalLevel; missing_subTopic; missing_slug,yes,no,no,no,no
+64,Recognize common testing frameworks and tools (e.g.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+65,List best practices for writing clear,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+66,Identify how to run tests locally and in automated environments.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+67,Describe how testing fits into continuous integration workflows.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+68,Recognize the role of testing in improving software quality and sustainability.,Software Developers,3,invalid_url_format; missing_learnerCategory; missing_slug,yes,yes,yes,yes,no
+69,Starting an Open Source Project,(no url),5,missing_description; missing_url; missing_educationalLevel; missing_subTopic; missing_slug,yes,no,no,no,no
+70,Finding Users for Your Project,and leveraging social platforms for outreach.,5,missing_description; invalid_url_format; missing_educationalLevel; missing_subTopic; missing_slug,yes,no,yes,no,no
+71,Metrics,and practices to monitor project activity and community growth.,5,missing_description; invalid_url_format; missing_educationalLevel; missing_subTopic; missing_slug,yes,no,yes,no,no
+72,Best Practices for Maintainers,and foster a welcoming project environment. Topics include documentation,5,missing_description; invalid_url_format; missing_educationalLevel; missing_subTopic; missing_slug,yes,no,yes,no,no
+73,Effective Code Review,(no url),5,missing_description; missing_url; missing_educationalLevel; missing_subTopic; missing_slug,yes,no,no,no,no
+74,Describe the typical workflow for conducting a code review.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+75,Recognize best practices for giving constructive,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+76,List common pitfalls to avoid when reviewing code.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+77,Identify how to prepare code for review to facilitate efficient feedback.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+78,Describe the role of code review in maintaining project standards and quality.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+79,Recognize how to use code review tools effectively within version control platforms.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+80,(unnamed),Software Developers,4,missing_name; invalid_url_format; missing_learnerCategory; missing_slug,no,yes,yes,yes,no
+81,Python Package Development Best Practices,(no url),4,missing_description; missing_url; missing_educationalLevel; missing_slug,yes,no,no,no,no
+82,Set up credentials for GitHub.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+83,Explain Python package structure.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+84,Use the CMS CookieCutter to build a Python package.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+85,Explain the purpose of version control.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+86,Introduce common git commands.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+87,Understand how to create a commit.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+88,Understand how to view diffs and see previous versions of files.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+89,Explain reasons to use GitHub.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+90,Learn about collaboration models.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+91,Learn what a fork is on GitHub,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+92,Learn how to open a pull request,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+93,Learn how to raise exceptions.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+94,Understand how to follow PEP8 style for Python.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+95,Understand what docstrings are and why they are important.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+96,Learn to write docstrings in numpy style.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+97,Break code into modules and subpackages based on functionality.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+98,Understand how the __init__.py file affects your Python package.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+99,Learn about type hinting in Python.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+100,Learn the syntax to utilize type hinting in Python.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+101,Explain in-code documentation,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+102,Explain documentation tools like Read The Docs,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+103,Explain the overall structure of testing.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+104,Explain the reasons why testing is important.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+105,Understand how to write tests using the pytest framework.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+106,Explain the concept and benefits of continuous integration.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+107,Introduce the GitHub Marketplace as a one-stop shop for continuous integration services.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+108,Demonstrate how to setup continuous integration using GitHub Actions.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+109,Familiarize learners with YAML configuration files.,Python Developers,3,invalid_url_format; missing_learnerCategory; missing_slug,yes,yes,yes,yes,no
+110,Building Better Research Software,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+111,(unnamed),(no url),5,missing_name; missing_description; missing_url; missing_educationalLevel; missing_slug,no,no,no,no,no
+112,9,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+113,36,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+114,Course lists pre-requisites like version control in git and command line,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+115,Introduce what FAIR means especially in relationship to code written for research purposes.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+116,Course is comprehensive covering the research code lifecylce,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+117,Creating a github project (along with practices to help with version control);,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+118,Practices to help with reproductibility (eg creating reproducible environment for other reseaerches,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+119,Practices to annotate code to ensure that others can understand and use the code;,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+120,Code structure recommendations; Testing and Documentation practices,(no url),4,missing_description; missing_url; missing_learnerCategory; missing_slug,yes,no,no,yes,no
+121,Reproducible Research,detailed definitions that are finely  parsed for different ascpects of research,4,missing_description; invalid_url_format; missing_educationalLevel; missing_slug,yes,no,yes,no,no
+122,There are exercise using code provided for the class.,Software Developers,3,invalid_url_format; missing_learnerCategory; missing_slug,yes,yes,yes,yes,no
+123,Intermediate Research Software Development Skills (Python) Lesson Material,(no url),4,missing_description; missing_url; missing_educationalLevel; missing_slug,yes,no,no,no,no
+124,9,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+125,35,Contributor,4,missing_description; invalid_url_format; missing_subTopic; missing_slug,yes,no,yes,yes,no
+126,Introduction to Docker for Research  NOTE THIS IS NOW CALLED Introduction to Docker and Podman,This lesson introduces Docker,2,invalid_url_format; missing_slug,yes,yes,yes,yes,no
+127,Research Software Engineering with Python  Course,(no url),4,missing_description; missing_url; missing_educationalLevel; missing_slug,yes,no,no,no,no
+128,9,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+129,35,https://alan-turing-institute.github.io/rse-course/html/index.html,2,missing_learnerCategory; missing_slug,yes,yes,yes,yes,no
+130,Intermediate Python Development,(no url),5,missing_description; missing_url; missing_educationalLevel; missing_subTopic; missing_slug,yes,no,no,no,no
+131,Understand Model-View-Controller (MVC) architecture in software design and its use in our project.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+132,Set up a Python virtual environment for our software project using venv and pip.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+133,Run our software from the command line.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+134,Set up a (virtual) development environment in an IDE,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+135,Use the IDE to run a Python script,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+136,Commit changes in a software project to a local repository and publish them in a remote repository on GitHub,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+137,Create branches for managing different threads of code development,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+138,Learn to use feature branch workflow to effectively collaborate with a team on a software project,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+139,Understand the benefits of following community coding conventions,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+140,Use code linting tools to verify a program’s adherence to a Python coding style convention.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+141,Explain the reasons why testing is important,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+142,Describe the three main types of tests and what each are used for,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+143,Implement and run unit tests to verify the correct behaviour of program functions,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+144,Use parameterisation to automatically run tests over a set of inputs,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+145,Use code coverage to understand how much of our code is being tested using unit tests,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+146,Use continuous integration to automatically run unit tests and code coverage when changes are committed to a version control repository,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+147,Use a debugger to explore behaviour of a running program,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+148,Describe and identify edge and corner test cases and explain why they are important,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+149,Apply error handling and defensive programming techniques to improve robustness of a program,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+150,Describe the differences between writing code and engineering software.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+151,Define the fundamental stages in a software development process.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+152,Describe the different types of software requirements.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+153,List the common aspects of software architecture and design.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+154,Introduce appropriate abstractions to simplify code.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+155,Understand the use of regressions tests to avoid breaking existing code when refactoring.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+156,Analyse new code to identify Model,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+157,Understand the code review process and employ it to improve the quality of code.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+158,Understand other documentation components and where they are useful,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+159,Describe the basic types of open source software licence,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+160,Describe the steps necessary for sharing Python code as installable packages.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+161,Use established tools to track and manage software problems and enhancements in a team.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+162,Conduct an assessment of software against suitability criteria,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+163,(unnamed),Maintainer,4,missing_name; invalid_url_format; missing_learnerCategory; missing_slug,no,yes,yes,yes,no
+164,Modular Programming with Python,(no url),4,missing_description; missing_url; missing_educationalLevel; missing_slug,yes,no,no,no,no
+165,Learn why and how to limit side effects of functions.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+166,Discuss why and how to limit side effects of data. Also discuss when mutable data may be preferable.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+167,Discuss why single-purpose functions are often preferred over multi-purpose functions.,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+168,Split-apply-combine,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+169,Understand how a command line interface to a code can improve usability and also make the code more versatile (to be combined with workflow management tools).,(no url),6,missing_description; missing_url; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,no,no,no
+170,Connect modular code development to the remaining lessons (version control,Researchers,2,invalid_url_format; missing_slug,yes,yes,yes,yes,no
+171,Testing and Test-Driven Development,test-driven development,3,invalid_url_format; missing_subTopic; missing_slug,yes,yes,yes,yes,no
+172,Reproducible Computational Environments using Containers,(no url),5,missing_description; missing_url; missing_educationalLevel; missing_subTopic; missing_slug,yes,no,no,no,no
+173,Understanding Software Licensing,(no url),5,missing_description; missing_url; missing_educationalLevel; missing_subTopic; missing_slug,yes,no,no,no,no
+174,It is a good primer that can be used as a lesson plan or for self study. Covers IP law,https://intersect-training.org/software-licensing/,1,missing_slug,yes,yes,yes,yes,no
+175,Reproducibility Principles and Practices,often accompanied by software tools,5,missing_description; invalid_url_format; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,yes,no
+176,Responsible Data Science,https://ucdavisdatalab.github.io/responsible-data-science/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+177,Introduction to Unix Command Line,https://ucdavisdatalab.github.io/workshop_introduction_to_the_command_line/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+178,Introduction to Version Control with Git.,https://ucdavisdatalab.github.io/workshop_introduction_to_version_control/chapters/index.html,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+179,Reproducible Research for Teams with GitHub,https://ucdavisdatalab.github.io/workshop_git_for_teams/chapters/index.html,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+180,Python Basics,https://ucdavisdatalab.github.io/workshop_python_basics/chapters/index.html,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+181,R Basics,https://ucdavisdatalab.github.io/workshop_r_basics/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+182,Overview of Databases and Data Storage,https://ucdavisdatalab.github.io/workshop_intro_to_databases/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+183,Introduction to SQL for Querying Databases,https://ucdavisdatalab.github.io/workshop_intro_to_sql/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+184,Principles of Data Visualization from PErception to Statistical Graphics,https://ucdavisdatalab.github.io/workshop_data_viz_principles/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+185,Intermediate Python: next-level Data Visualization,https://ucdavisdatalab.github.io/workshop_intermediate_python/chapters/05_viz.html,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+186,Intermediate R: Next-level Data Visualization,https://ucdavisdatalab.github.io/workshop_intermediate_r/data-visualization-in-r.html,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+187,Developing Your Data Science Portfolio,https://ucdavisdatalab.github.io/workshop_portfolios/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+188,Julia Basics,https://ucjug.github.io/workshop_julia_basics/chapters/index.html,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+189,Intermediate Python,https://ucdavisdatalab.github.io/workshop_intermediate_python/chapters/index.html,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+190,Intermediate R,https://ucdavisdatalab.github.io/workshop_intermediate_r/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+191,Overview of Remote and High Performance Computing (HPC),https://video.ucdavis.edu/media/Overview%20of%20Remote%20and%20High%20Performance%20Computing%20(HPC)%20-%202024-02-15/1_zulcobsl,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+192,Introduction to Remote Computing,https://ucdavisdatalab.github.io/workshop_intro_to_remote_computing/chapters/index.html,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+193,Introduction to Desktop GIS with QGIS,https://ucdavisdatalab.github.io/Intro-to-Desktop-GIS-with-QGIS/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+194,Spatial SQL with SpatiaLite,https://ucdavisdatalab.github.io/Spatial_SQL/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+195,Geocoding,https://github.com/ucdavisdatalab/geocoding-workshop/blob/master/README.md,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+196,Coordinate Reference Systems,https://ucdavisdatalab.github.io/workshop_coordinate_reference_systems/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+197,Introduction to Basic Statistics with R,https://ucdavisdatalab.github.io/basic_stats_r_1/,5,missing_description; missing_educationalLevel; missing_learnerCategory; missing_subTopic; missing_slug,yes,no,yes,no,no
+198,TESTING again,(no url),4,missing_url; missing_educationalLevel; missing_subTopic; missing_slug,yes,yes,no,no,no
