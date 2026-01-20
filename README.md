@@ -8,10 +8,12 @@ Work regarding the education subgroup. This repository hosts the Astro-based web
 
 ## ✨ Features
 
-[TODO: Describe the awesome things your project can do! List key features from the README Guide template.]
-- Feature 1 (e.g., Explore lessons by category)
-- Feature 2 (e.g., Filterable lesson library)
-- Feature 3 (e.g., Responsive design)
+- **Comprehensive Lesson Library**: Browse open source education lessons from The Carpentries, CodeRefinery, and other sources
+- **Learning Pathways**: Curated sequences of lessons organized by topic and skill level
+- **Dynamic Data Integration**: Content automatically synced from Google Sheets for easy updates
+- **Advanced Search & Filtering**: Find lessons by topic, source, duration, and difficulty level
+- **Responsive Design**: Optimized experience across desktop, tablet, and mobile devices
+- **Automated Quality Checks**: Built-in validation for data quality, links, and build integrity
 
 ## 🚀 Getting Started
 
@@ -19,13 +21,15 @@ This project was built with [Astro](https://astro.build/).
 
 ### Prerequisites
 
-[TODO: What other software would a user need to have installed? Any specific concepts to be familiar with?]
-- Node.js (version 18 or higher)
+- Node.js (version 20 or higher)
 - npm (Node Package Manager)
+- Git for version control
+- Basic familiarity with:
+  - Command line interface
+  - Astro framework (helpful but not required)
+  - TypeScript (for contributing to the codebase)
 
 ### Installation
-
-How can users install your software?
 
 1.  **Clone the project:**
     ```bash
@@ -40,12 +44,28 @@ How can users install your software?
     npm install
     ```
 
-### Running Tests (Optional)
+### Running Validation Checks
 
-[TODO: If your project has tests, provide instructions on how to run them here.]
+The project includes automated validation scripts to ensure data quality and build integrity:
+
 ```bash
-# Example: npm test
+# Validate data source from Google Sheets
+node .github/scripts/validate-data.mjs
+
+# Run TypeScript type checking
+npx astro check
+
+# Build the site
+npm run build
+
+# Validate build output (critical pages)
+node .github/scripts/validate-build.mjs
+
+# Check for broken internal links
+node .github/scripts/check-links.mjs
 ```
+
+These checks run automatically on pull requests via GitHub Actions.
 
 ### Run Locally
 
@@ -59,11 +79,28 @@ This will start a local development server, usually at `http://localhost:4321`.
 
 ### Deployment
 
-This project is configured for deployment to GitHub Pages via GitHub Actions.
+This project is configured for deployment to GitHub Pages via GitHub Actions:
+- **Production**: Automatically deploys from the `main` branch to GitHub Pages
+- **PR Previews**: Pull requests automatically generate preview deployments via Vercel
+
+The deployment workflow runs validation checks, builds the site, and publishes to GitHub Pages whenever changes are pushed to main.
 
 ## 📝 Usage
 
-[TODO: Document how to use your project. Include screenshots, code samples, or links to other resources as needed.]
+### Browsing Lessons
+
+Visit the live site to explore the lesson library:
+1. **Browse by Category**: Navigate through different topics and skill areas
+2. **Search**: Use the search functionality to find specific lessons
+3. **Filter**: Narrow results by source, duration, difficulty, or topic
+4. **Learning Pathways**: Follow curated sequences of lessons
+
+### Updating Content
+
+Lesson data is managed through Google Sheets:
+1. Update the [lesson inventory spreadsheet](https://docs.google.com/spreadsheets/d/1JqM5OYX4f-T0jR-GJ5UeI7PnGJP6o4jtPRNtDJUGPmI/edit?gid=1792935546#gid=1792935546)
+2. Changes are automatically pulled during the build process
+3. The site rebuilds and deploys when changes are pushed to the main branch
 
 ## 🗺️ Roadmap (Optional)
 
@@ -87,15 +124,23 @@ We welcome contributions! Please see our guides below:
 
 [TODO: Add frequently asked questions and their answers here.]
 
-## 📞 Contact (Optional)
+## 📞 Contact
 
-[TODO: How should users contact you with questions about the project?]
-- Email: [your-email@example.com]
-- GitHub Issues: [https://github.com/UC-OSPO-Network/education/issues]
+Have questions or suggestions? Reach out through:
+- **GitHub Issues**: [https://github.com/UC-OSPO-Network/education/issues](https://github.com/UC-OSPO-Network/education/issues)
+- **GitHub Discussions**: For general questions and community discussion
+- **Meeting Notes**: Check our [meeting notes](https://docs.google.com/document/d/1-CJxDt05f9YoYfGB8-NC0zvQZbEJzHT1P7keRciMlrY/edit?tab=t.0#heading=h.vs4sjkl9adbl) for information about joining education subgroup meetings
 
-## 🙏 Attribution (Optional)
+## 🙏 Attribution
 
-[TODO: Mention useful resources and libraries that you've leaned on in building your project.]
+This project builds upon and integrates content from:
+- **[The Carpentries](https://carpentries.org/)**: Open source lessons for teaching foundational coding and data science skills
+- **[CodeRefinery](https://coderefinery.org/)**: Training materials for research software development
+- **[Astro](https://astro.build/)**: Modern web framework for building fast, content-focused websites
+- **[PapaParse](https://www.papaparse.com/)**: CSV parsing library for data integration
+- **[Fuse.js](https://fusejs.io/)**: Lightweight fuzzy-search library for lesson discovery
+
+Special thanks to all contributors and the open source education community.
 
 ## 👀 Want to learn more about Astro?
 
