@@ -1,0 +1,117 @@
+# Pull Request Build Check
+# Runs comprehensive tests on PRs to ensure changes don't break the site
+# Checks: TypeScript, build, data validation, links, and critical pages
+name: PR Build Check
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'astro.config.mjs'
+      - 'package*.json'
+      - 'tsconfig.json'
+      - '.github/workflows/pr-check.yml'
+      - '.github/scripts/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      # ============================================
+      # Step 1: Validate Google Sheets data source
+      # ============================================
+      - name: Validate data source
+        run: node .github/scripts/validate-data.mjs
+        continue-on-error: false
+
+      # ============================================
+      # Step 2: TypeScript validation
+      # ============================================
+      - name: Run Astro check
+        run: npx astro check
+        continue-on-error: false
+
+      # ============================================
+      # Step 3: Build the site
+      # ============================================
+      - name: Build site
+        run: npm run build
+        continue-on-error: false
+
+      # ============================================
+      # Step 4: Validate build output
+      # ============================================
+      - name: Validate build output
+        run: node .github/scripts/validate-build.mjs
+        continue-on-error: false
+
+      # ============================================
+      # Step 5: Check internal links
+      # ============================================
+      - name: Check internal links
+        run: node .github/scripts/check-links.mjs
+        continue-on-error: false
+
+      # ============================================
+      # Step 6: Report success/failure
+      # ============================================
+      - name: Comment PR with success
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = `## ✅ All PR checks passed!
+
+            | Check | Status |
+            |-------|--------|
+            | 📊 Data validation | ✅ Pass |
+            | 🔍 TypeScript check | ✅ Pass |
+            | 🏗️ Build | ✅ Pass |
+            | 📄 Critical pages | ✅ Pass |
+            | 🔗 Internal links | ✅ Pass |
+
+            The site builds successfully and all validation checks passed.`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            })
+
+      - name: Comment PR with failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = `## ❌ PR checks failed
+
+            One or more validation checks failed. Please review the [workflow logs](${context.payload.repository.html_url}/actions/runs/${context.runId}) to see what went wrong.
+
+            Common issues:
+            - 📊 **Data validation**: Google Sheets CSV is unreachable or has invalid data
+            - 🔍 **TypeScript check**: Type errors in code
+            - 🏗️ **Build**: Build process failed
+            - 📄 **Critical pages**: Missing required pages (index, lessons, pathways)
+            - 🔗 **Internal links**: Broken links detected`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            })
