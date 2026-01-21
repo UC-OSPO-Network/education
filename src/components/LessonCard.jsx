@@ -3,24 +3,44 @@ import SkillBadge from './SkillBadge.jsx';
 // Lesson card component matching student Figma design
 // Features: dark header, light body, skill badge, tag pills
 
-function highlightText(text, matches, field) {
-  if (!matches || !text) return text;
+function HighlightedText({ text, matches, field }) {
+  if (!matches || !text) return <>{text}</>;
 
   const match = matches.find(m => m.key === field);
-  if (!match) return text;
+  if (!match) return <>{text}</>;
 
-  let highlighted = "";
+  const parts = [];
   let lastIndex = 0;
 
-  match.indices.forEach(([start, end]) => {
-    highlighted += text.slice(lastIndex, start);
-    highlighted += `<mark>${text.slice(start, end + 1)}</mark>`;
+  match.indices.forEach(([start, end], i) => {
+    if (start > lastIndex) {
+      parts.push(
+        <span key={`text-${i}`}>
+          {text.slice(lastIndex, start)}
+        </span>
+      );
+    }
+
+    parts.push(
+      <mark key={`mark-${i}`}>
+        {text.slice(start, end + 1)}
+      </mark>
+    );
+
     lastIndex = end + 1;
   });
 
-  highlighted += text.slice(lastIndex);
-  return highlighted;
+  if (lastIndex < text.length) {
+    parts.push(
+      <span key="text-end">
+        {text.slice(lastIndex)}
+      </span>
+    );
+  }
+
+  return <>{parts}</>;
 }
+
 
 export default function LessonCard({ lesson, pathwayIcon,matches }) {
   if (!lesson) return null;
@@ -87,15 +107,13 @@ export default function LessonCard({ lesson, pathwayIcon,matches }) {
           color: '#FFFFFF',
           lineHeight: '1.4',
           flex: 1
-        }}
-        dangerouslySetInnerHTML={{
-          __html: highlightText(
-            lesson.name || 'Untitled Lesson',
-            matches,
-            "name"
-          ),
-        }}
+        }}>
+        <HighlightedText
+          text={lesson.name || 'Untitled Lesson'}
+          matches={matches}
+          field="name"
         />
+        </h3>
       </div>
 
       {/* Light Body Section */}
