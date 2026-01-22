@@ -4,7 +4,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://UC-OSPO-Network.github.io',
-  base: '/education',
+  site: 'https://education.ucospo.net',
+  base: '/',
   integrations: [react()],
 });
