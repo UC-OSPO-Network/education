@@ -19,13 +19,13 @@ src/
 ├── components/
 │   ├── Card.astro             # Basic card component
 │   ├── Folder.astro           # Deprecated folder component
-│   ├── LessonFilter.jsx       # React component for filtering lessons
+│   ├── LessonFilter.tsx       # React component for filtering lessons
 │   ├── PathwayCard.astro      # Pathway card component
 │   └── StackedPathways.jsx    # Interactive stacked pathways (NEW)
 ├── layouts/
 │   └── BaseLayout.astro       # Main layout with header/footer
 ├── lib/
-│   └── getSheetData.js        # Fetches lesson data from Google Sheets
+│   └── getSheetData.ts        # Fetches lesson data from Google Sheets
 ├── pages/
 │   ├── index.astro            # Homepage with stacked pathways
 │   ├── lessons.astro          # Filterable lessons library
@@ -81,7 +81,7 @@ The site will be available at `http://localhost:4321`
 
 ### Lesson Data Source
 Lessons are stored in a Google Sheet and fetched via a published CSV:
-- **File**: `src/lib/getSheetData.js`
+- **File**: `src/lib/getSheetData.ts`
 - **Sheet URL**: Already configured
 - **Format**: Bioschemas Training schema
 
@@ -111,7 +111,7 @@ Essential fields to display:
 ### All Lessons (`src/pages/lessons.astro`)
 - Filterable table view
 - Filters: Search, OSS Role, Skill Level, Pathway
-- Uses `LessonFilter.jsx` React component
+- Uses `LessonFilter.tsx` React component
 
 ### Pathway Pages (`src/pages/pathways/[id].astro`)
 - Dynamic routes for each pathway
@@ -201,9 +201,22 @@ npm run build
 - Components can be Astro (`.astro`) or React (`.jsx`)
 - Use `client:load` directive for interactive React components
 
+### TypeScript Usage
+
+This project uses strict TypeScript checks via Astro’s strict tsconfig.
+
+### Guidelines
+- Prefer explicit interfaces for data structures (e.g. CSV rows, props)
+- Avoid `any`; use indexed signatures when working with CSV-style data
+- All React components should be typed using `.tsx`
+- Run `npx astro check` before submitting changes
+
+Strict typing helps catch errors early and improves maintainability.
+
+
 ### Working with the CSV Data
 ```javascript
-import { getSheetData } from '../lib/getSheetData.js';
+import { getSheetData } from '../lib/getSheetData.ts';
 
 // In Astro component
 const lessons = await getSheetData();
@@ -227,7 +240,7 @@ const activeLessons = lessons.filter(lesson =>
 ## 🐛 Common Issues
 
 **Issue**: CSV data not loading
-- **Solution**: Check the published CSV URL in `getSheetData.js`
+- **Solution**: Check the published CSV URL in `getSheetData.ts`
 
 **Issue**: React component not interactive
 - **Solution**: Add `client:load` directive to component

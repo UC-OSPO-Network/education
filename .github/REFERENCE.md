@@ -277,7 +277,7 @@ Full spec: https://bioschemas.org/profiles/TrainingMaterial/1.0-RELEASE
 
 ```
 ┌─────────────────────────────────────────────┐
-│ Google Sheets (via getSheetData.js)         │
+│ Google Sheets (via getSheetData.ts)         │
 │ - 56 lessons                                │
 │ - 38 columns                                │
 └────────────────┬────────────────────────────┘
