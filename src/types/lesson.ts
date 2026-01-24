@@ -2,6 +2,7 @@
 
 export interface Lesson {
   name: string;
+  slug?: string;
   Topic: string;
   'Keep?': string;
   learnerCategory: string;

@@ -174,10 +174,12 @@ const icon = categoryIcons[category] || "📁";
       const content = folder.querySelector(".folder-content");
       const arrow = folder.querySelector(".arrow");
 
-      header.addEventListener("click", () => {
-        const isOpen = content.classList.toggle("open");
-        arrow.classList.toggle("open", isOpen);
-      });
+      if (header && content && arrow) {
+        header.addEventListener("click", () => {
+          const isOpen = content.classList.toggle("open");
+          arrow.classList.toggle("open", isOpen);
+        });
+      }
     });
   });
 </script>
