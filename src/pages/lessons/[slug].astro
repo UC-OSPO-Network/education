@@ -1,0 +1,311 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getSheetData } from '../../lib/getSheetData.js';
+import { PATHWAYS } from '../../types/lesson.ts';
+import LessonCard from '../../components/LessonCard.jsx';
+
+export async function getStaticPaths() {
+  const lessons = await getSheetData();
+
+  return lessons
+    .filter(l => l['Keep?']?.includes('Keep'))
+    .map(lesson => {
+      let slug = lesson.slug;
+
+      if (!slug && lesson.name) {
+        slug = lesson.name
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/(^-|-$)/g, '');
+      }
+
+      // Ensure slug is never empty or undefined - use deterministic fallback
+      if (!slug || slug === '' || slug === 'undefined') {
+        // Use a combination of properties to create a unique identifier
+        const base = lesson.Topic || lesson.subTopic || 'lesson';
+        const id = lesson['Sorting ID'] || lesson.identifier || 'unknown';
+        slug = `${base}-${id}`.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      }
+
+      return {
+        params: { slug },
+        props: { lesson },
+      };
+    });
+}
+
+const { lesson } = Astro.props;
+
+// Get all lessons for related section
+const allLessons = await getSheetData();
+const activeLessons = allLessons.filter(l => l['Keep?']?.includes('Keep'));
+
+// Find related lessons (same subTopic or learnerCategory)
+const relatedLessons = activeLessons
+  .filter(l => l.name !== lesson.name && (
+    l.subTopic === lesson.subTopic ||
+    l.learnerCategory === lesson.learnerCategory
+  ))
+  .slice(0, 3);
+
+// Find the pathway for this lesson
+const lessonPathway = PATHWAYS.find(pathway =>
+  pathway.learnerCategories.includes(lesson.learnerCategory)
+);
+---
+
+<BaseLayout title={`${lesson.name} - UC OSPO Education`}>
+  <style>
+    .lesson-detail {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .breadcrumb {
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+    }
+
+    .breadcrumb a {
+      color: var(--uc-light-blue);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    .lesson-header {
+      background: linear-gradient(135deg, var(--uc-blue) 0%, var(--uc-light-blue) 100%);
+      color: white;
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .lesson-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+    }
+
+    .lesson-subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin: 0;
+    }
+
+    .lesson-content {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .main-content {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .metadata-section {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .metadata-item {
+      margin-bottom: 1rem;
+    }
+
+    .metadata-label {
+      font-weight: 600;
+      color: var(--uc-blue);
+      margin-bottom: 0.25rem;
+    }
+
+    .metadata-value {
+      color: #333;
+    }
+
+    .external-link {
+      display: inline-block;
+      background: var(--uc-gold);
+      color: #000;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 1rem;
+      transition: transform 0.2s;
+    }
+
+    .external-link:hover {
+      transform: translateY(-2px);
+    }
+
+    .related-lessons {
+      margin-top: 3rem;
+    }
+
+    .related-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--uc-blue);
+    }
+
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .lesson-content {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-title {
+        font-size: 2rem;
+      }
+
+      .lesson-header {
+        padding: 2rem 1rem;
+      }
+
+      .lesson-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <div class="lesson-detail">
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb">
+      <a href="/">Home</a> › <a href="/lessons">Lessons</a> › <span>{lesson.name}</span>
+    </nav>
+
+    <!-- Lesson Header -->
+    <header class="lesson-header">
+      <h1 class="lesson-title">{lesson.name}</h1>
+      {lesson.subTopic && <p class="lesson-subtitle">{lesson.subTopic}</p>}
+      {lessonPathway && <p class="lesson-subtitle">Part of {lessonPathway.name}</p>}
+    </header>
+
+    <!-- Main Content -->
+    <div class="lesson-content">
+      <!-- Left Column: Description and Details -->
+      <div class="main-content">
+        <section>
+          <h2>About This Lesson</h2>
+          <p style="font-size: 1.1rem; line-height: 1.6;">{lesson.description || 'No description available.'}</p>
+
+          {lesson.learningResourceType && (
+            <p><strong>Resource Type:</strong> {lesson.learningResourceType}</p>
+          )}
+
+          {lesson.timeRequired && (
+            <p><strong>Estimated Time:</strong> {lesson.timeRequired}</p>
+          )}
+
+          {lesson.teaches && (
+            <div style="margin-top: 1rem;">
+              <strong>What You'll Learn:</strong>
+              <p>{lesson.teaches}</p>
+            </div>
+          )}
+
+          {lesson.competencyRequired && (
+            <div style="margin-top: 1rem;">
+              <strong>Prerequisites:</strong>
+              <p>{lesson.competencyRequired}</p>
+            </div>
+          )}
+        </section>
+
+        <!-- External Link -->
+        {lesson.url && (
+          <a
+            href={lesson.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="external-link"
+          >
+            View External Lesson →
+          </a>
+        )}
+      </div>
+
+      <!-- Right Column: Metadata -->
+      <aside class="metadata-section">
+        <h3>Lesson Details</h3>
+
+        <div class="metadata-item">
+          <div class="metadata-label">Educational Level</div>
+          <div class="metadata-value">{lesson.educationalLevel || 'Not specified'}</div>
+        </div>
+
+        <div class="metadata-item">
+          <div class="metadata-label">OSS Role</div>
+          <div class="metadata-value">{lesson.oss_role || 'Not specified'}</div>
+        </div>
+
+        <div class="metadata-item">
+          <div class="metadata-label">Topic</div>
+          <div class="metadata-value">{lesson.Topic || 'Not specified'}</div>
+        </div>
+
+        <div class="metadata-item">
+          <div class="metadata-label">Sub-Topic</div>
+          <div class="metadata-value">{lesson.subTopic || 'Not specified'}</div>
+        </div>
+
+        <div class="metadata-item">
+          <div class="metadata-label">Pathway</div>
+          <div class="metadata-value">{lessonPathway ? lessonPathway.name : lesson.learnerCategory}</div>
+        </div>
+
+        {lesson.author && (
+          <div class="metadata-item">
+            <div class="metadata-label">Author</div>
+            <div class="metadata-value">{lesson.author}</div>
+          </div>
+        )}
+
+        {lesson.license && (
+          <div class="metadata-item">
+            <div class="metadata-label">License</div>
+            <div class="metadata-value">{lesson.license}</div>
+          </div>
+        )}
+
+        {lesson.datePublished && (
+          <div class="metadata-item">
+            <div class="metadata-label">Published</div>
+            <div class="metadata-value">{lesson.datePublished}</div>
+          </div>
+        )}
+      </aside>
+    </div>
+
+    <!-- Related Lessons -->
+    {relatedLessons.length > 0 && (
+      <section class="related-lessons">
+        <h2 class="related-title">Related Lessons</h2>
+        <div class="lesson-grid">
+          {relatedLessons.map(relatedLesson => (
+            <LessonCard
+              lesson={relatedLesson}
+              pathwayIcon={lessonPathway?.icon}
+              client:load
+            />
+          ))}
+        </div>
+      </section>
+    )}
+  </div>
+</BaseLayout>

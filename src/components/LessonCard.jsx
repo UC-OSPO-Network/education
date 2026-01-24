@@ -34,9 +34,24 @@ export default function LessonCard({ lesson, pathwayIcon }) {
       e.currentTarget.style.boxShadow = 'none';
     }}
     onClick={() => {
-      if (lesson.url) {
-        window.open(lesson.url, '_blank', 'noopener,noreferrer');
+      let slug = lesson.slug;
+
+      if (!slug && lesson.name) {
+        slug = lesson.name
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/(^-|-$)/g, '');
       }
+
+      // Ensure slug is never empty or undefined - use deterministic fallback
+      if (!slug || slug === '' || slug === 'undefined') {
+        // Use a combination of properties to create a unique identifier
+        const base = lesson.Topic || lesson.subTopic || 'lesson';
+        const id = lesson['Sorting ID'] || lesson.identifier || 'unknown';
+        slug = `${base}-${id}`.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      }
+
+      window.location.href=`/education/lessons/${slug}`;
     }}
     >
       {/* Skill Level Badge */}

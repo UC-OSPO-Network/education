@@ -22,7 +22,7 @@ const pathwayLessons = lessons.filter(lesson =>
 );
 
 // Group by subTopic if available
-const groupedLessons = pathwayLessons.reduce((acc, lesson) => {
+const groupedLessons: Record<string, any[]> = pathwayLessons.reduce((acc, lesson) => {
   const topic = lesson.subTopic || 'Other';
   if (!acc[topic]) acc[topic] = [];
   acc[topic].push(lesson);
