@@ -1,0 +1,12 @@
+{
+  "name": "Reproducible Computational Environments using Containers",
+  "keepStatus": "keepCandidate",
+  "description": "",
+  "url": "https://carpentries-incubator.github.io/docker-introduction/",
+  "learnerCategory": "Maintaining & Sustaining Software",
+  "educationalLevel": "Unknown",
+  "oss_role": "Contributor, Maintainer",
+  "subTopic": "",
+  "learningResourceType": "",
+  "keywords": "docker english containers hacktoberfest"
+}

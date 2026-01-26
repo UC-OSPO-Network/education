@@ -1,0 +1,12 @@
+{
+  "name": "Python Packaging for Beginners",
+  "keepStatus": "keepCandidate",
+  "description": "This lesson teaches the essential steps for packaging Python projects and publishing them on PyPI.",
+  "url": "https://intersect-training.org/packaging/",
+  "learnerCategory": "Maintaining & Sustaining Software",
+  "educationalLevel": "Intermediate",
+  "oss_role": "Contributor, Maintainer",
+  "subTopic": "",
+  "learningResourceType": "Tutorial",
+  "keywords": "Python, setuptools, PyPI, packaging"
+}

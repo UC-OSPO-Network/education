@@ -1,0 +1,12 @@
+{
+  "name": "Continuous Integration and Delivery with GitHub Actions",
+  "keepStatus": "keepCandidate",
+  "description": "This lesson covers how to set up continuous integration and continuous delivery pipelines for automated testing and deployment in software projects.",
+  "url": "https://intersect-training.org/CI-CD/",
+  "learnerCategory": "Maintaining & Sustaining Software",
+  "educationalLevel": "Intermediate",
+  "oss_role": "Maintainer, Contributor",
+  "subTopic": "",
+  "learningResourceType": "Tutorial",
+  "keywords": "CI, CD, continuous integration, continuous delivery, GitHub Actions, automation"
+}

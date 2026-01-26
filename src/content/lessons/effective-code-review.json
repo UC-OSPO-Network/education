@@ -1,0 +1,12 @@
+{
+  "name": "Effective Code Review",
+  "keepStatus": "keepCandidate",
+  "description": "This lesson teaches best practices for conducting and participating in code reviews, emphasizing clear communication and collaborative problem solving.",
+  "url": "https://intersect-training.org/Code-Review/",
+  "learnerCategory": "Maintaining & Sustaining Software",
+  "educationalLevel": "Intermediate",
+  "oss_role": "Maintainer, Contributor",
+  "subTopic": "",
+  "learningResourceType": "Tutorial",
+  "keywords": "code review, software development, feedback, Git"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Python Package Development Best Practices",
+  "keepStatus": "keepCandidate",
+  "description": "This lesson covers best practices for building Python packages, focusing on scientific software. It explains how to structure packages, write tests, manage dependencies, and distribute packages via PyPI.",
+  "url": "https://education.molssi.org/python-package-best-practices/",
+  "learnerCategory": "Maintaining & Sustaining Software",
+  "educationalLevel": "Intermediate",
+  "oss_role": "Contributor, Maintainer",
+  "subTopic": "",
+  "learningResourceType": "Tutorial",
+  "keywords": "Python, packaging, best practices, dependencies, testing, PyPI"
+}

@@ -7,6 +7,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "migrate:lessons": "node scripts/migrate-lessons-to-content.js",
+    "normalize:lessons": "node scripts/normalize-lessons.js",
     "enhance:phase1": "node scripts/run-phase1.js",
     "enhance:time": "node scripts/estimate-time-required.js",
     "enhance:language": "node scripts/standardize-languages.js",
@@ -15,6 +17,8 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.4.0",
+    "@keystatic/astro": "^5.0.6",
+    "@keystatic/core": "^0.5.48",
     "astro": "^5.13.8",
     "framer-motion": "^12.23.24",
     "papaparse": "^5.5.3",

@@ -1,0 +1,12 @@
+{
+  "name": "Intermediate Python Development",
+  "keepStatus": "keepCandidate",
+  "description": "This lesson covers intermediate Python development skills such as writing reusable code, using virtual environments, testing with pytest, and managing dependencies.",
+  "url": "https://carpentries-incubator.github.io/python-intermediate-development/",
+  "learnerCategory": "Maintaining & Sustaining Software",
+  "educationalLevel": "Intermediate",
+  "oss_role": "Contributor, Maintainer",
+  "subTopic": "",
+  "learningResourceType": "Tutorial",
+  "keywords": "Python, software development, testing, virtual environments, packaging"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Best Practices for Maintainers",
+  "keepStatus": "keepCandidate",
+  "description": "Making your life easier as an open source maintainer, from documenting processes to leveraging your community.",
+  "url": "https://opensource.guide/best-practices/",
+  "learnerCategory": "Maintaining & Sustaining Software",
+  "educationalLevel": "Intermediate",
+  "oss_role": "Maintainer, Community Manager",
+  "subTopic": "",
+  "learningResourceType": "Guide",
+  "keywords": "best practices, maintainers, community"
+}

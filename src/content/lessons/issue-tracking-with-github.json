@@ -1,0 +1,12 @@
+{
+  "name": "Issue Tracking with GitHub",
+  "keepStatus": "keepCandidate",
+  "description": "This lesson covers the basics of issue tracking for software projects, including how to create, manage, and close issues on GitHub.",
+  "url": "https://intersect-training.org/Issue-Tracking/",
+  "learnerCategory": "Contributing to a Project",
+  "educationalLevel": "Intermediate",
+  "oss_role": "Contributor, Maintainer",
+  "subTopic": "",
+  "learningResourceType": "Tutorial",
+  "keywords": "GitHub, issue tracking, project management, bugs, features"
+}

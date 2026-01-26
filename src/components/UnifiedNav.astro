@@ -281,7 +281,7 @@ const currentPath = Astro.url.pathname;
     <div class="header-top">
       <div class="logo-section">
         <a href="https://ucospo.net/" class="logo-link">
-          <img src="/education/uc-ospo-logo.svg" alt="UC OSPO Network Logo" width="48" height="48" style="display: block;" />
+          <img src={`${import.meta.env.BASE_URL}uc-ospo-logo.svg`} alt="UC OSPO Network Logo" width="48" height="48" style="display: block;" />
           <div>
             <h1 class="site-title">
               UC OSPO Network
@@ -349,15 +349,15 @@ const currentPath = Astro.url.pathname;
 
         <!-- Education Dropdown (Current Site) -->
         <li class="nav-item">
-          <a href="/education" class="nav-link current-site">
+          <a href={import.meta.env.BASE_URL} class="nav-link current-site">
             Education
             <span class="dropdown-arrow">▼</span>
           </a>
           <div class="dropdown-menu">
-            <a href="/education" class="dropdown-link" data-path="/education">All Pathways</a>
-            <a href="/education/lessons" class="dropdown-link" data-path="/education/lessons">All Lessons</a>
-            <a href="/education/pathways" class="dropdown-link" data-path="/education/pathways">Browse Pathways</a>
-            <a href="/education/develop-a-lesson" class="dropdown-link" data-path="/education/develop-a-lesson">Develop a Lesson</a>
+            <a href={import.meta.env.BASE_URL} class="dropdown-link" data-path={import.meta.env.BASE_URL}>All Pathways</a>
+            <a href={`${import.meta.env.BASE_URL}lessons`} class="dropdown-link" data-path={`${import.meta.env.BASE_URL}lessons`}>All Lessons</a>
+            <a href={`${import.meta.env.BASE_URL}pathways`} class="dropdown-link" data-path={`${import.meta.env.BASE_URL}pathways`}>Browse Pathways</a>
+            <a href={`${import.meta.env.BASE_URL}develop-a-lesson`} class="dropdown-link" data-path={`${import.meta.env.BASE_URL}develop-a-lesson`}>Develop a Lesson</a>
           </div>
         </li>
       </ul>

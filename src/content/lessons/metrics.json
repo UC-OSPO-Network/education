@@ -1,0 +1,12 @@
+{
+  "name": "Metrics",
+  "keepStatus": "keepCandidate",
+  "description": "Tracking the success of your project helps you make informed decisions and communicate impact effectively.",
+  "url": "https://opensource.guide/metrics/",
+  "learnerCategory": "Maintaining & Sustaining Software",
+  "educationalLevel": "Intermediate",
+  "oss_role": "Maintainer, Contributor",
+  "subTopic": "",
+  "learningResourceType": "Guide",
+  "keywords": "metrics, project success, impact"
+}

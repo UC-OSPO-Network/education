@@ -1,0 +1,12 @@
+{
+  "name": "CI/CD for Research Software with GitLab CI",
+  "keepStatus": "keepCandidate",
+  "description": "This lesson covers the implementation of CI/CD pipelines in research software projects, focusing on automating tests, builds, and deployments using GitLab CI.",
+  "url": "https://hsf-training.github.io/hsf-training-cicd/",
+  "learnerCategory": "Maintaining & Sustaining Software",
+  "educationalLevel": "Intermediate",
+  "oss_role": "Maintainer, Contributor",
+  "subTopic": "",
+  "learningResourceType": "Tutorial",
+  "keywords": "CI/CD, GitLab CI, continuous integration, continuous delivery, research software"
+}

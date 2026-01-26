@@ -1,0 +1,12 @@
+{
+  "name": "Starting an Open Source Project",
+  "keepStatus": "keepCandidate",
+  "description": "Launching a successful open source project involves more than just code. Start your journey here.",
+  "url": "https://opensource.guide/starting-a-project/",
+  "learnerCategory": "Maintaining & Sustaining Software",
+  "educationalLevel": "Beginner",
+  "oss_role": "Contributor, Maintainer",
+  "subTopic": "",
+  "learningResourceType": "Guide",
+  "keywords": "starting, open source, launch"
+}

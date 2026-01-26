@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getSheetData } from '../../lib/getSheetData.js';
+import { getLessons } from '../../lib/lessons';
 import { PATHWAYS } from '../../types/lesson.ts';
 import LessonCard from '../../components/LessonCard.jsx';
 
 export async function getStaticPaths() {
-  const lessons = await getSheetData();
+  const lessons = await getLessons();
 
   return PATHWAYS.map(pathway => ({
     params: { id: pathway.id },
@@ -17,7 +17,8 @@ const { pathway, lessons } = Astro.props;
 
 // Filter lessons for this pathway
 const pathwayLessons = lessons.filter(lesson =>
-  lesson['Keep?']?.includes('Keep') &&
+  (lesson.keepStatus === 'keep' || lesson.keepStatus === 'keepCandidate') &&
+  lesson.url.trim() !== '' &&
   pathway.learnerCategories.includes(lesson.learnerCategory)
 );
 
@@ -118,12 +119,12 @@ const groupedLessons = pathwayLessons.reduce((acc, lesson) => {
   </div>
 
   <div class="pathway-content">
-    <a href="/" class="back-link">← Back to All Pathways</a>
+    <a href={`${import.meta.env.BASE_URL}pathways`} class="back-link">← Back to All Pathways</a>
 
     {Object.keys(groupedLessons).length === 0 ? (
       <div class="no-lessons">
         <p style="font-size: 1.2rem;">No lessons available for this pathway yet.</p>
-        <p>Check back soon or <a href="/lessons">browse all lessons</a>.</p>
+        <p>Check back soon or <a href={`${import.meta.env.BASE_URL}lessons`}>browse all lessons</a>.</p>
       </div>
     ) : (
       Object.entries(groupedLessons).map(([subtopic, subtopicLessons]) => (

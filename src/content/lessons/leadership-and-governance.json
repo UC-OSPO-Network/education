@@ -1,0 +1,12 @@
+{
+  "name": "Leadership and Governance",
+  "keepStatus": "keepCandidate",
+  "description": "Effective leadership and governance ensure long-term success for your open source project.",
+  "url": "https://opensource.guide/leadership-and-governance/",
+  "learnerCategory": "Building Community",
+  "educationalLevel": "Advanced",
+  "oss_role": "Contributor",
+  "subTopic": "Governance",
+  "learningResourceType": "Guide",
+  "keywords": "leadership, governance, project management, community"
+}

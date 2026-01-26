@@ -1,44 +1,17 @@
 // TypeScript types for lesson data based on Bioschemas Training schema
 
 export interface Lesson {
+  slug: string;
   name: string;
-  Topic: string;
-  'Keep?': string;
-  learnerCategory: string;
-  'Sorting ID': string;
-  'Depends On': string;
-  'Learning Objectives': string;
-  subTopic: string;
-  'OSPO Relevance': string;
-  about: string;
-  abstract: string;
-  accessibilitySummary: string;
-  url: string;
-  oss_role: string;
-  audience: string;
-  author: string;
-  competencyRequired: string;
-  contributor: string;
-  creativeWorkStatus: string;
-  dateCreated: string;
-  dateModified: string;
-  datePublished: string;
+  keepStatus: 'keep' | 'keepCandidate' | 'drop';
   description: string;
+  url: string;
+  learnerCategory: string;
   educationalLevel: string;
-  hasPart: string;
-  identifier: string;
-  inLanguage: string;
-  isPartOf: string;
-  Notes: string;
-  keywords: string;
+  oss_role: string;
+  subTopic: string;
   learningResourceType: string;
-  license: string;
-  mentions: string;
-  recordedAt: string;
-  teaches: string;
-  timeRequired: string;
-  version: string;
-  workTranslation: string;
+  keywords: string;
 }
 
 export interface PathwayInfo {
