@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getSheetData } from '../../lib/getSheetData.js';
 import { PATHWAYS } from '../../types/lesson.ts';
 import LessonCard from '../../components/LessonCard.jsx';
+import PathwayRoadmap from '../../components/PathwayRoadmap.jsx';
 
 export async function getStaticPaths() {
   const lessons = await getSheetData();
@@ -16,10 +17,19 @@ export async function getStaticPaths() {
 const { pathway, lessons } = Astro.props;
 
 // Filter lessons for this pathway
-const pathwayLessons = lessons.filter(lesson =>
-  lesson['Keep?']?.includes('Keep') &&
-  pathway.learnerCategories.includes(lesson.learnerCategory)
-);
+const pathwayLessons = lessons.filter(lesson => {
+  if (!lesson['Keep?']?.includes('Keep')) return false;
+  if (!lesson.learnerCategory) return false;
+
+  const lessonCategories = lesson.learnerCategory
+    .split(',')
+    .map(c => c.trim());
+
+  return lessonCategories.some(cat =>
+    pathway.learnerCategories.includes(cat)
+  );
+});
+
 
 // Group by subTopic if available
 const groupedLessons = pathwayLessons.reduce((acc, lesson) => {
@@ -28,6 +38,26 @@ const groupedLessons = pathwayLessons.reduce((acc, lesson) => {
   acc[topic].push(lesson);
   return acc;
 }, {});
+
+const roadmapSteps = Object.entries(groupedLessons).map(
+  ([subTopic, lessons]) => {
+    const orderedLessons = lessons.sort((a, b) => {
+      const levelOrder = {
+        Beginner: 1,
+        Intermediate: 2,
+        Advanced: 3,
+      };
+      return (levelOrder[a.educationalLevel] || 99) -
+             (levelOrder[b.educationalLevel] || 99);
+    });
+
+    return {
+      subTopic,
+      lessons: orderedLessons,
+    };
+  }
+);
+
 ---
 
 <style>
@@ -119,7 +149,7 @@ const groupedLessons = pathwayLessons.reduce((acc, lesson) => {
 
   <div class="pathway-content">
     <a href="/" class="back-link">← Back to All Pathways</a>
-
+    <PathwayRoadmap steps={roadmapSteps} client:load/>
     {Object.keys(groupedLessons).length === 0 ? (
       <div class="no-lessons">
         <p style="font-size: 1.2rem;">No lessons available for this pathway yet.</p>
