@@ -5,6 +5,10 @@ import Papa from 'papaparse';
 const CSV_URL =
   'https://docs.google.com/spreadsheets/d/e/2PACX-1vR44d8F86WqIlDHOD2MNjj8b2RYB0_hlFwj8fK8UiXV0n1PjwpS6c-qzU-DhDQZMTk8jcI2n0fp9a_a/pub?output=csv&gid=565807714';
 
+/**
+ * @deprecated This function is deprecated and will be removed in a future version.
+ * Please use Astro content collections instead (see src/lib/lessons.ts).
+ */
 export async function getSheetData() {
   try {
     // Fetch CSV from Google Sheets
