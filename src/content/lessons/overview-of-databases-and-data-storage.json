@@ -1,12 +1,17 @@
 {
   "name": "Overview of Databases and Data Storage",
+  "slug": "overview-of-databases-and-data-storage",
   "keepStatus": "drop",
   "description": "",
   "url": "https://ucdavisdatalab.github.io/workshop_intro_to_databases/",
+  "author": "",
+  "license": "",
   "learnerCategory": "",
   "educationalLevel": "Unknown",
-  "oss_role": "",
+  "ossRole": "",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "",
-  "keywords": ""
+  "inLanguage": [],
+  "keywords": []
 }

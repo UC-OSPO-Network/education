@@ -1,12 +1,17 @@
 {
   "name": "How to Contribute to Open Source",
+  "slug": "how-to-contribute-to-open-source",
   "keepStatus": "keepCandidate",
   "description": "",
   "url": "https://opensource.guide/how-to-contribute/",
+  "author": "",
+  "license": "",
   "learnerCategory": "Contributing to a Project",
   "educationalLevel": "Unknown",
-  "oss_role": "",
+  "ossRole": "",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "",
-  "keywords": ""
+  "inLanguage": [],
+  "keywords": []
 }

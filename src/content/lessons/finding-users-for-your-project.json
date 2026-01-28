@@ -1,12 +1,21 @@
 {
   "name": "Finding Users for Your Project",
+  "slug": "finding-users-for-your-project",
   "keepStatus": "keepCandidate",
   "description": "Launching a successful open source project involves more than just code. Start your journey here.",
   "url": "https://opensource.guide/finding-users/",
+  "author": "",
+  "license": "",
   "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Beginner",
-  "oss_role": "Community Manager, User/Consumer",
+  "ossRole": "Community Manager, User/Consumer",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "Guide",
-  "keywords": "users, adoption, promotion"
+  "inLanguage": [],
+  "keywords": [
+    "users",
+    "adoption",
+    "promotion"
+  ]
 }

@@ -1,12 +1,23 @@
 {
   "name": "Research Software Engineering with Python  Course",
+  "slug": "research-software-engineering-with-python-course",
   "keepStatus": "keepCandidate",
   "description": "This course provides an overview of key skills for Research Software Engineers, including software design, version control with Git, testing with pytest, and project management.",
   "url": "https://alan-turing-institute.github.io/rse-course/html/index.html",
+  "author": "",
+  "license": "",
   "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Intermediate",
-  "oss_role": "Contributor, Maintainer",
+  "ossRole": "Contributor, Maintainer",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "Course",
-  "keywords": "research software, RSE, version control, testing, project management"
+  "inLanguage": [],
+  "keywords": [
+    "research software",
+    "RSE",
+    "version control",
+    "testing",
+    "project management"
+  ]
 }

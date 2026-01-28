@@ -1,12 +1,17 @@
 {
   "name": "Julia Basics",
+  "slug": "julia-basics",
   "keepStatus": "drop",
   "description": "",
   "url": "https://ucjug.github.io/workshop_julia_basics/chapters/index.html",
+  "author": "",
+  "license": "",
   "learnerCategory": "",
   "educationalLevel": "Unknown",
-  "oss_role": "",
+  "ossRole": "",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "",
-  "keywords": ""
+  "inLanguage": [],
+  "keywords": []
 }

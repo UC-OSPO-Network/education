@@ -1,12 +1,17 @@
 {
   "name": "Principles of Data Visualization from PErception to Statistical Graphics",
+  "slug": "principles-of-data-visualization-from-perception-to-statistical-graphics",
   "keepStatus": "drop",
   "description": "",
   "url": "https://ucdavisdatalab.github.io/workshop_data_viz_principles/",
+  "author": "",
+  "license": "",
   "learnerCategory": "",
   "educationalLevel": "Unknown",
-  "oss_role": "",
+  "ossRole": "",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "",
-  "keywords": ""
+  "inLanguage": [],
+  "keywords": []
 }

@@ -1,12 +1,22 @@
 {
   "name": "Writing Documentation for Software Projects",
+  "slug": "writing-documentation-for-software-projects",
   "keepStatus": "keepCandidate",
   "description": "This lesson teaches how to write effective software documentation, including API documentation, user guides, and installation instructions.",
   "url": "https://intersect-training.org/Documentation/",
+  "author": "",
+  "license": "",
   "learnerCategory": "Contributing to a Project",
   "educationalLevel": "Intermediate",
-  "oss_role": "Contributor, Maintainer",
+  "ossRole": "Contributor, Maintainer",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "Tutorial",
-  "keywords": "documentation, Sphinx, Markdown, API documentation"
+  "inLanguage": [],
+  "keywords": [
+    "documentation",
+    "Sphinx",
+    "Markdown",
+    "API documentation"
+  ]
 }

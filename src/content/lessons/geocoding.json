@@ -1,12 +1,17 @@
 {
   "name": "Geocoding",
+  "slug": "geocoding",
   "keepStatus": "drop",
   "description": "",
   "url": "https://github.com/ucdavisdatalab/geocoding-workshop/blob/master/README.md",
+  "author": "",
+  "license": "",
   "learnerCategory": "",
   "educationalLevel": "Unknown",
-  "oss_role": "",
+  "ossRole": "",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "",
-  "keywords": ""
+  "inLanguage": [],
+  "keywords": []
 }

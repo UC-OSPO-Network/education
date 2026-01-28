@@ -1,12 +1,17 @@
 {
   "name": "Intermediate R: Next-level Data Visualization",
+  "slug": "intermediate-r-next-level-data-visualization",
   "keepStatus": "drop",
   "description": "",
   "url": "https://ucdavisdatalab.github.io/workshop_intermediate_r/data-visualization-in-r.html",
+  "author": "",
+  "license": "",
   "learnerCategory": "",
   "educationalLevel": "Unknown",
-  "oss_role": "",
+  "ossRole": "",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "",
-  "keywords": ""
+  "inLanguage": [],
+  "keywords": []
 }

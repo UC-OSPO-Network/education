@@ -1,12 +1,19 @@
 {
   "name": "R Packaging",
+  "slug": "r-packaging",
   "keepStatus": "keepCandidate",
   "description": "",
   "url": "https://carpentries-incubator.github.io/lesson-R-packaging/",
+  "author": "",
+  "license": "",
   "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Unknown",
-  "oss_role": "Contributor, Maintainer",
+  "ossRole": "Contributor, Maintainer",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "",
-  "keywords": "lesson-materials lessons-page best-practices r"
+  "inLanguage": [],
+  "keywords": [
+    "lesson-materials lessons-page best-practices r"
+  ]
 }

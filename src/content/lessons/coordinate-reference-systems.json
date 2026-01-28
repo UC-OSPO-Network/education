@@ -1,12 +1,17 @@
 {
   "name": "Coordinate Reference Systems",
+  "slug": "coordinate-reference-systems",
   "keepStatus": "drop",
   "description": "",
   "url": "https://ucdavisdatalab.github.io/workshop_coordinate_reference_systems/",
+  "author": "",
+  "license": "",
   "learnerCategory": "",
   "educationalLevel": "Unknown",
-  "oss_role": "",
+  "ossRole": "",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "",
-  "keywords": ""
+  "inLanguage": [],
+  "keywords": []
 }

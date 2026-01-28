@@ -1,12 +1,19 @@
 {
   "name": "Intermediate Research Software Development Skills (Python) Lesson Material",
+  "slug": "intermediate-research-software-development-skills-python-lesson-material",
   "keepStatus": "keepCandidate",
   "description": "",
   "url": "https://carpentries-incubator.github.io/python-intermediate-development/",
+  "author": "",
+  "license": "",
   "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Intermediate",
-  "oss_role": "Contributor, Maintainer",
+  "ossRole": "Contributor, Maintainer",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "",
-  "keywords": "training training-materials software-development carpentry-lesson python software-engineering-research intermediate software-design"
+  "inLanguage": [],
+  "keywords": [
+    "training training-materials software-development carpentry-lesson python software-engineering-research intermediate software-design"
+  ]
 }

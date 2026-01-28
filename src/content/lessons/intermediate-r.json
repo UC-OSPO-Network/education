@@ -1,12 +1,17 @@
 {
   "name": "Intermediate R",
+  "slug": "intermediate-r",
   "keepStatus": "drop",
   "description": "",
   "url": "https://ucdavisdatalab.github.io/workshop_intermediate_r/",
+  "author": "",
+  "license": "",
   "learnerCategory": "",
   "educationalLevel": "Unknown",
-  "oss_role": "",
+  "ossRole": "",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "",
-  "keywords": ""
+  "inLanguage": [],
+  "keywords": []
 }

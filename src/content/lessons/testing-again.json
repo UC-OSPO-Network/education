@@ -1,12 +1,17 @@
 {
   "name": "TESTING again",
+  "slug": "testing-again",
   "keepStatus": "drop",
   "description": "TEST again",
   "url": "https://example.com",
+  "author": "",
+  "license": "",
   "learnerCategory": "Building Community",
   "educationalLevel": "Unknown",
-  "oss_role": "",
+  "ossRole": "",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "",
-  "keywords": ""
+  "inLanguage": [],
+  "keywords": []
 }

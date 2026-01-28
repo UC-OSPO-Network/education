@@ -1,12 +1,23 @@
 {
   "name": "Understanding Software Licensing",
+  "slug": "understanding-software-licensing",
   "keepStatus": "keepCandidate",
   "description": "This lesson provides an overview of common open-source software licenses, their conditions, and how to choose the right one for your project.",
   "url": "https://intersect-training.org/software-licensing/",
+  "author": "",
+  "license": "",
   "learnerCategory": "Understanding Licensing & Compliance",
   "educationalLevel": "Intermediate",
-  "oss_role": "IP, Governance",
+  "ossRole": "IP, Governance",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "Tutorial",
-  "keywords": "software licenses, open source, legal, GPL, MIT"
+  "inLanguage": [],
+  "keywords": [
+    "software licenses",
+    "open source",
+    "legal",
+    "GPL",
+    "MIT"
+  ]
 }

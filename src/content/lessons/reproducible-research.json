@@ -1,12 +1,22 @@
 {
   "name": "Reproducible Research",
+  "slug": "reproducible-research",
   "keepStatus": "keepCandidate",
   "description": "This lesson covers the principles of reproducible research, including data management, version control, and the use of tools like Git to ensure that research can be replicated.",
   "url": "https://book.the-turing-way.org/reproducible-research/reproducible-research",
+  "author": "",
+  "license": "",
   "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Intermediate",
-  "oss_role": "Contributor, Maintainer",
+  "ossRole": "Contributor, Maintainer",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "Guide",
-  "keywords": "reproducible research, version control, data management, open science"
+  "inLanguage": [],
+  "keywords": [
+    "reproducible research",
+    "version control",
+    "data management",
+    "open science"
+  ]
 }

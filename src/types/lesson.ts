@@ -6,11 +6,16 @@ export interface Lesson {
   keepStatus: 'keep' | 'keepCandidate' | 'drop';
   description: string;
   url: string;
+  author?: string;
+  license?: string;
   learnerCategory: string;
   educationalLevel: string;
+  ossRole?: string;
   oss_role: string;
   subTopic: string;
+  timeRequired?: string;
   learningResourceType: string;
+  inLanguage?: string[];
   keywords: string;
 }
 

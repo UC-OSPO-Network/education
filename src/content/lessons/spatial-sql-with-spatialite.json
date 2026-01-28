@@ -1,12 +1,17 @@
 {
   "name": "Spatial SQL with SpatiaLite",
+  "slug": "spatial-sql-with-spatialite",
   "keepStatus": "drop",
   "description": "",
   "url": "https://ucdavisdatalab.github.io/Spatial_SQL/",
+  "author": "",
+  "license": "",
   "learnerCategory": "",
   "educationalLevel": "Unknown",
-  "oss_role": "",
+  "ossRole": "",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "",
-  "keywords": ""
+  "inLanguage": [],
+  "keywords": []
 }

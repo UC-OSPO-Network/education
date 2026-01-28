@@ -1,12 +1,17 @@
 {
   "name": "Overview of Remote and High Performance Computing (HPC)",
+  "slug": "overview-of-remote-and-high-performance-computing-hpc",
   "keepStatus": "drop",
   "description": "",
   "url": "https://video.ucdavis.edu/media/Overview%20of%20Remote%20and%20High%20Performance%20Computing%20(HPC)%20-%202024-02-15/1_zulcobsl",
+  "author": "",
+  "license": "",
   "learnerCategory": "",
   "educationalLevel": "Unknown",
-  "oss_role": "",
+  "ossRole": "",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "",
-  "keywords": ""
+  "inLanguage": [],
+  "keywords": []
 }

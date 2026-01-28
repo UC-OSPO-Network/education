@@ -1,12 +1,22 @@
 {
   "name": "Unit Testing and TDD in Python",
+  "slug": "unit-testing-and-tdd-in-python",
   "keepStatus": "keepCandidate",
   "description": "This lesson covers how to write and run unit tests in Python, including an introduction to test-driven development (TDD) and its benefits.",
   "url": "https://intersect-training.org/testing/instructor/",
+  "author": "",
+  "license": "",
   "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Intermediate",
-  "oss_role": "Maintainer, Contributor",
+  "ossRole": "Maintainer, Contributor",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "Tutorial",
-  "keywords": "testing, unit tests, Python, TDD"
+  "inLanguage": [],
+  "keywords": [
+    "testing",
+    "unit tests",
+    "Python",
+    "TDD"
+  ]
 }

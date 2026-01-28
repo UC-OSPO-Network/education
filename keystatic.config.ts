@@ -49,11 +49,17 @@ export default config({
       label: 'Lessons',
       path: 'src/content/lessons/*',
       format: { data: 'json' },
-      slugField: 'name',
+      slugField: 'slug',
       schema: {
-        name: fields.slug({
-          name: { label: 'Title', validation: { isRequired: true } },
-          slug: { label: 'Slug' },
+        name: fields.text({
+          label: 'Name',
+          validation: { isRequired: true },
+          description: 'The title of the lesson',
+        }),
+        slug: fields.text({
+          label: 'Slug',
+          validation: { isRequired: true },
+          description: 'The filename and URL part for this lesson',
         }),
         keepStatus: fields.select({
           label: 'Keep status',
@@ -65,6 +71,8 @@ export default config({
           label: 'Lesson URL',
           validation: { isRequired: true },
         }),
+        author: fields.text({ label: 'Author' }),
+        license: fields.text({ label: 'License' }),
         learnerCategory: fields.select({
           label: 'Pathway (learnerCategory)',
           options: learnerCategorySelectOptions,
@@ -76,13 +84,21 @@ export default config({
           options: educationalLevelOptions,
           defaultValue: 'Unknown',
         }),
-        oss_role: fields.text({
-          label: 'OSS role(s) (comma-separated)',
+        ossRole: fields.text({
+          label: 'OSS role(s)',
           description: 'Used for filtering and tag pills. Example: Contributor, Maintainer',
         }),
         subTopic: fields.text({ label: 'Sub-topic' }),
+        timeRequired: fields.text({ label: 'Time Required', description: 'e.g. 30 minutes, 2 hours' }),
         learningResourceType: fields.text({ label: 'Learning resource type' }),
-        keywords: fields.text({ label: 'Keywords (comma-separated)' }),
+        inLanguage: fields.array(fields.text({ label: 'Language' }), {
+          label: 'Languages',
+          itemLabel: (props) => props.value,
+        }),
+        keywords: fields.array(fields.text({ label: 'Keyword' }), {
+          label: 'Keywords',
+          itemLabel: (props) => props.value,
+        }),
       },
     }),
   },

@@ -1,12 +1,17 @@
 {
   "name": "Responsible Data Science",
+  "slug": "responsible-data-science",
   "keepStatus": "drop",
   "description": "",
   "url": "https://ucdavisdatalab.github.io/responsible-data-science/",
+  "author": "",
+  "license": "",
   "learnerCategory": "",
   "educationalLevel": "Unknown",
-  "oss_role": "",
+  "ossRole": "",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "",
-  "keywords": ""
+  "inLanguage": [],
+  "keywords": []
 }

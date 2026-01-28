@@ -1,12 +1,19 @@
 {
   "name": "Building Better Research Software",
+  "slug": "building-better-research-software",
   "keepStatus": "keepCandidate",
   "description": "",
   "url": "https://carpentries-incubator.github.io/better-research-software/",
+  "author": "",
+  "license": "",
   "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Intermediate",
-  "oss_role": "Contributor, Maintainer",
+  "ossRole": "Contributor, Maintainer",
   "subTopic": "",
+  "timeRequired": "",
   "learningResourceType": "",
-  "keywords": "english fair fair-software research-software"
+  "inLanguage": [],
+  "keywords": [
+    "english fair fair-software research-software"
+  ]
 }

@@ -1,12 +1,21 @@
 {
   "name": "Building Community",
+  "slug": "building-community",
   "keepStatus": "keepCandidate",
   "description": "Building a healthy community helps your project thrive. Learn how to foster collaboration and inclusivity.",
   "url": "https://opensource.guide/building-community/",
+  "author": "",
+  "license": "",
   "learnerCategory": "Building Community",
   "educationalLevel": "Intermediate",
-  "oss_role": "Community Manager, Governance",
+  "ossRole": "Community Manager, Governance",
   "subTopic": "Collaboration",
+  "timeRequired": "",
   "learningResourceType": "Guide",
-  "keywords": "community, collaboration, inclusivity"
+  "inLanguage": [],
+  "keywords": [
+    "community",
+    "collaboration",
+    "inclusivity"
+  ]
 }
