@@ -139,7 +139,7 @@ import StackedPathways from '../components/StackedPathways.jsx';
     <StackedPathways client:load />
 
     <div class="browse-all">
-      <a href="/lessons" class="browse-button">BROWSE ALL LESSONS</a>
+      <a href={`${import.meta.env.BASE_URL}lessons`} class="browse-button">BROWSE ALL LESSONS</a>
     </div>
   </section>
 </BaseLayout>

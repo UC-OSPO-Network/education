@@ -32,7 +32,7 @@ const keepStatusOptions = [
 ] as const;
 
 const useGitHubStorage =
-  import.meta.env.PUBLIC_KEYSTATIC_STORAGE === 'github' || !import.meta.env.DEV;
+  import.meta.env.PUBLIC_KEYSTATIC_STORAGE === 'github' && import.meta.env.DEV;
 
 export default config({
   storage: useGitHubStorage
