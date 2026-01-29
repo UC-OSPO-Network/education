@@ -1,0 +1,11 @@
+{
+  "name": "ospo-metadata-scripts",
+  "type": "module",
+  "scripts": {
+    "migrate:dependencies": "node migrate-depends-on.js",
+    "merge:metadata": "node merge-enhanced-metadata.js"
+  },
+  "dependencies": {
+    "papaparse": "^5.5.3"
+  }
+}
