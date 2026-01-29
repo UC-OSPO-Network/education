@@ -1,0 +1,16 @@
+{
+  "name": "Example Lesson (Replace Me)",
+  "keepStatus": "drop",
+  "description": "This is a placeholder lesson. Use /keystatic to edit or delete it, and add real lessons to src/content/lessons/.",
+  "url": "https://example.com",
+  "learnerCategory": "Getting Started with Open Source",
+  "educationalLevel": "Beginner",
+  "ossRole": "Contributor",
+  "subTopic": "Overview",
+  "learningResourceType": "Tutorial",
+  "inLanguage": [],
+  "keywords": [
+    "open source",
+    "getting started"
+  ]
+}
