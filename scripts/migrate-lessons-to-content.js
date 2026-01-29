@@ -73,15 +73,49 @@ for (const lesson of lessons) {
 
   const out = {
     name,
+    slug: slug,
     keepStatus: toKeepStatus(lesson['Keep?']),
     description: normalizeString(lesson.description),
     url: normalizeString(lesson.url),
+    author: normalizeString(lesson.author || ''),
+    license: normalizeString(lesson.license || ''),
     learnerCategory: normalizeLearnerCategory(lesson.learnerCategory),
     educationalLevel: normalizeString(lesson.educationalLevel) || 'Unknown',
-    oss_role: normalizeString(lesson.oss_role),
+    ossRole: normalizeString(lesson.ossRole || lesson.oss_role || ''),
     subTopic: normalizeString(lesson.subTopic),
+    timeRequired: normalizeString(lesson.timeRequired || ''),
     learningResourceType: normalizeString(lesson.learningResourceType),
-    keywords: normalizeString(lesson.keywords),
+    inLanguage: lesson.inLanguage ? [normalizeString(lesson.inLanguage)] : [],
+    keywords: normalizeString(lesson.keywords)
+      ? normalizeString(lesson.keywords)
+          .split(',')
+          .map((k) => k.trim())
+      : [],
+    // Additional Metadata Fields
+    topic: normalizeString(lesson.Topic || ''),
+    sortingId: normalizeString(lesson['Sorting ID'] || ''),
+    dependsOn: normalizeString(lesson['Depends On'] || ''),
+    learningObjectives: normalizeString(lesson['Learning Objectives'] || ''),
+    ospoRelevance: normalizeString(lesson['OSPO Relevance'] || ''),
+    about: normalizeString(lesson.about || ''),
+    abstract: normalizeString(lesson.abstract || ''),
+    accessibilitySummary: normalizeString(lesson.accessibilitySummary || ''),
+    audience: normalizeString(lesson.audience || ''),
+    competencyRequired: normalizeString(lesson.competencyRequired || ''),
+    contributor: normalizeString(lesson.contributor || ''),
+    creativeWorkStatus: normalizeString(lesson.creativeWorkStatus || ''),
+    dateCreated: normalizeString(lesson.dateCreated || ''),
+    dateModified: normalizeString(lesson.dateModified || ''),
+    datePublished: normalizeString(lesson.datePublished || ''),
+    hasPart: normalizeString(lesson.hasPart || ''),
+    identifier: normalizeString(lesson.identifier || ''),
+    isPartOf: normalizeString(lesson.isPartOf || ''),
+    notes: normalizeString(lesson.Notes || ''),
+    mentions: normalizeString(lesson.mentions || ''),
+    recordedAt: normalizeString(lesson.recordedAt || ''),
+    teaches: normalizeString(lesson.teaches || ''),
+    version: normalizeString(lesson.version || ''),
+    workTranslation: normalizeString(lesson.workTranslation || ''),
   };
 
   const outPath = path.join(lessonsDir, `${slug}.json`);

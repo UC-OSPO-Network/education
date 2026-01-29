@@ -17,6 +17,31 @@ export interface Lesson {
   learningResourceType: string;
   inLanguage?: string[];
   keywords: string;
+  // Additional Metadata Fields
+  topic?: string;
+  sortingId?: string;
+  dependsOn?: string;
+  learningObjectives?: string;
+  ospoRelevance?: string;
+  about?: string;
+  abstract?: string;
+  accessibilitySummary?: string;
+  audience?: string;
+  competencyRequired?: string;
+  contributor?: string;
+  creativeWorkStatus?: string;
+  dateCreated?: string;
+  dateModified?: string;
+  datePublished?: string;
+  hasPart?: string;
+  identifier?: string;
+  isPartOf?: string;
+  notes?: string;
+  mentions?: string;
+  recordedAt?: string;
+  teaches?: string;
+  version?: string;
+  workTranslation?: string;
 }
 
 export interface PathwayInfo {
