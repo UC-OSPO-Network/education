@@ -1,15 +1,23 @@
 /* UC Official Brand Colors */
 :root {
-  --uc-blue: #1295D8;        /* UC Blue (Pantone 299 U) - Primary */
-  --uc-gold: #FFB511;        /* UC Gold (Pantone 116 U) - Primary */
-  --uc-white: #FFFFFF;       /* White */
-  --uc-dark-blue: #005581;   /* Dark Blue (secondary) */
-  --uc-light-blue: #72CDF4;  /* Light Blue (secondary) */
-  --uc-light-gold: #FFE552;  /* Light Gold (secondary) */
-  --uc-dark-gray: #1E1E1E;   /* Dark background */
-  --uc-med-gray: #2A2A2A;    /* Medium gray */
-  --uc-light-gray: #CCCCCC;  /* Light text */
-  --uc-border: #444444;      /* Border color */
+  --uc-blue: #0072A3;
+  --uc-gold: #FFE699;
+  /* UC Gold (Pantone 116 U) - Primary */
+  --uc-white: #FFFFFF;
+  /* White */
+  --uc-dark-blue: #005581;
+  /* Dark Blue (secondary) */
+  --uc-light-blue: #C8F0FF;
+  --uc-light-gold: #FFE552;
+  /* Light Gold (secondary) */
+  --uc-dark-gray: #1E1E1E;
+  /* Dark background */
+  --uc-med-gray: #2A2A2A;
+  /* Medium gray */
+  --uc-light-gray: #CCCCCC;
+  /* Light text */
+  --uc-border: #444444;
+  /* Border color */
 }
 
 * {
@@ -35,7 +43,8 @@ a:hover {
   text-decoration: underline;
 }
 
-header, footer {
+header,
+footer {
   background-color: var(--uc-blue);
   color: var(--uc-white);
 }
