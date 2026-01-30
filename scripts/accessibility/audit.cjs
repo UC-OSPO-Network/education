@@ -36,13 +36,11 @@ async function runAccessibilityAudit() {
 
     await browser.close();
 
-    // Save results
     fs.writeFileSync(
         'scripts/accessibility/audit-results.json',
         JSON.stringify(results, null, 2)
     );
 
-    // Generate summary
     console.log('\n=== AUDIT SUMMARY ===\n');
     results.forEach(result => {
         console.log(`${result.page}:`);
