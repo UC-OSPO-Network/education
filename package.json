@@ -11,7 +11,8 @@
     "enhance:time": "node scripts/estimate-time-required.js",
     "enhance:language": "node scripts/standardize-languages.js",
     "enhance:metadata": "node scripts/scrape-metadata.js",
-    "enhance:slugs": "node scripts/generate-slugs.js"
+    "enhance:slugs": "node scripts/generate-slugs.js",
+    "enhance:merge": "node scripts/merge-enhanced-metadata.js"
   },
   "dependencies": {
     "@astrojs/react": "^4.4.0",
