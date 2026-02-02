@@ -1,15 +1,18 @@
 ---
+import type { Lesson } from '../types/lesson';
+
 const { category, posts } = Astro.props;
+const lessons = posts as Lesson[];
 
 // For demo icons — could be replaced with category-specific ones later
-const categoryIcons = {
+const categoryIcons: Record<string, string> = {
   "Beginner": "📘",
   "Intermediate": "📙",
   "Advanced": "📗",
   "Uncategorized": "📁"
 };
 
-const icon = categoryIcons[category] || "📁";
+const icon = categoryIcons[category as keyof typeof categoryIcons] || "📁";
 ---
 
 <style>
@@ -152,7 +155,7 @@ const icon = categoryIcons[category] || "📁";
     </div>
 
     <div class="folder-content">
-      {posts.slice(0, 5).map(post => (
+      {(posts as Lesson[]).slice(0, 5).map((post: Lesson) => (
         <div class="post">
           <a href={post.url} target="_blank" style="text-decoration:none; color:inherit;">
             <h3>{post.name || 'Untitled'}</h3>
@@ -174,10 +177,12 @@ const icon = categoryIcons[category] || "📁";
       const content = folder.querySelector(".folder-content");
       const arrow = folder.querySelector(".arrow");
 
-      header.addEventListener("click", () => {
-        const isOpen = content.classList.toggle("open");
-        arrow.classList.toggle("open", isOpen);
-      });
+      if (header && content && arrow) {
+        header.addEventListener("click", () => {
+          const isOpen = content.classList.toggle("open");
+          arrow.classList.toggle("open", isOpen);
+        });
+      }
     });
   });
 </script>

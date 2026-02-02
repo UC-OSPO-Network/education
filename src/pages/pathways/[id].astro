@@ -3,26 +3,32 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getSheetData } from '../../lib/getSheetData.js';
 import { PATHWAYS } from '../../types/lesson.ts';
 import LessonCard from '../../components/LessonCard.jsx';
+import type { Lesson, PathwayInfo } from '../../types/lesson.ts';
 
 export async function getStaticPaths() {
-  const lessons = await getSheetData();
+  const lessons = await getSheetData() as Lesson[];
 
-  return PATHWAYS.map(pathway => ({
+  return PATHWAYS.map((pathway: PathwayInfo) => ({
     params: { id: pathway.id },
     props: { pathway, lessons }
   }));
 }
 
-const { pathway, lessons } = Astro.props;
+interface Props {
+  pathway: PathwayInfo;
+  lessons: Lesson[];
+}
+
+const { pathway, lessons } = Astro.props as Props;
 
 // Filter lessons for this pathway
-const pathwayLessons = lessons.filter(lesson =>
+const pathwayLessons = lessons.filter((lesson: Lesson) =>
   lesson['Keep?']?.includes('Keep') &&
   pathway.learnerCategories.includes(lesson.learnerCategory)
 );
 
 // Group by subTopic if available
-const groupedLessons = pathwayLessons.reduce((acc, lesson) => {
+const groupedLessons = pathwayLessons.reduce((acc: Record<string, Lesson[]>, lesson: Lesson) => {
   const topic = lesson.subTopic || 'Other';
   if (!acc[topic]) acc[topic] = [];
   acc[topic].push(lesson);

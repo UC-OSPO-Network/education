@@ -2,11 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getSheetData } from '../lib/getSheetData.js';
 import LessonFilter from '../components/LessonFilter.jsx';
+import type { Lesson } from '../types/lesson';
 
-const lessons = await getSheetData();
+const lessons = await getSheetData() as Lesson[];
 
 // Filter to only include lessons marked as "Keep candidate" or "Keep"
-const activeLessons = lessons.filter(lesson =>
+const activeLessons = lessons.filter((lesson: Lesson) =>
   lesson['Keep?'] && (lesson['Keep?'].includes('Keep'))
 );
 ---
