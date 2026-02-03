@@ -43,45 +43,40 @@ export default function LessonFilter({ lessons }) {
       ],
       threshold: 0.4,        // typo tolerance
       ignoreLocation: true,
-      includeMatches:true,
     });
   }, [lessons]);
 
-  // Filter lessons based on current filters
-  const filteredLessons = useMemo(() => {
-    let result = lessons;
-    // Apply fuzzy search first
-    if (filters.search && fuse) {
-      const fuseResults = fuse.search(filters.search);
       // Build a map for quick lookup
-      const matchedLessonMap = new Map(
-        fuseResults.map(r => [
-          r.item.name,
-          { ...r.item, _matches: r.matches }
-        ])
-      );
-      result = result
-                .filter(lesson => matchedLessonMap.has(lesson.name))
-                .map(lesson => matchedLessonMap.get(lesson.name)
-      );
-    }
-    // Apply remaining filters
-    return result.filter(lesson => {
-      if (filters.ossRole) {
-        if (!lesson.oss_role?.includes(filters.ossRole)) return false;
-      }
-      if (filters.educationalLevel) {
-        if (lesson.educationalLevel !== filters.educationalLevel) return false;
-      }
-      if (filters.learnerCategory) {
-        if (lesson.learnerCategory !== filters.learnerCategory) return false;
-      }
-      return true;
-    });
-  }, [lessons, filters, fuse]);
+      const filteredLessons = useMemo(() => {
 
-      
+      let result = lessons;
 
+      // Apply fuzzy search
+      if (filters.search && fuse) {
+        result = fuse.search(filters.search).map(r => r.item);
+      }
+
+      // Apply remaining filters
+      return result.filter(lesson => {
+        if (filters.ossRole && !lesson.oss_role?.includes(filters.ossRole)) {
+          return false;
+        }
+        if (
+          filters.educationalLevel &&
+          lesson.educationalLevel !== filters.educationalLevel
+        ) {
+          return false;
+        }
+        if (
+          filters.learnerCategory &&
+          lesson.learnerCategory !== filters.learnerCategory
+        ) {
+          return false;
+        }
+        return true;
+      });
+    }, [lessons, filters, fuse]);
+  
   const handleFilterChange = (filterName, value) => {
     setFilters(prev => ({ ...prev, [filterName]: value }));
   };
@@ -263,7 +258,6 @@ export default function LessonFilter({ lessons }) {
             <LessonCard
               key={index}
               lesson={lesson}
-              matches={lesson._matches}
               pathwayIcon="📚"
             />
           ))
