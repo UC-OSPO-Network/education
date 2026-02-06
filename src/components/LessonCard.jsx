@@ -10,8 +10,12 @@ export default function LessonCard({ lesson, pathwayIcon }) {
   const isMultiCategory = lesson.learnerCategory &&
     (lesson.learnerCategory.includes(',') || lesson.learnerCategory.includes(';'));
 
+  const lessonHref = `${import.meta.env.BASE_URL}lessons/${lesson.slug}`;
+
   return (
-    <div style={{
+    <a
+    href={lessonHref}
+    style={{
       position: 'relative',
       background: 'linear-gradient(180deg, #2A2A2A 0%, #2A2A2A 35%, #3A3A3A 35%, #3A3A3A 100%)',
       borderRadius: '16px',
@@ -21,7 +25,9 @@ export default function LessonCard({ lesson, pathwayIcon }) {
       cursor: 'pointer',
       height: '100%',
       display: 'flex',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      textDecoration: 'none',
+      color: 'inherit'
     }}
     onMouseEnter={(e) => {
       e.currentTarget.style.borderColor = 'var(--uc-light-blue)';
@@ -32,11 +38,6 @@ export default function LessonCard({ lesson, pathwayIcon }) {
       e.currentTarget.style.borderColor = '#3A3A3A';
       e.currentTarget.style.transform = 'translateY(0)';
       e.currentTarget.style.boxShadow = 'none';
-    }}
-    onClick={() => {
-      if (lesson.url) {
-        window.open(lesson.url, '_blank', 'noopener,noreferrer');
-      }
     }}
     >
       {/* Skill Level Badge */}
@@ -147,6 +148,6 @@ export default function LessonCard({ lesson, pathwayIcon }) {
           )}
         </div>
       </div>
-    </div>
+    </a>
   );
 }

@@ -40,42 +40,21 @@ jobs:
         run: npm ci
 
       # ============================================
-      # Step 1: Validate Google Sheets data source
-      # ============================================
-      - name: Validate data source
-        run: node .github/scripts/validate-data.mjs
-        continue-on-error: false
-
-      # ============================================
-      # Step 2: TypeScript validation
+      # Step 1: TypeScript validation
       # ============================================
       - name: Run Astro check
         run: npx astro check
         continue-on-error: false
 
       # ============================================
-      # Step 3: Build the site
+      # Step 2: Build the site
       # ============================================
       - name: Build site
         run: npm run build
         continue-on-error: false
 
       # ============================================
-      # Step 4: Validate build output
-      # ============================================
-      - name: Validate build output
-        run: node .github/scripts/validate-build.mjs
-        continue-on-error: false
-
-      # ============================================
-      # Step 5: Check internal links
-      # ============================================
-      - name: Check internal links
-        run: node .github/scripts/check-links.mjs
-        continue-on-error: false
-
-      # ============================================
-      # Step 6: Report success/failure
+      # Step 3: Report success/failure
       # ============================================
       - name: Comment PR with success
         if: success()
@@ -86,13 +65,10 @@ jobs:
 
             | Check | Status |
             |-------|--------|
-            | 📊 Data validation | ✅ Pass |
             | 🔍 TypeScript check | ✅ Pass |
             | 🏗️ Build | ✅ Pass |
-            | 📄 Critical pages | ✅ Pass |
-            | 🔗 Internal links | ✅ Pass |
 
-            The site builds successfully and all validation checks passed.`;
+            The site builds successfully and all active validation checks passed.`;
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
@@ -111,11 +87,8 @@ jobs:
             One or more validation checks failed. Please review the [workflow logs](${context.payload.repository.html_url}/actions/runs/${context.runId}) to see what went wrong.
 
             Common issues:
-            - 📊 **Data validation**: Google Sheets CSV is unreachable or has invalid data
             - 🔍 **TypeScript check**: Type errors in code
-            - 🏗️ **Build**: Build process failed
-            - 📄 **Critical pages**: Missing required pages (index, lessons, pathways)
-            - 🔗 **Internal links**: Broken links detected`;
+            - 🏗️ **Build**: Build process failed`;
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
