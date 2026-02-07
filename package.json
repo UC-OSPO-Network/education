@@ -7,12 +7,16 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "audit:a11y": "node scripts/accessibility/audit.cjs",
     "enhance:phase1": "node scripts/run-phase1.js",
     "enhance:time": "node scripts/estimate-time-required.js",
     "enhance:language": "node scripts/standardize-languages.js",
     "enhance:metadata": "node scripts/scrape-metadata.js",
     "enhance:slugs": "node scripts/generate-slugs.js",
-    "enhance:merge": "node scripts/merge-enhanced-metadata.js"
+    "enhance:merge": "node scripts/merge-enhanced-metadata.js",
+    "validate:data": "node .github/scripts/validate-data.mjs",
+    "validate:build": "node .github/scripts/validate-build.mjs",
+    "validate:links": "node .github/scripts/check-links.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
@@ -23,5 +27,15 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@axe-core/cli": "^4.11.0",
+    "@axe-core/puppeteer": "^4.11.0",
+    "@axe-core/react": "^4.11.0",
+    "@types/papaparse": "^5.5.2",
+    "axe-core": "^4.11.1",
+    "pa11y": "^9.0.1",
+    "pa11y-ci": "^4.0.1",
+    "puppeteer": "^24.36.1"
   }
 }

@@ -1,73 +1,119 @@
 #!/usr/bin/env node
+// Build output validation script for PR checks
+// Ensures critical pages and assets exist after build
 
-/**
- * Validate Build Output Script
- * 
- * This script validates that the Astro build output contains all critical pages
- * and that the build was successful.
- */
+import fs from 'fs';
+import path from 'path';
 
-import { existsSync, statSync } from 'fs';
-import { join } from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+const DIST_DIR = path.resolve(process.cwd(), 'dist');
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-// Critical pages that must exist after build
+// Critical pages that must exist
 const CRITICAL_PAGES = [
-    'index.html',           // Home page
-    'lessons/index.html',   // Lessons page
-    'pathways/index.html',  // Pathways page
+  'index.html',
+  'lessons/index.html',
+  'pathways/index.html',
+  'for-educators/index.html',
+  'develop-a-lesson/index.html'
 ];
 
-// Build output directory
-const BUILD_DIR = join(__dirname, '..', '..', 'dist');
+// Critical assets
+const CRITICAL_ASSETS = [
+  'styles.css',
+  'uc-ospo-logo.svg'
+];
 
-console.log('🔍 Validating build output...\n');
+function checkFile(filePath) {
+  const fullPath = path.join(DIST_DIR, filePath);
+  const exists = fs.existsSync(fullPath);
 
-function validateBuild() {
-    try {
-        // Check if dist directory exists
-        if (!existsSync(BUILD_DIR)) {
-            throw new Error(`Build directory not found: ${BUILD_DIR}`);
-        }
-        console.log(`✅ Build directory exists: ${BUILD_DIR}`);
-
-        // Check if dist directory is not empty
-        const stats = statSync(BUILD_DIR);
-        if (!stats.isDirectory()) {
-            throw new Error(`Build path is not a directory: ${BUILD_DIR}`);
-        }
-
-        // Validate critical pages
-        console.log('\n📄 Checking critical pages...');
-        const missingPages = [];
-
-        for (const page of CRITICAL_PAGES) {
-            const pagePath = join(BUILD_DIR, page);
-            if (existsSync(pagePath)) {
-                const pageStats = statSync(pagePath);
-                console.log(`  ✅ ${page} (${pageStats.size} bytes)`);
-            } else {
-                console.log(`  ❌ ${page} - NOT FOUND`);
-                missingPages.push(page);
-            }
-        }
-
-        if (missingPages.length > 0) {
-            throw new Error(`Missing critical pages: ${missingPages.join(', ')}`);
-        }
-
-        console.log('\n✅ Build validation passed!\n');
-        process.exit(0);
-
-    } catch (error) {
-        console.error('\n❌ Build validation failed!');
-        console.error(`Error: ${error.message}\n`);
-        process.exit(1);
+  if (exists) {
+    const stats = fs.statSync(fullPath);
+    // Check if file is suspiciously small (likely empty or error page)
+    if (stats.size < 100) {
+      return { exists: true, warning: `File is suspiciously small (${stats.size} bytes)` };
     }
+    return { exists: true, size: stats.size };
+  }
+
+  return { exists: false };
 }
 
-validateBuild();
+async function main() {
+  console.log('🏗️  Validating build output...\n');
+
+  if (!fs.existsSync(DIST_DIR)) {
+    console.error('❌ dist/ directory not found');
+    process.exit(1);
+  }
+
+  const errors = [];
+  const warnings = [];
+
+  // Check critical pages
+  console.log('📄 Checking critical pages:');
+  for (const page of CRITICAL_PAGES) {
+    const result = checkFile(page);
+    if (!result.exists) {
+      console.error(`   ❌ ${page}`);
+      errors.push(`Missing critical page: ${page}`);
+    } else if (result.warning) {
+      console.warn(`   ⚠️  ${page} - ${result.warning}`);
+      warnings.push(`${page}: ${result.warning}`);
+    } else {
+      console.log(`   ✅ ${page} (${(result.size / 1024).toFixed(1)} KB)`);
+    }
+  }
+
+  // Check critical assets
+  console.log('\n🎨 Checking critical assets:');
+  for (const asset of CRITICAL_ASSETS) {
+    const result = checkFile(asset);
+    if (!result.exists) {
+      console.error(`   ❌ ${asset}`);
+      errors.push(`Missing critical asset: ${asset}`);
+    } else {
+      console.log(`   ✅ ${asset} (${(result.size / 1024).toFixed(1)} KB)`);
+    }
+  }
+
+  // Check for HTML files (should have at least 10)
+  const htmlFiles = [];
+  function findHTML(dir) {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        findHTML(fullPath);
+      } else if (entry.name.endsWith('.html')) {
+        htmlFiles.push(path.relative(DIST_DIR, fullPath));
+      }
+    }
+  }
+  findHTML(DIST_DIR);
+
+  console.log(`\n📊 Total HTML pages generated: ${htmlFiles.length}`);
+
+  if (htmlFiles.length < 10) {
+    warnings.push(`Only ${htmlFiles.length} HTML pages generated. Expected at least 10.`);
+    console.warn('   ⚠️  Fewer pages than expected');
+  }
+
+  // Summary
+  console.log('\n' + '='.repeat(50));
+
+  if (errors.length > 0) {
+    console.error(`\n❌ Build validation failed with ${errors.length} error(s):`);
+    errors.forEach(e => console.error(`   - ${e}`));
+    process.exit(1);
+  }
+
+  if (warnings.length > 0) {
+    console.warn(`\n⚠️  Build completed with ${warnings.length} warning(s):`);
+    warnings.forEach(w => console.warn(`   - ${w}`));
+  }
+
+  console.log('\n✅ Build validation passed!');
+  process.exit(0);
+}
+
+main();

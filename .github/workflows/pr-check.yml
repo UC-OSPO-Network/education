@@ -44,35 +44,30 @@ jobs:
       # ============================================
       - name: Validate data source
         run: node .github/scripts/validate-data.mjs
-        continue-on-error: false
 
       # ============================================
       # Step 2: TypeScript validation
       # ============================================
       - name: Run Astro check
         run: npx astro check
-        continue-on-error: false
 
       # ============================================
       # Step 3: Build the site
       # ============================================
       - name: Build site
         run: npm run build
-        continue-on-error: false
 
       # ============================================
       # Step 4: Validate build output
       # ============================================
       - name: Validate build output
         run: node .github/scripts/validate-build.mjs
-        continue-on-error: false
 
       # ============================================
       # Step 5: Check internal links
       # ============================================
       - name: Check internal links
         run: node .github/scripts/check-links.mjs
-        continue-on-error: false
 
       # ============================================
       # Step 6: Report success/failure

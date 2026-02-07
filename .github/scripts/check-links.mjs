@@ -1,161 +1,172 @@
 #!/usr/bin/env node
+// Link validation script for PR checks
+// Checks for broken internal links in the built site
 
-/**
- * Check Internal Links Script
- * 
- * This script checks for broken internal links in the built HTML files.
- * It validates that all internal links point to existing files.
- */
-
-import { existsSync, readdirSync, readFileSync, statSync } from 'fs';
-import { join, dirname, resolve } from 'path';
+import fs from 'fs';
+import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = path.dirname(__filename);
 
-const BUILD_DIR = join(__dirname, '..', '..', 'dist');
+const DIST_DIR = path.resolve(process.cwd(), 'dist');
 
-console.log('🔍 Checking internal links...\n');
+// Collect all HTML files
+function collectHTMLFiles(dir, files = []) {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
 
-// Simple regex to find href attributes in HTML
-const HREF_REGEX = /href=["']([^"']+)["']/g;
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      collectHTMLFiles(fullPath, files);
+    } else if (entry.isFile() && entry.name.endsWith('.html')) {
+      files.push(fullPath);
+    }
+  }
 
-function getAllHtmlFiles(dir, fileList = []) {
-    const files = readdirSync(dir);
+  return files;
+}
 
-    files.forEach(file => {
-        const filePath = join(dir, file);
-        const stat = statSync(filePath);
+// Extract internal links from HTML
+function extractInternalLinks(html, filePath) {
+  const links = [];
 
-        if (stat.isDirectory()) {
-            getAllHtmlFiles(filePath, fileList);
-        } else if (file.endsWith('.html')) {
-            fileList.push(filePath);
-        }
+  // Match href attributes
+  const hrefRegex = /href=["']([^"']+)["']/g;
+  let match;
+
+  while ((match = hrefRegex.exec(html)) !== null) {
+    const href = match[1];
+
+    // Skip external links, anchors, mailto, tel, etc.
+    if (href.startsWith('http://') ||
+        href.startsWith('https://') ||
+        href.startsWith('mailto:') ||
+        href.startsWith('tel:') ||
+        href.startsWith('#')) {
+      continue;
+    }
+
+    links.push({ href, file: filePath });
+  }
+
+  return links;
+}
+
+// Check if a link resolves to a real file
+function checkLink(link, baseDir) {
+  let targetPath = link.href;
+
+  // Remove query strings and anchors
+  targetPath = targetPath.split('?')[0].split('#')[0];
+
+  // Handle absolute paths
+  if (targetPath.startsWith('/')) {
+    targetPath = path.join(baseDir, targetPath);
+  } else {
+    // Handle relative paths
+    const linkDir = path.dirname(link.file);
+    targetPath = path.join(linkDir, targetPath);
+  }
+
+  // Normalize path
+  targetPath = path.normalize(targetPath);
+
+  // Check if file exists
+  if (fs.existsSync(targetPath)) {
+    return { valid: true };
+  }
+
+  // Check with .html extension
+  if (fs.existsSync(targetPath + '.html')) {
+    return { valid: true };
+  }
+
+  // Check if it's a directory with index.html
+  if (fs.existsSync(path.join(targetPath, 'index.html'))) {
+    return { valid: true };
+  }
+
+  return {
+    valid: false,
+    error: `Link points to non-existent path: ${targetPath}`
+  };
+}
+
+async function main() {
+  console.log('🔗 Checking internal links...\n');
+
+  if (!fs.existsSync(DIST_DIR)) {
+    console.error('❌ dist/ directory not found. Build the site first.');
+    process.exit(1);
+  }
+
+  // Collect all HTML files
+  const htmlFiles = collectHTMLFiles(DIST_DIR);
+  console.log(`Found ${htmlFiles.length} HTML files\n`);
+
+  if (htmlFiles.length === 0) {
+    console.error('❌ No HTML files found in dist/');
+    process.exit(1);
+  }
+
+  // Extract and check all links
+  const allLinks = [];
+  const brokenLinks = [];
+
+  for (const file of htmlFiles) {
+    const html = fs.readFileSync(file, 'utf-8');
+    const links = extractInternalLinks(html, file);
+    allLinks.push(...links);
+  }
+
+  console.log(`Checking ${allLinks.length} internal links...\n`);
+
+  // Check each unique link
+  const checkedLinks = new Set();
+
+  for (const link of allLinks) {
+    const linkKey = `${link.file}::${link.href}`;
+
+    // Skip if already checked
+    if (checkedLinks.has(linkKey)) {
+      continue;
+    }
+    checkedLinks.add(linkKey);
+
+    const result = checkLink(link, DIST_DIR);
+
+    if (!result.valid) {
+      brokenLinks.push({
+        file: path.relative(DIST_DIR, link.file),
+        href: link.href,
+        error: result.error
+      });
+    }
+  }
+
+  // Report results
+  if (brokenLinks.length > 0) {
+    console.error(`❌ Found ${brokenLinks.length} broken internal links:\n`);
+
+    // Group by file
+    const byFile = {};
+    brokenLinks.forEach(link => {
+      if (!byFile[link.file]) byFile[link.file] = [];
+      byFile[link.file].push(link.href);
     });
 
-    return fileList;
+    Object.entries(byFile).forEach(([file, links]) => {
+      console.error(`📄 ${file}`);
+      links.forEach(link => console.error(`   ❌ ${link}`));
+      console.error('');
+    });
+
+    process.exit(1);
+  } else {
+    console.log(`✅ All ${checkedLinks.size} internal links are valid!`);
+    process.exit(0);
+  }
 }
 
-function extractInternalLinks(htmlContent) {
-    const links = [];
-    let match;
-
-    while ((match = HREF_REGEX.exec(htmlContent)) !== null) {
-        const href = match[1];
-
-        // Only check internal links (not external URLs, anchors, or mailto)
-        if (!href.startsWith('http://') &&
-            !href.startsWith('https://') &&
-            !href.startsWith('mailto:') &&
-            !href.startsWith('tel:') &&
-            !href.startsWith('#') &&
-            !href.startsWith('javascript:')) {
-            // Remove hash fragments for file checking
-            const cleanHref = href.split('#')[0];
-            if (cleanHref) {
-                links.push(cleanHref);
-            }
-        }
-    }
-
-    return links;
-}
-
-function checkLinks() {
-    try {
-        // Check if dist directory exists
-        if (!existsSync(BUILD_DIR)) {
-            throw new Error(`Build directory not found: ${BUILD_DIR}`);
-        }
-
-        console.log(`📂 Scanning HTML files in: ${BUILD_DIR}\n`);
-
-        // Get all HTML files
-        const htmlFiles = getAllHtmlFiles(BUILD_DIR);
-        console.log(`Found ${htmlFiles.length} HTML files\n`);
-
-        let totalLinks = 0;
-        let brokenLinks = 0;
-        const brokenLinkDetails = [];
-
-        // Check each HTML file
-        for (const htmlFile of htmlFiles) {
-            const htmlContent = readFileSync(htmlFile, 'utf-8');
-            const links = extractInternalLinks(htmlContent);
-
-            totalLinks += links.length;
-
-            for (const link of links) {
-                // Resolve the link relative to the HTML file's directory
-                const htmlDir = dirname(htmlFile);
-                let targetPath;
-
-                if (link.startsWith('/')) {
-                    // Absolute path from root
-                    // Remove /education/ base path if present (used in production)
-                    let cleanLink = link;
-                    if (cleanLink.startsWith('/education/')) {
-                        cleanLink = cleanLink.replace('/education/', '/');
-                    } else if (cleanLink === '/education') {
-                        cleanLink = '/';
-                    }
-                    targetPath = join(BUILD_DIR, cleanLink);
-                } else {
-                    // Relative path
-                    targetPath = resolve(htmlDir, link);
-                }
-
-                // If link doesn't end with .html, try adding index.html
-                if (!targetPath.endsWith('.html') && !targetPath.endsWith('.css') && !targetPath.endsWith('.js')) {
-                    if (targetPath.endsWith('/')) {
-                        targetPath = join(targetPath, 'index.html');
-                    } else {
-                        // Try both with and without index.html
-                        const withIndex = join(targetPath, 'index.html');
-                        if (!existsSync(targetPath) && existsSync(withIndex)) {
-                            targetPath = withIndex;
-                        }
-                    }
-                }
-
-                // Check if target exists
-                if (!existsSync(targetPath)) {
-                    brokenLinks++;
-                    const relativePath = htmlFile.replace(BUILD_DIR, '');
-                    brokenLinkDetails.push({
-                        file: relativePath,
-                        link: link,
-                        target: targetPath.replace(BUILD_DIR, '')
-                    });
-                }
-            }
-        }
-
-        console.log(`📊 Link Check Summary:`);
-        console.log(`   Total internal links checked: ${totalLinks}`);
-        console.log(`   Broken links found: ${brokenLinks}\n`);
-
-        if (brokenLinks > 0) {
-            console.log('❌ Broken links detected:\n');
-            brokenLinkDetails.forEach(({ file, link, target }) => {
-                console.log(`   File: ${file}`);
-                console.log(`   Link: ${link}`);
-                console.log(`   Target: ${target}`);
-                console.log('');
-            });
-            throw new Error(`Found ${brokenLinks} broken internal link(s)`);
-        }
-
-        console.log('✅ Link check passed! No broken internal links found.\n');
-        process.exit(0);
-
-    } catch (error) {
-        console.error('\n❌ Link check failed!');
-        console.error(`Error: ${error.message}\n`);
-        process.exit(1);
-    }
-}
-
-checkLinks();
+main();

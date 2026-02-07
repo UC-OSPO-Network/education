@@ -1,16 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getSheetData } from '../lib/getSheetData.js';
-import LessonFilter from '../components/LessonFilter.jsx';
-import type { Lesson } from '../types/lesson';
+import LessonFilter from '../components/LessonFilter';
+import { getSheetData } from '../lib/getSheetData';
+import type { SheetRow } from '../lib/getSheetData';
 
-const lessons = await getSheetData() as Lesson[];
+let lessons: SheetRow[] = [];
+let error: string | null = null;
 
-// Filter to only include lessons marked as "Keep candidate" or "Keep"
-const activeLessons = lessons.filter((lesson: Lesson) =>
-  lesson['Keep?'] && (lesson['Keep?'].includes('Keep'))
+try {
+  lessons = await getSheetData();
+} catch (err) {
+  error = err instanceof Error ? err.message : 'Unknown error';
+}
+
+const activeLessons = lessons.filter(
+  (lesson) => lesson['Keep?'] && lesson['Keep?'].includes('Keep')
 );
 ---
+
 
 <style>
   .page-header {
@@ -32,6 +39,30 @@ const activeLessons = lessons.filter((lesson: Lesson) =>
     font-size: 1.1rem;
     color: rgba(255, 255, 255, 0.9);
   }
+  .error-state,
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+
+  .error-state h2 {
+    color: #b00020;
+  }
+
+  .error-state button {
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background: var(--uc-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .error-state button:hover {
+    opacity: 0.9;
+  }
+
 </style>
 
 <BaseLayout title="All Lessons">
@@ -40,5 +71,19 @@ const activeLessons = lessons.filter((lesson: Lesson) =>
     <p>Browse and filter our complete collection of open source learning materials</p>
   </div>
 
+{error ? (
+  <div class="error-state">
+    <h2>Unable to load lessons</h2>
+    <p>Please try again.</p>
+    <button onclick="window.location.reload()">Retry</button>
+  </div>
+) : activeLessons.length === 0 ? (
+  <div class="empty-state">
+    <h2>No lessons found</h2>
+    <p>No lessons found matching your criteria.</p>
+  </div>
+) : (
   <LessonFilter lessons={activeLessons} client:load />
+)}
+
 </BaseLayout>
