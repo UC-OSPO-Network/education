@@ -1,30 +1,22 @@
-# CONTRIBUTING
-
-[TODO: rename this file to `README.md`; i.e. remove the template reference]
-
-This is a template document for UC projects can use to help build the documentation in your project repos. It requires editing before it is ready to use, and you can find guides for using these templates on [our website](https://ucospo.net/oss-resources/#template-guides). Please feel free to [reach out to our Laura](mailto:lalangdon@ucdavis.edu), our Community Manager, if you have any questions!
-
-Search for the word `TODO` in this template to identify parts that require customization; e.g. line 3 above lets you know you should rename this file.. When you finish editing the template, remove the `TODO` bits.
-
-[TODO: delete the lines between line 1 and the "Welcome" heading]
+# Contributing to UC OSPO Education Website
 
 ## Welcome!
 
-[TODO: edit welcome text below]
+Welcome! We're glad you want to contribute to the UC OSPO Education Lesson & Pathways project! 💖
 
-Welcome! We're glad you want to contribute to our project! 💖
+This project is part of the UC OSPO Network's education subgroup, working to curate and organize open source education resources from The Carpentries, CodeRefinery, and other sources.
 
 As you get started, you're in the best position to give us feedback on areas of our project that we need help with including:
 
 * Problems found during setting up a new developer environment
-* Gaps in our Quickstart Guide or documentation
-* Bugs in our automation scripts
+* Gaps in our documentation or README
+* Issues with the lesson data or Google Sheets integration
+* Bugs in our validation scripts or build process
+* Ideas for improving lesson discovery and navigation
 
 If anything doesn't make sense, or doesn't work when you run it, please open a bug report and let us know!
 
 ## Table of Contents
-
-[TODO: edit the Table of Contents]
 
 * [Ways to Contribute](#ways-to-contribute)
 * [Come to Community Calls](#come-to-community-calls)
@@ -38,89 +30,137 @@ If anything doesn't make sense, or doesn't work when you run it, please open a b
 
 ## Ways to Contribute
 
-[TODO: edit this to reflect the kinds of contributions you'd like to receive for your project]
-
 We welcome many different types of contributions, including:
 
-* New features
-* Builds, CI/CD
-* Bug fixes
-* Documentation
-* Issue Triage
-* Answering questions on Slack/Mailing List
-* Web design
-* Communications/Social Media/Blog Posts
-* Release management
+* **Lesson Curation**: Help identify, review, and add lessons to our inventory
+* **Content Enhancement**: Improve lesson descriptions, metadata, and categorization
+* **Feature Development**: Build new features for lesson discovery and navigation
+* **Data Quality**: Help validate and improve our Google Sheets data
+* **Bug Fixes**: Fix issues in the build process, validation scripts, or site functionality
+* **Documentation**: Improve our README, contributing guide, or inline documentation
+* **Testing**: Help test PR previews and report issues
+* **Web Design**: Enhance the visual design and user experience
+* **Accessibility**: Improve accessibility features and compliance
+* **Issue Triage**: Help organize and prioritize GitHub issues
 
-Not everything happens through a GitHub pull request. Please come to our meetings](TODO) or [contact us](/UC-OSPO-Network/templates/blob/d8ba9301beb523c10a7195ddf0fb70a068312022/TODO) and let's discuss how we can work together.
+Not everything happens through a GitHub pull request. Please come to our [education subgroup meetings](https://docs.google.com/document/d/1-CJxDt05f9YoYfGB8-NC0zvQZbEJzHT1P7keRciMlrY/edit?tab=t.0#heading=h.vs4sjkl9adbl) or open a [GitHub Discussion](https://github.com/UC-OSPO-Network/education/discussions) and let's discuss how we can work together.
 
-## Come to Community Calls
+## Come to Education Subgroup Meetings
 
-[TODO: Maybe your project doesn't have [community calls](https://opensource.com/open-organization/16/1/community-calls-will-increase-participation-your-open-organization), in which case you can omit this section. But you might consider trying them out!]
+Anyone interested in our project is welcome to join our [education subgroup meetings](https://docs.google.com/document/d/1-CJxDt05f9YoYfGB8-NC0zvQZbEJzHT1P7keRciMlrY/edit?tab=t.0#heading=h.vs4sjkl9adbl)! You never need an invite to join us. In fact, we want you to join us, even if you don't have anything you feel like you want to contribute. Just being there is enough!
 
-Anyone interested in our project is welcome to come to any of [our community calls](TODO: add a link to your community calls)! You never need an invite to join us. In fact, we want you to join us, even if you don’t have anything you feel like you want to contribute. Just being there is enough!
+Check our [meeting notes](https://docs.google.com/document/d/1-CJxDt05f9YoYfGB8-NC0zvQZbEJzHT1P7keRciMlrY/edit?tab=t.0#heading=h.vs4sjkl9adbl) for the meeting schedule, Zoom link, and past discussions.
 
-You don’t have to turn on your video. The first time you come, just introducing yourself is perfectly fine. Over time, we hope that you feel comfortable voicing your opinions, giving feedback on others’ ideas, and even sharing your own ideas, and experiences.
+You don't have to turn on your video. The first time you come, just introducing yourself is perfectly fine. Over time, we hope that you feel comfortable voicing your opinions, giving feedback on others' ideas, and even sharing your own ideas and experiences.
 
 ## Finding an Issue
 
-[TODO: edit this section as needed]
+We have good first issues for new contributors and help wanted issues suitable for any contributor:
 
-We have good first issues for new contributors and help wanted issues suitable for any contributor. [good first issue](/UC-OSPO-Network/templates/blob/d8ba9301beb523c10a7195ddf0fb70a068312022/TODO) has extra information to help you make your first contribution. [help wanted](/UC-OSPO-Network/templates/blob/d8ba9301beb523c10a7195ddf0fb70a068312022/TODO) are issues suitable for someone who isn't a core maintainer and is good to move onto after your first pull request.
+* [good first issue](https://github.com/UC-OSPO-Network/education/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) - Issues with extra information to help you make your first contribution
+* [help wanted](https://github.com/UC-OSPO-Network/education/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) - Issues suitable for any contributor
 
-Sometimes there won’t be any issues with these labels. That’s ok! There is likely still something for you to work on. If you want to contribute but you don’t know where to start or can't find a suitable issue, you can [TODO: explain how people can ask for an issue to work on].
+Sometimes there won't be any issues with these labels. That's ok! There is likely still something for you to work on. If you want to contribute but you don't know where to start or can't find a suitable issue, you can:
+
+* Open a [GitHub Discussion](https://github.com/UC-OSPO-Network/education/discussions) asking where help is needed
+* Comment on an existing issue asking if it's available to work on
+* Join our [education subgroup meetings](https://docs.google.com/document/d/1-CJxDt05f9YoYfGB8-NC0zvQZbEJzHT1P7keRciMlrY/edit?tab=t.0#heading=h.vs4sjkl9adbl) and ask there
 
 Once you see an issue that you'd like to work on, please post a comment saying that you want to work on it. Something like "I want to work on this" is fine.
 
 ## Setting up a Dev Environment
 
-[TODO: edit the steps provided for what's needed for your project]
+**Prerequisites:**
+* Node.js (version 20 or higher)
+* npm (Node Package Manager)
+* Git
 
-Clone the project:
+**Steps:**
+
+1. Clone the project:
 
 ```shell
-git clone yourprojecturl
+git clone https://github.com/UC-OSPO-Network/education.git
+cd education
 ```
 
-Install dependencies:
+2. Install dependencies:
 
 ```shell
-install command
+npm install
 ```
+
+3. Start the development server:
+
+```shell
+npm run dev
+```
+
+This will start a local development server at `http://localhost:4321`.
 
 ## Running Tests
 
-[TODO: Describe the process you use to test code in your project]
+Before submitting your pull request, run these validation checks locally:
 
-1. Step one
-2. Step two
+1. **Validate data source:**
+   ```shell
+   node .github/scripts/validate-data.mjs
+   ```
+
+2. **Run TypeScript type checking:**
+   ```shell
+   npx astro check
+   ```
+
+3. **Build the site:**
+   ```shell
+   npm run build
+   ```
+
+4. **Validate build output:**
+   ```shell
+   node .github/scripts/validate-build.mjs
+   ```
+
+5. **Check for broken links:**
+   ```shell
+   node .github/scripts/check-links.mjs
+   ```
+
+These checks run automatically on pull requests via GitHub Actions. Make sure they all pass locally to avoid failed PR checks.
 
 ## Asking for Help
 
 The best way to reach us with a question when contributing is to ask on:
 
-[TODO: Pick the way(s) that you prefer people ask for help]
-
-* The original Github issue
-* The developer mailing list
-* Our Slack channel
+* **The original GitHub issue** - Comment on the issue you're working on
+* **[GitHub Discussions](https://github.com/UC-OSPO-Network/education/discussions)** - For general questions
+* **[Education subgroup meetings](https://docs.google.com/document/d/1-CJxDt05f9YoYfGB8-NC0zvQZbEJzHT1P7keRciMlrY/edit?tab=t.0#heading=h.vs4sjkl9adbl)** - Join us at our regular meetings
 
 ## Norms for Commits
 
-[TODO: edit this section to reflect what's needed for your project]
+We encourage clear, descriptive commit messages that explain what changed and why:
 
-Our project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), and we require [commit signing](https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits). Please let us know if you need help with these!
+* Use present tense ("Add feature" not "Added feature")
+* Use imperative mood ("Fix bug" not "Fixes bug")
+* Include context when helpful ("Fix broken link in pathways page")
+* Reference issues when applicable ("Fixes #123")
+
+Optionally, consider using [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format (e.g., `feat:`, `fix:`, `docs:`) for consistency.
 
 ## Pull Request Lifecycle
 
-[TODO: Edit the text below to describe your pull request process. You don't need to adopt every aspect! Pick and choose what makes sense for *your* project]
-
 ### Before You Submit
 
-When you submit your pull request, or you push new commits to it, our automated systems will run some checks on your new code. We require that your pull request passes these checks, but we also have more criteria than just that before we can accept and merge it. We recommend that you check the following things locally before you submit your code:
+When you submit your pull request, or push new commits to it, our automated systems will run validation checks on your code. We require that your pull request passes these checks before we can merge it. We recommend that you run the following locally before submitting:
 
-* First thing to check
-* Another thing to check
+* **Data validation** - Ensure Google Sheets data is accessible and valid
+* **TypeScript check** - Run `npx astro check` to catch type errors
+* **Build** - Run `npm run build` to ensure the site builds successfully
+* **Critical pages** - Verify required pages exist after building
+* **Link checking** - Ensure no broken internal links
+
+All pull requests will automatically get a preview deployment via Vercel so reviewers can see your changes live.
 
 #### When to Submit
 
@@ -214,4 +254,4 @@ Watch the repository to be notified when your contributions are released. We'll 
 
 ## Code of Conduct
 
-Please read our [Code of Conduct](TODO: link to your project's CoC)
+Please read our [Code of Conduct](CODE_OF_CONDUCT.md) to understand the expectations for behavior within our community. We are committed to providing a welcoming and inclusive environment for all contributors.
