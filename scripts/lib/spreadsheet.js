@@ -1,5 +1,5 @@
 // Google Sheets integration using the existing getSheetData function
-import { getSheetData } from '../../src/lib/getSheetData.js';
+import { getSheetData } from '../../src/lib/getSheetData.ts';
 
 export async function getLessons() {
   console.log('Fetching lessons from Google Sheets...');

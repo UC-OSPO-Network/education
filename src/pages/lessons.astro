@@ -1,22 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getSheetData } from '../lib/getSheetData.js';
-import LessonFilter from '../components/LessonFilter.jsx';
+import LessonFilter from '../components/LessonFilter';
+import { getSheetData } from '../lib/getSheetData';
+import type { SheetRow } from '../lib/getSheetData';
 
-let lessons = [];
-let error = null;
+let lessons: SheetRow[] = [];
+let error: string | null = null;
 
 try {
   lessons = await getSheetData();
 } catch (err) {
-  error = err instanceof Error ? err.message : 'Unknown error occurred';
+  error = err instanceof Error ? err.message : 'Unknown error';
 }
 
-// Filter to only include lessons marked as "Keep candidate" or "Keep"
 const activeLessons = lessons.filter(
   (lesson) => lesson['Keep?'] && lesson['Keep?'].includes('Keep')
 );
 ---
+
 
 <style>
   .page-header {
@@ -74,7 +75,7 @@ const activeLessons = lessons.filter(
   <div class="error-state">
     <h2>Unable to load lessons</h2>
     <p>Please try again.</p>
-    <button onClick="window.location.reload()">Retry</button>
+    <button onclick="window.location.reload()">Retry</button>
   </div>
 ) : activeLessons.length === 0 ? (
   <div class="empty-state">

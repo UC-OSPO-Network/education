@@ -5,6 +5,22 @@ const currentPath = Astro.url.pathname;
 ---
 
 <style>
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--uc-gold);
+    color: var(--uc-dark-gray);
+    padding: 8px 16px;
+    text-decoration: none;
+    font-weight: 700;
+    z-index: 1001;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+
   .unified-header {
     background: var(--uc-blue);
     color: var(--uc-white);
@@ -275,13 +291,14 @@ const currentPath = Astro.url.pathname;
   }
 </style>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <header class="unified-header">
   <div class="header-container">
     <!-- Top section: Logo + Social -->
     <div class="header-top">
       <div class="logo-section">
         <a href="https://ucospo.net/" class="logo-link">
-          <img src="/uc-ospo-logo.svg" alt="UC OSPO Network Logo" width="48" height="48" style="display: block;" />
+          <img src="/education/uc-ospo-logo.svg" alt="UC OSPO Network Logo" width="48" height="48" style="display: block;" />
           <div>
             <h1 class="site-title">
               UC OSPO Network
@@ -350,15 +367,15 @@ const currentPath = Astro.url.pathname;
 
         <!-- Education Dropdown (Current Site) -->
         <li class="nav-item">
-          <a href="/" class="nav-link current-site">
+          <a href="/education/" class="nav-link current-site">
             Education
             <span class="dropdown-arrow">▼</span>
           </a>
           <div class="dropdown-menu">
-            <a href="/" class="dropdown-link" data-path="/">All Pathways</a>
-            <a href="/lessons" class="dropdown-link" data-path="/lessons">All Lessons</a>
-            <a href="/pathways" class="dropdown-link" data-path="/pathways">Browse Pathways</a>
-            <a href="/develop-a-lesson" class="dropdown-link" data-path="/develop-a-lesson">Develop a Lesson</a>
+            <a href="/education/" class="dropdown-link" data-path="/education/">All Pathways</a>
+            <a href="/education/lessons" class="dropdown-link" data-path="/education/lessons">All Lessons</a>
+            <a href="/education/pathways" class="dropdown-link" data-path="/education/pathways">Browse Pathways</a>
+            <a href="/education/develop-a-lesson" class="dropdown-link" data-path="/education/develop-a-lesson">Develop a Lesson</a>
           </div>
         </li>
       </ul>
