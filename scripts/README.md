@@ -29,9 +29,10 @@ These scripts automate metadata extraction and enhancement for the 56 lessons in
 
 ```bash
 npm run enhance:phase1
+npm run enhance:merge
 ```
 
-This runs all 3 Phase 1 scripts:
+This runs all 3 Phase 1 scripts and merges the output:
 1. Language standardization (fast, no web requests)
 2. Time estimation (makes web requests, ~5 min)
 3. Metadata scraping (makes web requests, ~10 min)
@@ -52,6 +53,9 @@ npm run enhance:time
 
 # Scrape author, license, dates (slow, fetches pages)
 npm run enhance:metadata
+
+# Merge all records into a single master CSV
+npm run enhance:merge
 ```
 
 ## Output
@@ -67,10 +71,9 @@ scripts/output/
 ```
 
 **Import to Google Sheets**:
-1. Open each CSV file
-2. Review automated values
-3. Spot-check for accuracy
-4. Copy-paste columns into Google Sheets
+
+1. **(Recommended)** Use the **Inventory Tools** Google Apps Script. See [UPDATING_GOOGLE_SHEETS.md](UPDATING_GOOGLE_SHEETS.md) for setup and usage.
+2. Alternatively, manually copy-paste columns from the individual CSVs or the merged CSV.
 
 ## Script Details
 
@@ -149,6 +152,21 @@ scripts/output/
 - Domain → Organization mapping (e.g., opensource.guide → GitHub)
 - Footer text parsing for licenses
 - JSON-LD schema.org extraction
+
+---
+
+### 5. `merge-enhanced-metadata.js`
+
+**What it does**: Consolidates all phase-specific CSV outputs into a single master CSV.
+
+**Goal**: Simplifies the bulk update process for Google Sheets by providing one file with all enhanced fields.
+
+**Execution**:
+```bash
+npm run enhance:merge
+```
+
+**Output**: `scripts/output/MERGED-enhanced-metadata-[YYYY-MM-DD].csv`
 
 ## Configuration
 
@@ -231,10 +249,9 @@ Review 10-15 random lessons for accuracy:
 
 ### 4. Import to Google Sheets
 
-Copy the columns you want to update:
-- Open CSV in Excel/Numbers/Sheets
-- Select relevant columns (`timeRequired`, `author`, `license`, etc.)
-- Copy-paste into Google Sheets
+The recommended way to update the inventory is using the Google Apps Script tool. See [UPDATING_GOOGLE_SHEETS.md](UPDATING_GOOGLE_SHEETS.md) for full instructions.
+
+Alternatively, you can copy the columns you want to update from the merged CSV and paste them into the Google Sheet.
 
 ## Troubleshooting
 

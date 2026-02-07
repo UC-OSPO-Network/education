@@ -13,6 +13,7 @@
     "enhance:language": "node scripts/standardize-languages.js",
     "enhance:metadata": "node scripts/scrape-metadata.js",
     "enhance:slugs": "node scripts/generate-slugs.js",
+    "enhance:merge": "node scripts/merge-enhanced-metadata.js",
     "validate:data": "node .github/scripts/validate-data.mjs",
     "validate:build": "node .github/scripts/validate-build.mjs",
     "validate:links": "node .github/scripts/check-links.mjs"
@@ -22,6 +23,7 @@
     "@astrojs/react": "^4.4.0",
     "astro": "^5.13.8",
     "framer-motion": "^12.23.24",
+    "fuse.js": "^7.1.0",
     "papaparse": "^5.5.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
