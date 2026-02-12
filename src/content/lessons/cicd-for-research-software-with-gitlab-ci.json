@@ -1,0 +1,29 @@
+{
+  "name": "CI/CD for Research Software with GitLab CI",
+  "slug": "cicd-for-research-software-with-gitlab-ci",
+  "keepStatus": "keepCandidate",
+  "description": "This lesson covers the implementation of CI/CD pipelines in research software projects, focusing on automating tests, builds, and deployments using GitLab CI.",
+  "url": "https://hsf-training.github.io/hsf-training-cicd/",
+  "topic": "DevOps",
+  "subTopic": "",
+  "learnerCategory": "Maintaining and Sustaining Software",
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Tutorial",
+  "author": "HSF Training Team",
+  "ossRole": "Maintainer, Contributor",
+  "inLanguage": [
+    "English"
+  ],
+  "keywords": [
+    "CI/CD",
+    "GitLab CI",
+    "continuous integration",
+    "continuous delivery",
+    "research software"
+  ],
+  "dependsOn": "introduction-to-git, python-packaging, unit-testing-and-tdd-in-python",
+  "sortingId": "16",
+  "dateCreated": "2020-11-01T09:00:00+00:00",
+  "dateModified": "2023-01-15T14:20:12+00:00",
+  "license": "https://creativecommons.org/licenses/by/4.0/"
+}

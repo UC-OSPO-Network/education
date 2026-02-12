@@ -1,0 +1,29 @@
+{
+  "name": "Issue Tracking with GitHub",
+  "slug": "issue-tracking-with-github",
+  "keepStatus": "keepCandidate",
+  "description": "This lesson covers the basics of issue tracking for software projects, including how to create, manage, and close issues on GitHub.",
+  "url": "https://intersect-training.org/Issue-Tracking/",
+  "topic": "Git/Beg. VCS",
+  "subTopic": "",
+  "learnerCategory": "Contributing to a Project",
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Tutorial",
+  "author": "Intersect Team, intersect@training.org",
+  "ossRole": "Contributor, Maintainer",
+  "inLanguage": [
+    "English"
+  ],
+  "keywords": [
+    "GitHub",
+    "issue tracking",
+    "project management",
+    "bugs",
+    "features"
+  ],
+  "dependsOn": "introduction-to-git",
+  "sortingId": "7",
+  "dateCreated": "2023-02-20T08:14:13+00:00",
+  "dateModified": "2023-06-18T15:54:12+00:00",
+  "license": "https://creativecommons.org/licenses/by/4.0/"
+}

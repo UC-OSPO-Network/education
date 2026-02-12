@@ -1,0 +1,25 @@
+{
+  "name": "Reproducible Computational Environments using Containers",
+  "slug": "reproducible-computational-environments-using-containers",
+  "keepStatus": "keepCandidate",
+  "description": "",
+  "url": "https://carpentries-incubator.github.io/docker-introduction/",
+  "topic": "DevOps",
+  "subTopic": "",
+  "learnerCategory": "Maintaining and Sustaining Software",
+  "educationalLevel": "Unknown",
+  "learningResourceType": "",
+  "author": "The Carpentries Incubator",
+  "ossRole": "Contributor, Maintainer",
+  "inLanguage": [
+    "English"
+  ],
+  "keywords": [
+    "docker english containers hacktoberfest"
+  ],
+  "dependsOn": "reproducible-research",
+  "sortingId": "32",
+  "dateCreated": "",
+  "dateModified": "",
+  "license": "CC-BY"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Collaboration in Open Research Projects",
+  "slug": "collaboration-in-open-research-projects",
+  "keepStatus": "keepCandidate",
+  "description": "This lesson introduces collaboration in open research projects, focusing on using Git and GitHub to manage contributions, foster collaboration, and ensure transparency in research outputs.",
+  "url": "https://book.the-turing-way.org/collaboration/collaboration",
+  "topic": "Git/Beg. VCS, Community, Research",
+  "subTopic": "",
+  "learnerCategory": "Contributing to a Project",
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Guide",
+  "author": "The Turing Way Team",
+  "ossRole": "Maintainer, Community Manager",
+  "inLanguage": [
+    "English"
+  ],
+  "keywords": [
+    "collaboration",
+    "Git",
+    "GitHub",
+    "open science",
+    "research"
+  ],
+  "dependsOn": "",
+  "sortingId": "9",
+  "dateCreated": "2020-04-01T09:00:00+00:00",
+  "dateModified": "2023-05-20T14:40:12+00:00",
+  "license": "https://creativecommons.org/licenses/by/4.0/"
+}

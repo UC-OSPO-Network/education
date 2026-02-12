@@ -1,0 +1,29 @@
+{
+  "name": "Introduction to Docker for Research  NOTE THIS IS NOW CALLED Introduction to Docker and Podman",
+  "slug": "introduction-to-docker-for-research-note-this-is-now-called-introduction-to-docker-and-podman",
+  "keepStatus": "keepCandidate",
+  "description": "This lesson covers the fundamentals of Docker, including creating containers, managing Docker images, and using Docker for software reproducibility and deployment.",
+  "url": "https://hsf-training.github.io/hsf-training-docker/index.html",
+  "topic": "Research, DevOps",
+  "subTopic": "",
+  "learnerCategory": "Maintaining and Sustaining Software",
+  "educationalLevel": "Beginner",
+  "learningResourceType": "Tutorial",
+  "author": "HSF Training Team",
+  "ossRole": "Contributor, Maintainer",
+  "inLanguage": [
+    "English"
+  ],
+  "keywords": [
+    "Docker",
+    "containers",
+    "reproducibility",
+    "software deployment",
+    "research"
+  ],
+  "dependsOn": "",
+  "sortingId": "27",
+  "dateCreated": "2020-10-01T09:00:00+00:00",
+  "dateModified": "2023-03-15T14:40:12+00:00",
+  "license": "https://creativecommons.org/licenses/by/4.0/"
+}

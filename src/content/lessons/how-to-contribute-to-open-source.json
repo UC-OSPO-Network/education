@@ -1,0 +1,21 @@
+{
+  "name": "How to Contribute to Open Source",
+  "slug": "how-to-contribute-to-open-source",
+  "keepStatus": "keepCandidate",
+  "description": "",
+  "url": "https://opensource.guide/how-to-contribute/",
+  "topic": "Contributing",
+  "subTopic": "",
+  "learnerCategory": "Contributing to a Project",
+  "educationalLevel": "Unknown",
+  "learningResourceType": "",
+  "author": "",
+  "ossRole": "",
+  "inLanguage": [],
+  "keywords": [],
+  "dependsOn": "introduction-to-git",
+  "sortingId": "14",
+  "dateCreated": "",
+  "dateModified": "",
+  "license": ""
+}

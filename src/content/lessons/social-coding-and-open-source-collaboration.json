@@ -1,0 +1,29 @@
+{
+  "name": "Social Coding and Open Source Collaboration",
+  "slug": "social-coding-and-open-source-collaboration",
+  "keepStatus": "keepCandidate",
+  "description": "This lesson explores social coding and open-source collaboration using platforms like GitHub. It covers contributing to projects, community engagement, and using social coding tools for collaborative development.",
+  "url": "https://coderefinery.github.io/social-coding/",
+  "topic": "Community, Git/Beg. VCS",
+  "subTopic": "",
+  "learnerCategory": "Contributing to a Project",
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Tutorial",
+  "author": "CodeRefinery Team",
+  "ossRole": "Community Manager, Maintainer",
+  "inLanguage": [
+    "English"
+  ],
+  "keywords": [
+    "social coding",
+    "GitHub",
+    "open source",
+    "collaboration",
+    "developer community"
+  ],
+  "dependsOn": "",
+  "sortingId": "4",
+  "dateCreated": "2021-07-10T10:00:00+00:00",
+  "dateModified": "2023-04-15T14:40:12+00:00",
+  "license": "https://creativecommons.org/licenses/by/4.0/"
+}

@@ -1,0 +1,28 @@
+{
+  "name": "Modular Programming with Python",
+  "slug": "modular-programming-with-python",
+  "keepStatus": "keepCandidate",
+  "description": "This lesson covers modular programming in Python, explaining how to write reusable code in modules, organize codebases, and test them to improve collaboration and maintainability.",
+  "url": "https://coderefinery.github.io/modular-type-along/",
+  "topic": "Python",
+  "subTopic": "",
+  "learnerCategory": "Maintaining and Sustaining Software",
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Tutorial",
+  "author": "CodeRefinery Team",
+  "ossRole": "Contributor, Maintainer",
+  "inLanguage": [
+    "English"
+  ],
+  "keywords": [
+    "modular programming",
+    "Python",
+    "software development",
+    "collaboration"
+  ],
+  "dependsOn": "",
+  "sortingId": "30",
+  "dateCreated": "2020-05-15T10:00:00+00:00",
+  "dateModified": "2023-02-10T14:40:12+00:00",
+  "license": "https://creativecommons.org/licenses/by/4.0/"
+}

@@ -1,0 +1,28 @@
+{
+  "name": "Introduction to Git",
+  "slug": "introduction-to-git",
+  "keepStatus": "keepCandidate",
+  "description": "This lesson introduces Git, a distributed version control system, and teaches how to use it to track changes, collaborate on projects, and manage the history of a codebase.",
+  "url": "https://coderefinery.github.io/git-intro/",
+  "topic": "Git/Beg. VCS",
+  "subTopic": "",
+  "learnerCategory": "Contributing to a Project",
+  "educationalLevel": "Beginner",
+  "learningResourceType": "Tutorial",
+  "author": "CodeRefinery Team",
+  "ossRole": "Contributor, Maintainer",
+  "inLanguage": [
+    "English"
+  ],
+  "keywords": [
+    "Git",
+    "version control",
+    "repositories",
+    "project management"
+  ],
+  "dependsOn": "",
+  "sortingId": "13",
+  "dateCreated": "2021-04-10T10:00:00+00:00",
+  "dateModified": "2023-03-10T14:40:12+00:00",
+  "license": "https://creativecommons.org/licenses/by/4.0/"
+}

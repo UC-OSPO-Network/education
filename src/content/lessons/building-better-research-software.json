@@ -1,0 +1,23 @@
+{
+  "name": "Building Better Research Software",
+  "slug": "building-better-research-software",
+  "keepStatus": "keepCandidate",
+  "description": "",
+  "url": "https://carpentries-incubator.github.io/better-research-software/",
+  "topic": "Research",
+  "subTopic": "",
+  "learnerCategory": "Maintaining and Sustaining Software",
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "",
+  "author": "The Carpentries Incubator",
+  "ossRole": "Contributor, Maintainer",
+  "inLanguage": [],
+  "keywords": [
+    "english fair fair-software research-software"
+  ],
+  "dependsOn": "python-packaging, python-packaging-for-beginners, python-package-development-best-practices, introduction-to-git",
+  "sortingId": "24",
+  "dateCreated": "",
+  "dateModified": "",
+  "license": "CC-BY"
+}

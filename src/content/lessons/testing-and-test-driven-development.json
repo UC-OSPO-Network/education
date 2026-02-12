@@ -1,0 +1,28 @@
+{
+  "name": "Testing and Test-Driven Development",
+  "slug": "testing-and-test-driven-development",
+  "keepStatus": "keepCandidate",
+  "description": "This lesson covers how to write tests for your code, understand test-driven development, and use testing frameworks like pytest in Python.",
+  "url": "https://coderefinery.github.io/testing/",
+  "topic": "Testing",
+  "subTopic": "",
+  "learnerCategory": "Maintaining and Sustaining Software",
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Tutorial",
+  "author": "CodeRefinery Team",
+  "ossRole": "Maintainer, Contributor",
+  "inLanguage": [
+    "English"
+  ],
+  "keywords": [
+    "testing",
+    "test-driven development",
+    "Python",
+    "pytest"
+  ],
+  "dependsOn": "",
+  "sortingId": "31",
+  "dateCreated": "2020-09-15T10:00:00+00:00",
+  "dateModified": "2023-01-10T14:40:12+00:00",
+  "license": "https://creativecommons.org/licenses/by/4.0/"
+}

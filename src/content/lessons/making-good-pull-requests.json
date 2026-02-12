@@ -1,0 +1,28 @@
+{
+  "name": "Making Good Pull Requests",
+  "slug": "making-good-pull-requests",
+  "keepStatus": "keepCandidate",
+  "description": "This lesson covers how to create high-quality pull requests for open source projects and collaborative software development teams.",
+  "url": "https://intersect-training.org/Making-Good-PRs/",
+  "topic": "Git/Beg. VCS, Contributing",
+  "subTopic": "",
+  "learnerCategory": "Contributing to a Project",
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Tutorial",
+  "author": "Intersect Team, intersect@training.org",
+  "ossRole": "Contributor, Maintainer",
+  "inLanguage": [
+    "English"
+  ],
+  "keywords": [
+    "Git",
+    "pull requests",
+    "version control",
+    "collaboration"
+  ],
+  "dependsOn": "introduction-to-git",
+  "sortingId": "6",
+  "dateCreated": "2023-05-15T12:34:13+00:00",
+  "dateModified": "2023-07-20T16:14:12+00:00",
+  "license": "https://creativecommons.org/licenses/by/4.0/"
+}

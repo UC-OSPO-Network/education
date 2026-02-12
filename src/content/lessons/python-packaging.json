@@ -1,0 +1,23 @@
+{
+  "name": "Python Packaging",
+  "slug": "python-packaging",
+  "keepStatus": "keepCandidate",
+  "description": "",
+  "url": "https://carpentries-incubator.github.io/python_packaging",
+  "topic": "Packaging, Python",
+  "subTopic": "",
+  "learnerCategory": "Maintaining and Sustaining Software",
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "",
+  "author": "The Carpentries Incubator",
+  "ossRole": "Contributor, Maintainer",
+  "inLanguage": [],
+  "keywords": [
+    "english packaging pip python"
+  ],
+  "dependsOn": "introduction-to-git",
+  "sortingId": "10",
+  "dateCreated": "",
+  "dateModified": "",
+  "license": "CC-BY"
+}

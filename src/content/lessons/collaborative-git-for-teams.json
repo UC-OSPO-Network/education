@@ -1,0 +1,29 @@
+{
+  "name": "Collaborative Git for Teams",
+  "slug": "collaborative-git-for-teams",
+  "keepStatus": "keepCandidate",
+  "description": "This lesson explains how to use Git for collaborative software development, focusing on advanced Git techniques such as branching, merging, and conflict resolution.",
+  "url": "https://coderefinery.github.io/git-collaborative/",
+  "topic": "Git/Beg. VCS, Contributing",
+  "subTopic": "",
+  "learnerCategory": "Contributing to a Project",
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Tutorial",
+  "author": "CodeRefinery Team",
+  "ossRole": "Contributor, Maintainer",
+  "inLanguage": [
+    "English"
+  ],
+  "keywords": [
+    "Git",
+    "version control",
+    "collaboration",
+    "branching",
+    "merging"
+  ],
+  "dependsOn": "introduction-to-git, how-to-contribute-to-open-source",
+  "sortingId": "8",
+  "dateCreated": "2021-06-10T10:00:00+00:00",
+  "dateModified": "2023-03-01T14:40:12+00:00",
+  "license": "https://creativecommons.org/licenses/by/4.0/"
+}

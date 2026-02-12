@@ -1,0 +1,23 @@
+{
+  "name": "Intermediate Research Software Development Skills (Python) Lesson Material",
+  "slug": "intermediate-research-software-development-skills-python-lesson-material",
+  "keepStatus": "keepCandidate",
+  "description": "",
+  "url": "https://carpentries-incubator.github.io/python-intermediate-development/",
+  "topic": "Research, Python",
+  "subTopic": "",
+  "learnerCategory": "Maintaining and Sustaining Software",
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "",
+  "author": "The Carpentries Incubator",
+  "ossRole": "Contributor, Maintainer",
+  "inLanguage": [],
+  "keywords": [
+    "training training-materials software-development carpentry-lesson python software-engineering-research intermediate software-design"
+  ],
+  "dependsOn": "python-packaging, python-packaging-for-beginners, cicd-for-research-software-with-gitlab-ci, unit-testing-and-tdd-in-python, python-package-development-best-practices, introduction-to-git",
+  "sortingId": "26",
+  "dateCreated": "",
+  "dateModified": "",
+  "license": "CC-BY"
+}
