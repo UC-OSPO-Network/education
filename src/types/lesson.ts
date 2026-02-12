@@ -1,48 +1,10 @@
 // TypeScript types for lesson data based on Bioschemas Training schema
 
-export interface Lesson {
-  slug: string;
-  name: string;
-  keepStatus: 'keep' | 'keepCandidate' | 'drop';
-  description: string;
-  url: string;
-  author?: string;
-  license?: string;
-  learnerCategory: string;
-  educationalLevel: string;
-  ossRole?: string;
-  oss_role: string;
-  subTopic: string;
-  timeRequired?: string;
-  learningResourceType: string;
-  inLanguage?: string[];
-  keywords: string;
-  // Additional Metadata Fields
-  topic?: string;
-  sortingId?: string;
-  dependsOn?: string;
-  learningObjectives?: string;
-  ospoRelevance?: string;
-  about?: string;
-  abstract?: string;
-  accessibilitySummary?: string;
-  audience?: string;
-  competencyRequired?: string;
-  contributor?: string;
-  creativeWorkStatus?: string;
-  dateCreated?: string;
-  dateModified?: string;
-  datePublished?: string;
-  hasPart?: string;
-  identifier?: string;
-  isPartOf?: string;
-  notes?: string;
-  mentions?: string;
-  recordedAt?: string;
-  teaches?: string;
-  version?: string;
-  workTranslation?: string;
-}
+import type { CollectionEntry } from 'astro:content';
+
+// full Lesson object
+export type LessonEntry = CollectionEntry<'lessons'>;
+export type Lesson = LessonEntry['data'];
 
 export interface PathwayInfo {
   id: string;

@@ -1,52 +1,46 @@
+// src/content/config.ts
 import { defineCollection, z } from 'astro:content';
 
 const lessons = defineCollection({
-  type: 'data',
-  schema: z
-    .object({
-      name: z.string(),
-      slug: z.string().optional(), // Now a simple string
-      keepStatus: z.enum(['keep', 'keepCandidate', 'drop']).default('keepCandidate'),
-      description: z.string().optional().default(''),
-      url: z.union([z.string().url(), z.literal('')]).default(''),
-      author: z.string().optional().default(''),
-      license: z.string().optional().default(''),
-      learnerCategory: z.string().optional().default(''),
-      educationalLevel: z.string().optional().default('Unknown'),
-      ossRole: z.string().optional().default(''),
-      oss_role: z.string().optional().default(''), // Keep for backward compatibility
-      subTopic: z.string().optional().default(''),
-      timeRequired: z.string().optional().default(''),
-      learningResourceType: z.string().optional().default(''),
-      inLanguage: z.array(z.string()).optional().default([]),
-      keywords: z.union([z.string(), z.array(z.string())]).optional().default([]),
-      // Additional Metadata Fields
-      topic: z.string().optional().default(''),
-      sortingId: z.string().optional().default(''),
-      dependsOn: z.string().optional().default(''),
-      learningObjectives: z.string().optional().default(''),
-      ospoRelevance: z.string().optional().default(''),
-      about: z.string().optional().default(''),
-      abstract: z.string().optional().default(''),
-      accessibilitySummary: z.string().optional().default(''),
-      audience: z.string().optional().default(''),
-      competencyRequired: z.string().optional().default(''),
-      contributor: z.string().optional().default(''),
-      creativeWorkStatus: z.string().optional().default(''),
-      dateCreated: z.string().optional().default(''),
-      dateModified: z.string().optional().default(''),
-      datePublished: z.string().optional().default(''),
-      hasPart: z.string().optional().default(''),
-      identifier: z.string().optional().default(''),
-      isPartOf: z.string().optional().default(''),
-      notes: z.string().optional().default(''),
-      mentions: z.string().optional().default(''),
-      recordedAt: z.string().optional().default(''),
-      teaches: z.string().optional().default(''),
-      version: z.string().optional().default(''),
-      workTranslation: z.string().optional().default(''),
-    })
-    .passthrough(),
+  type: 'data', // JSON files
+  schema: z.object({
+    // core id
+    name: z.string(),
+    slug: z.string(),
+    keepStatus: z.enum(['keep', 'keepCandidate', 'drop']).default('keepCandidate'),
+    
+    // content
+    description: z.string().default(''),
+    url: z.string().url().or(z.literal('')).default(''),
+    
+    // categories
+    topic: z.string().default(''),
+    subTopic: z.string().default(''),
+    learnerCategory: z.string().default(''),
+    educationalLevel: z.string().default('Unknown'),
+    learningResourceType: z.string().default(''),
+    
+    // people metadata
+    author: z.string().default(''),
+    license: z.string().default(''),
+    ossRole: z.string().default(''),
+    
+    // arrays
+    inLanguage: z.array(z.string()).default([]),
+    keywords: z.array(z.string()).default([]),
+    
+    // csv slugs
+    dependsOn: z.string().default(''), 
+    sortingId: z.string().default(''), // for ref
+    
+    // additional metadata
+    learningObjectives: z.string().default(''),
+    ospoRelevance: z.string().default(''),
+    abstract: z.string().default(''),
+    dateCreated: z.string().default(''),
+    dateModified: z.string().default(''),
+    
+  }).passthrough(), // allows extra fields
 });
 
 export const collections = { lessons };
