@@ -4,6 +4,22 @@
 ---
 
 <style>
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--uc-gold);
+    color: var(--uc-dark-gray);
+    padding: 8px 16px;
+    text-decoration: none;
+    font-weight: 700;
+    z-index: 1001;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+
   .unified-header {
     background: var(--uc-blue);
     color: var(--uc-white);
@@ -274,6 +290,7 @@
   }
 </style>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <header class="unified-header">
   <div class="header-container">
     <!-- Top section: Logo + Social -->

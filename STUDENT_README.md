@@ -20,7 +20,7 @@ src/
 ├── components/
 │   ├── Card.astro             # Basic card component
 │   ├── Folder.astro           # Deprecated folder component
-│   ├── LessonFilter.jsx       # React component for filtering lessons
+│   ├── LessonFilter.tsx       # React component for filtering lessons
 │   ├── PathwayCard.astro      # Pathway card component
 │   └── StackedPathways.jsx    # Interactive stacked pathways (NEW)
 ├── content/
@@ -29,7 +29,8 @@ src/
 ├── layouts/
 │   └── BaseLayout.astro       # Main layout with header/footer
 ├── lib/
-│   └── lessons.ts             # Loads lessons from Astro content collection
+│   ├── lessons.ts             # Loads lessons from Astro content collection (primary)
+│   └── getSheetData.ts        # Fetches from Google Sheets (optional migration source)
 ├── pages/
 │   ├── index.astro            # Homepage with stacked pathways
 │   ├── lessons.astro          # Filterable lessons library
@@ -89,6 +90,7 @@ Lessons are stored as files in the repo and edited via Keystatic:
 - **Content location**: `src/content/lessons/*.json`
 - **Schema**: `src/content/config.ts`
 - **Keystatic config**: `keystatic.config.ts`
+- **Optional**: `getSheetData.ts` can fetch from Google Sheets for one-time migration
 
 ### Key Metadata Fields (Simplified for MVP)
 Essential fields to display:
@@ -136,7 +138,7 @@ If you need to import the current Google Sheets data into files once:
 ### All Lessons (`src/pages/lessons.astro`)
 - Filterable table view
 - Filters: Search, OSS Role, Skill Level, Pathway
-- Uses `LessonFilter.jsx` React component
+- Uses `LessonFilter.tsx` React component
 
 ### Pathway Pages (`src/pages/pathways/[id].astro`)
 - Dynamic routes for each pathway
@@ -226,7 +228,20 @@ npm run build
 - Components can be Astro (`.astro`) or React (`.jsx`)
 - Use `client:load` directive for interactive React components
 
-### Working with the CSV Data
+### TypeScript Usage
+
+This project uses strict TypeScript checks via Astro’s strict tsconfig.
+
+### Guidelines
+- Prefer explicit interfaces for data structures (e.g. CSV rows, props)
+- Avoid `any`; use indexed signatures when working with CSV-style data
+- All React components should be typed using `.tsx`
+- Run `npx astro check` before submitting changes
+
+Strict typing helps catch errors early and improves maintainability.
+
+
+### Working with Lesson Data
 ```javascript
 import { getActiveLessons } from '../lib/lessons';
 
@@ -251,6 +266,9 @@ const activeLessons = await getActiveLessons();
 
 **Issue**: GitHub sign-in fails (redirect mismatch)
 - **Solution**: Confirm your OAuth callback URL is exactly `http://127.0.0.1:4321/api/keystatic/github/oauth/callback`
+
+**Issue**: CSV data not loading (migration)
+- **Solution**: Check the published CSV URL in `getSheetData.ts`
 
 **Issue**: React component not interactive
 - **Solution**: Add `client:load` directive to component

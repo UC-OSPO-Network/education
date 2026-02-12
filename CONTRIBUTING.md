@@ -1,5 +1,8 @@
 # Contributing to UC OSPO Education Website
 
+> [!IMPORTANT]
+> **Note to Contributors:** Please **always** comment on an issue and wait for a maintainer to assign it to you *before* starting a pull request. We have internal student developers working on core architecture (e.g., Keystatic migration, Pathways layout), and unapproved PRs in these areas may be closed to avoid technical debt and merge conflicts. We highly value your contributions and want to ensure your time is spent on work that can be successfully merged!
+
 ## Welcome!
 
 Welcome! We're glad you want to contribute to the UC OSPO Education Lesson & Pathways project! 💖

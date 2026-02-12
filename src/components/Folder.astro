@@ -20,7 +20,9 @@ const categoryIcons: Record<string, string> = {
   Uncategorized: "📁",
 };
 
-const icon = categoryIcons[category] || "📁";
+const icon =
+  categoryIcons[category as keyof typeof categoryIcons] || "📁";
+
 ---
 
 <style>
@@ -163,27 +165,25 @@ const icon = categoryIcons[category] || "📁";
     </div>
 
     <div class="folder-content">
-      {
-        posts.slice(0, 5).map((post) => (
-          <div class="post">
-            <a
-              href={post.url}
-              target="_blank"
-              style="text-decoration:none; color:inherit;"
-            >
-              <h3>{post.name || "Untitled"}</h3>
-              <p>
-                <strong>Topic:</strong> {post.Topic || "N/A"}
-              </p>
-              <p>{post.description || "No description"}</p>
-              <small>
-                Audience: {post.audience || "N/A"} | OSPO Relevance:{" "}
-                {post["OSPO Relevance"] || "N/A"}
-              </small>
-            </a>
-          </div>
-        ))
-      }
+      {posts.slice(0, 5).map((post) => (
+        <div class="post">
+          <a
+            href={post.url}
+            target="_blank"
+            style="text-decoration:none; color:inherit;"
+          >
+            <h3>{post.name || "Untitled"}</h3>
+            <p>
+              <strong>Topic:</strong> {post.Topic || "N/A"}
+            </p>
+            <p>{post.description || "No description"}</p>
+            <small>
+              Audience: {post.audience || "N/A"} | OSPO Relevance:{" "}
+              {post["OSPO Relevance"] || "N/A"}
+            </small>
+          </a>
+        </div>
+      ))}
     </div>
   </div>
 </div>

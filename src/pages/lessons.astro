@@ -1,10 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import LessonFilter from '../components/LessonFilter.jsx';
+import LessonFilter from '../components/LessonFilter.tsx';
 import { getActiveLessons } from '../lib/lessons';
 
 const activeLessons = await getActiveLessons();
 ---
+
 
 <style>
   .page-header {
@@ -26,6 +27,30 @@ const activeLessons = await getActiveLessons();
     font-size: 1.1rem;
     color: rgba(255, 255, 255, 0.9);
   }
+  .error-state,
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+
+  .error-state h2 {
+    color: #b00020;
+  }
+
+  .error-state button {
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background: var(--uc-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .error-state button:hover {
+    opacity: 0.9;
+  }
+
 </style>
 
 <BaseLayout title="All Lessons">
@@ -34,5 +59,12 @@ const activeLessons = await getActiveLessons();
     <p>Browse and filter our complete collection of open source learning materials</p>
   </div>
 
+{activeLessons.length === 0 ? (
+  <div class="empty-state">
+    <h2>No lessons found</h2>
+    <p>No lessons found matching your criteria.</p>
+  </div>
+) : (
   <LessonFilter lessons={activeLessons} client:load />
+)}
 </BaseLayout>
