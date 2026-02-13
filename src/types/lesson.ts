@@ -1,44 +1,47 @@
 // TypeScript types for lesson data based on Bioschemas Training schema
 
 export interface Lesson {
+  slug: string;
   name: string;
-  Topic: string;
-  'Keep?': string;
-  learnerCategory: string;
-  'Sorting ID': string;
-  'Depends On': string;
-  'Learning Objectives': string;
-  subTopic: string;
-  'OSPO Relevance': string;
-  about: string;
-  abstract: string;
-  accessibilitySummary: string;
-  url: string;
-  oss_role: string;
-  audience: string;
-  author: string;
-  competencyRequired: string;
-  contributor: string;
-  creativeWorkStatus: string;
-  dateCreated: string;
-  dateModified: string;
-  datePublished: string;
+  keepStatus: 'keep' | 'keepCandidate' | 'drop';
   description: string;
+  url: string;
+  author?: string;
+  license?: string;
+  learnerCategory: string;
   educationalLevel: string;
-  hasPart: string;
-  identifier: string;
-  inLanguage: string;
-  isPartOf: string;
-  Notes: string;
-  keywords: string;
+  ossRole?: string;
+  oss_role: string;
+  subTopic: string;
+  timeRequired?: string;
   learningResourceType: string;
-  license: string;
-  mentions: string;
-  recordedAt: string;
-  teaches: string;
-  timeRequired: string;
-  version: string;
-  workTranslation: string;
+  inLanguage?: string[];
+  keywords: string;
+  // Additional Metadata Fields
+  topic?: string;
+  sortingId?: string;
+  dependsOn?: string;
+  learningObjectives?: string;
+  ospoRelevance?: string;
+  about?: string;
+  abstract?: string;
+  accessibilitySummary?: string;
+  audience?: string;
+  competencyRequired?: string;
+  contributor?: string;
+  creativeWorkStatus?: string;
+  dateCreated?: string;
+  dateModified?: string;
+  datePublished?: string;
+  hasPart?: string;
+  identifier?: string;
+  isPartOf?: string;
+  notes?: string;
+  mentions?: string;
+  recordedAt?: string;
+  teaches?: string;
+  version?: string;
+  workTranslation?: string;
 }
 
 export interface PathwayInfo {

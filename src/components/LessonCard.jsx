@@ -20,38 +20,38 @@ export default function LessonCard({ lesson, pathwayIcon }) {
       (lesson.learnerCategory.includes(',') ||
           lesson.learnerCategory.includes(';'));
 
+  const lessonHref = `${import.meta.env.BASE_URL}lessons/${lesson.slug}`;
+
   return (
-      <div
-          style={{
-            position: 'relative',
-            background:
-                'linear-gradient(180deg, #2A2A2A 0%, #2A2A2A 35%, #3A3A3A 35%, #3A3A3A 100%)',
-            borderRadius: '16px',
-            overflow: 'hidden',
-            border: '2px solid #3A3A3A',
-            transition: 'all 0.3s ease',
-            cursor: 'pointer',
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = 'var(--uc-light-blue)';
-            e.currentTarget.style.transform = 'translateY(-4px)';
-            e.currentTarget.style.boxShadow =
-                '0 8px 24px rgba(18, 149, 216, 0.4)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = '#3A3A3A';
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = 'none';
-          }}
-          onClick={() => {
-            if (lesson.url) {
-              window.open(lesson.url, '_blank', 'noopener,noreferrer');
-            }
-          }}
-      >
+    <a
+      href={lessonHref}
+      style={{
+        position: 'relative',
+        background:
+          'linear-gradient(180deg, #2A2A2A 0%, #2A2A2A 35%, #3A3A3A 35%, #3A3A3A 100%)',
+        borderRadius: '16px',
+        overflow: 'hidden',
+        border: '2px solid #3A3A3A',
+        transition: 'all 0.3s ease',
+        cursor: 'pointer',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        textDecoration: 'none',
+        color: 'inherit'
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = 'var(--uc-light-blue)';
+        e.currentTarget.style.transform = 'translateY(-4px)';
+        e.currentTarget.style.boxShadow =
+          '0 8px 24px rgba(18, 149, 216, 0.4)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = '#3A3A3A';
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.boxShadow = 'none';
+      }}
+    >
         {/* Skill Level Badge */}
         <SkillBadge level={lesson.educationalLevel} />
 
@@ -115,22 +115,27 @@ export default function LessonCard({ lesson, pathwayIcon }) {
             {lesson.description || 'No description available'}
           </p>
 
-          {/* Feedback Button */}
-          <a
-              href={feedbackUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              style={{
-                alignSelf: 'flex-start',
-                fontSize: '0.85rem',
-                color: '#72CDF4',
-                textDecoration: 'underline',
-                cursor: 'pointer'
-              }}
+          {/* Feedback Button - button to avoid invalid nested anchor */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              window.open(feedbackUrl, '_blank', 'noopener,noreferrer');
+            }}
+            style={{
+              alignSelf: 'flex-start',
+              fontSize: '0.85rem',
+              color: '#72CDF4',
+              textDecoration: 'underline',
+              cursor: 'pointer',
+              background: 'none',
+              border: 'none',
+              padding: 0
+            }}
           >
             💬 Give Feedback
-          </a>
+          </button>
 
           {/* Tags and Meta Info */}
           <div
@@ -203,6 +208,6 @@ export default function LessonCard({ lesson, pathwayIcon }) {
             )}
           </div>
         </div>
-      </div>
+    </a>
   );
 }
