@@ -1,63 +1,58 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import LessonCard from '../../components/LessonCard.jsx';
-import { getSheetData, type SheetRow } from '../../lib/getSheetData';
-import { PATHWAYS } from '../../types/lesson';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getLessons } from "../../lib/lessons";
+import { PATHWAYS, type PathwayInfo, type Lesson } from "../../types/lesson";
+import LessonCard from "../../components/LessonCard.jsx";
+
+interface Props {
+  pathway: PathwayInfo;
+  lessons: Lesson[];
+}
 
 // -----------------------------
 // Static paths
 // -----------------------------
 export async function getStaticPaths() {
-  const lessons: SheetRow[] = await getSheetData();
+  const lessons = await getLessons();
 
   return PATHWAYS.map((pathway) => ({
     params: { id: pathway.id },
-    props: { pathway, lessons }
+    props: { pathway, lessons },
   }));
 }
 
-// -----------------------------
-// Props typing
-// -----------------------------
-const {
-  pathway,
-  lessons
-}: {
-  pathway: (typeof PATHWAYS)[number];
-  lessons: SheetRow[];
-} = Astro.props;
+const { pathway, lessons } = Astro.props as Props;
 
 // -----------------------------
 // Filter lessons for this pathway
 // -----------------------------
-const pathwayLessons: SheetRow[] = lessons.filter(
+const pathwayLessons = lessons.filter(
   (lesson) =>
-    lesson['Keep?']?.includes('Keep') &&
-    pathway.learnerCategories.includes(lesson.learnerCategory ?? '')
+    (lesson.keepStatus === "keep" || lesson.keepStatus === "keepCandidate") &&
+    lesson.url.trim() !== "" &&
+    pathway.learnerCategories.includes(lesson.learnerCategory),
 );
 
-// -----------------------------
-// Group lessons by subTopic
-// -----------------------------
-const groupedLessons = pathwayLessons.reduce<Record<string, SheetRow[]>>(
-  (acc, lesson: SheetRow) => {
-    const topic = lesson.subTopic || 'Other';
-
-    if (!acc[topic]) {
-      acc[topic] = [];
-    }
-
+// Group by subTopic if available
+const groupedLessons = pathwayLessons.reduce<Record<string, Lesson[]>>(
+  (acc, lesson) => {
+    const topic = lesson.subTopic || "Other";
+    if (!acc[topic]) acc[topic] = [];
     acc[topic].push(lesson);
     return acc;
   },
-  {}
+  {},
 );
 ---
 
 
 <style>
   .pathway-header {
-    background: linear-gradient(135deg, var(--uc-blue) 0%, var(--uc-dark-blue) 100%);
+    background: linear-gradient(
+      135deg,
+      var(--uc-blue) 0%,
+      var(--uc-dark-blue) 100%
+    );
     padding: 3rem 2rem;
     margin-bottom: 3rem;
     text-align: center;
@@ -143,19 +138,29 @@ const groupedLessons = pathwayLessons.reduce<Record<string, SheetRow[]>>(
   </div>
 
   <div class="pathway-content">
-    <a href="/education/" class="back-link">← Back to All Pathways</a>
+    <a href={`${import.meta.env.BASE_URL}pathways`} class="back-link"
+      >← Back to All Pathways</a
+    >
 
     {Object.keys(groupedLessons).length === 0 ? (
       <div class="no-lessons">
-        <p style="font-size: 1.2rem;">No lessons available for this pathway yet.</p>
-        <p>Check back soon or <a href="/lessons">browse all lessons</a>.</p>
+        <p style="font-size: 1.2rem;">
+          No lessons available for this pathway yet.
+        </p>
+        <p>
+          Check back soon or{" "}
+          <a href={`${import.meta.env.BASE_URL}lessons`}>
+            browse all lessons
+          </a>
+          .
+        </p>
       </div>
     ) : (
       Object.entries(groupedLessons).map(([subtopic, subtopicLessons]) => (
         <div class="subtopic-section">
           <h2 class="subtopic-header">{subtopic}</h2>
           <div class="lesson-grid">
-            {subtopicLessons.map((lesson: SheetRow) => (
+            {subtopicLessons.map((lesson) => (
               <LessonCard
                 lesson={lesson}
                 pathwayIcon={pathway.icon}

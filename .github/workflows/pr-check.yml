@@ -40,7 +40,7 @@ jobs:
         run: npm ci
 
       # ============================================
-      # Step 1: Validate Google Sheets data source
+      # Step 1: Validate data source
       # ============================================
       - name: Validate data source
         run: node .github/scripts/validate-data.mjs
@@ -52,7 +52,7 @@ jobs:
         run: npx astro check
 
       # ============================================
-      # Step 3: Build the site
+      # Step 2: Build the site
       # ============================================
       - name: Build site
         run: npm run build
@@ -81,13 +81,10 @@ jobs:
 
             | Check | Status |
             |-------|--------|
-            | 📊 Data validation | ✅ Pass |
             | 🔍 TypeScript check | ✅ Pass |
             | 🏗️ Build | ✅ Pass |
-            | 📄 Critical pages | ✅ Pass |
-            | 🔗 Internal links | ✅ Pass |
 
-            The site builds successfully and all validation checks passed.`;
+            The site builds successfully and all active validation checks passed.`;
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
@@ -106,11 +103,8 @@ jobs:
             One or more validation checks failed. Please review the [workflow logs](${context.payload.repository.html_url}/actions/runs/${context.runId}) to see what went wrong.
 
             Common issues:
-            - 📊 **Data validation**: Google Sheets CSV is unreachable or has invalid data
             - 🔍 **TypeScript check**: Type errors in code
-            - 🏗️ **Build**: Build process failed
-            - 📄 **Critical pages**: Missing required pages (index, lessons, pathways)
-            - 🔗 **Internal links**: Broken links detected`;
+            - 🏗️ **Build**: Build process failed`;
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,

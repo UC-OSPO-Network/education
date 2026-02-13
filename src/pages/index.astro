@@ -130,8 +130,8 @@ import StackedPathways from '../components/StackedPathways.jsx';
       Quality-vetted lessons on contributing, licensing, governance, and community practices—structured into pathways for teaching or independent learning.
     </p>
     <div class="hero-ctas">
-      <a href="/education/pathways" class="cta-primary">Browse Pathways</a>
-      <a href="/education/for-educators" class="cta-secondary">For Educators</a>
+      <a href={`${import.meta.env.BASE_URL}pathways`} class="cta-primary">Browse Pathways</a>
+      <a href={`${import.meta.env.BASE_URL}for-educators`} class="cta-secondary">For Educators</a>
     </div>
   </div>
 
@@ -140,7 +140,7 @@ import StackedPathways from '../components/StackedPathways.jsx';
     <StackedPathways client:load />
 
     <div class="browse-all">
-      <a href="/education/lessons" class="browse-button">BROWSE ALL LESSONS</a>
+      <a href={`${import.meta.env.BASE_URL}lessons`} class="browse-button">BROWSE ALL LESSONS</a>
     </div>
   </section>
 </BaseLayout>

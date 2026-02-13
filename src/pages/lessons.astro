@@ -1,21 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import LessonFilter from '../components/LessonFilter';
-import { getSheetData } from '../lib/getSheetData';
-import type { SheetRow } from '../lib/getSheetData';
+import LessonFilter from '../components/LessonFilter.tsx';
+import { getActiveLessons } from '../lib/lessons';
 
-let lessons: SheetRow[] = [];
-let error: string | null = null;
-
-try {
-  lessons = await getSheetData();
-} catch (err) {
-  error = err instanceof Error ? err.message : 'Unknown error';
-}
-
-const activeLessons = lessons.filter(
-  (lesson) => lesson['Keep?'] && lesson['Keep?'].includes('Keep')
-);
+const activeLessons = await getActiveLessons();
 ---
 
 
@@ -71,13 +59,7 @@ const activeLessons = lessons.filter(
     <p>Browse and filter our complete collection of open source learning materials</p>
   </div>
 
-{error ? (
-  <div class="error-state">
-    <h2>Unable to load lessons</h2>
-    <p>Please try again.</p>
-    <button onclick="window.location.reload()">Retry</button>
-  </div>
-) : activeLessons.length === 0 ? (
+{activeLessons.length === 0 ? (
   <div class="empty-state">
     <h2>No lessons found</h2>
     <p>No lessons found matching your criteria.</p>
@@ -85,5 +67,4 @@ const activeLessons = lessons.filter(
 ) : (
   <LessonFilter lessons={activeLessons} client:load />
 )}
-
 </BaseLayout>
