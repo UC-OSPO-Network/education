@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getLessons } from "../../lib/lessons";
-import { PATHWAYS, type PathwayInfo, type Lesson } from "../../types/lesson.ts";
+import { PATHWAYS, type PathwayInfo, type Lesson } from "../../types/lesson";
 import LessonCard from "../../components/LessonCard.jsx";
 
 interface Props {
@@ -9,6 +9,9 @@ interface Props {
   lessons: Lesson[];
 }
 
+// -----------------------------
+// Static paths
+// -----------------------------
 export async function getStaticPaths() {
   const lessons = await getLessons();
 
@@ -20,7 +23,9 @@ export async function getStaticPaths() {
 
 const { pathway, lessons } = Astro.props as Props;
 
+// -----------------------------
 // Filter lessons for this pathway
+// -----------------------------
 const pathwayLessons = lessons.filter(
   (lesson) =>
     (lesson.keepStatus === "keep" || lesson.keepStatus === "keepCandidate") &&
@@ -39,6 +44,7 @@ const groupedLessons = pathwayLessons.reduce<Record<string, Lesson[]>>(
   {},
 );
 ---
+
 
 <style>
   .pathway-header {
@@ -136,36 +142,34 @@ const groupedLessons = pathwayLessons.reduce<Record<string, Lesson[]>>(
       >← Back to All Pathways</a
     >
 
-    {
-      Object.keys(groupedLessons).length === 0 ? (
-        <div class="no-lessons">
-          <p style="font-size: 1.2rem;">
-            No lessons available for this pathway yet.
-          </p>
-          <p>
-            Check back soon or{" "}
-            <a href={`${import.meta.env.BASE_URL}lessons`}>
-              browse all lessons
-            </a>
-            .
-          </p>
-        </div>
-      ) : (
-        Object.entries(groupedLessons).map(([subtopic, subtopicLessons]) => (
-          <div class="subtopic-section">
-            <h2 class="subtopic-header">{subtopic}</h2>
-            <div class="lesson-grid">
-              {subtopicLessons.map((lesson) => (
-                <LessonCard
-                  lesson={lesson}
-                  pathwayIcon={pathway.icon}
-                  client:load
-                />
-              ))}
-            </div>
+    {Object.keys(groupedLessons).length === 0 ? (
+      <div class="no-lessons">
+        <p style="font-size: 1.2rem;">
+          No lessons available for this pathway yet.
+        </p>
+        <p>
+          Check back soon or{" "}
+          <a href={`${import.meta.env.BASE_URL}lessons`}>
+            browse all lessons
+          </a>
+          .
+        </p>
+      </div>
+    ) : (
+      Object.entries(groupedLessons).map(([subtopic, subtopicLessons]) => (
+        <div class="subtopic-section">
+          <h2 class="subtopic-header">{subtopic}</h2>
+          <div class="lesson-grid">
+            {subtopicLessons.map((lesson) => (
+              <LessonCard
+                lesson={lesson}
+                pathwayIcon={pathway.icon}
+                client:load
+              />
+            ))}
           </div>
-        ))
-      )
-    }
+        </div>
+      ))
+    )}
   </div>
 </BaseLayout>

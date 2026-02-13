@@ -40,21 +40,37 @@ jobs:
         run: npm ci
 
       # ============================================
-      # Step 1: TypeScript validation
+      # Step 1: Validate data source
+      # ============================================
+      - name: Validate data source
+        run: node .github/scripts/validate-data.mjs
+
+      # ============================================
+      # Step 2: TypeScript validation
       # ============================================
       - name: Run Astro check
         run: npx astro check
-        continue-on-error: false
 
       # ============================================
       # Step 2: Build the site
       # ============================================
       - name: Build site
         run: npm run build
-        continue-on-error: false
 
       # ============================================
-      # Step 3: Report success/failure
+      # Step 4: Validate build output
+      # ============================================
+      - name: Validate build output
+        run: node .github/scripts/validate-build.mjs
+
+      # ============================================
+      # Step 5: Check internal links
+      # ============================================
+      - name: Check internal links
+        run: node .github/scripts/check-links.mjs
+
+      # ============================================
+      # Step 6: Report success/failure
       # ============================================
       - name: Comment PR with success
         if: success()
