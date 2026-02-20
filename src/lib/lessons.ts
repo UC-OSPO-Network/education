@@ -57,8 +57,8 @@ export async function getLessons(): Promise<Lesson[]> {
     const oss_role = data.ossRole || data.oss_role || '';
 
     return {
-      slug: entry.id,
       ...data,
+      slug: data.slug || entry.id,
       keywords,
       oss_role,
     } as Lesson;

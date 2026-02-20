@@ -92,6 +92,18 @@ Lessons are stored as files in the repo and edited via Keystatic:
 - **Keystatic config**: `keystatic.config.ts`
 - **Optional**: `getSheetData.ts` can fetch from Google Sheets for one-time migration
 
+### Content Structure
+```text
+src/content/
+├── config.ts
+└── lessons/
+    ├── building-community.json
+    ├── leadership-and-governance.json
+    ├── example.json
+    ├── example-beginner.json
+    └── example-advanced.json
+```
+
 ### Key Metadata Fields (Simplified for MVP)
 Essential fields to display:
 - `name` - Lesson title

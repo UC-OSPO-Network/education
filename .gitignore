@@ -35,6 +35,7 @@ lerna-debug.log*
 *.sw?
 .history/
 *.local
+.codex/*
 
 # Vim
 *.swp
