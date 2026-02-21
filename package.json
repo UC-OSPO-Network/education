@@ -7,7 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "migrate:lessons": "node scripts/migrate-lessons-to-content.js",
+    "migrate:lessons": "node scripts/migrate-to-singletons.js",
     "normalize:lessons": "node scripts/normalize-lessons.js",
     "audit:a11y": "node scripts/accessibility/audit.cjs",
     "enhance:phase1": "node scripts/run-phase1.js",

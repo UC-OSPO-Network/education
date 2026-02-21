@@ -5,6 +5,7 @@ dist/
 
 # Generated types
 .astro/
+scripts/output/backups/
 
 # Dependencies
 node_modules/
