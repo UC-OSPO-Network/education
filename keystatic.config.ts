@@ -49,17 +49,25 @@ export default config({
       label: 'Lessons',
       path: 'src/content/lessons/*',
       format: { data: 'json' },
-      slugField: 'slug',
+      // Keep Keystatic's internal filename slug separate from the mirrored JSON `slug` key.
+      slugField: 'entrySlug',
       schema: {
+        entrySlug: fields.text({
+          label: 'Entry Slug (filename)',
+          validation: { isRequired: true },
+          description:
+            'Internal Keystatic field for the file slug/path. Keep this aligned with filename slug.',
+        }),
         name: fields.text({
           label: 'Name',
           validation: { isRequired: true },
           description: 'The title of the lesson',
         }),
         slug: fields.text({
-          label: 'Slug',
+          label: 'Slug (mirrored JSON)',
           validation: { isRequired: true },
-          description: 'The filename and URL part for this lesson',
+          description:
+            'Mirrored slug key stored in JSON. Must match the filename slug.',
         }),
         keepStatus: fields.select({
           label: 'Keep status',
@@ -102,7 +110,16 @@ export default config({
         // --- Additional Metadata Fields ---
         topic: fields.text({ label: 'Topic' }),
         sortingId: fields.text({ label: 'Sorting ID' }),
-        dependsOn: fields.text({ label: 'Depends On' }),
+        dependsOn: fields.array(fields.text({ label: 'Dependency (slug or URL)' }), {
+          label: 'Depends On',
+          itemLabel: (props) => props.value || 'dependency',
+          description: 'Prerequisite lesson slugs and/or external URLs',
+        }),
+        prerequisiteNotes: fields.text({
+          label: 'Prerequisite Notes',
+          multiline: true,
+          description: 'Free-text prerequisite notes that are not machine-readable references',
+        }),
         learningObjectives: fields.text({ label: 'Learning Objectives', multiline: true }),
         ospoRelevance: fields.text({ label: 'OSPO Relevance', multiline: true }),
         about: fields.text({ label: 'About' }),

@@ -20,7 +20,8 @@ export type Lesson = {
   // Additional Metadata Fields
   topic?: string;
   sortingId?: string;
-  dependsOn?: string;
+  dependsOn: string[];
+  prerequisiteNotes: string;
   learningObjectives?: string;
   ospoRelevance?: string;
   about?: string;
@@ -55,12 +56,19 @@ export async function getLessons(): Promise<Lesson[]> {
 
     // Handle ossRole and oss_role
     const oss_role = data.ossRole || data.oss_role || '';
+    const dependsOn = Array.isArray(data.dependsOn)
+      ? data.dependsOn.filter((value) => typeof value === 'string' && value.trim() !== '')
+      : [];
+    const prerequisiteNotes = typeof data.prerequisiteNotes === 'string' ? data.prerequisiteNotes : '';
 
     return {
       ...data,
-      slug: data.slug || entry.id,
+      // Collection entry id is derived from filename and is our canonical slug.
+      slug: entry.id,
       keywords,
       oss_role,
+      dependsOn,
+      prerequisiteNotes,
     } as Lesson;
   });
 }

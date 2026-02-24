@@ -6,10 +6,11 @@
   "url": "https://carpentries-incubator.github.io/docker-introduction/",
   "topic": "DevOps",
   "subTopic": "",
-  "learnerCategory": "Maintaining and Sustaining Software",
+  "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Unknown",
   "learningResourceType": "",
   "author": "The Carpentries Incubator",
+  "license": "CC-BY",
   "ossRole": "Contributor, Maintainer",
   "inLanguage": [
     "English"
@@ -17,9 +18,31 @@
   "keywords": [
     "docker english containers hacktoberfest"
   ],
-  "dependsOn": "reproducible-research",
   "sortingId": "32",
+  "dependsOn": [
+    "reproducible-research"
+  ],
+  "prerequisiteNotes": "",
+  "learningObjectives": "",
+  "ospoRelevance": "Moderate",
+  "abstract": "This session aims to introduce the use of Docker containers with the goal of using them to effect reproducible computational environments. Such environments are useful for ensuring reproducible research outputs, for example.",
   "dateCreated": "",
   "dateModified": "",
-  "license": "CC-BY"
+  "timeRequired": "",
+  "about": "",
+  "accessibilitySummary": "",
+  "audience": "",
+  "competencyRequired": "",
+  "contributor": "",
+  "creativeWorkStatus": "beta",
+  "datePublished": "",
+  "hasPart": "",
+  "identifier": "https://github.com/carpentries-incubator/docker-introduction",
+  "isPartOf": "",
+  "notes": "Keep - but it would also be nice to have something more general re: Codespaces, GitPod, VS Code devcontainers",
+  "mentions": "",
+  "recordedAt": "",
+  "teaches": "",
+  "version": "",
+  "workTranslation": ""
 }

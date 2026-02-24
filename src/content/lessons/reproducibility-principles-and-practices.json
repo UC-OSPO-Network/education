@@ -18,7 +18,7 @@
   "keywords": [],
   "topic": "Community, Maintaining",
   "sortingId": "34",
-  "dependsOn": "",
+  "dependsOn": [],
   "learningObjectives": "",
   "ospoRelevance": "Core",
   "about": "",
@@ -39,5 +39,6 @@
   "recordedAt": "",
   "teaches": "",
   "version": "",
-  "workTranslation": ""
+  "workTranslation": "",
+  "prerequisiteNotes": ""
 }

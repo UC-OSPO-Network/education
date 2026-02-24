@@ -16,5 +16,6 @@
     "example",
     "beginner"
   ],
-  "dependsOn": ""
+  "dependsOn": [],
+  "prerequisiteNotes": ""
 }

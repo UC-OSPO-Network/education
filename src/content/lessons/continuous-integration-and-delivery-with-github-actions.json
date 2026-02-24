@@ -6,10 +6,11 @@
   "url": "https://intersect-training.org/CI-CD/",
   "topic": "DevOps",
   "subTopic": "",
-  "learnerCategory": "Maintaining and Sustaining Software",
+  "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Intermediate",
   "learningResourceType": "Tutorial",
   "author": "Intersect Team, intersect@training.org",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Maintainer, Contributor",
   "inLanguage": [
     "English"
@@ -22,9 +23,32 @@
     "GitHub Actions",
     "automation"
   ],
-  "dependsOn": "introduction-to-git, python-packaging",
   "sortingId": "15",
+  "dependsOn": [
+    "introduction-to-git",
+    "python-packaging"
+  ],
+  "prerequisiteNotes": "",
+  "learningObjectives": "Distinguish between Continuous Integration (CI), Continuous Delivery, and Continuous Deployment.\nIdentify types of \"breaking changes\" in different development contexts.\nDefine deployment in the context of CI/CD and recognize real-world examples.\nApply CI/CD principles to automate workflows beyond code testing (e.g., notifications, data fetching).\nExplain why GitHub Actions may be preferred for CI/CD in open-source projects.\nConfigure a basic CI pipeline using GitHub Actions for code testing and packaging.\nUse a matrix strategy in CI to test across multiple Python versions and platforms.\nAutomate both building and publishing artifacts—like Python packages—using GitHub Actions.\nAdd and configure status badges to visualize CI/CD workflow health.",
+  "ospoRelevance": "High",
+  "abstract": "This tutorial introduces continuous integration (CI) and continuous delivery (CD) practices in software development. It covers how to automate testing, building, and deployment using tools like GitHub Actions.",
   "dateCreated": "2023-01-25T10:50:13+00:00",
   "dateModified": "2023-03-20T14:40:12+00:00",
-  "license": "https://creativecommons.org/licenses/by/4.0/"
+  "timeRequired": "",
+  "about": "",
+  "accessibilitySummary": "",
+  "audience": "Software Developers, PhD Students, DevOps Engineers",
+  "competencyRequired": "Git, CI/CD concepts, software development",
+  "contributor": "",
+  "creativeWorkStatus": "active",
+  "datePublished": "2023-04-01T14:40:12+00:00",
+  "hasPart": "http://ci-cd-guide.io",
+  "identifier": "",
+  "isPartOf": "DevOps Essentials Series",
+  "notes": "",
+  "mentions": "GitHub Actions, https://github.com/features/actions, Automation for CI/CD on GitHub",
+  "recordedAt": "",
+  "teaches": "The student will be able to set up CI/CD pipelines for their projects and automate tests, builds, and deployments.",
+  "version": "1.2.0",
+  "workTranslation": ""
 }

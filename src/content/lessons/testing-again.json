@@ -16,7 +16,7 @@
   "keywords": [],
   "topic": "Packaging",
   "sortingId": "",
-  "dependsOn": "",
+  "dependsOn": [],
   "learningObjectives": "",
   "ospoRelevance": "Moderate",
   "about": "",
@@ -37,5 +37,6 @@
   "recordedAt": "",
   "teaches": "",
   "version": "",
-  "workTranslation": ""
+  "workTranslation": "",
+  "prerequisiteNotes": ""
 }

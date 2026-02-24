@@ -6,7 +6,8 @@ const lessons = defineCollection({
   schema: z.object({
     // core id
     name: z.string(),
-    slug: z.string(),
+    // Canonical slug is filename (entry.id); keep mirrored slug key in JSON when present.
+    slug: z.string().default(''),
     keepStatus: z.enum(['keep', 'keepCandidate', 'drop']).default('keepCandidate'),
     
     // content
@@ -29,8 +30,9 @@ const lessons = defineCollection({
     inLanguage: z.array(z.string()).default([]),
     keywords: z.array(z.string()).default([]),
     
-    // csv slugs
-    dependsOn: z.string().default(''), 
+    // prerequisites
+    dependsOn: z.array(z.string()).default([]),
+    prerequisiteNotes: z.string().default(''),
     sortingId: z.string().default(''), // for ref
     
     // additional metadata

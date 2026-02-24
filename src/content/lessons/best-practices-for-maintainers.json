@@ -4,13 +4,12 @@
   "keepStatus": "keepCandidate",
   "description": "Making your life easier as an open source maintainer, from documenting processes to leveraging your community.",
   "url": "https://opensource.guide/best-practices/",
-  "topic": "Maintaining",
-  "subTopic": "",
-  "learnerCategory": "Maintaining and Sustaining Software",
-  "educationalLevel": "Intermediate",
-  "learningResourceType": "Guide",
   "author": "GitHub",
+  "license": "CC-BY-4.0",
+  "learnerCategory": "Maintaining & Sustaining Software",
+  "educationalLevel": "Intermediate",
   "ossRole": "Maintainer, Community Manager",
+  "learningResourceType": "Guide",
   "inLanguage": [
     "English",
     "Bulgarian/Български",
@@ -44,9 +43,15 @@
     "maintainers",
     "community"
   ],
-  "dependsOn": "building-community, issue-tracking-with-github",
+  "topic": "Maintaining",
   "sortingId": "21",
-  "dateCreated": "",
-  "dateModified": "",
-  "license": "CC-BY-4.0"
+  "dependsOn": [
+    "building-community",
+    "issue-tracking-with-github"
+  ],
+  "ospoRelevance": "Core",
+  "abstract": "This guide provides essential practices for open source project maintainers to ensure sustainability, manage contributions effectively, and foster a welcoming project environment. Topics include documentation, issue tracking, and communication strategies.",
+  "audience": "Individuals, Companies",
+  "isPartOf": "Open Source Guides",
+  "mentions": "These guides are available in over 20 languages."
 }

@@ -14,7 +14,6 @@ interface Props {
 // -----------------------------
 export async function getStaticPaths() {
   const lessons = await getLessons();
-
   return PATHWAYS.map((pathway) => ({
     params: { id: pathway.id },
     props: { pathway, lessons },
@@ -31,6 +30,18 @@ const pathwayLessons = lessons.filter(
     (lesson.keepStatus === "keep" || lesson.keepStatus === "keepCandidate") &&
     lesson.url.trim() !== "" &&
     pathway.learnerCategories.includes(lesson.learnerCategory),
+);
+
+const lessonIndex = Object.fromEntries(
+  lessons
+    .filter((lesson) => lesson.slug && lesson.url)
+    .map((lesson) => [
+      lesson.slug,
+      {
+        name: lesson.name || lesson.slug,
+        url: lesson.url,
+      },
+    ]),
 );
 
 // Group by subTopic if available
@@ -164,6 +175,7 @@ const groupedLessons = pathwayLessons.reduce<Record<string, Lesson[]>>(
               <LessonCard
                 lesson={lesson}
                 pathwayIcon={pathway.icon}
+                lessonIndex={lessonIndex}
                 client:load
               />
             ))}

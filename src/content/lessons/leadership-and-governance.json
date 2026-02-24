@@ -10,6 +10,7 @@
   "educationalLevel": "Advanced",
   "learningResourceType": "Guide",
   "author": "GitHub",
+  "license": "CC-BY-4.0",
   "ossRole": "Contributor",
   "inLanguage": [
     "English",
@@ -45,9 +46,31 @@
     "project management",
     "community"
   ],
-  "dependsOn": "",
   "sortingId": "2",
+  "dependsOn": [
+    "building-community"
+  ],
+  "prerequisiteNotes": "Strongly recommended: Building Community",
+  "learningObjectives": "",
+  "ospoRelevance": "Core",
+  "abstract": "This guide outlines effective leadership and governance models for open source projects, emphasizing the importance of transparency, decision-making processes, and creating a structure that supports long-term project sustainability.",
   "dateCreated": "",
   "dateModified": "",
-  "license": "CC-BY-4.0"
+  "timeRequired": "",
+  "about": "",
+  "accessibilitySummary": "These guides are available in over 20 languages, helping global communities learn and lead in open source.",
+  "audience": "Leaders, Maintainers",
+  "competencyRequired": "",
+  "contributor": "",
+  "creativeWorkStatus": "",
+  "datePublished": "",
+  "hasPart": "",
+  "identifier": "",
+  "isPartOf": "Open Source Guides",
+  "notes": "",
+  "mentions": "These guides are available in over 20 languages.",
+  "recordedAt": "",
+  "teaches": "How to design transparent governance structures, set project policies, and lead open source communities effectively.",
+  "version": "",
+  "workTranslation": ""
 }

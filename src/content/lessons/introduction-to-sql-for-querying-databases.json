@@ -18,7 +18,7 @@
   "keywords": [],
   "topic": "",
   "sortingId": "42",
-  "dependsOn": "",
+  "dependsOn": [],
   "learningObjectives": "",
   "ospoRelevance": "",
   "about": "",
@@ -39,5 +39,6 @@
   "recordedAt": "",
   "teaches": "",
   "version": "",
-  "workTranslation": ""
+  "workTranslation": "",
+  "prerequisiteNotes": ""
 }

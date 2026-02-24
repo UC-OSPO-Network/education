@@ -55,6 +55,41 @@ If you prefer not to use scripts, you can use VLOOKUP in Google Sheets or Excel.
 
 ---
 
+## Updating `Depends On` and `prerequisiteNotes` (Issue #48)
+
+Use this flow when converting dependency references from mixed text/numeric IDs to slug/URL references.
+
+1. Generate migration artifacts:
+   ```bash
+   npm run migrate:depends-on
+   ```
+2. Open the newest files in `scripts/output/`:
+   - `dependencies-migrated-YYYY-MM-DD.csv`
+   - `dependencies-migration-report-YYYY-MM-DD.md`
+3. In Google Sheets, confirm these columns exist (create if missing):
+   - `Depends On` (slug/URL refs, comma-separated)
+   - `prerequisiteNotes` (free-text notes only)
+4. Import `dependencies-migrated-*.csv` into a temporary tab (for example `DependsUpdate`).
+5. Match by `name` (or `Sorting ID`) and copy these values into the main tab:
+   - `dependsOn` -> `Depends On`
+   - `prerequisiteNotes` -> `prerequisiteNotes`
+6. Do not copy rows where the CSV `issues` column is non-empty until reviewed.
+7. Run this local validation after updating:
+   ```bash
+   npm run sync:lesson-slugs
+   npm run validate:lessons
+   ```
+
+Verification checklist:
+- No numeric IDs remain in `Depends On`.
+- Each internal dependency token is a lesson slug.
+- External dependencies are full `http(s)` URLs.
+- Prose text appears only in `prerequisiteNotes`.
+- For each lesson JSON file, `slug` matches its filename (for example `building-community.json` => `slug: "building-community"`).
+- In Keystatic, keep `Entry Slug (filename)` aligned to filename slug; keep JSON `slug` mirrored to the same value.
+
+---
+
 ## Troubleshooting
 
 ### "Name not found" errors

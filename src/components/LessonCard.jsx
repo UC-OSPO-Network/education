@@ -3,10 +3,58 @@ import SkillBadge from './SkillBadge.jsx';
 // Lesson card component matching student Figma design
 // Features: dark header, light body, skill badge, tag pills
 
-export default function LessonCard({ lesson, pathwayIcon }) {
+function isHttpUrl(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === 'http:' || url.protocol === 'https:';
+  } catch {
+    return false;
+  }
+}
+
+function formatUrlLabel(url) {
+  try {
+    const parsed = new URL(url);
+    return parsed.hostname.replace(/^www\./, '');
+  } catch {
+    return url;
+  }
+}
+
+export default function LessonCard({ lesson, pathwayIcon, lessonIndex = {} }) {
   if (!lesson) return null;
 
   const lessonName = lesson.name || 'Untitled Lesson';
+  const dependencyRefs = Array.isArray(lesson.dependsOn)
+      ? lesson.dependsOn.filter((value) => typeof value === 'string' && value.trim() !== '')
+      : [];
+  const prerequisiteLinks = dependencyRefs
+      .map((token) => {
+        const value = token.trim();
+        if (!value) return null;
+
+        if (isHttpUrl(value)) {
+          return {
+            key: value,
+            href: value,
+            label: formatUrlLabel(value),
+            fallback: false
+          };
+        }
+
+        const targetLesson = lessonIndex[value];
+        if (targetLesson && targetLesson.url) {
+          return {
+            key: value,
+            href: targetLesson.url,
+            label: targetLesson.name || value,
+            fallback: false
+          };
+        }
+
+        return null;
+      })
+      .filter(Boolean);
 
   const feedbackUrl =
       'https://github.com/UC-OSPO-Network/education/issues/new' +
@@ -33,7 +81,9 @@ export default function LessonCard({ lesson, pathwayIcon }) {
             cursor: 'pointer',
             height: '100%',
             display: 'flex',
-            flexDirection: 'column'
+            flexDirection: 'column',
+            minWidth: 0,
+            boxSizing: 'border-box'
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.borderColor = 'var(--uc-light-blue)';
@@ -52,54 +102,75 @@ export default function LessonCard({ lesson, pathwayIcon }) {
             }
           }}
       >
-        {/* Skill Level Badge */}
-        <SkillBadge level={lesson.educationalLevel} />
-
         {/* Dark Header Section */}
         <div
             style={{
-              padding: '1.5rem',
-              paddingTop: '3.5rem',
+              padding: '1.5rem 1.75rem',
               display: 'flex',
-              alignItems: 'flex-start',
-              gap: '1rem',
-              minHeight: '120px'
+              flexDirection: 'column',
+              gap: '0.9rem',
+              height: '220px',
+              minWidth: 0,
+              boxSizing: 'border-box',
+              overflow: 'hidden'
             }}
         >
-          {/* Icon */}
-          <div
-              style={{
-                fontSize: '2rem',
-                flexShrink: 0,
-                lineHeight: 1
-              }}
-          >
-            {pathwayIcon || '📚'}
+          <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
+            <SkillBadge level={lesson.educationalLevel} />
           </div>
 
-          {/* Title */}
-          <h3
+          <div
               style={{
-                margin: 0,
-                fontSize: '1.2rem',
-                fontWeight: '700',
-                color: '#FFFFFF',
-                lineHeight: '1.4',
-                flex: 1
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: '1rem',
+                minWidth: 0
               }}
           >
-            {lessonName}
-          </h3>
+            {/* Icon */}
+            <div
+                style={{
+                  fontSize: '2rem',
+                  flexShrink: 0,
+                  lineHeight: 1
+                }}
+            >
+              {pathwayIcon || '📚'}
+            </div>
+
+            {/* Title */}
+            <h3
+                style={{
+                  margin: 0,
+                  fontSize: '1.2rem',
+                  fontWeight: '700',
+                  color: '#FFFFFF',
+                  lineHeight: '1.4',
+                  flex: 1,
+                  minWidth: 0,
+                  overflowWrap: 'anywhere',
+                  wordBreak: 'break-word',
+                  display: '-webkit-box',
+                  WebkitBoxOrient: 'vertical',
+                  WebkitLineClamp: 3,
+                  overflow: 'hidden'
+                }}
+            >
+              {lessonName}
+            </h3>
+          </div>
         </div>
 
         {/* Light Body Section */}
         <div
             style={{
-              padding: '1.5rem',
+              padding: '1.5rem 1.75rem',
               flex: 1,
               display: 'flex',
               flexDirection: 'column',
-              gap: '1rem'
+              gap: '1rem',
+              minWidth: 0,
+              overflow: 'hidden'
             }}
         >
           {/* Description */}
@@ -109,11 +180,68 @@ export default function LessonCard({ lesson, pathwayIcon }) {
                 fontSize: '0.95rem',
                 color: '#D4D4D8',
                 lineHeight: '1.6',
-                flex: 1
+                flex: 1,
+                overflowWrap: 'anywhere',
+                wordBreak: 'break-word'
               }}
           >
             {lesson.description || 'No description available'}
           </p>
+
+          {prerequisiteLinks.length > 0 && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', minWidth: 0, width: '100%' }}>
+                <p
+                    style={{
+                      margin: 0,
+                      fontSize: '0.82rem',
+                      color: '#9CA3AF',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.04em',
+                      fontWeight: '600'
+                    }}
+                >
+                  Prerequisites
+                </p>
+                <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'stretch',
+                      gap: '0.45rem',
+                      minWidth: 0,
+                      width: '100%'
+                    }}
+                >
+                  {prerequisiteLinks.map((link) => (
+                      <a
+                          key={link.key}
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          style={{
+                            display: 'block',
+                            fontSize: '0.82rem',
+                            color: '#72CDF4',
+                            textDecoration: 'underline',
+                            textDecorationColor: 'rgba(114, 205, 244, 0.5)',
+                            textUnderlineOffset: '3px',
+                            width: '100%',
+                            maxWidth: '100%',
+                            minWidth: 0,
+                            boxSizing: 'border-box',
+                            overflowWrap: 'anywhere',
+                            wordBreak: 'break-word',
+                            whiteSpace: 'normal',
+                            lineHeight: '1.3'
+                          }}
+                      >
+                        {link.label}
+                      </a>
+                  ))}
+                </div>
+              </div>
+          )}
 
           {/* Feedback Button */}
           <a
@@ -123,10 +251,17 @@ export default function LessonCard({ lesson, pathwayIcon }) {
               onClick={(e) => e.stopPropagation()}
               style={{
                 alignSelf: 'flex-start',
+                display: 'block',
                 fontSize: '0.85rem',
                 color: '#72CDF4',
                 textDecoration: 'underline',
-                cursor: 'pointer'
+                textDecorationColor: 'rgba(114, 205, 244, 0.6)',
+                textUnderlineOffset: '2px',
+                cursor: 'pointer',
+                maxWidth: '100%',
+                overflowWrap: 'anywhere',
+                wordBreak: 'break-word',
+                whiteSpace: 'normal'
               }}
           >
             💬 Give Feedback
@@ -163,7 +298,10 @@ export default function LessonCard({ lesson, pathwayIcon }) {
                                 borderRadius: '16px',
                                 fontSize: '0.8rem',
                                 fontWeight: '600',
-                                whiteSpace: 'nowrap'
+                                whiteSpace: 'normal',
+                                overflowWrap: 'anywhere',
+                                wordBreak: 'break-word',
+                                maxWidth: '100%'
                               }}
                           >
                     {role.trim()}
@@ -180,7 +318,10 @@ export default function LessonCard({ lesson, pathwayIcon }) {
                         borderRadius: '16px',
                         fontSize: '0.8rem',
                         fontWeight: '600',
-                        whiteSpace: 'nowrap'
+                        whiteSpace: 'normal',
+                        overflowWrap: 'anywhere',
+                        wordBreak: 'break-word',
+                        maxWidth: '100%'
                       }}
                   >
                 {lesson.learningResourceType}

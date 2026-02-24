@@ -16,5 +16,6 @@
     "example",
     "advanced"
   ],
-  "dependsOn": ""
+  "dependsOn": [],
+  "prerequisiteNotes": ""
 }

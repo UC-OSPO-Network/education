@@ -10,6 +10,7 @@
   "educationalLevel": "Intermediate",
   "learningResourceType": "Tutorial",
   "author": "CodeRefinery Team",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Contributor, Maintainer",
   "inLanguage": [
     "English"
@@ -21,9 +22,32 @@
     "branching",
     "merging"
   ],
-  "dependsOn": "introduction-to-git, how-to-contribute-to-open-source",
   "sortingId": "8",
+  "dependsOn": [
+    "introduction-to-git",
+    "how-to-contribute-to-open-source"
+  ],
+  "prerequisiteNotes": "",
+  "learningObjectives": "",
+  "ospoRelevance": "Moderate",
+  "abstract": "This lesson covers collaborative Git usage, including branching, merging, resolving conflicts, and setting up Git workflows for team collaboration.",
   "dateCreated": "2021-06-10T10:00:00+00:00",
   "dateModified": "2023-03-01T14:40:12+00:00",
-  "license": "https://creativecommons.org/licenses/by/4.0/"
+  "timeRequired": "",
+  "about": "",
+  "accessibilitySummary": "",
+  "audience": "Researchers, Software Developers, PhD Students",
+  "competencyRequired": "Git, version control",
+  "contributor": "",
+  "creativeWorkStatus": "active",
+  "datePublished": "2021-07-01T14:00:00+00:00",
+  "hasPart": "",
+  "identifier": "https://coderefinery.github.io/git-collaborative/",
+  "isPartOf": "CodeRefinery Git Training Series",
+  "notes": "Keep Candidate for Git/Beg",
+  "mentions": "GitHub, https://github.com, A popular platform for hosting Git repositories",
+  "recordedAt": "",
+  "teaches": "The student will be able to use Git collaboratively, manage branches, resolve merge conflicts, and set up Git workflows for team projects.",
+  "version": "1.1.0",
+  "workTranslation": ""
 }

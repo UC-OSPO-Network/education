@@ -6,10 +6,11 @@
   "url": "https://coderefinery.github.io/testing/",
   "topic": "Testing",
   "subTopic": "",
-  "learnerCategory": "Maintaining and Sustaining Software",
+  "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Intermediate",
   "learningResourceType": "Tutorial",
   "author": "CodeRefinery Team",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Maintainer, Contributor",
   "inLanguage": [
     "English"
@@ -20,9 +21,31 @@
     "Python",
     "pytest"
   ],
-  "dependsOn": "",
   "sortingId": "31",
+  "dependsOn": [
+    "python-basics"
+  ],
+  "prerequisiteNotes": "",
+  "learningObjectives": "",
+  "ospoRelevance": "Core",
+  "abstract": "This lesson introduces software testing, including automated testing, test-driven development, and unit testing, with a focus on Python.",
   "dateCreated": "2020-09-15T10:00:00+00:00",
   "dateModified": "2023-01-10T14:40:12+00:00",
-  "license": "https://creativecommons.org/licenses/by/4.0/"
+  "timeRequired": "",
+  "about": "",
+  "accessibilitySummary": "",
+  "audience": "Researchers, Software Developers, PhD Students",
+  "competencyRequired": "Python, basic understanding of software development",
+  "contributor": "",
+  "creativeWorkStatus": "active",
+  "datePublished": "2020-10-01T14:00:00+00:00",
+  "hasPart": "https://docs.pytest.org, pytest documentation",
+  "identifier": "https://coderefinery.github.io/testing/",
+  "isPartOf": "CodeRefinery Software Development Series",
+  "notes": "",
+  "mentions": "pytest, https://docs.pytest.org, Testing framework for Python",
+  "recordedAt": "",
+  "teaches": "The student will be able to write unit tests and apply test-driven development practices using pytest.",
+  "version": "2.0.0",
+  "workTranslation": ""
 }

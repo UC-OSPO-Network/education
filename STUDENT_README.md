@@ -92,6 +92,13 @@ Lessons are stored as files in the repo and edited via Keystatic:
 - **Keystatic config**: `keystatic.config.ts`
 - **Optional**: `getSheetData.ts` can fetch from Google Sheets for one-time migration
 
+### Slug Source of Truth
+- Canonical slug is the lesson filename (Astro `entry.id`), e.g. `src/content/lessons/building-community.json` -> `building-community`.
+- Keep a mirrored `slug` field in each JSON file for compatibility with UI/tooling.
+- The in-file `slug` must match the filename slug exactly.
+- `dependsOn` internal references must target this canonical filename slug.
+- In Keystatic, `Entry Slug (filename)` is the internal file/path slug control; `slug` is the mirrored JSON field.
+
 ### Content Structure
 ```text
 src/content/
@@ -107,6 +114,7 @@ src/content/
 ### Key Metadata Fields (Simplified for MVP)
 Essential fields to display:
 - `name` - Lesson title
+- `slug` - Must match the JSON filename (canonical slug is still filename)
 - `description` - Lesson description
 - `url` - Link to the lesson
 - `learnerCategory` - Which pathway the lesson belongs to (can be left **Unassigned**)
@@ -119,7 +127,8 @@ Essential fields to display:
 1. Run the site locally: `npm run dev`
 2. Open Keystatic: `http://127.0.0.1:4321/keystatic`
 3. Edit existing lessons or create new ones under the **Lessons** collection
-4. Commit the changed files in `src/content/lessons/`
+4. Ensure slug keys are synced to filenames: `npm run sync:lesson-slugs`
+5. Commit the changed files in `src/content/lessons/`
 
 ### GitHub-backed Editing (Auth)
 Keystatic supports GitHub-backed edits (creates commits/PRs). To enable this locally:

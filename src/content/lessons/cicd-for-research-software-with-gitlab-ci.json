@@ -6,10 +6,11 @@
   "url": "https://hsf-training.github.io/hsf-training-cicd/",
   "topic": "DevOps",
   "subTopic": "",
-  "learnerCategory": "Maintaining and Sustaining Software",
+  "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Intermediate",
   "learningResourceType": "Tutorial",
   "author": "HSF Training Team",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Maintainer, Contributor",
   "inLanguage": [
     "English"
@@ -21,9 +22,33 @@
     "continuous delivery",
     "research software"
   ],
-  "dependsOn": "introduction-to-git, python-packaging, unit-testing-and-tdd-in-python",
   "sortingId": "16",
+  "dependsOn": [
+    "introduction-to-git",
+    "python-packaging",
+    "unit-testing-and-tdd-in-python"
+  ],
+  "prerequisiteNotes": "",
+  "learningObjectives": "",
+  "ospoRelevance": "Moderate",
+  "abstract": "This lesson introduces Continuous Integration and Continuous Delivery (CI/CD) practices with a focus on research software. It covers tools such as GitLab CI and explains how to automate testing and deployment.",
   "dateCreated": "2020-11-01T09:00:00+00:00",
   "dateModified": "2023-01-15T14:20:12+00:00",
-  "license": "https://creativecommons.org/licenses/by/4.0/"
+  "timeRequired": "",
+  "about": "",
+  "accessibilitySummary": "",
+  "audience": "Researchers, Software Developers, HPC Engineers",
+  "competencyRequired": "Git, CI/CD concepts, research software development",
+  "contributor": "",
+  "creativeWorkStatus": "active",
+  "datePublished": "2021-01-05T14:00:00+00:00",
+  "hasPart": "",
+  "identifier": "https://hsf-training.github.io/hsf-training-cicd/",
+  "isPartOf": "HSF Training CI/CD Series",
+  "notes": "Duplicates Line 9 resource: \"Continuous Integration and Delivery with GitHub Actions\", plus adds content (maybe too much?) - one should be removed",
+  "mentions": "GitLab CI, https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/, A CI/CD tool for automating tests and deployments.",
+  "recordedAt": "",
+  "teaches": "The student will be able to set up and automate CI/CD pipelines for research software using GitLab CI.",
+  "version": "1.0.0",
+  "workTranslation": ""
 }

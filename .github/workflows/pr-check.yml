@@ -45,6 +45,9 @@ jobs:
       - name: Validate data source
         run: node .github/scripts/validate-data.mjs
 
+      - name: Validate lesson slugs and dependencies
+        run: npm run validate:lessons
+
       # ============================================
       # Step 2: TypeScript validation
       # ============================================

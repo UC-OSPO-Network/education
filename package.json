@@ -8,6 +8,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "migrate:lessons": "node scripts/migrate-to-singletons.js",
+    "migrate:depends-on": "node scripts/migrate-depends-on.js",
+    "sync:lesson-slugs": "node scripts/sync-lesson-slugs.js",
     "normalize:lessons": "node scripts/normalize-lessons.js",
     "audit:a11y": "node scripts/accessibility/audit.cjs",
     "enhance:phase1": "node scripts/run-phase1.js",
@@ -16,6 +18,7 @@
     "enhance:metadata": "node scripts/scrape-metadata.js",
     "enhance:slugs": "node scripts/generate-slugs.js",
     "enhance:merge": "node scripts/merge-enhanced-metadata.js",
+    "validate:lessons": "node scripts/validate-lessons.js",
     "validate:data": "node .github/scripts/validate-data.mjs",
     "validate:build": "node .github/scripts/validate-build.mjs",
     "validate:links": "node .github/scripts/check-links.mjs"

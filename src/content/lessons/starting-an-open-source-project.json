@@ -6,10 +6,11 @@
   "url": "https://opensource.guide/starting-a-project/",
   "topic": "Maintaining",
   "subTopic": "",
-  "learnerCategory": "Maintaining and Sustaining Software",
+  "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Beginner",
   "learningResourceType": "Guide",
   "author": "GitHub",
+  "license": "CC-BY-4.0",
   "ossRole": "Contributor, Maintainer",
   "inLanguage": [
     "English",
@@ -44,9 +45,32 @@
     "open source",
     "launch"
   ],
-  "dependsOn": "introduction-to-git, understanding-software-licensing",
   "sortingId": "18",
+  "dependsOn": [
+    "introduction-to-git",
+    "understanding-software-licensing"
+  ],
+  "prerequisiteNotes": "",
+  "learningObjectives": "",
+  "ospoRelevance": "Core",
+  "abstract": "Learn the foundational steps for launching a successful open source project, from defining its purpose and choosing a license to setting up version control and creating a contributor-friendly environment.",
   "dateCreated": "",
   "dateModified": "",
-  "license": "CC-BY-4.0"
+  "timeRequired": "",
+  "about": "",
+  "accessibilitySummary": "",
+  "audience": "Developers, Communities",
+  "competencyRequired": "",
+  "contributor": "",
+  "creativeWorkStatus": "",
+  "datePublished": "",
+  "hasPart": "",
+  "identifier": "",
+  "isPartOf": "Open Source Guides",
+  "notes": "",
+  "mentions": "These guides are available in over 20 languages.",
+  "recordedAt": "",
+  "teaches": "",
+  "version": "",
+  "workTranslation": ""
 }

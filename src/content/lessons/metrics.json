@@ -6,10 +6,11 @@
   "url": "https://opensource.guide/metrics/",
   "topic": "Maintaining",
   "subTopic": "",
-  "learnerCategory": "Maintaining and Sustaining Software",
+  "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Intermediate",
   "learningResourceType": "Guide",
   "author": "GitHub",
+  "license": "CC-BY-4.0",
   "ossRole": "Maintainer, Contributor",
   "inLanguage": [
     "English",
@@ -44,9 +45,31 @@
     "project success",
     "impact"
   ],
-  "dependsOn": "starting-an-open-source-project",
   "sortingId": "20",
+  "dependsOn": [
+    "starting-an-open-source-project"
+  ],
+  "prerequisiteNotes": "",
+  "learningObjectives": "",
+  "ospoRelevance": "Core",
+  "abstract": "Understand the importance of tracking and analyzing metrics to evaluate the health and success of your open source project. This guide highlights key metrics, tools, and practices to monitor project activity and community growth.",
   "dateCreated": "",
   "dateModified": "",
-  "license": "CC-BY-4.0"
+  "timeRequired": "",
+  "about": "",
+  "accessibilitySummary": "",
+  "audience": "Developers, Maintainers",
+  "competencyRequired": "",
+  "contributor": "",
+  "creativeWorkStatus": "",
+  "datePublished": "",
+  "hasPart": "",
+  "identifier": "",
+  "isPartOf": "Open Source Guides",
+  "notes": "",
+  "mentions": "These guides are available in over 20 languages.",
+  "recordedAt": "",
+  "teaches": "",
+  "version": "",
+  "workTranslation": ""
 }

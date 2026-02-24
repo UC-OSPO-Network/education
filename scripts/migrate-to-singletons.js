@@ -6,8 +6,8 @@
  * 2) Backup fetched rows to scripts/output/backups
  * 3) Keep only "Keep" and "Keep candidate" rows
  * 4) Generate stable slugs (optionally preferring scripts/output/slugs-*.csv)
- * 5) Map columns to content-collection JSON shape
- * 6) Validate required fields + URL format
+ * 5) Normalize mixed Depends On data to string[] refs + prerequisite notes
+ * 6) Validate required fields + URL format + dependency references
  * 7) Write one JSON file per lesson under src/content/lessons
  *
  * Usage:
@@ -17,12 +17,15 @@
  *   EXPECTED_TOTAL_COUNT=56
  *   EXPECTED_ACTIVE_COUNT=32
  *   SKIP_EXPECTED_COUNT_CHECK=1
+ *   FAIL_ON_DEPENDENCY_ISSUES=1
+ *   ALLOW_BACKUP_FALLBACK=1
  */
 
 import Papa from 'papaparse';
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { parseDependsOn } from './lib/dependency-normalizer.js';
 
 const CSV_URL =
   'https://docs.google.com/spreadsheets/d/e/2PACX-1vR44d8F86WqIlDHOD2MNjj8b2RYB0_hlFwj8fK8UiXV0n1PjwpS6c-qzU-DhDQZMTk8jcI2n0fp9a_a/pub?output=csv&gid=565807714';
@@ -32,6 +35,8 @@ const EXPECTED_ACTIVE_COUNT = process.env.EXPECTED_ACTIVE_COUNT
   ? Number(process.env.EXPECTED_ACTIVE_COUNT)
   : null;
 const SKIP_EXPECTED_COUNT_CHECK = process.env.SKIP_EXPECTED_COUNT_CHECK === '1';
+const FAIL_ON_DEPENDENCY_ISSUES = process.env.FAIL_ON_DEPENDENCY_ISSUES !== '0';
+const ALLOW_BACKUP_FALLBACK = process.env.ALLOW_BACKUP_FALLBACK !== '0';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -110,13 +115,43 @@ async function fetchSheetData() {
       throw new Error(`CSV parsing failed with ${parsed.errors.length} error(s)`);
     }
 
-    const rows = parsed.data.filter((row) =>
-      Object.values(row).some((value) => normalizeString(value) !== '')
-    );
-
-    return rows;
+    return parsed.data.filter((row) => Object.values(row).some((value) => normalizeString(value) !== ''));
   } finally {
     clearTimeout(timeoutId);
+  }
+}
+
+async function readLatestBackupRows() {
+  const files = await readdir(BACKUP_DIR);
+  const backups = files
+    .filter((file) => /^google-sheets-lessons-.*\.json$/.test(file))
+    .sort();
+  if (backups.length === 0) {
+    throw new Error(`No backups found in ${BACKUP_DIR}`);
+  }
+
+  const latestBackup = backups[backups.length - 1];
+  const backupPath = path.join(BACKUP_DIR, latestBackup);
+  const rows = JSON.parse(await readFile(backupPath, 'utf8'));
+  if (!Array.isArray(rows) || rows.length === 0) {
+    throw new Error(`Latest backup is empty or invalid: ${backupPath}`);
+  }
+
+  return { rows, backupPath };
+}
+
+async function fetchOrLoadRows() {
+  try {
+    const rows = await fetchSheetData();
+    return { rows, source: 'google-sheet' };
+  } catch (error) {
+    if (!ALLOW_BACKUP_FALLBACK) {
+      throw error;
+    }
+
+    const { rows, backupPath } = await readLatestBackupRows();
+    console.warn(`⚠️ Fetch failed (${error.message}). Falling back to backup: ${backupPath}`);
+    return { rows, source: 'backup', backupPath };
   }
 }
 
@@ -159,6 +194,56 @@ async function backupRows(rows) {
   return backupPath;
 }
 
+function buildRowMetadata(rows, slugMap) {
+  const usedSlugs = new Set();
+  let slugCollisions = 0;
+  const rowMeta = [];
+
+  for (const row of rows) {
+    const name = getField(row, ['name', 'Name']);
+    const keepStatus = toKeepStatus(getField(row, ['Keep?', 'keepStatus']));
+    const mappedSlug = name ? slugMap.get(name.toLowerCase()) : '';
+    const baseSlug = slugify(mappedSlug || getField(row, ['slug', 'Slug']) || name) || 'lesson';
+
+    let slug = baseSlug;
+    let counter = 2;
+    while (usedSlugs.has(slug)) {
+      slugCollisions += 1;
+      slug = `${baseSlug}-${counter++}`;
+    }
+    usedSlugs.add(slug);
+
+    const sortingId = normalizeString(getField(row, ['Sorting ID', 'sortingId']));
+    rowMeta.push({ row, name, keepStatus, slug, sortingId });
+  }
+
+  return { rowMeta, slugCollisions };
+}
+
+function buildSortingMaps(rowMeta) {
+  const sortingIdToSlug = new Map();
+  const sortingIdToName = new Map();
+
+  for (const item of rowMeta) {
+    if (!item.sortingId) continue;
+    const key = String(Number(item.sortingId));
+    if (!key || key === 'NaN') continue;
+    sortingIdToSlug.set(key, item.slug);
+    sortingIdToName.set(key, item.name);
+  }
+
+  return { sortingIdToSlug, sortingIdToName };
+}
+
+function buildNameToSlugMap(rowMeta) {
+  const nameToSlug = new Map();
+  for (const item of rowMeta) {
+    if (!item.name || !item.slug) continue;
+    nameToSlug.set(item.name, item.slug);
+  }
+  return nameToSlug;
+}
+
 function validateLessonData(lesson) {
   const errors = [];
   const requiredStringFields = ['name', 'slug', 'description', 'url'];
@@ -173,16 +258,28 @@ function validateLessonData(lesson) {
     errors.push(`invalid URL format "${lesson.url}"`);
   }
 
+  if (!Array.isArray(lesson.dependsOn)) {
+    errors.push('"dependsOn" must be an array');
+  }
+
+  if (typeof lesson.prerequisiteNotes !== 'string') {
+    errors.push('"prerequisiteNotes" must be a string');
+  }
+
   return errors;
 }
 
 async function migrate() {
   console.log('📥 Fetching lesson data from Google Sheets...');
-  const rawRows = await fetchSheetData();
+  const { rows: rawRows, source, backupPath: sourceBackupPath } = await fetchOrLoadRows();
   if (!rawRows.length) {
-    throw new Error('No rows found in Google Sheets CSV.');
+    throw new Error('No rows found in source data.');
   }
-  console.log(`✅ Fetched ${rawRows.length} rows`);
+  console.log(`✅ Loaded ${rawRows.length} rows from ${source === 'google-sheet' ? 'Google Sheets' : 'backup'}`);
+
+  if (source === 'backup') {
+    console.log(`📦 Backup source: ${sourceBackupPath}`);
+  }
 
   if (!SKIP_EXPECTED_COUNT_CHECK && Number.isFinite(EXPECTED_TOTAL_COUNT)) {
     if (rawRows.length !== EXPECTED_TOTAL_COUNT) {
@@ -193,8 +290,10 @@ async function migrate() {
     }
   }
 
-  const backupPath = await backupRows(rawRows);
-  console.log(`💾 Backup written: ${backupPath}`);
+  if (source === 'google-sheet') {
+    const newBackupPath = await backupRows(rawRows);
+    console.log(`💾 Backup written: ${newBackupPath}`);
+  }
 
   const { map: slugMap, file: slugMapFile } = await loadSlugMap();
   if (slugMapFile) {
@@ -203,14 +302,12 @@ async function migrate() {
     console.log('🧭 No slug CSV map found; using row slug/name fallback');
   }
 
-  await mkdir(OUT_DIR, { recursive: true });
+  const { rowMeta, slugCollisions } = buildRowMetadata(rawRows, slugMap);
+  const { sortingIdToSlug, sortingIdToName } = buildSortingMaps(rowMeta);
+  const nameToSlug = buildNameToSlugMap(rowMeta);
 
-  const activeRows = [];
-  for (const row of rawRows) {
-    const keepStatus = toKeepStatus(getField(row, ['Keep?', 'keepStatus']));
-    if (keepStatus === 'drop') continue;
-    activeRows.push({ row, keepStatus });
-  }
+  const activeRows = rowMeta.filter((item) => item.keepStatus !== 'drop');
+  const knownSlugSet = new Set(rowMeta.map((item) => item.slug));
 
   if (
     !SKIP_EXPECTED_COUNT_CHECK &&
@@ -229,30 +326,43 @@ async function migrate() {
     console.log('ℹ️ EXPECTED_ACTIVE_COUNT not set; active lesson count is informational.');
   }
 
-  const usedSlugs = new Set();
-  let slugCollisions = 0;
+  await mkdir(OUT_DIR, { recursive: true });
+
   let written = 0;
   let skipped = 0;
   const validationErrors = [];
+  const dependencyWarnings = [];
 
-  for (const { row, keepStatus } of activeRows) {
-    const name = getField(row, ['name', 'Name']);
+  for (const item of activeRows) {
+    const { row, name, keepStatus, slug } = item;
     if (!name) {
       skipped += 1;
       validationErrors.push('row skipped because "name" is missing');
       continue;
     }
 
-    const mappedSlug = slugMap.get(name.toLowerCase());
-    const baseSlug = slugify(mappedSlug || getField(row, ['slug', 'Slug']) || name) || 'lesson';
+    const dependencyResult = parseDependsOn(getField(row, ['Depends On', 'dependsOn'], ''), {
+      sortingIdToSlug,
+      sortingIdToName,
+      nameToSlug,
+      knownSlugs: knownSlugSet,
+    });
+    const unresolvedSlugIssues = dependencyResult.issues.filter((issue) =>
+      issue.startsWith('Unresolved slug reference')
+    );
+    const unresolvedIdIssues = dependencyResult.issues.filter((issue) =>
+      issue.startsWith('Unresolved sorting ID')
+    );
 
-    let slug = baseSlug;
-    let counter = 2;
-    while (usedSlugs.has(slug)) {
-      slugCollisions += 1;
-      slug = `${baseSlug}-${counter++}`;
+    if (unresolvedIdIssues.length > 0) {
+      dependencyWarnings.push(`${name} (${slug}): ${unresolvedIdIssues.join('; ')}`);
     }
-    usedSlugs.add(slug);
+
+    if (FAIL_ON_DEPENDENCY_ISSUES && unresolvedSlugIssues.length > 0) {
+      skipped += 1;
+      validationErrors.push(`${name} (${slug}): ${unresolvedSlugIssues.join('; ')}`);
+      continue;
+    }
 
     const lesson = {
       name,
@@ -271,7 +381,8 @@ async function migrate() {
       inLanguage: normalizeList(getField(row, ['inLanguage', 'In Language'], '')),
       keywords: normalizeList(getField(row, ['keywords', 'Keywords'], '')),
       sortingId: getField(row, ['Sorting ID', 'sortingId'], ''),
-      dependsOn: getField(row, ['Depends On', 'dependsOn'], ''),
+      dependsOn: dependencyResult.dependsOn,
+      prerequisiteNotes: dependencyResult.prerequisiteNotes,
       learningObjectives: getField(row, ['Learning Objectives', 'learningObjectives'], ''),
       ospoRelevance: getField(row, ['OSPO Relevance', 'ospoRelevance'], ''),
       abstract: getField(row, ['abstract', 'Abstract'], ''),
@@ -308,6 +419,20 @@ async function migrate() {
     written += 1;
   }
 
+  if (dependencyWarnings.length > 0) {
+    console.log('\n⚠️ Dependency conversion notes:');
+    for (const warning of dependencyWarnings) {
+      console.log(`   - ${warning}`);
+    }
+  }
+
+  if (validationErrors.length > 0) {
+    console.log('\n⚠️ Validation issues:');
+    for (const error of validationErrors) {
+      console.log(`   - ${error}`);
+    }
+  }
+
   if (written !== activeRows.length) {
     throw new Error(
       `Migration incomplete: wrote ${written}/${activeRows.length} active lessons. ` +
@@ -319,13 +444,6 @@ async function migrate() {
   console.log(`   Active rows migrated: ${written}`);
   console.log(`   Slug collisions handled: ${slugCollisions}`);
   console.log(`   Output directory: ${OUT_DIR}`);
-
-  if (validationErrors.length > 0) {
-    console.log('\n⚠️ Validation issues:');
-    for (const error of validationErrors) {
-      console.log(`   - ${error}`);
-    }
-  }
 }
 
 migrate().catch((error) => {

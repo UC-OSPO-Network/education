@@ -6,10 +6,11 @@
   "url": "https://opensource.guide/finding-users/",
   "topic": "Maintaining",
   "subTopic": "",
-  "learnerCategory": "Maintaining and Sustaining Software",
+  "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Beginner",
   "learningResourceType": "Guide",
   "author": "GitHub",
+  "license": "CC-BY-4.0",
   "ossRole": "Community Manager, User/Consumer",
   "inLanguage": [
     "English",
@@ -44,9 +45,31 @@
     "adoption",
     "promotion"
   ],
-  "dependsOn": "starting-an-open-source-project",
   "sortingId": "19",
+  "dependsOn": [
+    "starting-an-open-source-project"
+  ],
+  "prerequisiteNotes": "",
+  "learningObjectives": "",
+  "ospoRelevance": "Core",
+  "abstract": "This guide explores strategies to attract and grow a user base for your open source project. It covers techniques such as improving discoverability, engaging with communities, and leveraging social platforms for outreach.",
   "dateCreated": "",
   "dateModified": "",
-  "license": "CC-BY-4.0"
+  "timeRequired": "",
+  "about": "",
+  "accessibilitySummary": "",
+  "audience": "Developers, Communities",
+  "competencyRequired": "",
+  "contributor": "",
+  "creativeWorkStatus": "",
+  "datePublished": "",
+  "hasPart": "",
+  "identifier": "",
+  "isPartOf": "Open Source Guides",
+  "notes": "",
+  "mentions": "These guides are available in over 20 languages.",
+  "recordedAt": "",
+  "teaches": "",
+  "version": "",
+  "workTranslation": ""
 }
