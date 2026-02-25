@@ -10,6 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const DIST_DIR = path.resolve(process.cwd(), 'dist');
+const SITE_BASE = (process.env.SITE_BASE || '/education/').replace(/\/+$/, '');
 
 // Collect all HTML files
 function collectHTMLFiles(dir, files = []) {
@@ -60,31 +61,47 @@ function checkLink(link, baseDir) {
   // Remove query strings and anchors
   targetPath = targetPath.split('?')[0].split('#')[0];
 
+  const candidatePaths = [];
+
   // Handle absolute paths
   if (targetPath.startsWith('/')) {
-    targetPath = path.join(baseDir, targetPath);
+    const absolute = targetPath.replace(/^\/+/, '');
+    const normalizedBase = SITE_BASE.replace(/^\/+/, '');
+
+    // Astro static builds keep files at dist root even when links are base-prefixed
+    // (e.g. /education/lessons -> dist/lessons/index.html).
+    if (normalizedBase) {
+      const basePrefix = `${normalizedBase}/`;
+      if (absolute === normalizedBase || absolute.startsWith(basePrefix)) {
+        const withoutBase = absolute.slice(normalizedBase.length).replace(/^\/+/, '');
+        candidatePaths.push(path.join(baseDir, withoutBase));
+      }
+    }
+
+    candidatePaths.push(path.join(baseDir, absolute));
   } else {
     // Handle relative paths
     const linkDir = path.dirname(link.file);
-    targetPath = path.join(linkDir, targetPath);
+    candidatePaths.push(path.join(linkDir, targetPath));
   }
 
-  // Normalize path
-  targetPath = path.normalize(targetPath);
+  for (const candidate of candidatePaths) {
+    const normalizedCandidate = path.normalize(candidate);
 
-  // Check if file exists
-  if (fs.existsSync(targetPath)) {
-    return { valid: true };
-  }
+    // Check if file exists
+    if (fs.existsSync(normalizedCandidate)) {
+      return { valid: true };
+    }
 
-  // Check with .html extension
-  if (fs.existsSync(targetPath + '.html')) {
-    return { valid: true };
-  }
+    // Check with .html extension
+    if (fs.existsSync(normalizedCandidate + '.html')) {
+      return { valid: true };
+    }
 
-  // Check if it's a directory with index.html
-  if (fs.existsSync(path.join(targetPath, 'index.html'))) {
-    return { valid: true };
+    // Check if it's a directory with index.html
+    if (fs.existsSync(path.join(normalizedCandidate, 'index.html'))) {
+      return { valid: true };
+    }
   }
 
   return {

@@ -1,0 +1,21 @@
+{
+  "name": "Example Advanced Lesson",
+  "slug": "example-advanced",
+  "keepStatus": "drop",
+  "description": "Placeholder advanced lesson used to validate Astro content collection parsing.",
+  "url": "https://example.com/advanced",
+  "learnerCategory": "Strategic Practices & Career Development",
+  "educationalLevel": "Advanced",
+  "ossRole": "Maintainer",
+  "subTopic": "Strategy",
+  "learningResourceType": "Guide",
+  "inLanguage": [
+    "English"
+  ],
+  "keywords": [
+    "example",
+    "advanced"
+  ],
+  "dependsOn": [],
+  "prerequisiteNotes": ""
+}

@@ -10,7 +10,8 @@ Work regarding the education subgroup. This repository hosts the Astro-based web
 
 - **Comprehensive Lesson Library**: Browse open source education lessons from The Carpentries, CodeRefinery, and other sources
 - **Learning Pathways**: Curated sequences of lessons organized by topic and skill level
-- **Dynamic Data Integration**: Content automatically synced from Google Sheets for easy updates
+- **Keystatic Integration**: Built-in Admin UI for managing lessons and pathways content
+- **Legacy Data Import**: Migration scripts available to import content from Google Sheets
 - **Advanced Search & Filtering**: Find lessons by topic, source, duration, and difficulty level
 - **Responsive Design**: Optimized experience across desktop, tablet, and mobile devices
 - **Automated Quality Checks**: Built-in validation for data quality, links, and build integrity
@@ -49,20 +50,11 @@ This project was built with [Astro](https://astro.build/).
 The project includes automated validation scripts to ensure data quality and build integrity:
 
 ```bash
-# Validate data source from Google Sheets
-node .github/scripts/validate-data.mjs
-
 # Run TypeScript type checking
 npx astro check
 
 # Build the site
 npm run build
-
-# Validate build output (critical pages)
-node .github/scripts/validate-build.mjs
-
-# Check for broken internal links
-node .github/scripts/check-links.mjs
 ```
 
 These checks run automatically on pull requests via GitHub Actions.
@@ -97,10 +89,20 @@ Visit the live site to explore the lesson library:
 
 ### Updating Content
 
-Lesson data is managed through Google Sheets:
-1. Update the [lesson inventory spreadsheet](https://docs.google.com/spreadsheets/d/1JqM5OYX4f-T0jR-GJ5UeI7PnGJP6o4jtPRNtDJUGPmI/edit?gid=1792935546#gid=1792935546)
-2. Changes are automatically pulled during the build process
-3. The site rebuilds and deploys when changes are pushed to the main branch
+### Updating Content
+
+**1. Keystatic (Primary Source)**
+- This project uses [Keystatic](https://keystatic.com/) for managing rich markdown content like lessons and pathways.
+- **Local Access**: When running the dev server (`npm run dev`), visit `http://localhost:4321/keystatic` to access the Admin UI.
+- **GitHub Integration**: In production, content is managed directly via GitHub PRs, but you can use the local UI to generate the commits.
+
+**2. Google Sheets (Legacy/Migration)**
+- The [lesson inventory spreadsheet](https://docs.google.com/spreadsheets/d/1JqM5OYX4f-T0jR-GJ5UeI7PnGJP6o4jtPRNtDJUGPmI/edit?gid=1792935546#gid=1792935546) was used for initial content population.
+- **Note**: This sheet is **NOT** automatically synced during the build. It serves as a historical reference.
+- **Manual Import**: If you need to re-import from Sheets (warning: overwrites local changes), run:
+  ```bash
+  npm run migrate:lessons
+  ```
 
 ## 🗺️ Roadmap (Optional)
 

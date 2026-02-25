@@ -15,6 +15,7 @@ This website helps learners explore open-source learning materials through six m
 ## 📁 Project Structure
 
 ```
+keystatic.config.ts             # Keystatic CMS configuration (Git-backed editing)
 src/
 ├── components/
 │   ├── Card.astro             # Basic card component
@@ -22,10 +23,14 @@ src/
 │   ├── LessonFilter.tsx       # React component for filtering lessons
 │   ├── PathwayCard.astro      # Pathway card component
 │   └── StackedPathways.jsx    # Interactive stacked pathways (NEW)
+├── content/
+│   ├── config.ts              # Astro Content Collections schema
+│   └── lessons/               # Lesson data files (edited via Keystatic)
 ├── layouts/
 │   └── BaseLayout.astro       # Main layout with header/footer
 ├── lib/
-│   └── getSheetData.ts        # Fetches lesson data from Google Sheets
+│   ├── lessons.ts             # Loads lessons from Astro content collection (primary)
+│   └── getSheetData.ts        # Fetches from Google Sheets (optional migration source)
 ├── pages/
 │   ├── index.astro            # Homepage with stacked pathways
 │   ├── lessons.astro          # Filterable lessons library
@@ -75,31 +80,74 @@ npm run build
 npm run preview
 ```
 
-The site will be available at `http://localhost:4321`
+The site will be available at `http://localhost:4321/education`
 
 ## 📊 Data Management
 
 ### Lesson Data Source
-Lessons are stored in a Google Sheet and fetched via a published CSV:
-- **File**: `src/lib/getSheetData.ts`
-- **Sheet URL**: Already configured
-- **Format**: Bioschemas Training schema
+Lessons are stored as files in the repo and edited via Keystatic:
+- **Keystatic admin UI (local dev only)**: `http://127.0.0.1:4321/keystatic`
+- **Content location**: `src/content/lessons/*.json`
+- **Schema**: `src/content/config.ts`
+- **Keystatic config**: `keystatic.config.ts`
+- **Optional**: `getSheetData.ts` can fetch from Google Sheets for one-time migration
+
+### Slug Source of Truth
+- Canonical slug is the lesson filename (Astro `entry.id`), e.g. `src/content/lessons/building-community.json` -> `building-community`.
+- Keep a mirrored `slug` field in each JSON file for compatibility with UI/tooling.
+- The in-file `slug` must match the filename slug exactly.
+- `dependsOn` internal references must target this canonical filename slug.
+- In Keystatic, `Entry Slug (filename)` is the internal file/path slug control; `slug` is the mirrored JSON field.
+
+### Content Structure
+```text
+src/content/
+├── config.ts
+└── lessons/
+    ├── building-community.json
+    ├── leadership-and-governance.json
+    ├── example.json
+    ├── example-beginner.json
+    └── example-advanced.json
+```
 
 ### Key Metadata Fields (Simplified for MVP)
 Essential fields to display:
 - `name` - Lesson title
+- `slug` - Must match the JSON filename (canonical slug is still filename)
 - `description` - Lesson description
 - `url` - Link to the lesson
-- `learnerCategory` - Which pathway(s) the lesson belongs to
+- `learnerCategory` - Which pathway the lesson belongs to (can be left **Unassigned**)
 - `educationalLevel` - Beginner/Intermediate/Advanced
 - `oss_role` - OSS role (Contributor, Maintainer, etc.)
 - `subTopic` - Grouping within a pathway
-- `Keep?` - Filter to only show lessons marked "Keep candidate" or "Keep"
+- `keepStatus` - Filter to only show lessons marked "keep" or "keepCandidate"
 
 ### Adding/Updating Lessons
-1. Edit the Google Sheet (ask Tim for access)
-2. Mark lessons with `Keep?` = "Keep candidate" or "Keep"
-3. The website automatically fetches new data on each build
+1. Run the site locally: `npm run dev`
+2. Open Keystatic: `http://127.0.0.1:4321/keystatic`
+3. Edit existing lessons or create new ones under the **Lessons** collection
+4. Ensure slug keys are synced to filenames: `npm run sync:lesson-slugs`
+5. Commit the changed files in `src/content/lessons/`
+
+### GitHub-backed Editing (Auth)
+Keystatic supports GitHub-backed edits (creates commits/PRs). To enable this locally:
+1. Create a GitHub OAuth App for this repo/org
+2. Add callback URLs:
+   - `http://127.0.0.1:4321/api/keystatic/github/oauth/callback`
+3. Create a `.env` file (copy from `.env.example`) and set:
+   - `PUBLIC_KEYSTATIC_STORAGE=github`
+   - `KEYSTATIC_GITHUB_CLIENT_ID=...`
+   - `KEYSTATIC_GITHUB_CLIENT_SECRET=...`
+   - `KEYSTATIC_SECRET=...` (random long string)
+
+If you don’t need GitHub auth locally, leave `PUBLIC_KEYSTATIC_STORAGE` unset and Keystatic will use local storage.
+
+### One-time Migration From Google Sheets (Optional)
+If you need to import the current Google Sheets data into files once:
+- Run: `npm run migrate:lessons`
+- This writes `src/content/lessons/*.json`
+- After that, Google Sheets changes will **not** automatically update the site anymore.
 
 ## 📄 Pages Overview
 
@@ -214,17 +262,12 @@ This project uses strict TypeScript checks via Astro’s strict tsconfig.
 Strict typing helps catch errors early and improves maintainability.
 
 
-### Working with the CSV Data
+### Working with Lesson Data
 ```javascript
-import { getSheetData } from '../lib/getSheetData.ts';
+import { getActiveLessons } from '../lib/lessons';
 
 // In Astro component
-const lessons = await getSheetData();
-
-// Filter active lessons
-const activeLessons = lessons.filter(lesson =>
-  lesson['Keep?']?.includes('Keep')
-);
+const activeLessons = await getActiveLessons();
 ```
 
 ### Adding a New Page
@@ -239,7 +282,13 @@ const activeLessons = lessons.filter(lesson =>
 
 ## 🐛 Common Issues
 
-**Issue**: CSV data not loading
+**Issue**: Keystatic page not loading
+- **Solution**: Ensure `@keystatic/astro` is in `astro.config.mjs` and visit `http://127.0.0.1:4321/keystatic`
+
+**Issue**: GitHub sign-in fails (redirect mismatch)
+- **Solution**: Confirm your OAuth callback URL is exactly `http://127.0.0.1:4321/api/keystatic/github/oauth/callback`
+
+**Issue**: CSV data not loading (migration)
 - **Solution**: Check the published CSV URL in `getSheetData.ts`
 
 **Issue**: React component not interactive
