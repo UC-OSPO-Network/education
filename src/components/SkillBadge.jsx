@@ -40,9 +40,6 @@ export default function SkillBadge({ level }) {
 
   return (
     <div style={{
-      position: 'absolute',
-      top: '1rem',
-      right: '1rem',
       display: 'flex',
       alignItems: 'center',
       gap: '0.5rem',

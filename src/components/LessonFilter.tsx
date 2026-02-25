@@ -1,10 +1,10 @@
 import { useState, useMemo, useEffect } from 'react';
 import LessonCard from './LessonCard.jsx';
-import type { SheetRow } from '../lib/getSheetData';
+import type { Lesson } from '../lib/lessons';
 import Fuse from 'fuse.js';
 
 interface LessonFilterProps {
-  lessons: SheetRow[];
+  lessons: Lesson[];
 }
 
 export default function LessonFilter({ lessons }: LessonFilterProps) {
@@ -46,6 +46,18 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
       levels: Array.from(levels).sort(),
       categories: Array.from(categories).sort()
     };
+  }, [lessons]);
+
+  const lessonIndex = useMemo(() => {
+    const index: Record<string, { name: string; url: string }> = {};
+    lessons.forEach((lesson) => {
+      if (!lesson.slug || !lesson.url) return;
+      index[lesson.slug] = {
+        name: lesson.name || lesson.slug,
+        url: lesson.url
+      };
+    });
+    return index;
   }, [lessons]);
 
   const fuse = useMemo(() => {
@@ -285,6 +297,7 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
                   key={index}
                   lesson={lesson}
                   pathwayIcon="📚"
+                  lessonIndex={lessonIndex}
                 />
               ))
             )}

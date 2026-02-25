@@ -5,6 +5,7 @@ dist/
 
 # Generated types
 .astro/
+scripts/output/backups/
 
 # Dependencies
 node_modules/
@@ -35,6 +36,7 @@ lerna-debug.log*
 *.sw?
 .history/
 *.local
+.codex/*
 
 # Vim
 *.swp

@@ -140,7 +140,7 @@ import { PATHWAYS } from '../types/lesson.ts';
     <p class="subtitle">What are you here to learn today?</p>
 
     <div class="cta-buttons">
-      <a href="/lessons" class="cta-button cta-primary">
+      <a href={`${import.meta.env.BASE_URL}lessons`} class="cta-button cta-primary">
         Browse All Lessons
       </a>
       <a href="#pathways" class="cta-button cta-secondary">
@@ -162,7 +162,7 @@ import { PATHWAYS } from '../types/lesson.ts';
     </div>
 
     <div class="browse-all">
-      <a href="/lessons" class="browse-button">Browse All Lessons</a>
+      <a href={`${import.meta.env.BASE_URL}lessons`} class="browse-button">Browse All Lessons</a>
     </div>
   </section>
 </BaseLayout>
