@@ -67,7 +67,7 @@ Redesigned lesson card component matching student Figma design:
 - SubTopic groupings with uppercase headers (matching "LEARN THE BASICS" style)
 - Consistent visual design across all pathway pages
 
-#### 2. `src/components/LessonFilter.jsx`
+#### 2. `src/components/LessonFilter.tsx`
 
 **Changes**:
 - Imported `LessonCard` component

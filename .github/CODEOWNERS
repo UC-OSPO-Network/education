@@ -1,0 +1,17 @@
+# Global owners
+* @jt14den
+
+# CI/CD and Infrastructure
+.github/workflows/ @jt14den
+.github/scripts/ @jt14den
+
+# Scripts and Data Processing
+scripts/ @jt14den @ShouzhiWang
+
+# Content and Data
+src/content/ @giaari15 @jt14den
+scripts/output/ @giaari15
+
+# Architecture and CMS
+keystatic.config.ts @ShouzhiWang
+src/lib/ @jt14den

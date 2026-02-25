@@ -9,7 +9,20 @@ const categoryIcons = {
   "Uncategorized": "📁"
 };
 
-const icon = categoryIcons[category] || "📁";
+const icon =
+  categoryIcons[category as keyof typeof categoryIcons] || "📁";
+
+interface Post {
+  url?: string;
+  name?: string;
+  Topic?: string;
+  audience?: string;
+  'OSPO Relevance'?: string;
+
+
+  [key: string]: string | undefined;
+}
+
 ---
 
 <style>
@@ -152,7 +165,7 @@ const icon = categoryIcons[category] || "📁";
     </div>
 
     <div class="folder-content">
-      {posts.slice(0, 5).map(post => (
+      {posts.slice(0, 5).map((post:Post) => (
         <div class="post">
           <a href={post.url} target="_blank" style="text-decoration:none; color:inherit;">
             <h3>{post.name || 'Untitled'}</h3>
@@ -174,10 +187,12 @@ const icon = categoryIcons[category] || "📁";
       const content = folder.querySelector(".folder-content");
       const arrow = folder.querySelector(".arrow");
 
-      header.addEventListener("click", () => {
-        const isOpen = content.classList.toggle("open");
-        arrow.classList.toggle("open", isOpen);
-      });
+      if (header && content && arrow) {
+        header.addEventListener("click", () => {
+          const isOpen = content.classList.toggle("open");
+          arrow.classList.toggle("open", isOpen);
+        });
+      }
     });
   });
 </script>

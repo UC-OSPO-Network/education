@@ -1,0 +1,467 @@
+Lesson Name,Topic,Educational Level,URL,Current Learning Objectives,New Learning Objectives,Status
+"Building Community","Community","Intermediate","https://opensource.guide/building-community/","Good overview of what good project maintenance looks like. Briefly touches on kind of everything, but isn't trying to go into real about anything.","After this lesson, the learner should be able to:
+- Explain the importance of fostering an inclusive and welcoming community in open source projects
+- Identify effective communication strategies for engaging with contributors and users
+- Demonstrate conflict resolution techniques to maintain a healthy project environment
+- Apply best practices for encouraging contributor engagement and collaboration
+- Recognize the key elements that make a community sustainable and thriving","Generated"
+"Leadership and Governance","Community","Advanced","https://opensource.guide/leadership-and-governance/","","After this lesson, the learner should be able to:
+- Design transparent governance structures for open source projects
+- Evaluate different leadership models and their applicability to various project contexts
+- Create project policies that support long-term sustainability and community growth
+- Demonstrate effective decision-making processes in open source communities
+- Assess the impact of governance choices on project health and contributor satisfaction","Generated"
+"Social Coding and Open Source Collaboration","Community, Git/Beg. VCS","Intermediate","https://coderefinery.github.io/social-coding/","","After this lesson, the learner should be able to:
+- Explain the concept of social coding and its role in modern software development
+- Demonstrate collaboration workflows using GitHub and other social coding platforms
+- Identify norms and best practices for effective participation in open source communities
+- Apply social coding tools to contribute to collaborative projects
+- Recognize the benefits of community engagement in software development","Generated"
+"Writing Documentation for Software Projects","Maintaining, Contributing","Intermediate","https://intersect-training.org/Documentation/","Identify the role and benefits of documentation in research and software projects.
+Describe different types of documentation (e.g., README, API reference, tutorials) and their purposes.
+Recognize best practices for writing clear, accessible documentation.
+List tools and formats commonly used for documentation (e.g., Markdown, reStructuredText, Sphinx).
+Identify strategies for keeping documentation up to date.
+Recognize how to involve community members in contributing to documentation.
+Describe the relationship between documentation quality and project sustainability.","After this lesson, the learner should be able to:
+- Identify the role and benefits of documentation in research and software projects
+- Describe different types of documentation (README, API reference, tutorials) and their purposes
+- Apply best practices for writing clear, accessible, and user-friendly documentation
+- Use tools and formats commonly used for documentation (Markdown, reStructuredText, Sphinx)
+- Implement strategies for keeping documentation up to date and involving community contributors","Generated"
+"Making Good Pull Requests","Git/Beg. VCS, Contributing","Intermediate","https://intersect-training.org/Making-Good-PRs/","Identify the purpose and workflow of a pull request (PR) in collaborative development.
+Describe the key elements of a well-structured PR (e.g., clear description, relevant changes).
+Recognize best practices for communicating effectively in PR discussions.
+List common mistakes to avoid when submitting a PR.
+Identify how to break large changes into smaller, reviewable PRs.
+Describe the role of code review in improving quality and maintaining project standards.
+Recognize the importance of linking PRs to related issues or documentation.","After this lesson, the learner should be able to:
+- Identify the purpose and workflow of a pull request in collaborative development
+- Describe the key elements of a well-structured PR (clear description, relevant changes)
+- Apply best practices for communicating effectively in PR discussions
+- Recognize common mistakes to avoid when submitting a PR
+- Demonstrate how to break large changes into smaller, reviewable PRs","Generated"
+"Issue Tracking with GitHub","Git/Beg. VCS","Intermediate","https://intersect-training.org/Issue-Tracking/","Identify the purpose of issue tracking in software and project management.
+Describe common components of an issue (e.g., title, description, labels, assignee).
+Recognize how to create clear, actionable issues.
+List best practices for prioritizing and organizing issues.
+Identify strategies for collaborating on issues within a team or community.
+Describe how issue tracking supports project planning and sustainability.
+Recognize the role of issue templates in standardizing contributions.","After this lesson, the learner should be able to:
+- Identify the purpose of issue tracking in software and project management
+- Describe common components of an issue (title, description, labels, assignee)
+- Create clear, actionable issues that facilitate collaboration
+- Apply best practices for prioritizing and organizing issues
+- Demonstrate how issue tracking supports project planning and sustainability","Generated"
+"Collaborative Git for Teams","Git/Beg. VCS, Contributing","Intermediate","https://coderefinery.github.io/git-collaborative/","","After this lesson, the learner should be able to:
+- Demonstrate collaborative Git usage including branching, merging, and conflict resolution
+- Apply Git workflows for team collaboration and code management
+- Identify best practices for managing branches in collaborative projects
+- Resolve merge conflicts effectively in team environments
+- Implement Git workflows that support continuous integration and delivery","Generated"
+"Collaboration in Open Research Projects","Git/Beg. VCS, Community, Research","Intermediate","https://book.the-turing-way.org/collaboration/collaboration","","After this lesson, the learner should be able to:
+- Apply Git and GitHub for collaborative research and code sharing
+- Demonstrate best practices for managing contributions in open science projects
+- Identify strategies for fostering transparency and reproducibility in research outputs
+- Implement collaborative workflows that support open science principles
+- Recognize the importance of version control in research reproducibility","Generated"
+" Python Packaging","Packaging, Python","Intermediate","https://carpentries-incubator.github.io/python_packaging","Identify the purpose and benefits of packaging Python code.
+Describe the basic structure of a Python package (e.g., __init__.py, setup.py, pyproject.toml).
+Recognize the role of metadata in package distribution.
+List common tools used for packaging (e.g., setuptools, pip, build, twine).
+Describe how to write and organize code for packaging.
+Identify best practices for versioning and dependency management.
+Recognize how to build and distribute a package to the Python Package Index (PyPI).","Identify the purpose and benefits of packaging Python code.
+Describe the basic structure of a Python package (e.g., __init__.py, setup.py, pyproject.toml).
+Recognize the role of metadata in package distribution.
+List common tools used for packaging (e.g., setuptools, pip, build, twine).
+Describe how to write and organize code for packaging.
+Identify best practices for versioning and dependency management.
+Recognize how to build and distribute a package to the Python Package Index (PyPI).","Existing"
+"Python Packaging for Beginners","Packaging, Python","Intermediate","https://intersect-training.org/packaging/","Learn about virtual environments;
+Use a task runner to manage environments and run code;
+Create and install a Python package;
+Create and run a test;
+Learn about publishing a package on PyPI;
+Learn about the basics of setting up tests;
+Learn about the basics of setting up static checks;
+Learn how to write reports in the form of a vignette, using R Markdown.","After this lesson, the learner should be able to:
+- Create and configure virtual environments for Python projects
+- Use task runners to manage environments and execute code
+- Build and install a Python package from source
+- Implement basic tests for Python packages
+- Explain the process of publishing a package on PyPI","Generated"
+"R Packaging","Packaging, R","","https://carpentries-incubator.github.io/lesson-R-packaging/","Understand what a package is; 
+Understand why a package is useful;
+Understand the tools used to create a package;
+Install packages from other locations, such as GitHub;
+Build, install and attach your own packages;
+Learn how to add a license to a new R package;
+Learn how to create a battery of basic tests;","After this lesson, the learner should be able to:
+- Understand what an R package is and why it is useful for code organization
+- Identify the tools used to create and manage R packages
+- Build, install, and attach custom R packages
+- Apply licensing best practices to new R packages
+- Create a battery of basic tests for R package validation","Generated"
+"Introduction to Git","Git/Beg. VCS","Beginner","https://coderefinery.github.io/git-intro/","","After this lesson, the learner should be able to:
+- Explain the concept of version control and its importance in software development
+- Demonstrate how to initialize and manage Git repositories
+- Apply basic Git commands to track changes and manage project history
+- Identify the benefits of distributed version control systems
+- Use Git to collaborate on projects and maintain code history","Generated"
+"How to Contribute to Open Source","Contributing","","https://opensource.guide/how-to-contribute/","","After this lesson, the learner should be able to:
+- Identify the key terms and processes important for new open source contributors
+- Explain the typical workflow for contributing to open source projects
+- Demonstrate how to find projects that align with personal interests and skills
+- Apply best practices for making first contributions to open source
+- Recognize the importance of community guidelines and codes of conduct","Generated"
+"Continuous Integration and Delivery with GitHub Actions","DevOps","Intermediate","https://intersect-training.org/CI-CD/","Distinguish between Continuous Integration (CI), Continuous Delivery, and Continuous Deployment.
+Identify types of ""breaking changes"" in different development contexts.
+Define deployment in the context of CI/CD and recognize real-world examples.
+Apply CI/CD principles to automate workflows beyond code testing (e.g., notifications, data fetching).
+Explain why GitHub Actions may be preferred for CI/CD in open-source projects.
+Configure a basic CI pipeline using GitHub Actions for code testing and packaging.
+Use a matrix strategy in CI to test across multiple Python versions and platforms.
+Automate both building and publishing artifacts—like Python packages—using GitHub Actions.
+Add and configure status badges to visualize CI/CD workflow health.","After this lesson, the learner should be able to:
+- Distinguish between Continuous Integration (CI), Continuous Delivery, and Continuous Deployment
+- Identify types of breaking changes in different development contexts
+- Configure a basic CI pipeline using GitHub Actions for code testing and packaging
+- Apply CI/CD principles to automate workflows beyond code testing
+- Demonstrate how to use matrix strategies to test across multiple environments
+- Automate building and publishing artifacts using GitHub Actions","Generated"
+"CI/CD for Research Software with GitLab CI","DevOps","Intermediate","https://hsf-training.github.io/hsf-training-cicd/","","After this lesson, the learner should be able to:
+- Explain the principles of CI/CD in the context of research software development
+- Configure GitLab CI pipelines to automate testing and deployment
+- Apply CI/CD practices to improve research software quality and reproducibility
+- Demonstrate how to integrate automated testing into research workflows
+- Identify best practices for CI/CD in scientific computing environments","Generated"
+"Unit Testing and TDD in Python","Etc., Software Development Best Practices","Intermediate","https://intersect-training.org/testing/instructor/","Identify the purpose and benefits of testing in software development.
+Describe different types of tests (e.g., unit tests, integration tests, functional tests).
+Recognize common testing frameworks and tools (e.g., pytest, unittest).
+List best practices for writing clear, maintainable tests.
+Identify how to run tests locally and in automated environments.
+Describe how testing fits into continuous integration workflows.
+Recognize the role of testing in improving software quality and sustainability.","After this lesson, the learner should be able to:
+- Identify the purpose and benefits of testing in software development
+- Describe different types of tests (unit tests, integration tests, functional tests)
+- Apply testing frameworks like pytest to write and run tests
+- Demonstrate test-driven development (TDD) practices in Python
+- Implement testing strategies that integrate with continuous integration workflows","Generated"
+"Starting an Open Source Project","Maintaining","Beginner","https://opensource.guide/starting-a-project/","","After this lesson, the learner should be able to:
+- Define the purpose and goals of a new open source project
+- Identify the foundational steps for launching a successful open source project
+- Apply best practices for choosing an appropriate open source license
+- Demonstrate how to set up version control and create a contributor-friendly environment
+- Recognize the importance of documentation and community guidelines from the start","Generated"
+"Finding Users for Your Project","Maintaining","Beginner","https://opensource.guide/finding-users/","","After this lesson, the learner should be able to:
+- Identify strategies to attract and grow a user base for open source projects
+- Apply techniques to improve project discoverability and visibility
+- Demonstrate how to engage with communities and leverage social platforms for outreach
+- Recognize the importance of user feedback in project development
+- Implement marketing and communication strategies for open source projects","Generated"
+"Metrics","Maintaining","Intermediate","https://opensource.guide/metrics/","","After this lesson, the learner should be able to:
+- Identify key metrics for evaluating open source project health and success
+- Explain the importance of tracking and analyzing project activity and community growth
+- Apply tools and practices to monitor project metrics effectively
+- Demonstrate how to use metrics to make informed decisions about project direction
+- Recognize the relationship between metrics and project sustainability","Generated"
+"Best Practices for Maintainers","Maintaining","Intermediate","https://opensource.guide/best-practices/","","After this lesson, the learner should be able to:
+- Identify essential practices for sustainable open source project maintenance
+- Demonstrate effective strategies for managing contributions and community engagement
+- Apply documentation practices to improve project accessibility and onboarding
+- Implement communication strategies that foster a welcoming project environment
+- Recognize the importance of setting boundaries and preventing maintainer burnout","Generated"
+"Effective Code Review","Maintaining","Intermediate","https://intersect-training.org/Code-Review/","Identify the purpose and benefits of code review in collaborative software development.
+Describe the typical workflow for conducting a code review.
+Recognize best practices for giving constructive, actionable feedback.
+List common pitfalls to avoid when reviewing code.
+Identify how to prepare code for review to facilitate efficient feedback.
+Describe the role of code review in maintaining project standards and quality.
+Recognize how to use code review tools effectively within version control platforms.
+","After this lesson, the learner should be able to:
+- Identify the purpose and benefits of code review in collaborative software development
+- Describe the typical workflow for conducting effective code reviews
+- Apply best practices for giving constructive, actionable feedback
+- Demonstrate how to prepare code for review to facilitate efficient feedback
+- Recognize how code review maintains project standards and improves code quality","Generated"
+"Python Package Development Best Practices","Packaging, Python","Intermediate","https://education.molssi.org/python-package-best-practices/","Use conda to create an environment and install packages.
+Set up credentials for GitHub.
+Explain Python package structure.
+Use the CMS CookieCutter to build a Python package.
+Explain the purpose of version control.
+Introduce common git commands.
+Understand how to create a commit.
+Understand how to view diffs and see previous versions of files.
+Explain reasons to use GitHub.
+Learn about collaboration models.
+Learn what a fork is on GitHub
+Learn how to open a pull request
+Learn how to raise exceptions.
+Understand how to follow PEP8 style for Python.
+Understand what docstrings are and why they are important.
+Learn to write docstrings in numpy style.
+Break code into modules and subpackages based on functionality.
+Understand how the __init__.py file affects your Python package.
+Learn about type hinting in Python.
+Learn the syntax to utilize type hinting in Python.
+Explain in-code documentation
+Explain documentation tools like Read The Docs
+Explain the overall structure of testing.
+Explain the reasons why testing is important.
+Understand how to write tests using the pytest framework.
+Explain the concept and benefits of continuous integration.
+Introduce the GitHub Marketplace as a one-stop shop for continuous integration services.
+Demonstrate how to setup continuous integration using GitHub Actions.
+Familiarize learners with YAML configuration files.","After this lesson, the learner should be able to:
+- Apply best practices for structuring Python packages for scientific software
+- Demonstrate how to write comprehensive tests and manage dependencies
+- Implement version control workflows for collaborative package development
+- Create clear documentation using tools like Read The Docs
+- Configure continuous integration for automated testing and deployment","Generated"
+"Building Better Research Software
+","Research","Intermediate","https://carpentries-incubator.github.io/better-research-software/","For researchers wanting to adhere to FAIR practies.  Course provides code for exercises.
+Introduce what FAIR means especially in relationship to code written for research purposes.
+Course is comprehensive covering the research code lifecylce, describing good practices at each stage:
+ Creating a github project (along with practices to help with version control); 
+Practices to help with reproductibility (eg creating reproducible environment for other reseaerches, dependencies trees, VMs); 
+Practices to annotate code to ensure that others can understand and use the code;
+Code structure recommendations; Testing and Documentation practices","For researchers wanting to adhere to FAIR practies.  Course provides code for exercises.
+Introduce what FAIR means especially in relationship to code written for research purposes.
+Course is comprehensive covering the research code lifecylce, describing good practices at each stage:
+ Creating a github project (along with practices to help with version control); 
+Practices to help with reproductibility (eg creating reproducible environment for other reseaerches, dependencies trees, VMs); 
+Practices to annotate code to ensure that others can understand and use the code;
+Code structure recommendations; Testing and Documentation practices","Existing"
+"Reproducible Research","Research","Intermediate","https://book.the-turing-way.org/reproducible-research/reproducible-research","Extremely comprehensive with detailed explanations on concepts related to Research Code, Data, LLM, Hardware.  It is not a class.  This would be useful as a resource for self sturdy for someone interested in get a overview of Research and  all aspects.  The examples illustrate the concepts but are detailed coding examples.  Students learn why Reproducible Research is important, policy issues around Reproducible Research, detailed definitions that are finely  parsed for different ascpects of research, use of git, licensing/IP discussions, research ethics, setting up pojects.
+There are exercise using code provided for the class.","After this lesson, the learner should be able to:
+- Explain the principles and importance of reproducible research
+- Apply best practices for data management and version control in research
+- Demonstrate how to use Git and other tools to ensure research reproducibility
+- Identify strategies for documenting research workflows and methodologies
+- Recognize ethical considerations in reproducible research practices","Generated"
+"Intermediate Research Software Development Skills (Python) Lesson Material","Research, Python","Intermediate","https://carpentries-incubator.github.io/python-intermediate-development/","This course is very coding/exercise based.  It meant to be practical course on how to construct reliable, readable, efficient research software in a collaborative environment. The course provides code examples demonstrating techniques followed by exercises.  Course is 8-10 half-day modules which is intensive and involves hands-on exercises.","After this lesson, the learner should be able to:
+- Apply intermediate software development skills to research projects using Python
+- Demonstrate collaborative development practices in research environments
+- Implement testing, documentation, and version control for research software
+- Design reliable and maintainable research software following best practices
+- Recognize the importance of code quality and sustainability in research","Generated"
+"Introduction to Docker for Research  NOTE THIS IS NOW CALLED Introduction to Docker and Podman","Research, DevOps","Beginner","https://hsf-training.github.io/hsf-training-docker/index.html","Vey basic for someone with little to no knowledge about containers. Learn what a container is; how it differs from a VM","After this lesson, the learner should be able to:
+- Explain what containers are and how they differ from virtual machines
+- Demonstrate how to create and manage Docker containers
+- Apply Docker to ensure reproducibility in research software
+- Identify use cases for containerization in scientific computing
+- Create Docker images for software development and deployment","Generated"
+"Research Software Engineering with Python  Course","Research, Python","Intermediate","https://alan-turing-institute.github.io/rse-course/html/index.html","Course is very long. Like that it includes differnet types of programs for use.  It is modular.   Covers much of what th eother cousres do.","After this lesson, the learner should be able to:
+- Apply software engineering best practices to research software development
+- Demonstrate version control, testing, and project management skills
+- Implement design patterns and software architecture principles in research code
+- Create sustainable and maintainable research software projects
+- Recognize the role of Research Software Engineers in modern research","Generated"
+"Intermediate Python Development","Python","Intermediate","https://carpentries-incubator.github.io/python-intermediate-development/","Inspect the structure and architecture of our software project.
+Understand Model-View-Controller (MVC) architecture in software design and its use in our project.
+Set up a Python virtual environment for our software project using venv and pip.
+Run our software from the command line.
+Set up a (virtual) development environment in an IDE
+Use the IDE to run a Python script
+Commit changes in a software project to a local repository and publish them in a remote repository on GitHub
+Create branches for managing different threads of code development
+Learn to use feature branch workflow to effectively collaborate with a team on a software project
+Understand the benefits of following community coding conventions
+Use code linting tools to verify a program’s adherence to a Python coding style convention.
+Explain the reasons why testing is important
+Describe the three main types of tests and what each are used for
+Implement and run unit tests to verify the correct behaviour of program functions
+Use parameterisation to automatically run tests over a set of inputs
+Use code coverage to understand how much of our code is being tested using unit tests
+Use continuous integration to automatically run unit tests and code coverage when changes are committed to a version control repository
+Use a debugger to explore behaviour of a running program
+Describe and identify edge and corner test cases and explain why they are important
+Apply error handling and defensive programming techniques to improve robustness of a program
+Describe the differences between writing code and engineering software.
+Define the fundamental stages in a software development process.
+Describe the different types of software requirements.
+List the common aspects of software architecture and design.
+Introduce appropriate abstractions to simplify code.
+Understand the use of regressions tests to avoid breaking existing code when refactoring.
+Analyse new code to identify Model, View, Controller aspects.
+Understand the code review process and employ it to improve the quality of code.
+Understand other documentation components and where they are useful
+Describe the basic types of open source software licence
+Describe the steps necessary for sharing Python code as installable packages.
+Use established tools to track and manage software problems and enhancements in a team.
+Conduct an assessment of software against suitability criteria
+","After this lesson, the learner should be able to:
+- Apply intermediate Python development skills including virtual environments and packaging
+- Demonstrate collaborative development using Git feature branch workflows
+- Implement comprehensive testing strategies using pytest
+- Design modular software following Model-View-Controller architecture
+- Create well-documented, maintainable Python projects following community standards","Generated"
+"Modular Programming with Python","Python","Intermediate","https://coderefinery.github.io/modular-type-along/","Know about pure functions (functions without side effects, functions which given same input always return same output).
+Learn why and how to limit side effects of functions.
+Discuss why and how to limit side effects of data. Also discuss when mutable data may be preferable.
+Discuss why single-purpose functions are often preferred over multi-purpose functions.
+Split-apply-combine, which lets you more easily parallelize. Make your code modular in a way that lets you split the steps and parallelize.
+Understand how a command line interface to a code can improve usability and also make the code more versatile (to be combined with workflow management tools).
+Connect modular code development to the remaining lessons (version control, testing, documentation, reusability).","After this lesson, the learner should be able to:
+- Explain the principles of modular programming and its benefits
+- Demonstrate how to write reusable, single-purpose functions
+- Apply strategies to limit side effects and improve code testability
+- Implement command line interfaces to improve code versatility
+- Recognize how modular design supports parallelization and collaboration","Generated"
+"Testing and Test-Driven Development","Testing","Intermediate","https://coderefinery.github.io/testing/","","After this lesson, the learner should be able to:
+- Explain the principles and benefits of test-driven development (TDD)
+- Demonstrate how to write unit tests using pytest
+- Apply TDD practices to improve code quality and design
+- Implement automated testing strategies for software projects
+- Recognize the role of testing in continuous integration workflows","Generated"
+"Reproducible Computational Environments using Containers","DevOps","","https://carpentries-incubator.github.io/docker-introduction/","","After this lesson, the learner should be able to:
+- Explain the concept of containerization and its role in reproducible research
+- Demonstrate how to create and manage Docker containers for research environments
+- Apply containerization to ensure computational reproducibility
+- Identify best practices for sharing reproducible environments
+- Recognize the benefits of containers for research collaboration","Generated"
+"Understanding Software Licensing","Licensing","Intermediate","https://intersect-training.org/software-licensing/","IMPORTANT. There is an error in categorization.  
+
+It is a good primer that can be used as a lesson plan or for self study. Covers IP law, what licenses are, differenty types of licenses, links to choose license resources.","After this lesson, the learner should be able to:
+- Identify different types of open source software licenses and their implications
+- Explain the legal and practical considerations of software licensing
+- Apply appropriate licenses to software projects based on project goals
+- Recognize the differences between permissive and copyleft licenses
+- Demonstrate how to properly attribute and comply with open source licenses","Generated"
+"Reproducibility Principles and Practices","Community, Maintaining","","https://ucdavisdatalab.github.io/workshop_reproducible_research/chapters/index.html","","After this lesson, the learner should be able to:
+- Identify key principles and practices for ensuring research reproducibility
+- Explain the benefits of reproducible research for collaboration and validation
+- Apply tools and workflows that support reproducible research practices
+- Recognize which reproducibility practices to adopt for different project types
+- Demonstrate how reproducibility practices improve research quality and impact","Generated"
+"Responsible Data Science","","","https://ucdavisdatalab.github.io/responsible-data-science/","","After this lesson, the learner should be able to:
+- Identify ethical considerations in data science and research
+- Explain principles of responsible data collection, use, and sharing
+- Apply best practices for data privacy and security
+- Recognize potential biases and fairness issues in data science
+- Demonstrate responsible practices in data science workflows","Generated"
+"Introduction to Unix Command Line","","","https://ucdavisdatalab.github.io/workshop_introduction_to_the_command_line/","","After this lesson, the learner should be able to:
+- Explain the purpose and benefits of using the Unix command line
+- Demonstrate basic Unix commands for file and directory management
+- Apply command line tools to navigate and manipulate files
+- Identify common Unix utilities and their use cases
+- Recognize the importance of command line skills for software development","Generated"
+"Introduction to Version Control with Git. ","Git/Beg. VCS","","https://ucdavisdatalab.github.io/workshop_introduction_to_version_control/chapters/index.html","","[NEEDS REVIEW] After this lesson, the learner should be able to:
+- [To be defined based on lesson content]","Needs Review"
+"Reproducible Research for Teams with GitHub","Git/Beg. VCS","","https://ucdavisdatalab.github.io/workshop_git_for_teams/chapters/index.html","","After this lesson, the learner should be able to:
+- Apply GitHub workflows for collaborative reproducible research
+- Demonstrate how to use GitHub features for team coordination
+- Implement version control practices that support reproducibility
+- Identify strategies for managing research code and data with teams
+- Recognize the importance of documentation in team-based research","Generated"
+"Python Basics","Python","","https://ucdavisdatalab.github.io/workshop_python_basics/chapters/index.html","","After this lesson, the learner should be able to:
+- Explain fundamental Python programming concepts and syntax
+- Demonstrate how to write and execute basic Python programs
+- Apply Python data types, variables, and control structures
+- Identify common Python libraries and their use cases
+- Recognize best practices for writing clean, readable Python code","Generated"
+"R Basics","","","https://ucdavisdatalab.github.io/workshop_r_basics/","","After this lesson, the learner should be able to:
+- Explain fundamental R programming concepts and syntax
+- Demonstrate how to work with R data structures and functions
+- Apply R for basic data analysis and visualization
+- Identify common R packages and their applications
+- Recognize best practices for R programming and data analysis","Generated"
+"Overview of Databases and Data Storage","","","https://ucdavisdatalab.github.io/workshop_intro_to_databases/","","After this lesson, the learner should be able to:
+- Identify different types of databases and data storage systems
+- Explain the principles of database design and data organization
+- Recognize use cases for different database technologies
+- Describe the relationship between databases and data-driven applications
+- Apply basic concepts of data modeling and schema design","Generated"
+"Introduction to SQL for Querying Databases","","","https://ucdavisdatalab.github.io/workshop_intro_to_sql/","","After this lesson, the learner should be able to:
+- Explain the purpose and structure of SQL for database queries
+- Demonstrate how to write basic SQL queries to retrieve data
+- Apply SQL commands for filtering, sorting, and aggregating data
+- Identify best practices for writing efficient SQL queries
+- Recognize the role of SQL in data analysis and management","Generated"
+"Principles of Data Visualization from PErception to Statistical Graphics","","","https://ucdavisdatalab.github.io/workshop_data_viz_principles/","","After this lesson, the learner should be able to:
+- Identify principles of effective data visualization based on human perception
+- Explain how to choose appropriate visualization types for different data
+- Apply best practices for creating clear and informative visualizations
+- Recognize common pitfalls and misleading practices in data visualization
+- Demonstrate how to design visualizations that communicate insights effectively","Generated"
+"Intermediate Python: next-level Data Visualization","Python","","https://ucdavisdatalab.github.io/workshop_intermediate_python/chapters/05_viz.html","","After this lesson, the learner should be able to:
+- Apply advanced Python libraries for data visualization
+- Demonstrate how to create complex, multi-layered visualizations
+- Implement interactive visualizations using Python tools
+- Identify best practices for publication-quality graphics
+- Recognize when to use different visualization techniques","Generated"
+"Intermediate R: Next-level Data Visualization","","","https://ucdavisdatalab.github.io/workshop_intermediate_r/data-visualization-in-r.html","","After this lesson, the learner should be able to:
+- Apply advanced R packages for sophisticated data visualization
+- Demonstrate how to create publication-quality graphics using ggplot2
+- Implement customized visualizations for complex data
+- Identify best practices for effective visual communication
+- Recognize advanced visualization techniques for different data types","Generated"
+"Developing Your Data Science Portfolio","","","https://ucdavisdatalab.github.io/workshop_portfolios/","","After this lesson, the learner should be able to:
+- Identify key components of an effective data science portfolio
+- Demonstrate how to showcase projects and skills effectively
+- Apply best practices for documenting and presenting data science work
+- Create a professional online presence for career development
+- Recognize the importance of storytelling in portfolio development","Generated"
+"Julia Basics","","","https://ucjug.github.io/workshop_julia_basics/chapters/index.html","","After this lesson, the learner should be able to:
+- Explain fundamental Julia programming concepts and syntax
+- Demonstrate how to write and execute basic Julia programs
+- Apply Julia for numerical computing and data analysis
+- Identify Julia's advantages for scientific computing
+- Recognize when Julia is an appropriate choice for projects","Generated"
+"Intermediate Python","Python","","https://ucdavisdatalab.github.io/workshop_intermediate_python/chapters/index.html","","After this lesson, the learner should be able to:
+- Apply intermediate Python programming techniques
+- Demonstrate object-oriented programming in Python
+- Implement error handling and debugging strategies
+- Identify advanced Python features and their applications
+- Recognize best practices for writing maintainable Python code","Generated"
+"Intermediate R","","","https://ucdavisdatalab.github.io/workshop_intermediate_r/","","After this lesson, the learner should be able to:
+- Apply intermediate R programming techniques
+- Demonstrate functional programming concepts in R
+- Implement efficient data manipulation using tidyverse
+- Identify advanced R features for data analysis
+- Recognize best practices for R package development","Generated"
+"Overview of Remote and High Performance Computing (HPC)","","","https://video.ucdavis.edu/media/Overview%20of%20Remote%20and%20High%20Performance%20Computing%20(HPC)%20-%202024-02-15/1_zulcobsl","","After this lesson, the learner should be able to:
+- Explain the concepts of remote computing and high-performance computing
+- Identify use cases for HPC in research and data science
+- Recognize the architecture and components of HPC systems
+- Describe the benefits and challenges of using HPC resources
+- Apply basic concepts for accessing and using remote computing resources","Generated"
+"Introduction to Remote Computing","","","https://ucdavisdatalab.github.io/workshop_intro_to_remote_computing/chapters/index.html","","After this lesson, the learner should be able to:
+- Demonstrate how to connect to and use remote computing resources
+- Apply SSH and other tools for remote access
+- Identify best practices for working on remote systems
+- Recognize security considerations for remote computing
+- Implement file transfer and job submission on remote systems","Generated"
+"Introduction to Desktop GIS with QGIS","","","https://ucdavisdatalab.github.io/Intro-to-Desktop-GIS-with-QGIS/","","After this lesson, the learner should be able to:
+- Explain the fundamentals of Geographic Information Systems (GIS)
+- Demonstrate how to use QGIS for spatial data visualization and analysis
+- Apply basic GIS operations including data import, styling, and querying
+- Identify common GIS data formats and their characteristics
+- Create maps and perform spatial analysis using QGIS","Generated"
+"Spatial SQL with SpatiaLite","","","https://ucdavisdatalab.github.io/Spatial_SQL/","","After this lesson, the learner should be able to:
+- Explain the concepts of spatial databases and spatial SQL
+- Demonstrate how to use SpatiaLite for spatial data queries
+- Apply spatial SQL functions for geographic analysis
+- Identify use cases for spatial databases in research
+- Implement spatial joins and geometric operations","Generated"
+"Geocoding","","","https://github.com/ucdavisdatalab/geocoding-workshop/blob/master/README.md","","After this lesson, the learner should be able to:
+- Explain the concept of geocoding and its applications
+- Demonstrate how to convert addresses to geographic coordinates
+- Apply geocoding tools and services for spatial data enrichment
+- Identify challenges and limitations of geocoding
+- Recognize best practices for geocoding accuracy and quality","Generated"
+"Coordinate Reference Systems","","","https://ucdavisdatalab.github.io/workshop_coordinate_reference_systems/","","After this lesson, the learner should be able to:
+- Explain what coordinate reference systems (CRS) are and why they matter
+- Identify different types of coordinate systems and their applications
+- Demonstrate how to transform data between coordinate systems
+- Recognize common CRS issues and how to resolve them
+- Apply appropriate CRS choices for different geographic analyses","Generated"
+"Introduction to Basic Statistics with R","","","https://ucdavisdatalab.github.io/basic_stats_r_1/","","After this lesson, the learner should be able to:
+- Explain fundamental statistical concepts and terminology
+- Demonstrate how to perform basic statistical analyses in R
+- Apply descriptive statistics and hypothesis testing
+- Identify appropriate statistical tests for different data types
+- Recognize assumptions and limitations of statistical methods","Generated"
+"TESTING again","Packaging","","","","[NEEDS REVIEW] After this lesson, the learner should be able to:
+- [To be defined based on lesson content]","Needs Review"

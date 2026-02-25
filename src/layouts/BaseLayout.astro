@@ -118,7 +118,19 @@ const { title } = Astro.props;
   <body>
     <UnifiedNav />
 
-    <main style="min-height: calc(100vh - 200px);">
+    <script>
+      // Axe Accessibility Testing (Dev Mode Only)
+      if (import.meta.env.DEV) {
+        import("react").then(async (React) => {
+          import("react-dom").then(async (ReactDOM) => {
+            const axe = (await import("@axe-core/react")).default;
+            axe(React, ReactDOM, 1000);
+          });
+        });
+      }
+    </script>
+
+    <main id="main-content" style="min-height: calc(100vh - 200px);">
       <slot />
     </main>
 
@@ -140,7 +152,7 @@ const { title } = Astro.props;
           <div class="footer-section">
             <h3>Education</h3>
             <ul class="footer-links">
-              <li><a href="/education">Learning Pathways</a></li>
+              <li><a href="/education/">Learning Pathways</a></li>
               <li><a href="/education/lessons">Browse Lessons</a></li>
               <li><a href="/education/pathways">All Pathways</a></li>
               <li><a href="/education/develop-a-lesson">Develop a Lesson</a></li>

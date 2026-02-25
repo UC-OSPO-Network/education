@@ -1,34 +1,59 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getSheetData } from '../../lib/getSheetData.js';
-import { PATHWAYS } from '../../types/lesson.ts';
 import LessonCard from '../../components/LessonCard.jsx';
+import { getSheetData, type SheetRow } from '../../lib/getSheetData';
+import { PATHWAYS } from '../../types/lesson';
 
+// -----------------------------
+// Static paths
+// -----------------------------
 export async function getStaticPaths() {
-  const lessons = await getSheetData();
+  const lessons: SheetRow[] = await getSheetData();
 
-  return PATHWAYS.map(pathway => ({
+  return PATHWAYS.map((pathway) => ({
     params: { id: pathway.id },
     props: { pathway, lessons }
   }));
 }
 
-const { pathway, lessons } = Astro.props;
+// -----------------------------
+// Props typing
+// -----------------------------
+const {
+  pathway,
+  lessons
+}: {
+  pathway: (typeof PATHWAYS)[number];
+  lessons: SheetRow[];
+} = Astro.props;
 
+// -----------------------------
 // Filter lessons for this pathway
-const pathwayLessons = lessons.filter(lesson =>
-  lesson['Keep?']?.includes('Keep') &&
-  pathway.learnerCategories.includes(lesson.learnerCategory)
+// -----------------------------
+const pathwayLessons: SheetRow[] = lessons.filter(
+  (lesson) =>
+    lesson['Keep?']?.includes('Keep') &&
+    pathway.learnerCategories.includes(lesson.learnerCategory ?? '')
 );
 
-// Group by subTopic if available
-const groupedLessons = pathwayLessons.reduce((acc, lesson) => {
-  const topic = lesson.subTopic || 'Other';
-  if (!acc[topic]) acc[topic] = [];
-  acc[topic].push(lesson);
-  return acc;
-}, {});
+// -----------------------------
+// Group lessons by subTopic
+// -----------------------------
+const groupedLessons = pathwayLessons.reduce<Record<string, SheetRow[]>>(
+  (acc, lesson: SheetRow) => {
+    const topic = lesson.subTopic || 'Other';
+
+    if (!acc[topic]) {
+      acc[topic] = [];
+    }
+
+    acc[topic].push(lesson);
+    return acc;
+  },
+  {}
+);
 ---
+
 
 <style>
   .pathway-header {
@@ -118,7 +143,7 @@ const groupedLessons = pathwayLessons.reduce((acc, lesson) => {
   </div>
 
   <div class="pathway-content">
-    <a href="/" class="back-link">← Back to All Pathways</a>
+    <a href="/education/" class="back-link">← Back to All Pathways</a>
 
     {Object.keys(groupedLessons).length === 0 ? (
       <div class="no-lessons">
@@ -130,7 +155,7 @@ const groupedLessons = pathwayLessons.reduce((acc, lesson) => {
         <div class="subtopic-section">
           <h2 class="subtopic-header">{subtopic}</h2>
           <div class="lesson-grid">
-            {subtopicLessons.map(lesson => (
+            {subtopicLessons.map((lesson: SheetRow) => (
               <LessonCard
                 lesson={lesson}
                 pathwayIcon={pathway.icon}

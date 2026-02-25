@@ -1,4 +1,4 @@
-import { getSheetData } from './src/lib/getSheetData.js';
+import { getSheetData } from './src/lib/getSheetData.ts';
 
 (async () => {
   const data = await getSheetData();
