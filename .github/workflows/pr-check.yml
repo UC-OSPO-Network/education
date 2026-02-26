@@ -82,7 +82,11 @@ jobs:
               try {
                 report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
               } catch (error) {
-                core.warning(`Could not parse lesson validation report: ${error.message}`);
+                if (typeof core?.warning === 'function') {
+                  core.warning(`Could not parse lesson validation report: ${error.message}`);
+                } else {
+                  console.warn(`Could not parse lesson validation report: ${error.message}`);
+                }
               }
             }
 
@@ -155,4 +159,4 @@ jobs:
       - name: Enforce lesson validation report status
         if: always()
         run: |
-          node -e "const fs=require('fs'); const reportPath='.github/lesson-validation-report.json'; if(!fs.existsSync(reportPath)){console.error('Missing lesson validation report'); process.exit(1);} const report=JSON.parse(fs.readFileSync(reportPath,'utf8')); if(report.status!=='pass'){console.error('Lesson validation gate failed'); process.exit(1);} console.log('Lesson validation gate passed');"
+          node -e "const fs=require('fs'); const reportPath='.github/lesson-validation-report.json'; if(!fs.existsSync(reportPath)){console.error('Lesson validation did not produce a report (script may have crashed)'); process.exit(1);} const report=JSON.parse(fs.readFileSync(reportPath,'utf8')); if(report.status!=='pass'){console.error('Lesson validation gate failed'); process.exit(1);} console.log('Lesson validation gate passed');"

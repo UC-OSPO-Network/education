@@ -132,7 +132,7 @@ function detectLocalChangedFiles() {
   }
 
   const files = normalizePathList(combined.split(/\r?\n/));
-  return { available: files.length >= 0, files };
+  return { available: true, files };
 }
 
 function isNumericDependencyToken(value) {
