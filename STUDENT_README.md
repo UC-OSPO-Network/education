@@ -128,7 +128,40 @@ Essential fields to display:
 2. Open Keystatic: `http://127.0.0.1:4321/keystatic`
 3. Edit existing lessons or create new ones under the **Lessons** collection
 4. Ensure slug keys are synced to filenames: `npm run sync:lesson-slugs`
-5. Commit the changed files in `src/content/lessons/`
+5. Validate lesson quality locally: `npm run validate:lessons`
+6. Commit the changed files in `src/content/lessons/`
+
+### Lesson Quality Validation (PR + Local)
+Run:
+
+```bash
+npm run validate:lessons
+```
+
+The validator checks all lessons but only blocks CI for lesson files changed in the PR.
+
+Blocking rules for changed lessons:
+- Required fields must be non-empty strings: `name`, `slug`, `description`, `url`
+- `slug` must match filename slug and be unique
+- `dependsOn` must contain valid references
+- `educationalLevel` must be `Beginner`, `Intermediate`, or `Advanced`
+- `learnerCategory` must be empty (`Unassigned`) or match a pathway category
+- Lesson `url` must be valid and reachable (2xx/3xx after HEAD/GET checks)
+
+Warning-only rules:
+- `keywords` exists but is empty
+- Transient URL/network failures (timeouts, temporary connection failures)
+- Out-of-scope issues in lesson files not changed by the PR
+
+CI behavior:
+- PR checks compute changed lesson files and run validation in delta mode
+- A sticky PR comment is updated with validation summary and top issues
+- PR fails only when blocking issues are found for changed lesson files
+
+Troubleshooting URL checks:
+- Retry if a site had a temporary outage
+- Verify the lesson URL is public and reachable without authentication
+- If a URL is permanently moved, update the lesson to the final destination
 
 ### GitHub-backed Editing (Auth)
 Keystatic supports GitHub-backed edits (creates commits/PRs). To enable this locally:
@@ -221,11 +254,17 @@ If you need to import the current Google Sheets data into files once:
 ## 🧪 Testing
 
 ```bash
+# Validate lesson metadata and quality rules
+npm run validate:lessons
+
 # Run Astro check for type errors
 npx astro check
 
 # Build to test for errors
 npm run build
+
+# Check built internal links (after build)
+npm run check:links
 ```
 
 ## 📦 Deployment
