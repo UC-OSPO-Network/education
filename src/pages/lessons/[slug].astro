@@ -1,0 +1,442 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getLessons, type Lesson } from "../../lib/lessons";
+import { PATHWAYS } from "../../types/lesson";
+
+type Props = {
+  lesson: Lesson;
+  relatedLessons: Lesson[];
+};
+
+function formatValue(value: unknown): string {
+  if (value === null || value === undefined) return "";
+  if (Array.isArray(value)) return value.filter(Boolean).join(", ");
+  if (typeof value === "string") return value.trim();
+  if (typeof value === "number" || typeof value === "boolean") return String(value);
+  try {
+    return JSON.stringify(value);
+  } catch {
+    return String(value);
+  }
+}
+
+function toTitleCaseLabel(key: string): string {
+  return key
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+export async function getStaticPaths() {
+  const lessons = await getLessons();
+
+  const candidates = lessons.filter(
+    (lesson) => typeof lesson.slug === "string" && lesson.slug.trim().length > 0,
+  );
+
+  return candidates.map((lesson) => {
+    const relatedByPathway = lessons.filter(
+      (other) =>
+        other.slug !== lesson.slug &&
+        other.keepStatus !== "drop" &&
+        other.url.trim() !== "" &&
+        other.learnerCategory === lesson.learnerCategory,
+    );
+
+    const relatedBySubtopic = relatedByPathway.filter((other) => {
+      const currentSubtopic = lesson.subTopic?.trim() ?? "";
+      const otherSubtopic = other.subTopic?.trim() ?? "";
+      if (currentSubtopic === "") return otherSubtopic === "";
+      return otherSubtopic === currentSubtopic;
+    });
+
+    const relatedLessons =
+      relatedBySubtopic.length > 0 ? relatedBySubtopic : relatedByPathway;
+
+    return {
+      params: { slug: lesson.slug },
+      props: {
+        lesson,
+        relatedLessons: relatedLessons.slice(0, 6),
+      } satisfies Props,
+    };
+  });
+}
+
+const { lesson, relatedLessons } = Astro.props as Props;
+
+const pathway = PATHWAYS.find((p) => p.learnerCategories.includes(lesson.learnerCategory));
+const pathwayHref = pathway ? `${import.meta.env.BASE_URL}pathways/${pathway.id}` : "";
+
+const summary =
+  lesson.description?.trim() ||
+  lesson.abstract?.trim() ||
+  "No description available for this lesson yet.";
+
+const detailHref = `${import.meta.env.BASE_URL}lessons/${lesson.slug}`;
+const externalHref = lesson.url?.trim() ?? "";
+
+const coreMetadata: Array<{ label: string; value: unknown; kind?: "link" }> = [
+  { label: "Slug", value: lesson.slug },
+  { label: "Pathway", value: lesson.learnerCategory, kind: pathwayHref ? "link" : undefined },
+  { label: "Subtopic", value: lesson.subTopic },
+  { label: "Skill Level", value: lesson.educationalLevel },
+  { label: "OSS Role(s)", value: lesson.oss_role || lesson.ossRole || "" },
+  { label: "Resource Type", value: lesson.learningResourceType },
+  { label: "Time Required", value: lesson.timeRequired },
+  { label: "Author", value: lesson.author },
+  { label: "License", value: lesson.license },
+  { label: "Keywords", value: lesson.keywords },
+  { label: "Language(s)", value: lesson.inLanguage },
+];
+
+const excludedAdditionalKeys = new Set<string>([
+  "name",
+  "slug",
+  "keepStatus",
+  "description",
+  "abstract",
+  "url",
+  "author",
+  "license",
+  "learnerCategory",
+  "educationalLevel",
+  "ossRole",
+  "oss_role",
+  "subTopic",
+  "timeRequired",
+  "learningResourceType",
+  "inLanguage",
+  "keywords",
+]);
+
+const additionalMetadataEntries = Object.entries(lesson)
+  .filter(([key, value]) => !excludedAdditionalKeys.has(key) && formatValue(value) !== "")
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([key, value]) => ({ label: toTitleCaseLabel(key), value }));
+---
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, var(--uc-blue) 0%, var(--uc-dark-blue) 100%);
+    padding: 3rem 2rem;
+    margin: -2rem -2rem 2rem -2rem;
+    border-bottom: 4px solid var(--uc-gold);
+  }
+
+  .breadcrumbs {
+    max-width: 1200px;
+    margin: 0 auto 1rem;
+    padding: 0 2rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+  }
+
+  .breadcrumb-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .breadcrumb-sep {
+    opacity: 0.7;
+  }
+
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .title {
+    margin: 0 0 0.75rem 0;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    line-height: 1.15;
+    color: var(--uc-white);
+  }
+
+  .summary {
+    margin: 0;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.92);
+    max-width: 70ch;
+  }
+
+  .cta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: stretch;
+    min-width: 260px;
+  }
+
+  .primary-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1.1rem;
+    border-radius: 10px;
+    background: var(--uc-gold);
+    color: var(--uc-blue);
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .primary-button:hover {
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  .primary-button[aria-disabled="true"] {
+    opacity: 0.6;
+    pointer-events: none;
+    filter: grayscale(0.2);
+  }
+
+  .secondary-link {
+    text-align: center;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+  }
+
+  .secondary-link:hover {
+    color: var(--uc-light-gold);
+    text-decoration: underline;
+  }
+
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 3rem;
+  }
+
+  .section {
+    background: var(--uc-med-gray);
+    border: 2px solid var(--uc-border);
+    border-radius: 14px;
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .section h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.35rem;
+    color: var(--uc-white);
+  }
+
+  .metadata-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 1.25rem;
+  }
+
+  .meta-item {
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    background: var(--uc-dark-gray);
+    border: 1px solid var(--uc-border);
+  }
+
+  .meta-label {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--uc-light-gray);
+    margin-bottom: 0.35rem;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+
+  .meta-value {
+    display: block;
+    color: var(--uc-white);
+    font-weight: 600;
+    word-break: break-word;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .related-card {
+    display: block;
+    background: var(--uc-dark-gray);
+    border: 1px solid var(--uc-border);
+    border-radius: 12px;
+    padding: 1rem;
+    text-decoration: none;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+
+  .related-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--uc-light-blue);
+    text-decoration: none;
+  }
+
+  .related-title {
+    margin: 0 0 0.5rem 0;
+    font-weight: 800;
+    color: var(--uc-white);
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+
+  .related-meta {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--uc-light-gray);
+  }
+
+  @media (max-width: 980px) {
+    .header-inner {
+      grid-template-columns: 1fr;
+    }
+    .cta {
+      min-width: auto;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+    .primary-button {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .breadcrumbs,
+    .header-inner,
+    .content {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    .metadata-grid {
+      grid-template-columns: 1fr;
+    }
+    .related-grid {
+      grid-template-columns: 1fr;
+    }
+    .section {
+      padding: 1.25rem;
+    }
+  }
+</style>
+
+<BaseLayout title={lesson.name}>
+  <div class="page-header">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li><a href={import.meta.env.BASE_URL}>Home</a></li>
+        <li class="breadcrumb-sep" aria-hidden="true">/</li>
+        <li><a href={`${import.meta.env.BASE_URL}lessons`}>Lessons</a></li>
+        <li class="breadcrumb-sep" aria-hidden="true">/</li>
+        <li aria-current="page">{lesson.name}</li>
+      </ol>
+    </nav>
+
+    <div class="header-inner">
+      <div>
+        <h1 class="title">{lesson.name}</h1>
+        <p class="summary">{summary}</p>
+      </div>
+
+      <div class="cta">
+        <a
+          class="primary-button"
+          href={externalHref || detailHref}
+          target={externalHref ? "_blank" : undefined}
+          rel={externalHref ? "noopener noreferrer" : undefined}
+          aria-disabled={externalHref ? "false" : "true"}
+        >
+          View External Lesson
+          <span aria-hidden="true">↗</span>
+        </a>
+
+        {pathwayHref ? (
+          <a class="secondary-link" href={pathwayHref}>Browse this pathway</a>
+        ) : null}
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <section class="section" aria-labelledby="lesson-metadata">
+      <h2 id="lesson-metadata">Lesson metadata</h2>
+
+      <div class="metadata-grid">
+        {coreMetadata.map(({ label, value, kind }) => {
+          const formatted = formatValue(value);
+          if (label === "Pathway" && kind === "link" && pathwayHref) {
+            return (
+              <div class="meta-item">
+                <span class="meta-label">{label}</span>
+                <span class="meta-value">
+                  <a href={pathwayHref}>{formatted || "—"}</a>
+                </span>
+              </div>
+            );
+          }
+
+          return (
+            <div class="meta-item">
+              <span class="meta-label">{label}</span>
+              <span class="meta-value">{formatted || "—"}</span>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+
+    {additionalMetadataEntries.length > 0 ? (
+      <section class="section" aria-labelledby="additional-metadata">
+        <h2 id="additional-metadata">Additional metadata</h2>
+        <div class="metadata-grid">
+          {additionalMetadataEntries.map(({ label, value }) => (
+            <div class="meta-item">
+              <span class="meta-label">{label}</span>
+              <span class="meta-value">{formatValue(value)}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+    ) : null}
+
+    <section class="section" aria-labelledby="related-lessons">
+      <h2 id="related-lessons">Related lessons</h2>
+      {relatedLessons.length === 0 ? (
+        <p style="margin: 0; color: var(--uc-light-gray);">
+          No related lessons found yet.
+        </p>
+      ) : (
+        <div class="related-grid">
+          {relatedLessons.map((related) => (
+            <a class="related-card" href={`${import.meta.env.BASE_URL}lessons/${related.slug}`}>
+              <h3 class="related-title">{related.name}</h3>
+              <p class="related-meta">
+                {related.educationalLevel}
+                {related.subTopic?.trim()
+                  ? ` • ${related.subTopic.trim()}`
+                  : ""}
+              </p>
+            </a>
+          ))}
+        </div>
+      )}
+    </section>
+  </div>
+</BaseLayout>

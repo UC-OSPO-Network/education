@@ -68,6 +68,8 @@ export default function LessonCard({ lesson, pathwayIcon, lessonIndex = {} }) {
       (lesson.learnerCategory.includes(',') ||
           lesson.learnerCategory.includes(';'));
 
+  const lessonHref = `${import.meta.env.BASE_URL}lessons/${lesson.slug}`;
+
   return (
       <div
           style={{
@@ -97,9 +99,7 @@ export default function LessonCard({ lesson, pathwayIcon, lessonIndex = {} }) {
             e.currentTarget.style.boxShadow = 'none';
           }}
           onClick={() => {
-            if (lesson.url) {
-              window.open(lesson.url, '_blank', 'noopener,noreferrer');
-            }
+            window.location.href = lessonHref;
           }}
       >
         {/* Dark Header Section */}
