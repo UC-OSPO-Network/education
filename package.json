@@ -21,7 +21,8 @@
     "validate:lessons": "node scripts/validate-lessons.js",
     "validate:data": "node .github/scripts/validate-data.mjs",
     "validate:build": "node .github/scripts/validate-build.mjs",
-    "validate:links": "node .github/scripts/check-links.mjs"
+    "validate:links": "node .github/scripts/check-links.mjs",
+    "check:links": "node .github/scripts/check-links.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^4.4.0",

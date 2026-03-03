@@ -8,6 +8,8 @@ on:
     paths:
       - 'src/**'
       - 'public/**'
+      - 'scripts/**'
+      - 'keystatic.config.ts'
       - 'astro.config.mjs'
       - 'package*.json'
       - 'tsconfig.json'
@@ -25,6 +27,9 @@ jobs:
     steps:
       - name: Checkout PR branch
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -38,8 +43,15 @@ jobs:
       - name: Validate data source
         run: node .github/scripts/validate-data.mjs
 
-      - name: Validate lesson slugs and dependencies
-        run: npm run validate:lessons
+      - name: Validate lesson data quality
+        id: validate-lessons
+        continue-on-error: true
+        run: |
+          git fetch origin "${{ github.base_ref }}" --depth=1
+          git diff --name-only "origin/${{ github.base_ref }}...HEAD" > .github/changed-files.txt
+          npm run validate:lessons -- \
+            --changed-files .github/changed-files.txt \
+            --report-json .github/lesson-validation-report.json
 
       - name: Run Astro check
         run: npx astro check
@@ -51,45 +63,100 @@ jobs:
         run: node .github/scripts/validate-build.mjs
 
       - name: Check internal links
-        run: node .github/scripts/check-links.mjs
+        run: npm run check:links
 
-      - name: Comment PR with success
-        if: success()
+      # ============================================
+      # Step 6: Report lesson validation
+      # ============================================
+      - name: Comment PR with lesson validation results
+        if: always()
         uses: actions/github-script@v7
         with:
           script: |
-            const body = `## ✅ All PR checks passed!
+            const fs = require('fs');
+            const marker = '<!-- lesson-validation-report -->';
+            const reportPath = '.github/lesson-validation-report.json';
 
-            | Check | Status |
-            |-------|--------|
-            | 🔍 TypeScript check | ✅ Pass |
-            | 🏗️ Build | ✅ Pass |
+            let report = null;
+            if (fs.existsSync(reportPath)) {
+              try {
+                report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+              } catch (error) {
+                if (typeof core?.warning === 'function') {
+                  core.warning(`Could not parse lesson validation report: ${error.message}`);
+                } else {
+                  console.warn(`Could not parse lesson validation report: ${error.message}`);
+                }
+              }
+            }
 
-            The site builds successfully and all active validation checks passed.`;
+            const summary = report?.summary || {};
+            const status = report?.status === 'pass' ? '✅ Pass' : '❌ Fail';
+            const mode = report?.mode || 'unavailable';
 
-            github.rest.issues.createComment({
+            const blockingLines = (report?.blockingErrors || [])
+              .slice(0, 10)
+              .map((issue) => `- \`${issue.file}\` - ${issue.message}`)
+              .join('\n');
+            const warningLines = (report?.warnings || [])
+              .slice(0, 10)
+              .map((issue) => `- \`${issue.file}\` - ${issue.message}`)
+              .join('\n');
+
+            const body = [
+              marker,
+              '## Lesson Validation Report',
+              '',
+              '| Metric | Value |',
+              '|---|---|',
+              `| Status | ${status} |`,
+              `| Mode | \`${mode}\` |`,
+              `| Lessons checked | ${summary.lessonsChecked ?? 0} |`,
+              `| Changed lesson files | ${summary.changedLessonFiles ?? 0} |`,
+              `| Scoped lessons | ${summary.scopedLessons ?? 0} |`,
+              `| URL checks run | ${summary.urlChecksRun ?? 0} |`,
+              `| Blocking errors | ${summary.blockingErrors ?? 0} |`,
+              `| Warnings | ${summary.warnings ?? 0} |`,
+              '',
+              '### Blocking Errors (top 10)',
+              blockingLines || 'None',
+              '',
+              '### Warnings (top 10)',
+              warningLines || 'None',
+              '',
+              `Workflow logs: ${context.payload.repository.html_url}/actions/runs/${context.runId}`,
+            ].join('\n');
+
+            const { data: comments } = await github.rest.issues.listComments({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: body
-            })
+              per_page: 100,
+            });
 
-      - name: Comment PR with failure
-        if: failure()
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const body = `## ❌ PR checks failed
+            const existingComment = comments.find((comment) =>
+              comment.user?.login === 'github-actions[bot]' &&
+              comment.body &&
+              comment.body.includes(marker)
+            );
 
-            One or more validation checks failed. Please review the [workflow logs](${context.payload.repository.html_url}/actions/runs/${context.runId}) to see what went wrong.
+            if (existingComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existingComment.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body,
+              });
+            }
 
-            Common issues:
-            - 🔍 **TypeScript check**: Type errors in code
-            - 🏗️ **Build**: Build process failed`;
-
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: body
-            })
+      - name: Enforce lesson validation report status
+        if: always()
+        run: |
+          node -e "const fs=require('fs'); const reportPath='.github/lesson-validation-report.json'; if(!fs.existsSync(reportPath)){console.error('Lesson validation did not produce a report (script may have crashed)'); process.exit(1);} const report=JSON.parse(fs.readFileSync(reportPath,'utf8')); if(report.status!=='pass'){console.error('Lesson validation gate failed'); process.exit(1);} console.log('Lesson validation gate passed');"

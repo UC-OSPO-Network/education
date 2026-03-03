@@ -21,8 +21,6 @@ const educationalLevelOptions = [
   { label: 'Beginner', value: 'Beginner' },
   { label: 'Intermediate', value: 'Intermediate' },
   { label: 'Advanced', value: 'Advanced' },
-  { label: 'Mixed', value: 'Mixed' },
-  { label: 'Unknown', value: 'Unknown' },
 ] as const;
 
 const keepStatusOptions = [
@@ -90,7 +88,7 @@ export default config({
         educationalLevel: fields.select({
           label: 'Skill level (educationalLevel)',
           options: educationalLevelOptions,
-          defaultValue: 'Unknown',
+          defaultValue: 'Beginner',
         }),
         ossRole: fields.text({
           label: 'OSS role(s)',
