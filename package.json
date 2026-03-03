@@ -11,6 +11,7 @@
     "migrate:depends-on": "node scripts/migrate-depends-on.js",
     "sync:lesson-slugs": "node scripts/sync-lesson-slugs.js",
     "normalize:lessons": "node scripts/normalize-lessons.js",
+    "audit:diff": "node scripts/audit-sheet-json-diff.js",
     "audit:a11y": "node scripts/accessibility/audit.cjs",
     "enhance:phase1": "node scripts/run-phase1.js",
     "enhance:time": "node scripts/estimate-time-required.js",

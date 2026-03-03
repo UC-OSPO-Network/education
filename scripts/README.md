@@ -42,6 +42,9 @@ This runs all 3 Phase 1 scripts and merges the output:
 ### Run Individual Scripts
 
 ```bash
+# Audit current Google Sheets rows against JSON lesson files
+npm run audit:diff
+
 # Generate unique slugs and @id URLs (fast)
 npm run enhance:slugs
 
@@ -56,6 +59,30 @@ npm run enhance:metadata
 
 # Merge all records into a single master CSV
 npm run enhance:merge
+```
+
+### Audit Sheet ↔ JSON Drift
+
+```bash
+npm run audit:diff
+```
+
+What it does:
+- fetches the current public Google Sheets lesson inventory
+- falls back to the latest backup in `scripts/output/backups/` if fetch fails
+- compares Sheet lessons against `src/content/lessons/*.json`
+- reports lessons missing on either side
+- reports raw field mismatches for key metadata fields
+- reports normalization/default-only differences separately to reduce noise
+
+Optional usage:
+
+```bash
+# Use the latest backup only (skip network)
+node scripts/audit-sheet-json-diff.js --use-backup-only
+
+# Save the Markdown report to a file
+node scripts/audit-sheet-json-diff.js --output /tmp/sheets-json-diff.md
 ```
 
 ## Output
