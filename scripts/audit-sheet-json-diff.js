@@ -288,6 +288,50 @@ function renderDuplicateList(duplicates) {
   );
 }
 
+function classifyNormalizationDifference(mismatch) {
+  if (
+    mismatch.field === 'learnerCategory' &&
+    mismatch.sheetRaw === 'Maintaining and Sustaining Software' &&
+    mismatch.jsonRaw === 'Maintaining & Sustaining Software'
+  ) {
+    return 'learnerCategory normalized from "Maintaining and Sustaining Software" to "Maintaining & Sustaining Software"';
+  }
+
+  if (
+    mismatch.field === 'learnerCategory' &&
+    mismatch.sheetRaw === 'Building Inclusive Communities' &&
+    mismatch.jsonRaw === 'Building Community'
+  ) {
+    return 'learnerCategory normalized from "Building Inclusive Communities" to "Building Community"';
+  }
+
+  if (
+    mismatch.field === 'educationalLevel' &&
+    mismatch.sheetRaw === '' &&
+    mismatch.jsonRaw === 'Unknown'
+  ) {
+    return 'educationalLevel blank in Sheet but defaulted to "Unknown" in JSON';
+  }
+
+  return `${mismatch.field} differs only after normalization/default handling`;
+}
+
+function renderNormalizationSummary(mismatches) {
+  if (mismatches.length === 0) {
+    return ['- None'];
+  }
+
+  const buckets = new Map();
+  for (const mismatch of mismatches) {
+    const label = classifyNormalizationDifference(mismatch);
+    buckets.set(label, (buckets.get(label) || 0) + 1);
+  }
+
+  return Array.from(buckets.entries())
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([label, count]) => `- ${count} lesson(s): ${label}`);
+}
+
 function renderMissingList(items, formatter) {
   if (items.length === 0) {
     return ['- None'];
@@ -349,7 +393,7 @@ function buildReport({
     ...renderMismatchList(rawFieldMismatches),
     '',
     '## Normalization / Default Differences',
-    ...renderMismatchList(normalizedOnlyDifferences),
+    ...renderNormalizationSummary(normalizedOnlyDifferences),
     '',
     '## Duplicate / Ambiguous Match Issues',
     ...renderDuplicateList(duplicates),
