@@ -1,0 +1,33 @@
+name: Weekly Lesson URL Check
+
+on:
+  schedule:
+    # Runs at 00:00 every Monday
+    - cron: '0 0 * * 1'
+  workflow_dispatch: # Allows you to run it manually from the Actions tab
+
+jobs:
+  check-urls:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18' # Ensure Node 18+ for native fetch
+
+      - name: Run URL Checker Script
+        run: node scripts/check-lesson-urls.mjs
+
+      - name: Publish Report to Job Summary
+        run: cat scripts/output/url-report.md >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload Report Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: url-audit-report
+          path: scripts/output/url-report.md # Updated path
+          retention-days: 7
