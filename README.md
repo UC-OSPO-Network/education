@@ -59,6 +59,27 @@ npm run build
 
 These checks run automatically on pull requests via GitHub Actions.
 
+### Accessibility Scanning
+
+The repository now includes an accessibility workflow at `.github/workflows/accessibility.yml`.
+It builds the Astro site, serves the static output under `/education/` to match production, and runs `a11ywatch/github-action@v2.1.10` against that local preview.
+
+- Runs automatically on pull requests that change site code, every Monday at 14:00 UTC, and manually from the Actions tab
+- Uploads A11yWatch artifacts plus the local preview server log for debugging
+- Uses `htmlcs,axe` runners with warnings ignored for smaller reports
+- Leaves CI in report-only mode by default
+
+To turn on blocking CI failures, add a repository variable named `A11Y_FAIL_ERRORS_COUNT` with a value greater than `0`.
+That threshold is passed to the workflow as `FAIL_ERRORS_COUNT` so the team can tune enforcement without another code change.
+
+For a local approximation of the same flow, run:
+
+```bash
+npm run a11y:local
+```
+
+That command builds the site, serves the generated files under `/education/`, and runs the repo's Puppeteer + axe audit against the local preview. If port `4321` is already in use, set `A11Y_PORT` first, for example `A11Y_PORT=4322 npm run a11y:local`.
+
 ### Run Locally
 
 To run the project locally in development mode:
