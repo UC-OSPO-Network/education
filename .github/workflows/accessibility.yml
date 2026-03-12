@@ -1,0 +1,102 @@
+name: Accessibility Scan
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'astro.config.mjs'
+      - 'package*.json'
+      - '.github/workflows/accessibility.yml'
+  schedule:
+    - cron: '0 14 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: accessibility-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  a11ywatch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      DEFAULT_RUNNERS: htmlcs,axe
+      PAGEMIND_IGNORE_WARNINGS: true
+      AI_DISABLED: true
+      A11Y_PORT: 4321
+      A11Y_BASE_URL: http://127.0.0.1:4321/education/
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Prepare static preview root
+        run: |
+          mkdir -p "$RUNNER_TEMP/a11y-preview/education"
+          cp -R dist/. "$RUNNER_TEMP/a11y-preview/education/"
+
+      - name: Start static preview server
+        run: |
+          python3 -m http.server "$A11Y_PORT" \
+            --bind 127.0.0.1 \
+            --directory "$RUNNER_TEMP/a11y-preview" \
+            > "$RUNNER_TEMP/a11y-preview.log" 2>&1 &
+          echo $! > "$RUNNER_TEMP/a11y-preview.pid"
+
+      - name: Wait for preview server
+        run: |
+          for attempt in $(seq 1 30); do
+            if curl -fsS "$A11Y_BASE_URL" > /dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          cat "$RUNNER_TEMP/a11y-preview.log"
+          exit 1
+
+      - name: Run A11yWatch scan
+        uses: a11ywatch/github-action@v2.1.10
+        with:
+          WEBSITE_URL: ${{ env.A11Y_BASE_URL }}
+          SITE_WIDE: true
+          SUBDOMAINS: false
+          TLD: false
+          SITEMAP: true
+          FAIL_ERRORS_COUNT: ${{ vars.A11Y_FAIL_ERRORS_COUNT || '0' }}
+          LIST: true
+          FIX: false
+          UPGRADE: false
+          UPLOAD: true
+
+      - name: Upload preview server log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a11y-preview-log
+          path: ${{ runner.temp }}/a11y-preview.log
+          retention-days: 7
+
+      - name: Stop static preview server
+        if: always()
+        run: |
+          if [ -f "$RUNNER_TEMP/a11y-preview.pid" ]; then
+            kill "$(cat "$RUNNER_TEMP/a11y-preview.pid")" || true
+          fi

@@ -13,6 +13,7 @@
     "normalize:lessons": "node scripts/normalize-lessons.js",
     "audit:diff": "node scripts/audit-sheet-json-diff.js",
     "audit:a11y": "node scripts/accessibility/audit.cjs",
+    "a11y:local": "node scripts/accessibility/run-local-a11y.mjs",
     "audit:oss-roles": "node scripts/audit-oss-roles.mjs",
     "standardize:oss-roles": "node scripts/standardize-oss-roles.mjs",
     "enhance:phase1": "node scripts/run-phase1.js",
