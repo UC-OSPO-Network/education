@@ -75,10 +75,10 @@ export default function LessonCard({ lesson, pathwayIcon, lessonIndex = {} }) {
           style={{
             position: 'relative',
             background:
-                'linear-gradient(180deg, #2A2A2A 0%, #2A2A2A 35%, #3A3A3A 35%, #3A3A3A 100%)',
+                'linear-gradient(180deg, var(--bg-surface-strong) 0%, var(--bg-surface-strong) 35%, var(--bg-surface) 35%, var(--bg-surface) 100%)',
             borderRadius: '16px',
             overflow: 'hidden',
-            border: '2px solid #3A3A3A',
+            border: '1px solid var(--border-light)',
             transition: 'all 0.3s ease',
             cursor: 'pointer',
             height: '100%',
@@ -88,13 +88,13 @@ export default function LessonCard({ lesson, pathwayIcon, lessonIndex = {} }) {
             boxSizing: 'border-box'
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = 'var(--uc-light-blue)';
+            e.currentTarget.style.borderColor = 'var(--border-strong)';
             e.currentTarget.style.transform = 'translateY(-4px)';
             e.currentTarget.style.boxShadow =
-                '0 8px 24px rgba(18, 149, 216, 0.4)';
+                '0 12px 28px rgba(18, 24, 33, 0.16)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = '#3A3A3A';
+            e.currentTarget.style.borderColor = 'var(--border-light)';
             e.currentTarget.style.transform = 'translateY(0)';
             e.currentTarget.style.boxShadow = 'none';
           }}
@@ -144,7 +144,7 @@ export default function LessonCard({ lesson, pathwayIcon, lessonIndex = {} }) {
                   margin: 0,
                   fontSize: '1.2rem',
                   fontWeight: '700',
-                  color: '#FFFFFF',
+                  color: 'var(--text-primary)',
                   lineHeight: '1.4',
                   flex: 1,
                   minWidth: 0,
@@ -178,7 +178,7 @@ export default function LessonCard({ lesson, pathwayIcon, lessonIndex = {} }) {
               style={{
                 margin: 0,
                 fontSize: '0.95rem',
-                color: '#D4D4D8',
+                color: 'var(--text-secondary)',
                 lineHeight: '1.6',
                 flex: 1,
                 overflowWrap: 'anywhere',
@@ -194,7 +194,7 @@ export default function LessonCard({ lesson, pathwayIcon, lessonIndex = {} }) {
                     style={{
                       margin: 0,
                       fontSize: '0.82rem',
-                      color: '#9CA3AF',
+                      color: 'var(--text-secondary)',
                       textTransform: 'uppercase',
                       letterSpacing: '0.04em',
                       fontWeight: '600'
@@ -292,9 +292,9 @@ export default function LessonCard({ lesson, pathwayIcon, lessonIndex = {} }) {
                               key={idx}
                               style={{
                                 padding: '0.35rem 0.85rem',
-                                background: 'rgba(18, 149, 216, 0.15)',
-                                border: '1px solid rgba(18, 149, 216, 0.3)',
-                                color: '#72CDF4',
+                                background: 'rgba(0, 114, 163, 0.08)',
+                                border: '1px solid rgba(0, 114, 163, 0.18)',
+                                color: 'var(--uc-blue)',
                                 borderRadius: '16px',
                                 fontSize: '0.8rem',
                                 fontWeight: '600',
@@ -335,7 +335,7 @@ export default function LessonCard({ lesson, pathwayIcon, lessonIndex = {} }) {
                     style={{
                       margin: 0,
                       fontSize: '0.8rem',
-                      color: '#9CA3AF',
+                      color: 'var(--text-secondary)',
                       fontStyle: 'italic'
                     }}
                 >

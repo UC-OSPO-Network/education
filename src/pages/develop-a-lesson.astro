@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <style>
   .page-wrapper {
-    background-color: var(--uc-dark-gray);
+    background-color: var(--bg-primary);
     min-height: 100vh;
   }
 
@@ -13,27 +13,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     padding: 4rem 2rem 3rem;
     max-width: 900px;
     margin: 0 auto;
-    background-color: var(--uc-dark-gray);
+    background-color: var(--bg-primary);
   }
 
   .hero h1 {
     font-size: 2.75rem;
     font-weight: 700;
-    color: var(--uc-white);
+    color: var(--text-primary);
     margin-bottom: 1.5rem;
     line-height: 1.2;
   }
 
   .hero .subtitle {
     font-size: 1.3rem;
-    color: var(--uc-light-blue);
+    color: var(--text-secondary);
     margin-bottom: 2rem;
     font-weight: 400;
   }
 
   .hero .tagline {
     font-size: 1.1rem;
-    color: var(--uc-white);
+    color: var(--text-secondary);
     max-width: 700px;
     margin: 0 auto 2rem;
     line-height: 1.6;
@@ -83,7 +83,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .detail-card {
-    background: var(--uc-med-gray);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-light);
     border-left: 4px solid var(--uc-blue);
     padding: 1.5rem;
     border-radius: 8px;
@@ -97,13 +98,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .detail-card p {
-    color: var(--uc-white);
+    color: var(--text-primary);
     line-height: 1.6;
     margin: 0;
   }
 
   .detail-card ul {
-    color: var(--uc-white);
+    color: var(--text-primary);
     line-height: 1.8;
     margin: 0.5rem 0 0 0;
     padding-left: 1.25rem;
@@ -117,7 +118,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .benefit-item {
-    background: var(--uc-med-gray);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-light);
     padding: 1.5rem;
     border-radius: 8px;
     border-top: 3px solid var(--uc-gold);
@@ -137,14 +139,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .benefit-item p {
-    color: var(--uc-white);
+    color: var(--text-secondary);
     font-size: 0.95rem;
     line-height: 1.5;
     margin: 0;
   }
 
   .gaps-list {
-    background: var(--uc-med-gray);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-light);
     padding: 2rem;
     border-radius: 8px;
     margin: 2rem 0;
@@ -168,7 +171,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .gap-item p {
-    color: var(--uc-white);
+    color: var(--text-primary);
     line-height: 1.6;
     margin: 0 0 0.5rem 0;
   }
@@ -227,10 +230,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .faq-item {
-    background: var(--uc-med-gray);
+    background: var(--bg-surface);
     padding: 1.5rem;
     border-radius: 8px;
     margin-bottom: 1rem;
+    border: 1px solid var(--border-light);
     border-left: 4px solid var(--uc-blue);
   }
 
@@ -242,7 +246,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .faq-answer {
-    color: var(--uc-white);
+    color: var(--text-primary);
     line-height: 1.6;
     margin: 0;
   }
@@ -372,7 +376,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
 
     <h2 class="section-title">Identified Lesson Gaps</h2>
-    <p style="text-align: center; color: var(--uc-white); margin-bottom: 2rem;">
+    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">
       We've identified these high-priority topics, but we welcome creative proposals that address other critical needs.
     </p>
 
