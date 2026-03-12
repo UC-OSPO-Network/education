@@ -67,9 +67,9 @@ export default function StackedPathways() {
             }}
           >
             <div style={{
-              background: isExpanded ? '#D4D4D8' : '#2A2A2A',
+              background: isExpanded ? 'var(--bg-surface-strong)' : 'var(--bg-surface)',
               borderRadius: '24px',
-              border: `2px solid ${isExpanded ? 'transparent' : '#3A3A3A'}`,
+              border: `2px solid ${isExpanded ? 'transparent' : 'var(--border-light)'}`,
               padding: isExpanded ? '2rem' : '1.5rem',
               boxShadow: isExpanded
                 ? '0 20px 40px rgba(0, 0, 0, 0.6)'
@@ -93,7 +93,7 @@ export default function StackedPathways() {
                     margin: 0,
                     fontSize: isExpanded ? '1.3rem' : '1.1rem',
                     fontWeight: '700',
-                    color: isExpanded ? '#1E1E1E' : '#FFFFFF',
+                    color: 'var(--text-primary)',
                     transition: 'all 0.3s ease',
                     letterSpacing: '0.5px'
                   }}>
@@ -103,7 +103,7 @@ export default function StackedPathways() {
                     <p style={{
                       margin: '0.75rem 0 0 0',
                       fontSize: '1rem',
-                      color: '#3A3A3A',
+                      color: 'var(--text-secondary)',
                       fontStyle: 'italic',
                       lineHeight: '1.5',
                       animation: 'fadeIn 0.3s ease'
