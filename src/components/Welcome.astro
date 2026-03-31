@@ -52,10 +52,10 @@ import background from '../assets/background.svg';
 		filter: blur(100px);
 	}
 
-	#container {
-		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
-		height: 100%;
-	}
+		#container {
+			font-family: var(--font-sans);
+			height: 100%;
+		}
 
 	main {
 		height: 100%;
@@ -113,12 +113,10 @@ import background from '../assets/background.svg';
 		box-shadow: none;
 	}
 
-	pre {
-		font-family:
-			ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono',
-			monospace;
-		font-weight: normal;
-		background: linear-gradient(14deg, #d83333 0%, #f041ff 100%);
+		pre {
+			font-family: var(--font-mono);
+			font-weight: normal;
+			background: linear-gradient(14deg, #d83333 0%, #f041ff 100%);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
