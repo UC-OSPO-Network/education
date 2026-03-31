@@ -23,15 +23,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  a11ywatch:
+  audit:
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    env:
-      DEFAULT_RUNNERS: htmlcs,axe
-      PAGEMIND_IGNORE_WARNINGS: true
-      AI_DISABLED: true
-      A11Y_PORT: 4321
-      A11Y_BASE_URL: http://127.0.0.1:4321/education/
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -45,58 +39,40 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build site
-        run: npm run build
+      - name: Run local accessibility audit
+        env:
+          A11Y_FAIL_ERRORS_COUNT: ${{ vars.A11Y_FAIL_ERRORS_COUNT || '0' }}
+        run: npm run a11y:local
 
-      - name: Prepare static preview root
+      - name: Publish accessibility summary
+        if: always()
         run: |
-          mkdir -p "$RUNNER_TEMP/a11y-preview/education"
-          cp -R dist/. "$RUNNER_TEMP/a11y-preview/education/"
+          node -e '
+            const fs = require("fs");
+            const reportPath = "scripts/accessibility/audit-results.json";
+            if (!fs.existsSync(reportPath)) {
+              console.log("## Accessibility Audit");
+              console.log("");
+              console.log("No audit results were generated.");
+              process.exit(0);
+            }
+            const results = JSON.parse(fs.readFileSync(reportPath, "utf8"));
+            const total = results.reduce((sum, result) => sum + (result.violations?.length || 0), 0);
+            console.log("## Accessibility Audit");
+            console.log("");
+            console.log("| Page | Violations |");
+            console.log("|---|---:|");
+            for (const result of results) {
+              console.log(`| ${result.page} | ${result.violations?.length || 0} |`);
+            }
+            console.log(`| Total | ${total} |`);
+          ' >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Start static preview server
-        run: |
-          python3 -m http.server "$A11Y_PORT" \
-            --bind 127.0.0.1 \
-            --directory "$RUNNER_TEMP/a11y-preview" \
-            > "$RUNNER_TEMP/a11y-preview.log" 2>&1 &
-          echo $! > "$RUNNER_TEMP/a11y-preview.pid"
-
-      - name: Wait for preview server
-        run: |
-          for attempt in $(seq 1 30); do
-            if curl -fsS "$A11Y_BASE_URL" > /dev/null; then
-              exit 0
-            fi
-            sleep 2
-          done
-          cat "$RUNNER_TEMP/a11y-preview.log"
-          exit 1
-
-      - name: Run A11yWatch scan
-        uses: a11ywatch/github-action@v2.1.10
-        with:
-          WEBSITE_URL: ${{ env.A11Y_BASE_URL }}
-          SITE_WIDE: true
-          SUBDOMAINS: false
-          TLD: false
-          SITEMAP: true
-          FAIL_ERRORS_COUNT: ${{ vars.A11Y_FAIL_ERRORS_COUNT || '0' }}
-          LIST: true
-          FIX: false
-          UPGRADE: false
-          UPLOAD: true
-
-      - name: Upload preview server log
+      - name: Upload accessibility results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: a11y-preview-log
-          path: ${{ runner.temp }}/a11y-preview.log
+          name: accessibility-audit-results
+          path: scripts/accessibility/audit-results.json
+          if-no-files-found: warn
           retention-days: 7
-
-      - name: Stop static preview server
-        if: always()
-        run: |
-          if [ -f "$RUNNER_TEMP/a11y-preview.pid" ]; then
-            kill "$(cat "$RUNNER_TEMP/a11y-preview.pid")" || true
-          fi
