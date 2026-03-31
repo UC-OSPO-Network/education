@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <style>
   .page-wrapper {
-    background-color: var(--uc-dark-gray);
+    background-color: var(--bg-primary);
     min-height: 100vh;
   }
 
@@ -13,20 +13,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     padding: 4rem 2rem 3rem;
     max-width: 900px;
     margin: 0 auto;
-    background-color: var(--uc-dark-gray);
+    background-color: var(--bg-primary);
   }
 
   .hero h1 {
     font-size: 2.75rem;
     font-weight: 700;
-    color: var(--uc-white);
+    color: var(--text-primary);
     margin-bottom: 1.5rem;
     line-height: 1.2;
   }
 
   .hero .subtitle {
     font-size: 1.3rem;
-    color: var(--uc-light-blue);
+    color: var(--text-secondary);
     margin-bottom: 2rem;
     font-weight: 400;
     line-height: 1.6;
@@ -54,7 +54,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .feature-card {
-    background: var(--uc-med-gray);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-light);
     border-left: 4px solid var(--uc-blue);
     padding: 2rem;
     border-radius: 8px;
@@ -75,20 +76,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .feature-card p {
-    color: var(--uc-white);
+    color: var(--text-primary);
     line-height: 1.6;
     margin: 0;
   }
 
   .feature-card ul {
-    color: var(--uc-white);
+    color: var(--text-primary);
     line-height: 1.8;
     margin: 1rem 0 0 0;
     padding-left: 1.5rem;
   }
 
   .use-cases {
-    background: var(--uc-med-gray);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-light);
     padding: 2rem;
     border-radius: 8px;
     margin: 2rem 0;
@@ -112,13 +114,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .use-case p {
-    color: var(--uc-white);
+    color: var(--text-primary);
     line-height: 1.6;
     margin: 0 0 0.75rem 0;
   }
 
   .use-case .pathways-list {
-    color: var(--uc-light-blue);
+    color: var(--text-secondary);
     font-style: italic;
     font-size: 0.95rem;
   }
@@ -170,20 +172,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .cta-section {
     text-align: center;
     padding: 3rem 2rem;
-    background: var(--uc-med-gray);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-light);
     border-radius: 12px;
     margin: 3rem 0;
   }
 
   .cta-section h2 {
-    color: var(--uc-white);
+    color: var(--text-primary);
     font-size: 2rem;
     margin-bottom: 1rem;
     font-weight: 700;
   }
 
   .cta-section p {
-    color: var(--uc-light-blue);
+    color: var(--text-secondary);
     font-size: 1.1rem;
     margin-bottom: 2rem;
   }
@@ -211,14 +214,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .cta-button.secondary {
-    background: transparent;
-    color: var(--uc-white);
-    border: 2px solid var(--uc-white);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 2px solid var(--border-strong);
   }
 
   .cta-button.secondary:hover {
-    background: var(--uc-white);
-    color: var(--uc-dark-gray);
+    background: var(--bg-surface-strong);
+    color: var(--text-primary);
   }
 
   .info-box {
@@ -237,13 +240,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .info-box p {
-    color: var(--uc-white);
+    color: var(--text-primary);
     line-height: 1.6;
     margin: 0;
   }
 
   .info-box ul {
-    color: var(--uc-white);
+    color: var(--text-primary);
     line-height: 1.8;
     margin: 0.5rem 0 0 0;
     padding-left: 1.5rem;
