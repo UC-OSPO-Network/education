@@ -249,19 +249,25 @@
 }
 
 .home-lesson-rail__progress {
-  width: min(26rem, 60%);
-  height: 2px;
-  margin: 0.35rem auto 0;
+  position: relative;
+  width: 100%;
+  height: 3px;
+  margin: 0.35rem 0 0;
   background: rgba(18, 24, 33, 0.18);
   border-radius: var(--radius-pill);
   overflow: hidden;
 }
 
 .home-lesson-rail__progress-thumb {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
   display: block;
   height: 100%;
   background: var(--text-primary);
   border-radius: inherit;
+  will-change: transform;
 }
 
 .home-lesson-card {
