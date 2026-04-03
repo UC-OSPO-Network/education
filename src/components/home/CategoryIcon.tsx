@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react';
 import {
   PuzzlePieceIcon,
   UserGroupIcon,
@@ -24,7 +25,7 @@ export default function CategoryIcon({
 
   const style = { width: size, height: size };
 
-  const iconMap: Record<CategoryIconName, JSX.Element> = {
+  const iconMap: Record<CategoryIconName, ReactElement> = {
     'getting-started': <PuzzlePieceIcon style={style} />,
     contributing:      <UserGroupIcon style={style} />,
     maintaining:       <WrenchScrewdriverIcon style={style} />,
