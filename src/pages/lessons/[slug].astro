@@ -225,8 +225,8 @@ const additionalMetadataEntries = Object.entries(lesson)
   }
 
   .section {
-    background: var(--uc-med-gray);
-    border: 2px solid var(--uc-border);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-light);
     border-radius: 14px;
     padding: 1.75rem;
     margin-bottom: 2rem;
@@ -235,7 +235,7 @@ const additionalMetadataEntries = Object.entries(lesson)
   .section h2 {
     margin: 0 0 1rem 0;
     font-size: 1.35rem;
-    color: var(--uc-white);
+    color: var(--text-primary);
   }
 
   .metadata-grid {
@@ -247,14 +247,14 @@ const additionalMetadataEntries = Object.entries(lesson)
   .meta-item {
     padding: 0.9rem 1rem;
     border-radius: 12px;
-    background: var(--uc-dark-gray);
-    border: 1px solid var(--uc-border);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
   }
 
   .meta-label {
     display: block;
     font-size: 0.82rem;
-    color: var(--uc-light-gray);
+    color: var(--text-secondary);
     margin-bottom: 0.35rem;
     letter-spacing: 0.4px;
     text-transform: uppercase;
@@ -262,9 +262,17 @@ const additionalMetadataEntries = Object.entries(lesson)
 
   .meta-value {
     display: block;
-    color: var(--uc-white);
+    color: var(--text-primary);
     font-weight: 600;
     word-break: break-word;
+  }
+
+  .meta-value a {
+    color: var(--uc-blue);
+  }
+
+  .meta-value a:hover {
+    color: var(--uc-dark-blue);
   }
 
   .related-grid {
@@ -275,8 +283,8 @@ const additionalMetadataEntries = Object.entries(lesson)
 
   .related-card {
     display: block;
-    background: var(--uc-dark-gray);
-    border: 1px solid var(--uc-border);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
     border-radius: 12px;
     padding: 1rem;
     text-decoration: none;
@@ -285,14 +293,14 @@ const additionalMetadataEntries = Object.entries(lesson)
 
   .related-card:hover {
     transform: translateY(-2px);
-    border-color: var(--uc-light-blue);
+    border-color: var(--border-strong);
     text-decoration: none;
   }
 
   .related-title {
     margin: 0 0 0.5rem 0;
     font-weight: 800;
-    color: var(--uc-white);
+    color: var(--text-primary);
     font-size: 1rem;
     line-height: 1.35;
   }
@@ -300,7 +308,7 @@ const additionalMetadataEntries = Object.entries(lesson)
   .related-meta {
     margin: 0;
     font-size: 0.9rem;
-    color: var(--uc-light-gray);
+    color: var(--text-secondary);
   }
 
   @media (max-width: 980px) {
@@ -419,7 +427,7 @@ const additionalMetadataEntries = Object.entries(lesson)
     <section class="section" aria-labelledby="related-lessons">
       <h2 id="related-lessons">Related lessons</h2>
       {relatedLessons.length === 0 ? (
-        <p style="margin: 0; color: var(--uc-light-gray);">
+        <p style="margin: 0; color: var(--text-secondary);">
           No related lessons found yet.
         </p>
       ) : (

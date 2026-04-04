@@ -126,17 +126,17 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
     <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem' }}>
       {isLoading ? (
         <div style={{ textAlign: 'center', padding: '4rem' }}>
-          <p style={{ color: 'var(--uc-white)', fontSize: '1.2rem' }}>Loading lessons...</p>
+          <p style={{ color: 'var(--text-primary)', fontSize: '1.2rem' }}>Loading lessons...</p>
         </div>
       ) : (
         <>
           {/* Filter Controls */}
           <div style={{
-            background: 'var(--uc-med-gray)',
+            background: 'var(--bg-surface)',
             padding: '1.5rem',
             borderRadius: '12px',
             marginBottom: '2rem',
-            border: '2px solid var(--uc-border)'
+            border: '1px solid var(--border-light)'
           }}>
             <div style={{
               display: 'grid',
@@ -146,7 +146,7 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
             }}>
               {/* Search */}
               <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--uc-white)', fontWeight: '600' }}>
+                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-primary)', fontWeight: '600' }}>
                   Search
                 </label>
                 <input
@@ -156,18 +156,18 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
                   placeholder="Search lessons..."
                   style={{
                     width: '100%',
-                    padding: '0.5rem',
-                    borderRadius: '4px',
-                    border: '1px solid var(--uc-border)',
-                    background: 'var(--uc-dark-gray)',
-                    color: 'var(--uc-white)'
+                    padding: '0.65rem 0.75rem',
+                    borderRadius: '8px',
+                    border: '1px solid var(--border-light)',
+                    background: 'var(--bg-primary)',
+                    color: 'var(--text-primary)'
                   }}
                 />
               </div>
 
               {/* OSS Role */}
               <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--uc-white)', fontWeight: '600' }}>
+                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-primary)', fontWeight: '600' }}>
                   OSS Role
                 </label>
                 <select
@@ -175,11 +175,11 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
                   onChange={(e) => handleFilterChange('ossRole', e.target.value)}
                   style={{
                     width: '100%',
-                    padding: '0.5rem',
-                    borderRadius: '4px',
-                    border: '1px solid var(--uc-border)',
-                    background: 'var(--uc-dark-gray)',
-                    color: 'var(--uc-white)'
+                    padding: '0.65rem 0.75rem',
+                    borderRadius: '8px',
+                    border: '1px solid var(--border-light)',
+                    background: 'var(--bg-primary)',
+                    color: 'var(--text-primary)'
                   }}
                 >
                   <option value="">All Roles</option>
@@ -191,7 +191,7 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
 
               {/* Skill Level */}
               <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--uc-white)', fontWeight: '600' }}>
+                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-primary)', fontWeight: '600' }}>
                   Skill Level
                 </label>
                 <select
@@ -199,11 +199,11 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
                   onChange={(e) => handleFilterChange('educationalLevel', e.target.value)}
                   style={{
                     width: '100%',
-                    padding: '0.5rem',
-                    borderRadius: '4px',
-                    border: '1px solid var(--uc-border)',
-                    background: 'var(--uc-dark-gray)',
-                    color: 'var(--uc-white)'
+                    padding: '0.65rem 0.75rem',
+                    borderRadius: '8px',
+                    border: '1px solid var(--border-light)',
+                    background: 'var(--bg-primary)',
+                    color: 'var(--text-primary)'
                   }}
                 >
                   <option value="">All Levels</option>
@@ -215,7 +215,7 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
 
               {/* Pathway */}
               <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--uc-white)', fontWeight: '600' }}>
+                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-primary)', fontWeight: '600' }}>
                   Pathway
                 </label>
                 <select
@@ -223,11 +223,11 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
                   onChange={(e) => handleFilterChange('learnerCategory', e.target.value)}
                   style={{
                     width: '100%',
-                    padding: '0.5rem',
-                    borderRadius: '4px',
-                    border: '1px solid var(--uc-border)',
-                    background: 'var(--uc-dark-gray)',
-                    color: 'var(--uc-white)'
+                    padding: '0.65rem 0.75rem',
+                    borderRadius: '8px',
+                    border: '1px solid var(--border-light)',
+                    background: 'var(--bg-primary)',
+                    color: 'var(--text-primary)'
                   }}
                 >
                   <option value="">All Pathways</option>
@@ -239,17 +239,17 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <p style={{ margin: 0, color: 'var(--uc-light-gray)' }}>
+              <p style={{ margin: 0, color: 'var(--text-secondary)' }}>
                 Showing {filteredLessons.length} of {lessons.length} lessons
               </p>
               <button
                 onClick={clearFilters}
                 style={{
-                  padding: '0.5rem 1rem',
-                  background: 'transparent',
-                  border: '1px solid var(--uc-gold)',
-                  color: 'var(--uc-gold)',
-                  borderRadius: '4px',
+                  padding: '0.65rem 1rem',
+                  background: 'var(--bg-primary)',
+                  border: '1px solid var(--border-strong)',
+                  color: 'var(--text-primary)',
+                  borderRadius: '8px',
                   cursor: 'pointer',
                   fontSize: '0.9rem',
                   fontWeight: '600'
@@ -271,7 +271,7 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
                 gridColumn: '1 / -1',
                 textAlign: 'center',
                 padding: '3rem',
-                color: 'var(--uc-light-gray)'
+                color: 'var(--text-secondary)'
               }}>
                 <p style={{ fontSize: '1.2rem' }}>No lessons found matching your criteria.</p>
                 <button

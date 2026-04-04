@@ -15,14 +15,14 @@ import { PATHWAYS } from '../types/lesson.ts';
   .hero h1 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--uc-white);
+    color: var(--text-primary);
     margin-bottom: 1rem;
     line-height: 1.2;
   }
 
   .hero .subtitle {
     font-size: 1.25rem;
-    color: var(--uc-light-gray);
+    color: var(--text-secondary);
     margin-bottom: 2rem;
   }
 
@@ -58,13 +58,14 @@ import { PATHWAYS } from '../types/lesson.ts';
   }
 
   .cta-secondary {
-    background: transparent;
-    border-color: var(--uc-light-blue);
-    color: var(--uc-white);
+    background: var(--bg-surface);
+    border-color: var(--border-strong);
+    color: var(--text-primary);
   }
 
   .cta-secondary:hover {
-    background: var(--uc-light-blue);
+    background: var(--bg-surface-strong);
+    color: var(--text-primary);
     transform: translateY(-2px);
     text-decoration: none;
   }
@@ -82,12 +83,12 @@ import { PATHWAYS } from '../types/lesson.ts';
 
   .section-header h2 {
     font-size: 2rem;
-    color: var(--uc-white);
+    color: var(--text-primary);
     margin-bottom: 0.5rem;
   }
 
   .section-header p {
-    color: var(--uc-light-gray);
+    color: var(--text-secondary);
     font-size: 1.1rem;
   }
 
@@ -106,20 +107,21 @@ import { PATHWAYS } from '../types/lesson.ts';
   .browse-button {
     display: inline-block;
     padding: 1rem 2.5rem;
-    background: var(--uc-blue);
-    color: var(--uc-white);
+    background: var(--bg-surface);
+    color: var(--text-primary);
     border-radius: 8px;
     font-size: 1.1rem;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
-    border: 2px solid var(--uc-light-blue);
+    border: 2px solid var(--border-strong);
   }
 
   .browse-button:hover {
-    background: var(--uc-light-blue);
+    background: var(--bg-surface-strong);
+    color: var(--text-primary);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(59, 126, 161, 0.4);
+    box-shadow: 0 4px 12px rgba(18, 24, 33, 0.16);
     text-decoration: none;
   }
 
