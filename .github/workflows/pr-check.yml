@@ -51,7 +51,8 @@ jobs:
           git diff --name-only "origin/${{ github.base_ref }}...HEAD" > .github/changed-files.txt
           npm run validate:lessons -- \
             --changed-files .github/changed-files.txt \
-            --report-json .github/lesson-validation-report.json
+            --report-json .github/lesson-validation-report.json \
+            --soft-fail-external
 
       - name: Run Astro check
         run: npx astro check
