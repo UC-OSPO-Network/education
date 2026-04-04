@@ -23,6 +23,40 @@ const educationalLevelOptions = [
   { label: 'Advanced', value: 'Advanced' },
 ] as const;
 
+const learningResourceTypeOptions = [
+  { label: 'Static Documents', value: 'Static Documents' },
+  { label: 'Short Training Courses', value: 'Short Training Courses' },
+  { label: 'Long Form Training', value: 'Long Form Training' },
+] as const;
+
+const languageOptions = [
+  { label: 'English (en)', value: 'en' },
+  { label: 'Bulgarian (bg)', value: 'bg' },
+  { label: 'Bengali (bn)', value: 'bn' },
+  { label: 'German (de)', value: 'de' },
+  { label: 'Greek (el)', value: 'el' },
+  { label: 'Spanish (es)', value: 'es' },
+  { label: 'Persian (fa)', value: 'fa' },
+  { label: 'French (fr)', value: 'fr' },
+  { label: 'Hindi (hi)', value: 'hi' },
+  { label: 'Hungarian (hu)', value: 'hu' },
+  { label: 'Indonesian (id)', value: 'id' },
+  { label: 'Italian (it)', value: 'it' },
+  { label: 'Japanese (ja)', value: 'ja' },
+  { label: 'Korean (ko)', value: 'ko' },
+  { label: 'Malay (ms)', value: 'ms' },
+  { label: 'Dutch (nl)', value: 'nl' },
+  { label: 'Polish (pl)', value: 'pl' },
+  { label: 'Portuguese (pt)', value: 'pt' },
+  { label: 'Romanian (ro)', value: 'ro' },
+  { label: 'Russian (ru)', value: 'ru' },
+  { label: 'Swahili (sw)', value: 'sw' },
+  { label: 'Tamil (ta)', value: 'ta' },
+  { label: 'Turkish (tr)', value: 'tr' },
+  { label: 'Chinese (Simplified) (zh-CN)', value: 'zh-CN' },
+  { label: 'Chinese (Traditional) (zh-TW)', value: 'zh-TW' },
+] as const;
+
 const keepStatusOptions = [
   { label: 'Keep', value: 'keep' },
   { label: 'Keep candidate', value: 'keepCandidate' },
@@ -95,12 +129,26 @@ export default config({
           description: 'Used for filtering and tag pills. Example: Contributor, Maintainer',
         }),
         subTopic: fields.text({ label: 'Sub-topic' }),
-        timeRequired: fields.text({ label: 'Time Required', description: 'e.g. 30 minutes, 2 hours' }),
-        learningResourceType: fields.text({ label: 'Learning resource type' }),
-        inLanguage: fields.array(fields.text({ label: 'Language' }), {
-          label: 'Languages',
-          itemLabel: (props) => props.value,
+        timeRequired: fields.text({
+          label: 'Time Required',
+          description: 'ISO 8601 duration format. e.g. PT15M (15 mins), PT1H (1 hour), PT1H30M',
         }),
+        learningResourceType: fields.select({
+          label: 'Learning resource type',
+          options: learningResourceTypeOptions,
+          defaultValue: 'Short Training Courses',
+        }),
+        inLanguage: fields.array(
+          fields.select({
+            label: 'Language',
+            options: languageOptions,
+            defaultValue: 'en',
+          }),
+          {
+            label: 'Languages',
+            itemLabel: (props) => props.value,
+          }
+        ),
         keywords: fields.array(fields.text({ label: 'Keyword' }), {
           label: 'Keywords',
           itemLabel: (props) => props.value,
