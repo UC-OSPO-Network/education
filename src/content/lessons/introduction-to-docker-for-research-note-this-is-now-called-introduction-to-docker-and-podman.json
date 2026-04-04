@@ -8,12 +8,12 @@
   "subTopic": "",
   "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Beginner",
-  "learningResourceType": "Tutorial",
+  "learningResourceType": "Short Training Courses",
   "author": "HSF Training Team",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Contributor, Maintainer",
   "inLanguage": [
-    "English"
+    "en"
   ],
   "keywords": [
     "Docker",
@@ -28,12 +28,12 @@
     "introduction-to-version-control-with-git"
   ],
   "prerequisiteNotes": "for bonus episode",
-  "learningObjectives": "Vey basic for someone with little to no knowledge about containers. Learn what a container is; how it differs from a VM",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Explain what containers are and how they differ from virtual machines\n- Demonstrate how to create and manage Docker containers\n- Apply Docker to ensure reproducibility in research software\n- Identify use cases for containerization in scientific computing\n- Create Docker images for software development and deployment",
   "ospoRelevance": "Moderate",
   "abstract": "This lesson introduces Docker, explaining how to create, manage, and share containerized applications. It covers the basics of Docker, its use in reproducible research, and how to create Docker images for software development.",
   "dateCreated": "2020-10-01T09:00:00+00:00",
   "dateModified": "2023-03-15T14:40:12+00:00",
-  "timeRequired": "",
+  "timeRequired": "PT6M",
   "about": "",
   "accessibilitySummary": "",
   "audience": "Researchers, Software Developers, HPC Engineers",

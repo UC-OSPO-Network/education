@@ -8,12 +8,12 @@
   "subTopic": "",
   "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Intermediate",
-  "learningResourceType": "Guide",
+  "learningResourceType": "Static Documents",
   "author": "The Turing Way Team",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Contributor, Maintainer",
   "inLanguage": [
-    "English"
+    "en"
   ],
   "keywords": [
     "reproducible research",
@@ -22,14 +22,16 @@
     "open science"
   ],
   "sortingId": "25",
-  "dependsOn": [],
+  "dependsOn": [
+    "No programming experience needed.  It would be best for a student who has experience with research papers and research projects and wants to detailed understanding of terms and concepts, but that is not necessary."
+  ],
   "prerequisiteNotes": "No programming experience needed. It would be best for a student who has experience with research papers and research projects and wants to detailed understanding of terms and concepts, but that is not necessary",
-  "learningObjectives": "Extremely comprehensive with detailed explanations on concepts related to Research Code, Data, LLM, Hardware.  It is not a class.  This would be useful as a resource for self sturdy for someone interested in get a overview of Research and  all aspects.  The examples illustrate the concepts but are detailed coding examples.  Students learn why Reproducible Research is important, policy issues around Reproducible Research, detailed definitions that are finely  parsed for different ascpects of research, use of git, licensing/IP discussions, research ethics, setting up pojects.\nThere are exercise using code provided for the class.",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the principles and importance of reproducible research\n- Apply best practices for data management and version control in research\n- Demonstrate how to use Git and other tools to ensure research reproducibility\n- Identify strategies for documenting research workflows and methodologies\n- Recognize ethical considerations in reproducible research practices",
   "ospoRelevance": "High",
   "abstract": "This lesson introduces the concept of reproducible research, explaining best practices and tools to ensure that scientific results can be replicated by others.",
   "dateCreated": "2020-03-01T09:00:00+00:00",
   "dateModified": "2023-06-20T14:40:12+00:00",
-  "timeRequired": "",
+  "timeRequired": "PT2M",
   "about": "",
   "accessibilitySummary": "",
   "audience": "Researchers, Open Science Contributors, Software Developers",

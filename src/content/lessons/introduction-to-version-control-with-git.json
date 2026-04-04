@@ -4,16 +4,16 @@
   "keepStatus": "drop",
   "description": "",
   "url": "https://ucdavisdatalab.github.io/workshop_introduction_to_version_control/chapters/index.html",
-  "author": "",
-  "license": "",
+  "author": "Carl Stahmer",
+  "license": "CC-BY-NC-SA-4.0",
   "learnerCategory": "",
-  "educationalLevel": "Unknown",
+  "educationalLevel": "Beginner",
   "ossRole": "",
   "subTopic": "",
-  "timeRequired": "",
-  "learningResourceType": "",
+  "timeRequired": "PT5M",
+  "learningResourceType": "Short Training Courses",
   "inLanguage": [
-    "English"
+    "en"
   ],
   "keywords": [],
   "topic": "Git/Beg. VCS",

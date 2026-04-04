@@ -7,12 +7,14 @@
   "author": "",
   "license": "",
   "learnerCategory": "Building Community",
-  "educationalLevel": "Unknown",
+  "educationalLevel": "Beginner",
   "ossRole": "",
   "subTopic": "",
   "timeRequired": "",
-  "learningResourceType": "",
-  "inLanguage": [],
+  "learningResourceType": "Short Training Courses",
+  "inLanguage": [
+    "en"
+  ],
   "keywords": [],
   "topic": "Packaging",
   "sortingId": "",

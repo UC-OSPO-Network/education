@@ -8,12 +8,12 @@
   "subTopic": "",
   "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Intermediate",
-  "learningResourceType": "Tutorial",
+  "learningResourceType": "Short Training Courses",
   "author": "Intersect Team, intersect@training.org",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Maintainer, Contributor",
   "inLanguage": [
-    "English"
+    "en"
   ],
   "keywords": [
     "testing",
@@ -26,12 +26,12 @@
     "intermediate-python"
   ],
   "prerequisiteNotes": "",
-  "learningObjectives": "Identify the purpose and benefits of testing in software development.\nDescribe different types of tests (e.g., unit tests, integration tests, functional tests).\nRecognize common testing frameworks and tools (e.g., pytest, unittest).\nList best practices for writing clear, maintainable tests.\nIdentify how to run tests locally and in automated environments.\nDescribe how testing fits into continuous integration workflows.\nRecognize the role of testing in improving software quality and sustainability.",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Identify the purpose and benefits of testing in software development\n- Describe different types of tests (unit tests, integration tests, functional tests)\n- Apply testing frameworks like pytest to write and run tests\n- Demonstrate test-driven development (TDD) practices in Python\n- Implement testing strategies that integrate with continuous integration workflows",
   "ospoRelevance": "Moderate",
   "abstract": "This tutorial introduces software testing, focusing on unit testing and test-driven development (TDD) in Python. It explains how to write tests, run them, and integrate them into the development process.",
   "dateCreated": "2023-02-18T09:22:13+00:00",
   "dateModified": "2023-05-25T14:35:12+00:00",
-  "timeRequired": "",
+  "timeRequired": "PT5M",
   "about": "",
   "accessibilitySummary": "",
   "audience": "Software Developers, PhD Students, Open Source Contributors",
