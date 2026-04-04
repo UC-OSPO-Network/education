@@ -8,12 +8,12 @@
   "subTopic": "",
   "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Intermediate",
-  "learningResourceType": "Tutorial",
+  "learningResourceType": "Short Training Courses",
   "author": "HSF Training Team",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Maintainer, Contributor",
   "inLanguage": [
-    "English"
+    "en"
   ],
   "keywords": [
     "CI/CD",
@@ -29,12 +29,12 @@
     "unit-testing-and-tdd-in-python"
   ],
   "prerequisiteNotes": "",
-  "learningObjectives": "",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the principles of CI/CD in the context of research software development\n- Configure GitLab CI pipelines to automate testing and deployment\n- Apply CI/CD practices to improve research software quality and reproducibility\n- Demonstrate how to integrate automated testing into research workflows\n- Identify best practices for CI/CD in scientific computing environments",
   "ospoRelevance": "Moderate",
   "abstract": "This lesson introduces Continuous Integration and Continuous Delivery (CI/CD) practices with a focus on research software. It covers tools such as GitLab CI and explains how to automate testing and deployment.",
   "dateCreated": "2020-11-01T09:00:00+00:00",
   "dateModified": "2023-01-15T14:20:12+00:00",
-  "timeRequired": "",
+  "timeRequired": "PT9M",
   "about": "",
   "accessibilitySummary": "",
   "audience": "Researchers, Software Developers, HPC Engineers",

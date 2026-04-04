@@ -8,12 +8,12 @@
   "subTopic": "",
   "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Intermediate",
-  "learningResourceType": "Tutorial",
+  "learningResourceType": "Short Training Courses",
   "author": "Intersect Team, intersect@training.org",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Contributor, Maintainer",
   "inLanguage": [
-    "English"
+    "en"
   ],
   "keywords": [
     "Python",
@@ -26,12 +26,12 @@
     "python-basics"
   ],
   "prerequisiteNotes": "",
-  "learningObjectives": "Learn about virtual environments;\nUse a task runner to manage environments and run code;\nCreate and install a Python package;\nCreate and run a test;\nLearn about publishing a package on PyPI;\nLearn about the basics of setting up tests;\nLearn about the basics of setting up static checks;\nLearn how to write reports in the form of a vignette, using R Markdown.",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Create and configure virtual environments for Python projects\n- Use task runners to manage environments and execute code\n- Build and install a Python package from source\n- Implement basic tests for Python packages\n- Explain the process of publishing a package on PyPI",
   "ospoRelevance": "Moderate",
   "abstract": "This tutorial covers packaging Python projects for distribution. It introduces key tools such as setuptools and explains how to create packages and publish them on PyPI.",
   "dateCreated": "2023-01-04T11:24:13+00:00",
   "dateModified": "2023-08-04T19:34:12+00:00",
-  "timeRequired": "",
+  "timeRequired": "PT14M",
   "about": "http://edamontology.org/topic_3316",
   "accessibilitySummary": "",
   "audience": "Software Developers, PhD Students",

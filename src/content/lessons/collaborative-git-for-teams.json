@@ -8,12 +8,12 @@
   "subTopic": "",
   "learnerCategory": "Contributing to a Project",
   "educationalLevel": "Intermediate",
-  "learningResourceType": "Tutorial",
+  "learningResourceType": "Short Training Courses",
   "author": "CodeRefinery Team",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Contributor, Maintainer",
   "inLanguage": [
-    "English"
+    "en"
   ],
   "keywords": [
     "Git",
@@ -28,12 +28,12 @@
     "how-to-contribute-to-open-source"
   ],
   "prerequisiteNotes": "",
-  "learningObjectives": "",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Demonstrate collaborative Git usage including branching, merging, and conflict resolution\n- Apply Git workflows for team collaboration and code management\n- Identify best practices for managing branches in collaborative projects\n- Resolve merge conflicts effectively in team environments\n- Implement Git workflows that support continuous integration and delivery",
   "ospoRelevance": "Moderate",
   "abstract": "This lesson covers collaborative Git usage, including branching, merging, resolving conflicts, and setting up Git workflows for team collaboration.",
   "dateCreated": "2021-06-10T10:00:00+00:00",
   "dateModified": "2023-03-01T14:40:12+00:00",
-  "timeRequired": "",
+  "timeRequired": "PT6M",
   "about": "",
   "accessibilitySummary": "",
   "audience": "Researchers, Software Developers, PhD Students",

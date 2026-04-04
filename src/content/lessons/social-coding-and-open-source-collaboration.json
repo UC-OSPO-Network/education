@@ -8,12 +8,12 @@
   "subTopic": "",
   "learnerCategory": "Contributing to a Project",
   "educationalLevel": "Intermediate",
-  "learningResourceType": "Tutorial",
+  "learningResourceType": "Short Training Courses",
   "author": "CodeRefinery Team",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Community Manager, Maintainer",
   "inLanguage": [
-    "English"
+    "en"
   ],
   "keywords": [
     "social coding",
@@ -25,12 +25,12 @@
   "sortingId": "4",
   "dependsOn": [],
   "prerequisiteNotes": "Readers should already be familiar with OSS as a concept",
-  "learningObjectives": "",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the concept of social coding and its role in modern software development\n- Demonstrate collaboration workflows using GitHub and other social coding platforms\n- Identify norms and best practices for effective participation in open source communities\n- Apply social coding tools to contribute to collaborative projects\n- Recognize the benefits of community engagement in software development",
   "ospoRelevance": "Core",
   "abstract": "This lesson introduces the concept of social coding, covering how to collaborate effectively on open-source projects using GitHub, and how to engage with the developer community.",
   "dateCreated": "2021-07-10T10:00:00+00:00",
   "dateModified": "2023-04-15T14:40:12+00:00",
-  "timeRequired": "",
+  "timeRequired": "PT6M",
   "about": "",
   "accessibilitySummary": "",
   "audience": "Researchers, Open Source Contributors, Software Developers",

@@ -8,12 +8,12 @@
   "subTopic": "",
   "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Intermediate",
-  "learningResourceType": "Course",
+  "learningResourceType": "Short Training Courses",
   "author": "The Alan Turing Institute",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Contributor, Maintainer",
   "inLanguage": [
-    "English"
+    "en"
   ],
   "keywords": [
     "research software",
@@ -36,12 +36,12 @@
     "introduction-to-version-control-with-git"
   ],
   "prerequisiteNotes": "This is a python based course",
-  "learningObjectives": "Course is very long. Like that it includes differnet types of programs for use.  It is modular.   Covers much of what th eother cousres do.",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Apply software engineering best practices to research software development\n- Demonstrate version control, testing, and project management skills\n- Implement design patterns and software architecture principles in research code\n- Create sustainable and maintainable research software projects\n- Recognize the role of Research Software Engineers in modern research",
   "ospoRelevance": "Moderate",
   "abstract": "This course provides training for Research Software Engineers (RSEs), covering best practices in software development, version control, testing, and project management for research software.",
   "dateCreated": "2020-08-01T09:00:00+00:00",
   "dateModified": "2023-05-01T14:40:12+00:00",
-  "timeRequired": "",
+  "timeRequired": "PT13M",
   "about": "",
   "accessibilitySummary": "",
   "audience": "Research Software Engineers, Researchers, Software Developers",

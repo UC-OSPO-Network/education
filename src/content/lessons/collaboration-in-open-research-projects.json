@@ -8,12 +8,12 @@
   "subTopic": "",
   "learnerCategory": "Contributing to a Project",
   "educationalLevel": "Intermediate",
-  "learningResourceType": "Guide",
+  "learningResourceType": "Static Documents",
   "author": "The Turing Way Team",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Maintainer, Community Manager",
   "inLanguage": [
-    "English"
+    "en"
   ],
   "keywords": [
     "collaboration",
@@ -24,13 +24,13 @@
   ],
   "sortingId": "9",
   "dependsOn": [],
-  "prerequisiteNotes": "all-in-one | This covers literally all of the same content as we're linking to for all Community/Contributing sections and most of the Maintaining section. Should we position this as an alternative to the other sort of piecemeal resources, or... ?",
-  "learningObjectives": "",
+  "prerequisiteNotes": "all-in-one | This covers literally all of the same content as we're linking to for all Community/Contributing sections and most of the Maintaining section. Should we position this as an alternative to the other sort of piecemeal resources, or... ? This covers literally all of the same content as we're linking to for all Community/Contributing sections and most of the Maintaining section. Should we position this as an all-in-one alternative to the other sort of piecemeal resources, or... ?",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Apply Git and GitHub for collaborative research and code sharing\n- Demonstrate best practices for managing contributions in open science projects\n- Identify strategies for fostering transparency and reproducibility in research outputs\n- Implement collaborative workflows that support open science principles\n- Recognize the importance of version control in research reproducibility",
   "ospoRelevance": "Core",
   "abstract": "This lesson focuses on collaboration in open science and research projects, introducing best practices for working in teams, sharing code, and managing contributions using Git and GitHub.",
   "dateCreated": "2020-04-01T09:00:00+00:00",
   "dateModified": "2023-05-20T14:40:12+00:00",
-  "timeRequired": "",
+  "timeRequired": "PT2M",
   "about": "",
   "accessibilitySummary": "",
   "audience": "Researchers, Open Science Contributors, Software Developers",

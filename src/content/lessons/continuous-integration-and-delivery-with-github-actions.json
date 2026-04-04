@@ -8,12 +8,12 @@
   "subTopic": "",
   "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Intermediate",
-  "learningResourceType": "Tutorial",
+  "learningResourceType": "Short Training Courses",
   "author": "Intersect Team, intersect@training.org",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Maintainer, Contributor",
   "inLanguage": [
-    "English"
+    "en"
   ],
   "keywords": [
     "CI",
@@ -29,12 +29,12 @@
     "python-packaging"
   ],
   "prerequisiteNotes": "",
-  "learningObjectives": "Distinguish between Continuous Integration (CI), Continuous Delivery, and Continuous Deployment.\nIdentify types of \"breaking changes\" in different development contexts.\nDefine deployment in the context of CI/CD and recognize real-world examples.\nApply CI/CD principles to automate workflows beyond code testing (e.g., notifications, data fetching).\nExplain why GitHub Actions may be preferred for CI/CD in open-source projects.\nConfigure a basic CI pipeline using GitHub Actions for code testing and packaging.\nUse a matrix strategy in CI to test across multiple Python versions and platforms.\nAutomate both building and publishing artifacts—like Python packages—using GitHub Actions.\nAdd and configure status badges to visualize CI/CD workflow health.",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Distinguish between Continuous Integration (CI), Continuous Delivery, and Continuous Deployment\n- Identify types of breaking changes in different development contexts\n- Configure a basic CI pipeline using GitHub Actions for code testing and packaging\n- Apply CI/CD principles to automate workflows beyond code testing\n- Demonstrate how to use matrix strategies to test across multiple environments\n- Automate building and publishing artifacts using GitHub Actions",
   "ospoRelevance": "High",
   "abstract": "This tutorial introduces continuous integration (CI) and continuous delivery (CD) practices in software development. It covers how to automate testing, building, and deployment using tools like GitHub Actions.",
   "dateCreated": "2023-01-25T10:50:13+00:00",
   "dateModified": "2023-03-20T14:40:12+00:00",
-  "timeRequired": "",
+  "timeRequired": "PT2M",
   "about": "",
   "accessibilitySummary": "",
   "audience": "Software Developers, PhD Students, DevOps Engineers",
