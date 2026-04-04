@@ -2,7 +2,7 @@
   "name": "Python Basics",
   "slug": "python-basics",
   "keepStatus": "drop",
-  "description": "",
+  "description": "Learn more about Python Basics.",
   "url": "https://ucdavisdatalab.github.io/workshop_python_basics/chapters/index.html",
   "author": "Arthur Koehl",
   "license": "",
@@ -15,7 +15,9 @@
   "inLanguage": [
     "en"
   ],
-  "keywords": [],
+  "keywords": [
+    "Python"
+  ],
   "topic": "Python",
   "sortingId": "39",
   "dependsOn": [],

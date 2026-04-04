@@ -23,9 +23,7 @@
     "developer community"
   ],
   "sortingId": "4",
-  "dependsOn": [
-    "Readers should already be familiar with OSS as a concept"
-  ],
+  "dependsOn": [],
   "prerequisiteNotes": "Readers should already be familiar with OSS as a concept",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the concept of social coding and its role in modern software development\n- Demonstrate collaboration workflows using GitHub and other social coding platforms\n- Identify norms and best practices for effective participation in open source communities\n- Apply social coding tools to contribute to collaborative projects\n- Recognize the benefits of community engagement in software development",
   "ospoRelevance": "Core",

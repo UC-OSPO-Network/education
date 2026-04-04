@@ -23,10 +23,8 @@
     "research"
   ],
   "sortingId": "9",
-  "dependsOn": [
-    "This covers literally all of the same content as we're linking to for all Community/Contributing sections and most of the Maintaining section. Should we position this as an all-in-one alternative to the other sort of piecemeal resources, or... ?"
-  ],
-  "prerequisiteNotes": "all-in-one | This covers literally all of the same content as we're linking to for all Community/Contributing sections and most of the Maintaining section. Should we position this as an alternative to the other sort of piecemeal resources, or... ?",
+  "dependsOn": [],
+  "prerequisiteNotes": "all-in-one | This covers literally all of the same content as we're linking to for all Community/Contributing sections and most of the Maintaining section. Should we position this as an alternative to the other sort of piecemeal resources, or... ? This covers literally all of the same content as we're linking to for all Community/Contributing sections and most of the Maintaining section. Should we position this as an all-in-one alternative to the other sort of piecemeal resources, or... ?",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Apply Git and GitHub for collaborative research and code sharing\n- Demonstrate best practices for managing contributions in open science projects\n- Identify strategies for fostering transparency and reproducibility in research outputs\n- Implement collaborative workflows that support open science principles\n- Recognize the importance of version control in research reproducibility",
   "ospoRelevance": "Core",
   "abstract": "This lesson focuses on collaboration in open science and research projects, introducing best practices for working in teams, sharing code, and managing contributions using Git and GitHub.",

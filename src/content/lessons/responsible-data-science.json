@@ -2,7 +2,7 @@
   "name": "Responsible Data Science",
   "slug": "responsible-data-science",
   "keepStatus": "drop",
-  "description": "",
+  "description": "Learn more about Responsible Data Science.",
   "url": "https://ucdavisdatalab.github.io/responsible-data-science/",
   "author": "Pamela Reynolds",
   "license": "CC-BY-NC-SA-4.0",
@@ -15,7 +15,9 @@
   "inLanguage": [
     "en"
   ],
-  "keywords": [],
+  "keywords": [
+    "open source"
+  ],
   "topic": "",
   "sortingId": "35",
   "dependsOn": [],

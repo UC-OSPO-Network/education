@@ -2,7 +2,7 @@
   "name": "Geocoding",
   "slug": "geocoding",
   "keepStatus": "drop",
-  "description": "",
+  "description": "Learn more about Geocoding.",
   "url": "https://github.com/ucdavisdatalab/geocoding-workshop/blob/master/README.md",
   "author": "COMPANY SIZE",
   "license": "",
@@ -15,7 +15,9 @@
   "inLanguage": [
     "en"
   ],
-  "keywords": [],
+  "keywords": [
+    "open source"
+  ],
   "topic": "",
   "sortingId": "54",
   "dependsOn": [],

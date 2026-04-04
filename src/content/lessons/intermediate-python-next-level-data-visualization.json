@@ -2,7 +2,7 @@
   "name": "Intermediate Python: next-level Data Visualization",
   "slug": "intermediate-python-next-level-data-visualization",
   "keepStatus": "drop",
-  "description": "",
+  "description": "Learn more about Intermediate Python: next-level Data Visualization.",
   "url": "https://ucdavisdatalab.github.io/workshop_intermediate_python/chapters/05_viz.html",
   "author": "explicitly calling the",
   "license": "",
@@ -15,7 +15,9 @@
   "inLanguage": [
     "en"
   ],
-  "keywords": [],
+  "keywords": [
+    "Python"
+  ],
   "topic": "Python",
   "sortingId": "44",
   "dependsOn": [],

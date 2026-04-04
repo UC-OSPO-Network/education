@@ -2,7 +2,7 @@
   "name": "Overview of Databases and Data Storage",
   "slug": "overview-of-databases-and-data-storage",
   "keepStatus": "drop",
-  "description": "",
+  "description": "Learn more about Overview of Databases and Data Storage.",
   "url": "https://ucdavisdatalab.github.io/workshop_intro_to_databases/",
   "author": "Elise Hellwig",
   "license": "CC-BY-NC-SA-4.0",
@@ -15,7 +15,9 @@
   "inLanguage": [
     "en"
   ],
-  "keywords": [],
+  "keywords": [
+    "open source"
+  ],
   "topic": "",
   "sortingId": "41",
   "dependsOn": [],

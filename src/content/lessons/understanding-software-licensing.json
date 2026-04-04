@@ -23,10 +23,8 @@
     "MIT"
   ],
   "sortingId": "33",
-  "dependsOn": [
-    "No dependency"
-  ],
-  "prerequisiteNotes": "",
+  "dependsOn": [],
+  "prerequisiteNotes": "No dependency",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Identify different types of open source software licenses and their implications\n- Explain the legal and practical considerations of software licensing\n- Apply appropriate licenses to software projects based on project goals\n- Recognize the differences between permissive and copyleft licenses\n- Demonstrate how to properly attribute and comply with open source licenses",
   "ospoRelevance": "Core",
   "abstract": "This tutorial introduces the basics of software licensing, focusing on open-source licenses. It explains the different types of licenses, their implications, and how to apply them to software projects.",

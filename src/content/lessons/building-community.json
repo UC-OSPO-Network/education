@@ -46,10 +46,8 @@
     "inclusivity"
   ],
   "sortingId": "1",
-  "dependsOn": [
-    "Readers should already be familiar with OSS as a concept, and would benefit from having experience as a contributor."
-  ],
-  "prerequisiteNotes": "Readers should already be familiar with OSS as a concept, and would benefit from having experience as a contributor",
+  "dependsOn": [],
+  "prerequisiteNotes": "Readers should already be familiar with OSS as a concept, and would benefit from having experience as a contributor Readers should already be familiar with OSS as a concept, and would benefit from having experience as a contributor.",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the importance of fostering an inclusive and welcoming community in open source projects\n- Identify effective communication strategies for engaging with contributors and users\n- Demonstrate conflict resolution techniques to maintain a healthy project environment\n- Apply best practices for encouraging contributor engagement and collaboration\n- Recognize the key elements that make a community sustainable and thriving",
   "ospoRelevance": "Core",
   "abstract": "Discover how to foster a strong and inclusive community around your open source project. This guide covers effective communication, conflict resolution, and strategies to encourage contributor engagement and collaboration.",

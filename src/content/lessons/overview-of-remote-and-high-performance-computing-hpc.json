@@ -2,7 +2,7 @@
   "name": "Overview of Remote and High Performance Computing (HPC)",
   "slug": "overview-of-remote-and-high-performance-computing-hpc",
   "keepStatus": "drop",
-  "description": "",
+  "description": "Learn more about Overview of Remote and High Performance Computing (HPC).",
   "url": "https://video.ucdavis.edu/media/Overview%20of%20Remote%20and%20High%20Performance%20Computing%20(HPC)%20-%202024-02-15/1_zulcobsl",
   "author": "",
   "license": "",
@@ -15,7 +15,9 @@
   "inLanguage": [
     "en"
   ],
-  "keywords": [],
+  "keywords": [
+    "open source"
+  ],
   "topic": "",
   "sortingId": "50",
   "dependsOn": [],

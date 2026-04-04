@@ -2,7 +2,7 @@
   "name": "Spatial SQL with SpatiaLite",
   "slug": "spatial-sql-with-spatialite",
   "keepStatus": "drop",
-  "description": "",
+  "description": "Learn more about Spatial SQL with SpatiaLite.",
   "url": "https://ucdavisdatalab.github.io/Spatial_SQL/",
   "author": "Michele Tobias",
   "license": "CC-BY-NC-SA-4.0",
@@ -15,7 +15,9 @@
   "inLanguage": [
     "en"
   ],
-  "keywords": [],
+  "keywords": [
+    "open source"
+  ],
   "topic": "",
   "sortingId": "53",
   "dependsOn": [],

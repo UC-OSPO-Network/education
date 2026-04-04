@@ -2,7 +2,7 @@
   "name": "How to Contribute to Open Source",
   "slug": "how-to-contribute-to-open-source",
   "keepStatus": "keepCandidate",
-  "description": "",
+  "description": "This resource gives a broad overview of terms and processes important to understand as a new contributor. It also includes suggestions on how to find a project to contribute to.",
   "url": "https://opensource.guide/how-to-contribute/",
   "topic": "Contributing",
   "subTopic": "",
@@ -15,7 +15,9 @@
   "inLanguage": [
     "en"
   ],
-  "keywords": [],
+  "keywords": [
+    "Contributing"
+  ],
   "sortingId": "14",
   "dependsOn": [
     "introduction-to-git"

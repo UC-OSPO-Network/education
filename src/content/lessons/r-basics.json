@@ -2,7 +2,7 @@
   "name": "R Basics",
   "slug": "r-basics",
   "keepStatus": "drop",
-  "description": "",
+  "description": "Learn more about R Basics.",
   "url": "https://ucdavisdatalab.github.io/workshop_r_basics/",
   "author": "Nick Ulle",
   "license": "",
@@ -15,7 +15,9 @@
   "inLanguage": [
     "en"
   ],
-  "keywords": [],
+  "keywords": [
+    "R"
+  ],
   "topic": "R",
   "sortingId": "40",
   "dependsOn": [],

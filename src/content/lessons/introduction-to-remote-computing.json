@@ -2,7 +2,7 @@
   "name": "Introduction to Remote Computing",
   "slug": "introduction-to-remote-computing",
   "keepStatus": "drop",
-  "description": "",
+  "description": "Learn more about Introduction to Remote Computing.",
   "url": "https://ucdavisdatalab.github.io/workshop_intro_to_remote_computing/chapters/index.html",
   "author": "Oliver Kreylos",
   "license": "CC-BY-NC-SA-4.0",
@@ -15,7 +15,9 @@
   "inLanguage": [
     "en"
   ],
-  "keywords": [],
+  "keywords": [
+    "open source"
+  ],
   "topic": "",
   "sortingId": "51",
   "dependsOn": [],

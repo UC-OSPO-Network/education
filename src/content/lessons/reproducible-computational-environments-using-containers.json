@@ -2,7 +2,7 @@
   "name": "Reproducible Computational Environments using Containers",
   "slug": "reproducible-computational-environments-using-containers",
   "keepStatus": "keepCandidate",
-  "description": "",
+  "description": "This session aims to introduce the use of Docker containers with the goal of using them to effect reproducible computational environments. Such environments are useful for ensuring reproducible research outputs, for example.",
   "url": "https://carpentries-incubator.github.io/docker-introduction/",
   "topic": "DevOps",
   "subTopic": "",

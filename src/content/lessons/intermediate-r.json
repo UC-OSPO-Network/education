@@ -2,7 +2,7 @@
   "name": "Intermediate R",
   "slug": "intermediate-r",
   "keepStatus": "drop",
-  "description": "",
+  "description": "Learn more about Intermediate R.",
   "url": "https://ucdavisdatalab.github.io/workshop_intermediate_r/",
   "author": "Nick Ulle and Wesley Brooks",
   "license": "",
@@ -15,7 +15,9 @@
   "inLanguage": [
     "en"
   ],
-  "keywords": [],
+  "keywords": [
+    "R"
+  ],
   "topic": "R",
   "sortingId": "49",
   "dependsOn": [],

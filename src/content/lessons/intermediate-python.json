@@ -2,7 +2,7 @@
   "name": "Intermediate Python",
   "slug": "intermediate-python",
   "keepStatus": "drop",
-  "description": "",
+  "description": "Learn more about Intermediate Python.",
   "url": "https://ucdavisdatalab.github.io/workshop_intermediate_python/chapters/index.html",
   "author": "Nick Ulle",
   "license": "",
@@ -15,7 +15,9 @@
   "inLanguage": [
     "en"
   ],
-  "keywords": [],
+  "keywords": [
+    "Python"
+  ],
   "topic": "Python",
   "sortingId": "48",
   "dependsOn": [],

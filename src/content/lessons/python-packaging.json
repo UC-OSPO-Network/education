@@ -2,7 +2,7 @@
   "name": "Python Packaging",
   "slug": "python-packaging",
   "keepStatus": "keepCandidate",
-  "description": "",
+  "description": "This lesson teaches how to create and publish packages in Python. We assume a basic understanding of Python, and assume learners are comfortable using simple commands in a Bash shell.",
   "url": "https://carpentries-incubator.github.io/python_packaging",
   "topic": "Packaging, Python",
   "subTopic": "",

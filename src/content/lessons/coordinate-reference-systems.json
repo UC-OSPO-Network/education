@@ -2,7 +2,7 @@
   "name": "Coordinate Reference Systems",
   "slug": "coordinate-reference-systems",
   "keepStatus": "drop",
-  "description": "",
+  "description": "Learn more about Coordinate Reference Systems.",
   "url": "https://ucdavisdatalab.github.io/workshop_coordinate_reference_systems/",
   "author": "Dr. Michele Tobias",
   "license": "",
@@ -15,7 +15,9 @@
   "inLanguage": [
     "en"
   ],
-  "keywords": [],
+  "keywords": [
+    "open source"
+  ],
   "topic": "",
   "sortingId": "55",
   "dependsOn": [],

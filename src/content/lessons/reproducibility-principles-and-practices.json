@@ -2,7 +2,7 @@
   "name": "Reproducibility Principles and Practices",
   "slug": "reproducibility-principles-and-practices",
   "keepStatus": "drop",
-  "description": "",
+  "description": "There are myriad practices, often accompanied by software tools, that can help ensure research projects are reproducible. This overview workshop will help you decipher which to adopt and when to adopt them. The workshop also highlights additional benefits many of these practices confer, such as making it easier to collaborate with others. As an overview, this workshop is relatively non-technical, but provides technical references, including other DataLab workshops, for all of the practices covered.",
   "url": "https://ucdavisdatalab.github.io/workshop_reproducible_research/chapters/index.html",
   "author": "Nick Ulle",
   "license": "",
@@ -15,7 +15,9 @@
   "inLanguage": [
     "en"
   ],
-  "keywords": [],
+  "keywords": [
+    "Community, Maintaining"
+  ],
   "topic": "Community, Maintaining",
   "sortingId": "34",
   "dependsOn": [],

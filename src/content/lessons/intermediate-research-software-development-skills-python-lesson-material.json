@@ -2,7 +2,7 @@
   "name": "Intermediate Research Software Development Skills (Python) Lesson Material",
   "slug": "intermediate-research-software-development-skills-python-lesson-material",
   "keepStatus": "keepCandidate",
-  "description": "",
+  "description": "This course aims to teach a core set of established, intermediate-level software development skills and best practices for working as part of a team in a research environment using Python as an example programming language (see detailed learning objectives below).",
   "url": "https://carpentries-incubator.github.io/python-intermediate-development/",
   "topic": "Research, Python",
   "subTopic": "",

@@ -2,7 +2,7 @@
   "name": "Developing Your Data Science Portfolio",
   "slug": "developing-your-data-science-portfolio",
   "keepStatus": "drop",
-  "description": "",
+  "description": "Learn more about Developing Your Data Science Portfolio.",
   "url": "https://ucdavisdatalab.github.io/workshop_portfolios/",
   "author": "Michele Tobias",
   "license": "CC-BY-NC-SA-4.0",
@@ -15,7 +15,9 @@
   "inLanguage": [
     "en"
   ],
-  "keywords": [],
+  "keywords": [
+    "open source"
+  ],
   "topic": "",
   "sortingId": "46",
   "dependsOn": [],

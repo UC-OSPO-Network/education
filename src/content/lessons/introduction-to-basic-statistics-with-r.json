@@ -2,7 +2,7 @@
   "name": "Introduction to Basic Statistics with R",
   "slug": "introduction-to-basic-statistics-with-r",
   "keepStatus": "drop",
-  "description": "",
+  "description": "Learn more about Introduction to Basic Statistics with R.",
   "url": "https://ucdavisdatalab.github.io/basic_stats_r_1/",
   "author": "Dr. Wesley Brooks",
   "license": "",
@@ -15,7 +15,9 @@
   "inLanguage": [
     "en"
   ],
-  "keywords": [],
+  "keywords": [
+    "R"
+  ],
   "topic": "R",
   "sortingId": "56",
   "dependsOn": [],

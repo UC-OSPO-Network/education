@@ -2,7 +2,7 @@
   "name": "Introduction to Version Control with Git.",
   "slug": "introduction-to-version-control-with-git",
   "keepStatus": "drop",
-  "description": "",
+  "description": "Learn more about Introduction to Version Control with Git..",
   "url": "https://ucdavisdatalab.github.io/workshop_introduction_to_version_control/chapters/index.html",
   "author": "Carl Stahmer",
   "license": "CC-BY-NC-SA-4.0",
@@ -15,7 +15,9 @@
   "inLanguage": [
     "en"
   ],
-  "keywords": [],
+  "keywords": [
+    "Git/Beg. VCS"
+  ],
   "topic": "Git/Beg. VCS",
   "sortingId": "37",
   "dependsOn": [],

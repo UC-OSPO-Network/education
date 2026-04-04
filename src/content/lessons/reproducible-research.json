@@ -22,10 +22,8 @@
     "open science"
   ],
   "sortingId": "25",
-  "dependsOn": [
-    "No programming experience needed.  It would be best for a student who has experience with research papers and research projects and wants to detailed understanding of terms and concepts, but that is not necessary."
-  ],
-  "prerequisiteNotes": "No programming experience needed. It would be best for a student who has experience with research papers and research projects and wants to detailed understanding of terms and concepts, but that is not necessary",
+  "dependsOn": [],
+  "prerequisiteNotes": "No programming experience needed. It would be best for a student who has experience with research papers and research projects and wants to detailed understanding of terms and concepts, but that is not necessary No programming experience needed.  It would be best for a student who has experience with research papers and research projects and wants to detailed understanding of terms and concepts, but that is not necessary.",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the principles and importance of reproducible research\n- Apply best practices for data management and version control in research\n- Demonstrate how to use Git and other tools to ensure research reproducibility\n- Identify strategies for documenting research workflows and methodologies\n- Recognize ethical considerations in reproducible research practices",
   "ospoRelevance": "High",
   "abstract": "This lesson introduces the concept of reproducible research, explaining best practices and tools to ensure that scientific results can be replicated by others.",

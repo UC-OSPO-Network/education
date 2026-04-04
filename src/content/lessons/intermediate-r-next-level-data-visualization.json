@@ -2,7 +2,7 @@
   "name": "Intermediate R: Next-level Data Visualization",
   "slug": "intermediate-r-next-level-data-visualization",
   "keepStatus": "drop",
-  "description": "",
+  "description": "Learn more about Intermediate R: Next-level Data Visualization.",
   "url": "https://ucdavisdatalab.github.io/workshop_intermediate_r/data-visualization-in-r.html",
   "author": "Nick Ulle and Wesley Brooks",
   "license": "",
@@ -15,7 +15,9 @@
   "inLanguage": [
     "en"
   ],
-  "keywords": [],
+  "keywords": [
+    "R"
+  ],
   "topic": "R",
   "sortingId": "45",
   "dependsOn": [],

@@ -2,7 +2,7 @@
   "name": "Julia Basics",
   "slug": "julia-basics",
   "keepStatus": "drop",
-  "description": "",
+  "description": "Learn more about Julia Basics.",
   "url": "https://ucjug.github.io/workshop_julia_basics/chapters/index.html",
   "author": "Derek Devnich",
   "license": "CC-BY-NC-SA-4.0",
@@ -15,7 +15,9 @@
   "inLanguage": [
     "en"
   ],
-  "keywords": [],
+  "keywords": [
+    "open source"
+  ],
   "topic": "",
   "sortingId": "47",
   "dependsOn": [],
