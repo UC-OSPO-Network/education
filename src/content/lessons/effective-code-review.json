@@ -29,7 +29,7 @@
   "abstract": "This tutorial covers the principles and practices of code review, focusing on collaborative software development. It explains how to conduct code reviews effectively, provide feedback, and integrate changes.",
   "audience": "Software Developers, PhD Students, Open Source Contributors",
   "competencyRequired": "Git, collaborative coding",
-  "creativeWorkStatus": "active",
+  "creativeWorkStatus": "Active",
   "dateCreated": "2023-04-12T10:45:13+00:00",
   "dateModified": "2023-06-20T14:40:12+00:00",
   "datePublished": "2023-06-20T14:40:12+00:00",

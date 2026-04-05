@@ -37,7 +37,7 @@
   "audience": "Researchers, Software Developers, PhD Students",
   "competencyRequired": "Python, basic understanding of software development",
   "contributor": "",
-  "creativeWorkStatus": "active",
+  "creativeWorkStatus": "Active",
   "datePublished": "2020-10-01T14:00:00+00:00",
   "hasPart": "https://docs.pytest.org, pytest documentation",
   "identifier": "https://coderefinery.github.io/testing/",
