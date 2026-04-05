@@ -44,7 +44,7 @@
     "community"
   ],
   "topic": "Maintaining",
-  "sortingId": "4",
+  "sortingId": "5",
   "dependsOn": [
     "introduction-to-git"
   ],

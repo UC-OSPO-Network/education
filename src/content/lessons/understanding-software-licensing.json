@@ -22,9 +22,9 @@
     "GPL",
     "MIT"
   ],
-  "sortingId": "2",
+  "sortingId": "3",
   "dependsOn": [
-    "what-is-open-source"
+    "your-first-web-contribution"
   ],
   "prerequisiteNotes": "No dependency",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Identify different types of open source software licenses and their implications\n- Explain the legal and practical considerations of software licensing\n- Apply appropriate licenses to software projects based on project goals\n- Recognize the differences between permissive and copyleft licenses\n- Demonstrate how to properly attribute and comply with open source licenses",
