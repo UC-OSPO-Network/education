@@ -1,19 +1,19 @@
 ---
 /**
  * EducatorToolkit.astro
- * A component to provide actionable, copy-pasteable resources for professors.
+ * A component to provide actionable, copy-pasteable resources for instructors, librarians, and research staff.
  */
 
 const learningTracks = [
   {
     title: "The 3-Hour Contributor Kickstart",
-    description: "Perfect for a single lab session or workshop to get students ready for their first PR.",
+    description: "Perfect for a library workshop, lab session, or research staff training.",
     lessons: ["Introduction to Git", "Making Good Pull Requests", "Social Coding & Open Source Collaboration"],
     time: "approx. 180 mins"
   },
   {
     title: "OSS Compliance & Ethics",
-    description: "A module for CS Ethics or Law & Tech courses.",
+    description: "A module for CS Ethics, Law & Tech, or Data Management workshops.",
     lessons: ["Understanding Software Licensing", "Building Community", "Leadership and Governance"],
     time: "approx. 120 mins"
   }
@@ -148,8 +148,8 @@ const syllabusFragment = `### Module: Open Source Software Development
   </section>
 
   <section class="syllabus-builder">
-    <h2 style="color: var(--uc-white); margin-bottom: 1rem;">📝 Syllabus Snippet (Markdown)</h2>
-    <p style="color: rgba(255,255,255,0.8);">Copy this fragment directly into your course syllabus or Canvas page.</p>
+    <h2 style="color: var(--uc-white); margin-bottom: 1rem;">📝 Curriculum Snippet (Markdown)</h2>
+    <p style="color: rgba(255,255,255,0.8);">Copy this fragment directly into your syllabus, workshop site, or Canvas page.</p>
     
     <div class="code-block">
       <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.innerText.replace('Copy', ''))">Copy</button>
