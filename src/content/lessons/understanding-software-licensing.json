@@ -5,9 +5,9 @@
   "description": "This lesson provides an overview of common open-source software licenses, their conditions, and how to choose the right one for your project.",
   "url": "https://intersect-training.org/software-licensing/",
   "topic": "Licensing",
-  "subTopic": "",
-  "learnerCategory": "Understanding Licensing & Compliance",
-  "educationalLevel": "Intermediate",
+  "subTopic": "Open Source Literacy",
+  "learnerCategory": "Getting Started with Open Source",
+  "educationalLevel": "Beginner",
   "learningResourceType": "Short Training Courses",
   "author": "Intersect Team, intersect@training.org",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -22,8 +22,10 @@
     "GPL",
     "MIT"
   ],
-  "sortingId": "33",
-  "dependsOn": [],
+  "sortingId": "2",
+  "dependsOn": [
+    "what-is-open-source"
+  ],
   "prerequisiteNotes": "No dependency",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Identify different types of open source software licenses and their implications\n- Explain the legal and practical considerations of software licensing\n- Apply appropriate licenses to software projects based on project goals\n- Recognize the differences between permissive and copyleft licenses\n- Demonstrate how to properly attribute and comply with open source licenses",
   "ospoRelevance": "Core",

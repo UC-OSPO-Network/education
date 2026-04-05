@@ -5,8 +5,8 @@
   "description": "This lesson introduces Git, a distributed version control system, and teaches how to use it to track changes, collaborate on projects, and manage the history of a codebase.",
   "url": "https://coderefinery.github.io/git-intro/",
   "topic": "Git/Beg. VCS",
-  "subTopic": "",
-  "learnerCategory": "Contributing to a Project",
+  "subTopic": "Version Control Basics",
+  "learnerCategory": "Getting Started with Open Source",
   "educationalLevel": "Beginner",
   "learningResourceType": "Short Training Courses",
   "author": "CodeRefinery Team",
@@ -21,8 +21,10 @@
     "repositories",
     "project management"
   ],
-  "sortingId": "13",
-  "dependsOn": [],
+  "sortingId": "3",
+  "dependsOn": [
+    "understanding-software-licensing"
+  ],
   "prerequisiteNotes": "",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the concept of version control and its importance in software development\n- Demonstrate how to initialize and manage Git repositories\n- Apply basic Git commands to track changes and manage project history\n- Identify the benefits of distributed version control systems\n- Use Git to collaborate on projects and maintain code history",
   "ospoRelevance": "Moderate",

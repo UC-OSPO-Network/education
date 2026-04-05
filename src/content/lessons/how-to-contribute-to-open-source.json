@@ -1,12 +1,12 @@
 {
-  "name": "How to Contribute to Open Source",
+  "name": "Finding and Evaluating Projects",
   "slug": "how-to-contribute-to-open-source",
   "keepStatus": "keepCandidate",
-  "description": "This resource gives a broad overview of terms and processes important to understand as a new contributor. It also includes suggestions on how to find a project to contribute to.",
+  "description": "Learn how to find your first project using discovery tools, understanding labels, and identifying beginner-friendly tasks.",
   "url": "https://opensource.guide/how-to-contribute/",
   "topic": "Contributing",
-  "subTopic": "",
-  "learnerCategory": "Contributing to a Project",
+  "subTopic": "Open Source Literacy",
+  "learnerCategory": "Getting Started with Open Source",
   "educationalLevel": "Beginner",
   "learningResourceType": "Static Documents",
   "author": "being users of software they contribute to",
@@ -18,12 +18,12 @@
   "keywords": [
     "Contributing"
   ],
-  "sortingId": "14",
+  "sortingId": "5",
   "dependsOn": [
-    "introduction-to-git"
+    "best-practices-for-maintainers"
   ],
   "prerequisiteNotes": "",
-  "learningObjectives": "After this lesson, the learner should be able to:\n- Identify the key terms and processes important for new open source contributors\n- Explain the typical workflow for contributing to open source projects\n- Demonstrate how to find projects that align with personal interests and skills\n- Apply best practices for making first contributions to open source\n- Recognize the importance of community guidelines and codes of conduct",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Use discovery tools to find beginner-friendly open source projects.\n- Interpret standard GitHub labels like 'good first issue'.\n- Evaluate a project's health and welcoming nature for new contributors.",
   "ospoRelevance": "Moderate",
   "abstract": "This resource gives a broad overview of terms and processes important to understand as a new contributor. It also includes suggestions on how to find a project to contribute to.",
   "dateCreated": "",

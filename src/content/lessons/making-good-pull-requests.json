@@ -1,13 +1,13 @@
 {
-  "name": "Making Good Pull Requests",
+  "name": "Making Your First Pull Request",
   "slug": "making-good-pull-requests",
   "keepStatus": "keepCandidate",
-  "description": "This lesson covers how to create high-quality pull requests for open source projects and collaborative software development teams.",
+  "description": "A step-by-step walkthrough covering forking, cloning, feature branches, and responding to code review feedback.",
   "url": "https://intersect-training.org/Making-Good-PRs/",
   "topic": "Git/Beg. VCS, Contributing",
-  "subTopic": "",
-  "learnerCategory": "Contributing to a Project",
-  "educationalLevel": "Intermediate",
+  "subTopic": "Version Control Basics",
+  "learnerCategory": "Getting Started with Open Source",
+  "educationalLevel": "Beginner",
   "learningResourceType": "Short Training Courses",
   "author": "Intersect Team, intersect@training.org",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -21,12 +21,12 @@
     "version control",
     "collaboration"
   ],
-  "sortingId": "6",
+  "sortingId": "7",
   "dependsOn": [
-    "introduction-to-git"
+    "social-coding-and-open-source-collaboration"
   ],
   "prerequisiteNotes": "Intro to Git",
-  "learningObjectives": "After this lesson, the learner should be able to:\n- Identify the purpose and workflow of a pull request in collaborative development\n- Describe the key elements of a well-structured PR (clear description, relevant changes)\n- Apply best practices for communicating effectively in PR discussions\n- Recognize common mistakes to avoid when submitting a PR\n- Demonstrate how to break large changes into smaller, reviewable PRs",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Execute the complete pull request lifecycle from fork to merge.\n- Create a dedicated feature branch for a contribution.\n- Respond professionally to code review feedback.",
   "ospoRelevance": "High",
   "abstract": "This tutorial explains how to create good pull requests (PRs) in collaborative software development. It covers best practices for writing clear PR descriptions, committing changes, and communicating with project maintainers.",
   "dateCreated": "2023-05-15T12:34:13+00:00",
