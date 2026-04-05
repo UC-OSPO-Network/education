@@ -19,17 +19,8 @@
     "english fair fair-software research-software"
   ],
   "sortingId": "24",
-  "dependsOn": [
-    "python-packaging",
-    "python-packaging-for-beginners",
-    "python-package-development-best-practices",
-    "python-basics",
-    "collaboration-in-open-research-projects",
-    "introduction-to-git",
-    "introduction-to-unix-command-line",
-    "introduction-to-version-control-with-git"
-  ],
-  "prerequisiteNotes": "This is a python based course | pre-requisites | Course lists like version control in git and command line, but the course does cover the information with exercises for the student",
+  "dependsOn": [],
+  "prerequisiteNotes": "This is a python based course | pre-requisites | Course lists like version control in git and command line, but the course does cover the information with exercises for the student | python-packaging | python-packaging-for-beginners | python-package-development-best-practices | python-basics | collaboration-in-open-research-projects | introduction-to-git | introduction-to-unix-command-line | introduction-to-version-control-with-git",
   "learningObjectives": "For researchers wanting to adhere to FAIR practies.  Course provides code for exercises.\nIntroduce what FAIR means especially in relationship to code written for research purposes.\nCourse is comprehensive covering the research code lifecylce, describing good practices at each stage:\n Creating a github project (along with practices to help with version control); \nPractices to help with reproductibility (eg creating reproducible environment for other reseaerches, dependencies trees, VMs); \nPractices to annotate code to ensure that others can understand and use the code;\nCode structure recommendations; Testing and Documentation practices",
   "ospoRelevance": "Core",
   "abstract": "This short course is teaching tools and practices for producing and sharing quality, sustainable and FAIR (Findable, Accessible, Interoperable and Reusable) research software to support open and reproducible research. The course can be delivered over 2 full or 4 half days.",

@@ -22,10 +22,8 @@
     "packaging"
   ],
   "sortingId": "11",
-  "dependsOn": [
-    "python-basics"
-  ],
-  "prerequisiteNotes": "",
+  "dependsOn": [],
+  "prerequisiteNotes": "python-basics",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Create and configure virtual environments for Python projects\n- Use task runners to manage environments and execute code\n- Build and install a Python package from source\n- Implement basic tests for Python packages\n- Explain the process of publishing a package on PyPI",
   "ospoRelevance": "Moderate",
   "abstract": "This tutorial covers packaging Python projects for distribution. It introduces key tools such as setuptools and explains how to create packages and publish them on PyPI.",

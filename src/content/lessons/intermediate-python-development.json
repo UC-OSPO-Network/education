@@ -23,10 +23,8 @@
     "packaging"
   ],
   "sortingId": "29",
-  "dependsOn": [
-    "python-basics"
-  ],
-  "prerequisiteNotes": "",
+  "dependsOn": [],
+  "prerequisiteNotes": "python-basics",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Apply intermediate Python development skills including virtual environments and packaging\n- Demonstrate collaborative development using Git feature branch workflows\n- Implement comprehensive testing strategies using pytest\n- Design modular software following Model-View-Controller architecture\n- Create well-documented, maintainable Python projects following community standards",
   "ospoRelevance": "Moderate",
   "abstract": "This lesson is designed to teach intermediate Python development skills, covering best practices in software development, such as packaging, testing, and version control.",

@@ -24,11 +24,8 @@
     "PyPI"
   ],
   "sortingId": "23",
-  "dependsOn": [
-    "python-packaging-for-beginners",
-    "r-packaging"
-  ],
-  "prerequisiteNotes": "",
+  "dependsOn": [],
+  "prerequisiteNotes": "python-packaging-for-beginners | r-packaging",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Apply best practices for structuring Python packages for scientific software\n- Demonstrate how to write comprehensive tests and manage dependencies\n- Implement version control workflows for collaborative package development\n- Create clear documentation using tools like Read The Docs\n- Configure continuous integration for automated testing and deployment",
   "ospoRelevance": "High",
   "abstract": "This lesson introduces best practices for developing Python packages, covering topics like structuring packages, writing tests, and managing dependencies for scientific software.",

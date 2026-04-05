@@ -23,10 +23,8 @@
     "features"
   ],
   "sortingId": "7",
-  "dependsOn": [
-    "introduction-to-git"
-  ],
-  "prerequisiteNotes": "Intro to Git",
+  "dependsOn": [],
+  "prerequisiteNotes": "Intro to Git | introduction-to-git",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Identify the purpose of issue tracking in software and project management\n- Describe common components of an issue (title, description, labels, assignee)\n- Create clear, actionable issues that facilitate collaboration\n- Apply best practices for prioritizing and organizing issues\n- Demonstrate how issue tracking supports project planning and sustainability",
   "ospoRelevance": "Moderate",
   "abstract": "This tutorial introduces issue tracking for software development, focusing on using GitHub Issues to manage bugs, features, and project milestones.",

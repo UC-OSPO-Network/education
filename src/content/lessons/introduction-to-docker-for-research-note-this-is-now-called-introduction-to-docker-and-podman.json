@@ -23,11 +23,8 @@
     "research"
   ],
   "sortingId": "27",
-  "dependsOn": [
-    "introduction-to-unix-command-line",
-    "introduction-to-version-control-with-git"
-  ],
-  "prerequisiteNotes": "for bonus episode",
+  "dependsOn": [],
+  "prerequisiteNotes": "for bonus episode | introduction-to-unix-command-line | introduction-to-version-control-with-git",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Explain what containers are and how they differ from virtual machines\n- Demonstrate how to create and manage Docker containers\n- Apply Docker to ensure reproducibility in research software\n- Identify use cases for containerization in scientific computing\n- Create Docker images for software development and deployment",
   "ospoRelevance": "Moderate",
   "abstract": "This lesson introduces Docker, explaining how to create, manage, and share containerized applications. It covers the basics of Docker, its use in reproducible research, and how to create Docker images for software development.",

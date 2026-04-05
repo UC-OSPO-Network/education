@@ -22,10 +22,8 @@
     "TDD"
   ],
   "sortingId": "17",
-  "dependsOn": [
-    "intermediate-python"
-  ],
-  "prerequisiteNotes": "",
+  "dependsOn": [],
+  "prerequisiteNotes": "intermediate-python",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Identify the purpose and benefits of testing in software development\n- Describe different types of tests (unit tests, integration tests, functional tests)\n- Apply testing frameworks like pytest to write and run tests\n- Demonstrate test-driven development (TDD) practices in Python\n- Implement testing strategies that integrate with continuous integration workflows",
   "ospoRelevance": "Moderate",
   "abstract": "This tutorial introduces software testing, focusing on unit testing and test-driven development (TDD) in Python. It explains how to write tests, run them, and integrate them into the development process.",

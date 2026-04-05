@@ -22,10 +22,8 @@
     "pytest"
   ],
   "sortingId": "31",
-  "dependsOn": [
-    "python-basics"
-  ],
-  "prerequisiteNotes": "",
+  "dependsOn": [],
+  "prerequisiteNotes": "python-basics",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the principles and benefits of test-driven development (TDD)\n- Demonstrate how to write unit tests using pytest\n- Apply TDD practices to improve code quality and design\n- Implement automated testing strategies for software projects\n- Recognize the role of testing in continuous integration workflows",
   "ospoRelevance": "Core",
   "abstract": "This lesson introduces software testing, including automated testing, test-driven development, and unit testing, with a focus on Python.",

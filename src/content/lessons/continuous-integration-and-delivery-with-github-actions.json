@@ -24,11 +24,8 @@
     "automation"
   ],
   "sortingId": "15",
-  "dependsOn": [
-    "introduction-to-git",
-    "python-packaging"
-  ],
-  "prerequisiteNotes": "",
+  "dependsOn": [],
+  "prerequisiteNotes": "introduction-to-git | python-packaging",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Distinguish between Continuous Integration (CI), Continuous Delivery, and Continuous Deployment\n- Identify types of breaking changes in different development contexts\n- Configure a basic CI pipeline using GitHub Actions for code testing and packaging\n- Apply CI/CD principles to automate workflows beyond code testing\n- Demonstrate how to use matrix strategies to test across multiple environments\n- Automate building and publishing artifacts using GitHub Actions",
   "ospoRelevance": "High",
   "abstract": "This tutorial introduces continuous integration (CI) and continuous delivery (CD) practices in software development. It covers how to automate testing, building, and deployment using tools like GitHub Actions.",

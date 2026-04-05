@@ -19,10 +19,8 @@
     "docker english containers hacktoberfest"
   ],
   "sortingId": "32",
-  "dependsOn": [
-    "reproducible-research"
-  ],
-  "prerequisiteNotes": "",
+  "dependsOn": [],
+  "prerequisiteNotes": "reproducible-research",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the concept of containerization and its role in reproducible research\n- Demonstrate how to create and manage Docker containers for research environments\n- Apply containerization to ensure computational reproducibility\n- Identify best practices for sharing reproducible environments\n- Recognize the benefits of containers for research collaboration",
   "ospoRelevance": "Moderate",
   "abstract": "This session aims to introduce the use of Docker containers with the goal of using them to effect reproducible computational environments. Such environments are useful for ensuring reproducible research outputs, for example.",
