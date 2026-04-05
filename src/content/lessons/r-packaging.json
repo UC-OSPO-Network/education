@@ -10,7 +10,7 @@
   "educationalLevel": "Beginner",
   "learningResourceType": "tutorial",
   "author": "The Carpentries Incubator",
-  "license": "CC-BY",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Contributor, Maintainer",
   "inLanguage": [
     "en"

@@ -5,7 +5,7 @@
   "description": "Learn more about Julia Basics.",
   "url": "https://ucjug.github.io/workshop_julia_basics/chapters/index.html",
   "author": "Derek Devnich",
-  "license": "CC-BY-NC-SA-4.0",
+  "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
   "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Beginner",
   "ossRole": "",
