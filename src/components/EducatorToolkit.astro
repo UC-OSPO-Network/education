@@ -1,0 +1,159 @@
+---
+/**
+ * EducatorToolkit.astro
+ * A component to provide actionable, copy-pasteable resources for professors.
+ */
+
+const learningTracks = [
+  {
+    title: "The 3-Hour Contributor Kickstart",
+    description: "Perfect for a single lab session or workshop to get students ready for their first PR.",
+    lessons: ["Introduction to Git", "Making Good Pull Requests", "Social Coding & Open Source Collaboration"],
+    time: "approx. 180 mins"
+  },
+  {
+    title: "OSS Compliance & Ethics",
+    description: "A module for CS Ethics or Law & Tech courses.",
+    lessons: ["Understanding Software Licensing", "Building Community", "Leadership and Governance"],
+    time: "approx. 120 mins"
+  }
+];
+
+const syllabusFragment = `### Module: Open Source Software Development
+**Learning Objectives:**
+- Explain the principles and importance of reproducible research
+- Apply best practices for data management and version control in research
+- Demonstrate how to use Git and other tools to ensure research reproducibility
+
+**Resources:**
+- [Reproducible Research](https://education.ospo.ucdennis.edu/lessons/reproducible-research) (20 mins)
+- [Introduction to Git](https://education.ospo.ucdennis.edu/lessons/introduction-to-git) (45 mins)
+`;
+---
+
+<style>
+  .toolkit-container {
+    margin: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .toolkit-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .toolkit-card h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--uc-blue);
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--uc-gold);
+    color: var(--uc-blue);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    width: fit-content;
+  }
+
+  .lesson-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .lesson-list li {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .lesson-list li:last-child {
+    border-bottom: none;
+  }
+
+  .syllabus-builder {
+    background: var(--uc-dark-blue);
+    color: var(--uc-white);
+    padding: 2rem;
+    border-radius: 12px;
+  }
+
+  .code-block {
+    background: rgba(0,0,0,0.3);
+    padding: 1.5rem;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+    margin-top: 1rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--uc-gold);
+    color: var(--uc-blue);
+    border: none;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .copy-btn:hover {
+    background: var(--uc-light-gold);
+  }
+</style>
+
+<div class="toolkit-container">
+  <section>
+    <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem; color: var(--text-primary);">🚀 Curated Learning Tracks</h2>
+    <p style="margin-bottom: 2rem; color: var(--text-secondary);">Ready-to-use sequences for common teaching scenarios.</p>
+    
+    <div class="card-grid">
+      {learningTracks.map(track => (
+        <div class="toolkit-card">
+          <div class="tag">{track.time}</div>
+          <h3>{track.title}</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary);">{track.description}</p>
+          <ul class="lesson-list">
+            {track.lessons.map(lesson => (
+              <li>🔗 {lesson}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="syllabus-builder">
+    <h2 style="color: var(--uc-white); margin-bottom: 1rem;">📝 Syllabus Snippet (Markdown)</h2>
+    <p style="color: rgba(255,255,255,0.8);">Copy this fragment directly into your course syllabus or Canvas page.</p>
+    
+    <div class="code-block">
+      <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.innerText.replace('Copy', ''))">Copy</button>
+      {syllabusFragment}
+    </div>
+  </section>
+</div>
