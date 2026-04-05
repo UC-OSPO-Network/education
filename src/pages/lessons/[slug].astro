@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getLessons, type Lesson } from "../../lib/lessons";
+import { getLessons, type Lesson, formatDuration } from "../../lib/lessons";
 import { PATHWAYS } from "../../types/lesson";
 
 type Props = {
@@ -83,7 +83,7 @@ const coreMetadata: Array<{ label: string; value: unknown; kind?: "link" }> = [
   { label: "Skill Level", value: lesson.educationalLevel },
   { label: "OSS Role(s)", value: lesson.oss_role || lesson.ossRole || "" },
   { label: "Resource Type", value: lesson.learningResourceType },
-  { label: "Time Required", value: lesson.timeRequired },
+  { label: "Time Required", value: formatDuration(lesson.timeRequired) },
   { label: "Author", value: lesson.author },
   { label: "License", value: lesson.license },
   { label: "Keywords", value: lesson.keywords },

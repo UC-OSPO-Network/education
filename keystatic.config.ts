@@ -23,10 +23,37 @@ const educationalLevelOptions = [
   { label: 'Advanced', value: 'Advanced' },
 ] as const;
 
+const domainOptions = [
+  { label: 'Research Software', value: 'Research Software' },
+  { label: 'Data Science', value: 'Data Science' },
+  { label: 'Institutional Policy', value: 'Institutional Policy' },
+  { label: 'GIS', value: 'GIS' },
+  { label: 'General Open Source', value: 'General Open Source' },
+] as const;
+
 const learningResourceTypeOptions = [
-  { label: 'Static Documents', value: 'Static Documents' },
-  { label: 'Short Training Courses', value: 'Short Training Courses' },
-  { label: 'Long Form Training', value: 'Long Form Training' },
+  { label: 'Tutorial', value: 'tutorial' },
+  { label: 'Workshop', value: 'workshop' },
+  { label: 'Presentation', value: 'presentation' },
+  { label: 'Handout', value: 'handout' },
+  { label: 'Video Lecture', value: 'video lecture' },
+  { label: 'e-Learning Module', value: 'e-Learning module' },
+  { label: 'Quiz', value: 'quiz' },
+  { label: 'Exercise', value: 'exercise' },
+] as const;
+
+const ossRoleOptions = [
+  { label: 'Developer', value: 'Developer' },
+  { label: 'Contributor', value: 'Contributor' },
+  { label: 'Community Manager', value: 'Community Manager' },
+  { label: 'User/Consumer', value: 'User/Consumer' },
+  { label: 'Maintainer', value: 'Maintainer' },
+] as const;
+
+const creativeWorkStatusOptions = [
+  { label: 'Active', value: 'Active' },
+  { label: 'Under development', value: 'Under development' },
+  { label: 'Archived', value: 'Archived' },
 ] as const;
 
 const languageOptions = [
@@ -124,9 +151,17 @@ export default config({
           options: educationalLevelOptions,
           defaultValue: 'Beginner',
         }),
-        ossRole: fields.text({
-          label: 'OSS role(s)',
-          description: 'Used for filtering and tag pills. Example: Contributor, Maintainer',
+        domain: fields.select({
+          label: 'Domain (topic area)',
+          options: domainOptions,
+          defaultValue: 'General Open Source',
+          description: 'High-level category for discovery filters.',
+        }),
+        ossRole: fields.select({
+          label: 'OSS Role',
+          options: ossRoleOptions,
+          defaultValue: 'Contributor',
+          description: 'Standardized Bioschemas role.',
         }),
         subTopic: fields.text({ label: 'Sub-topic' }),
         timeRequired: fields.text({
@@ -136,7 +171,8 @@ export default config({
         learningResourceType: fields.select({
           label: 'Learning resource type',
           options: learningResourceTypeOptions,
-          defaultValue: 'Short Training Courses',
+          defaultValue: 'tutorial',
+          description: 'Bioschemas standardized type.',
         }),
         inLanguage: fields.array(
           fields.select({
@@ -154,7 +190,10 @@ export default config({
           itemLabel: (props) => props.value,
         }),
         // --- Additional Metadata Fields ---
-        topic: fields.text({ label: 'Topic' }),
+        topic: fields.text({
+          label: 'Topic (Granular)',
+          description: 'Specific tool or sub-topic (e.g. QGIS, Python, Git)',
+        }),
         sortingId: fields.text({ label: 'Sorting ID' }),
         dependsOn: fields.array(fields.text({ label: 'Dependency (slug or URL)' }), {
           label: 'Depends On',
@@ -174,7 +213,11 @@ export default config({
         audience: fields.text({ label: 'Audience' }),
         competencyRequired: fields.text({ label: 'Competency Required' }),
         contributor: fields.text({ label: 'Contributor' }),
-        creativeWorkStatus: fields.text({ label: 'Creative Work Status' }),
+        creativeWorkStatus: fields.select({
+          label: 'Creative Work Status (Lifecycle)',
+          options: creativeWorkStatusOptions,
+          defaultValue: 'Active',
+        }),
         dateCreated: fields.text({ label: 'Date Created' }),
         dateModified: fields.text({ label: 'Date Modified' }),
         datePublished: fields.text({ label: 'Date Published' }),
