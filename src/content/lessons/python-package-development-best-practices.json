@@ -8,12 +8,12 @@
   "subTopic": "",
   "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Intermediate",
-  "learningResourceType": "Tutorial",
+  "learningResourceType": "Short Training Courses",
   "author": "MolSSI Education Team",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Contributor, Maintainer",
   "inLanguage": [
-    "English"
+    "en"
   ],
   "keywords": [
     "Python",
@@ -29,12 +29,12 @@
     "r-packaging"
   ],
   "prerequisiteNotes": "",
-  "learningObjectives": "Use conda to create an environment and install packages.\nSet up credentials for GitHub.\nExplain Python package structure.\nUse the CMS CookieCutter to build a Python package.\nExplain the purpose of version control.\nIntroduce common git commands.\nUnderstand how to create a commit.\nUnderstand how to view diffs and see previous versions of files.\nExplain reasons to use GitHub.\nLearn about collaboration models.\nLearn what a fork is on GitHub\nLearn how to open a pull request\nLearn how to raise exceptions.\nUnderstand how to follow PEP8 style for Python.\nUnderstand what docstrings are and why they are important.\nLearn to write docstrings in numpy style.\nBreak code into modules and subpackages based on functionality.\nUnderstand how the __init__.py file affects your Python package.\nLearn about type hinting in Python.\nLearn the syntax to utilize type hinting in Python.\nExplain in-code documentation\nExplain documentation tools like Read The Docs\nExplain the overall structure of testing.\nExplain the reasons why testing is important.\nUnderstand how to write tests using the pytest framework.\nExplain the concept and benefits of continuous integration.\nIntroduce the GitHub Marketplace as a one-stop shop for continuous integration services.\nDemonstrate how to setup continuous integration using GitHub Actions.\nFamiliarize learners with YAML configuration files.",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Apply best practices for structuring Python packages for scientific software\n- Demonstrate how to write comprehensive tests and manage dependencies\n- Implement version control workflows for collaborative package development\n- Create clear documentation using tools like Read The Docs\n- Configure continuous integration for automated testing and deployment",
   "ospoRelevance": "High",
   "abstract": "This lesson introduces best practices for developing Python packages, covering topics like structuring packages, writing tests, and managing dependencies for scientific software.",
   "dateCreated": "2020-10-01T09:00:00+00:00",
   "dateModified": "2023-03-10T14:40:12+00:00",
-  "timeRequired": "",
+  "timeRequired": "PT11M",
   "about": "",
   "accessibilitySummary": "",
   "audience": "Python Developers, Researchers, Software Engineers",
