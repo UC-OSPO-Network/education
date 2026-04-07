@@ -45,7 +45,7 @@ const icon =
   .folder {
     position: relative;
     background: var(--folder-bg);
-    border-radius: 12px;
+    border-radius: var(--radius-md);
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     color: var(--text);
@@ -63,7 +63,7 @@ const icon =
     right: 6px;
     bottom: 6px;
     background: #1c1c1c;
-    border-radius: 12px;
+    border-radius: var(--radius-md);
     z-index: -1;
     transition: all 0.3s ease;
   }
@@ -102,7 +102,7 @@ const icon =
     height: 16px;
     width: 60%;
     background: var(--tab-bg);
-    border-radius: 8px 8px 0 0;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
   }
 
   .folder-header:hover {
