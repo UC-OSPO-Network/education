@@ -45,7 +45,7 @@ export default function CategoryPanel({
             type="button"
             className="home-category-tab__trigger"
             onClick={onSelect}
-            aria-pressed={active}
+            aria-expanded={active}
           >
             {trigger}
           </button>
