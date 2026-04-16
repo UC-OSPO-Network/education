@@ -5,7 +5,7 @@
   "description": "Learn how to 'read the room' by interpreting project files like README.md, CONTRIBUTING.md, and CODE_OF_CONDUCT.md.",
   "url": "https://opensource.guide/best-practices/",
   "author": "GitHub",
-  "license": "CC-BY-4.0",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
   "learnerCategory": "Getting Started with Open Source",
   "educationalLevel": "Beginner",
   "ossRole": "Maintainer, Community Manager",
@@ -57,5 +57,6 @@
   "dateModified": "2025-12-26",
   "datePublished": "2025-12-26",
   "timeRequired": "PT14M",
-  "subTopic": "Open Source Literacy"
+  "subTopic": "Open Source Literacy",
+  "dateCreated": ""
 }

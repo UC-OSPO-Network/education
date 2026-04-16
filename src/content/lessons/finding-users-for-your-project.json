@@ -10,7 +10,7 @@
   "educationalLevel": "Beginner",
   "learningResourceType": "handout",
   "author": "GitHub",
-  "license": "CC-BY-4.0",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Community Manager",
   "inLanguage": [
     "en",
@@ -46,10 +46,8 @@
     "promotion"
   ],
   "sortingId": "19",
-  "dependsOn": [
-    "starting-an-open-source-project"
-  ],
-  "prerequisiteNotes": "",
+  "dependsOn": [],
+  "prerequisiteNotes": "starting-an-open-source-project",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Identify strategies to attract and grow a user base for open source projects\n- Apply techniques to improve project discoverability and visibility\n- Demonstrate how to engage with communities and leverage social platforms for outreach\n- Recognize the importance of user feedback in project development\n- Implement marketing and communication strategies for open source projects",
   "ospoRelevance": "Core",
   "abstract": "This guide explores strategies to attract and grow a user base for your open source project. It covers techniques such as improving discoverability, engaging with communities, and leveraging social platforms for outreach.",

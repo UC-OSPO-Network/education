@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import EducatorToolkit from '../components/EducatorToolkit.astro';
 ---
 
 <style>
@@ -321,25 +322,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
 
         <div class="feature-card">
-          <h3><span class="feature-icon">🌐</span> University-Backed</h3>
+          <h3><span class="feature-icon">🌐</span> UC-Vetted</h3>
           <p>
             Supported by the University of California Open Source Program Office network,
-            ensuring ongoing curation and quality.
+            ensuring high-quality curation across the UC system.
           </p>
         </div>
       </div>
 
-      <h2 class="section-title">How Educators Use These Resources</h2>
+      <EducatorToolkit />
+
+      <h2 class="section-title">How Instructors Use These Resources</h2>
 
       <div class="use-cases">
         <div class="use-case">
-          <h4>🎓 University Courses</h4>
+          <h4>🎓 Workshops & Courses</h4>
           <p>
-            Integrate lessons into computer science, software engineering, or information science courses.
-            Use pathways as course modules or supplement existing curriculum.
+            Integrate lessons into computer science courses, library workshops, or research staff training.
+            Use pathways as modular units or supplement existing curriculum.
           </p>
           <p class="pathways-list">
-            Example: "Contributing to a Project" pathway for a software engineering course on collaborative development
+            Example: "Contributing to a Project" pathway for a lab session on collaborative development
           </p>
         </div>
 

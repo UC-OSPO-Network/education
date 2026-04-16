@@ -5,7 +5,7 @@
   "description": "Learn more about Introduction to Remote Computing.",
   "url": "https://ucdavisdatalab.github.io/workshop_intro_to_remote_computing/chapters/index.html",
   "author": "Oliver Kreylos",
-  "license": "CC-BY-NC-SA-4.0",
+  "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
   "learnerCategory": "Contributing to a Project",
   "educationalLevel": "Beginner",
   "ossRole": "",

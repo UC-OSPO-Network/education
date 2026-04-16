@@ -22,15 +22,13 @@
     "collaboration"
   ],
   "sortingId": "30",
-  "dependsOn": [
-    "intermediate-python"
-  ],
-  "prerequisiteNotes": "",
+  "dependsOn": [],
+  "prerequisiteNotes": "intermediate-python",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the principles of modular programming and its benefits\n- Demonstrate how to write reusable, single-purpose functions\n- Apply strategies to limit side effects and improve code testability\n- Implement command line interfaces to improve code versatility\n- Recognize how modular design supports parallelization and collaboration",
   "ospoRelevance": "Moderate",
   "abstract": "This lesson introduces the concept of modular programming in Python. It covers how to structure code into reusable modules and how to organize and test these modules for better maintainability and collaboration.",
-  "dateCreated": "2020-05-15T10:00:00+00:00",
-  "dateModified": "2023-02-10T14:40:12+00:00",
+  "dateCreated": "2020-05-15",
+  "dateModified": "2023-02-10",
   "timeRequired": "PT3M",
   "about": "",
   "accessibilitySummary": "",
@@ -38,7 +36,7 @@
   "competencyRequired": "Basic understanding of Python programming",
   "contributor": "",
   "creativeWorkStatus": "Active",
-  "datePublished": "2020-06-01T14:00:00+00:00",
+  "datePublished": "2020-06-01",
   "hasPart": "",
   "identifier": "https://coderefinery.github.io/modular-type-along/",
   "isPartOf": "CodeRefinery Python Series",

@@ -45,6 +45,22 @@ export type Lesson = {
   workTranslation?: string;
 };
 
+/**
+ * Formats ISO 8601 duration (e.g. PT1H30M) into human-readable text (e.g. 1h 30m)
+ */
+export function formatDuration(duration: string | undefined | null): string {
+  if (!duration || !duration.startsWith('PT')) return duration || '';
+
+  const regex = /PT(?:(\d+)H)?(?:(\d+)M)?/;
+  const match = duration.match(regex);
+  if (!match) return duration;
+
+  const hours = match[1] ? `${match[1]}h` : '';
+  const minutes = match[2] ? `${match[2]}m` : '';
+
+  return `${hours} ${minutes}`.trim();
+}
+
 export async function getLessons(): Promise<Lesson[]> {
   const entries = await getCollection('lessons');
   return entries.map((entry) => {

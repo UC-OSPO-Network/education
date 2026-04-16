@@ -10,7 +10,7 @@
   "educationalLevel": "Intermediate",
   "learningResourceType": "tutorial",
   "author": "The Carpentries Incubator",
-  "license": "CC-BY",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Contributor, Maintainer",
   "inLanguage": [
     "en"
@@ -19,11 +19,8 @@
     "english packaging pip python"
   ],
   "sortingId": "10",
-  "dependsOn": [
-    "introduction-to-git",
-    "python-basics"
-  ],
-  "prerequisiteNotes": "",
+  "dependsOn": [],
+  "prerequisiteNotes": "introduction-to-git | python-basics",
   "learningObjectives": "Identify the purpose and benefits of packaging Python code.\nDescribe the basic structure of a Python package (e.g., __init__.py, setup.py, pyproject.toml).\nRecognize the role of metadata in package distribution.\nList common tools used for packaging (e.g., setuptools, pip, build, twine).\nDescribe how to write and organize code for packaging.\nIdentify best practices for versioning and dependency management.\nRecognize how to build and distribute a package to the Python Package Index (PyPI).",
   "ospoRelevance": "Moderate",
   "abstract": "This lesson teaches how to create and publish packages in Python. We assume a basic understanding of Python, and assume learners are comfortable using simple commands in a Bash shell.",

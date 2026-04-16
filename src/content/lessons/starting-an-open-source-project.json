@@ -10,7 +10,7 @@
   "educationalLevel": "Beginner",
   "learningResourceType": "handout",
   "author": "GitHub",
-  "license": "CC-BY-4.0",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Contributor, Maintainer",
   "inLanguage": [
     "en",
@@ -46,11 +46,8 @@
     "launch"
   ],
   "sortingId": "18",
-  "dependsOn": [
-    "introduction-to-git",
-    "understanding-software-licensing"
-  ],
-  "prerequisiteNotes": "",
+  "dependsOn": [],
+  "prerequisiteNotes": "introduction-to-git | understanding-software-licensing",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Define the purpose and goals of a new open source project\n- Identify the foundational steps for launching a successful open source project\n- Apply best practices for choosing an appropriate open source license\n- Demonstrate how to set up version control and create a contributor-friendly environment\n- Recognize the importance of documentation and community guidelines from the start",
   "ospoRelevance": "Core",
   "abstract": "Learn the foundational steps for launching a successful open source project, from defining its purpose and choosing a license to setting up version control and creating a contributor-friendly environment.",
