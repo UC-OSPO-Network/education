@@ -57,35 +57,58 @@ const sidebarItems = siteChrome.nav.map((item) => ({
               <p class="site-sidebar__eyebrow">UC OSPO Network</p>
               <nav class="site-sidebar__nav" aria-label="Site sections">
                 <ul class="site-sidebar__list">
-                  {sidebarItems.map((item) => (
-                    <li class={`site-sidebar__item${item.current ? " is-current" : ""}`}>
-                      <a
-                        class="site-sidebar__link"
-                        href={item.hrefResolved}
-                        target={item.external ? "_blank" : undefined}
-                        rel={item.external ? "noopener noreferrer" : undefined}
-                      >
-                        {item.label}
-                      </a>
+                  {sidebarItems.map((item, index) => {
+                    const hasChildren = item.childrenResolved && item.childrenResolved.length > 0;
+                    const isExpanded = item.current || (hasChildren && item.childrenResolved.some((c) => c.current));
+                    const checkboxId = `sidebar-toggle-${index}`;
+                    return (
+                      <li class={`site-sidebar__item${item.current ? " is-current" : ""}${hasChildren ? " has-children" : ""}`}>
+                        {hasChildren && (
+                          <input 
+                            type="checkbox" 
+                            id={checkboxId} 
+                            class="site-sidebar__toggle-checkbox sr-only" 
+                            checked={isExpanded ? true : undefined} 
+                          />
+                        )}
+                        <div class="site-sidebar__item-header">
+                          <a
+                            class="site-sidebar__link"
+                            href={item.hrefResolved}
+                            target={item.external ? "_blank" : undefined}
+                            rel={item.external ? "noopener noreferrer" : undefined}
+                          >
+                            {item.label}
+                          </a>
+                          {hasChildren && (
+                            <label for={checkboxId} class="site-sidebar__toggle-label">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="site-sidebar__caret">
+                                <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                              </svg>
+                              <span class="sr-only">Toggle {item.label}</span>
+                            </label>
+                          )}
+                        </div>
 
-                      {item.childrenResolved?.length ? (
-                        <ul class="site-sidebar__sublist">
-                          {item.childrenResolved.map((child) => (
-                            <li class={`site-sidebar__subitem${child.current ? " is-current" : ""}`}>
-                              <a
-                                class="site-sidebar__sublink"
-                                href={child.hrefResolved}
-                                target={child.external ? "_blank" : undefined}
-                                rel={child.external ? "noopener noreferrer" : undefined}
-                              >
-                                {child.label}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      ) : null}
-                    </li>
-                  ))}
+                        {hasChildren ? (
+                          <ul class="site-sidebar__sublist">
+                            {item.childrenResolved.map((child) => (
+                              <li class={`site-sidebar__subitem${child.current ? " is-current" : ""}`}>
+                                <a
+                                  class="site-sidebar__sublink"
+                                  href={child.hrefResolved}
+                                  target={child.external ? "_blank" : undefined}
+                                  rel={child.external ? "noopener noreferrer" : undefined}
+                                >
+                                  {child.label}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </li>
+                    );
+                  })}
                 </ul>
               </nav>
             </div>
