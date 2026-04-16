@@ -1,5 +1,9 @@
 # Google Sheets Update Instructions
 
+> Historical/generated note: this file documents an older learning-objectives import flow.
+> For the current canonical metadata review/update workflow, use
+> `/Users/shawnwang/Downloads/GitHub/education/scripts/UPDATING_GOOGLE_SHEETS.md`.
+
 ## Overview
 
 This guide explains how to update the UC OSPO Education Google Sheets with the newly generated Learning Objectives.

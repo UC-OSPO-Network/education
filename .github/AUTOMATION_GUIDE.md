@@ -25,7 +25,7 @@ Scripts analyzed your 56 lessons and filled in missing metadata. Results are in 
 
 ```
 ┌─────────────────┐
-│ Google Sheets   │ ← Your source of truth (never modified by scripts)
+│ Google Sheets   │ ← Review hub (never modified directly by repo scripts)
 └────────┬────────┘
          │ Scripts READ only
          ▼
@@ -39,7 +39,7 @@ Scripts analyzed your 56 lessons and filled in missing metadata. Results are in 
 └─────────────────┘
 ```
 
-**Key point:** Scripts NEVER modify Google Sheets. You're always in control.
+**Key point:** Repo scripts never write directly to Google Sheets. Use the canonical review/apply workflow in `scripts/UPDATING_GOOGLE_SHEETS.md`.
 
 ## Your 3 Options
 
