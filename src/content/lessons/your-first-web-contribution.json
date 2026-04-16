@@ -1,0 +1,36 @@
+{
+  "name": "Your First Web Contribution",
+  "slug": "your-first-web-contribution",
+  "keepStatus": "keep",
+  "description": "Build confidence by making a real open source contribution using only your web browser. No technical setup or Git installation required!",
+  "url": "https://github.com/firstcontributions/first-contributions",
+  "domain": "General Open Source",
+  "topic": "Contributing",
+  "subTopic": "Open Source Literacy",
+  "learnerCategory": "Getting Started with Open Source",
+  "educationalLevel": "Beginner",
+  "learningResourceType": "tutorial",
+  "author": "First Contributions Team",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "ossRole": "Contributor",
+  "timeRequired": "PT15M",
+  "inLanguage": [
+    "en"
+  ],
+  "keywords": [
+    "quick win",
+    "browser-based",
+    "contribution",
+    "first-timers"
+  ],
+  "dependsOn": [
+    "what-is-open-source"
+  ],
+  "prerequisiteNotes": "A GitHub account is required.",
+  "sortingId": "2",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Navigate the GitHub web interface to edit a file.\n- Understand the high-level concept of a 'Fork' and a 'Pull Request'.\n- Successfully submit a browser-based contribution to a public repository.\n- Experience the immediate 'dopamine hit' of a successful collaborative edit.",
+  "ospoRelevance": "High",
+  "abstract": "This hands-on tutorial walks absolute beginners through making their very first open source contribution using the GitHub web editor. It bypasses technical Git setup to focus on the social and procedural mechanics of a Pull Request.",
+  "dateCreated": "2026-04-05",
+  "creativeWorkStatus": "Active"
+}

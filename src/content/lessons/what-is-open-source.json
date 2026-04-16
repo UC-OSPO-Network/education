@@ -1,0 +1,35 @@
+{
+  "name": "What is Open Source?",
+  "slug": "what-is-open-source",
+  "keepStatus": "keep",
+  "description": "An introduction to the four freedoms of software, the benefits of FOSS in education and industry, and the core principles of transparency and community.",
+  "url": "https://opensource.guide/starting-a-project/#what-does-open-source-mean",
+  "domain": "General Open Source",
+  "topic": "Open Source Literacy",
+  "subTopic": "Open Source Literacy",
+  "learnerCategory": "Getting Started with Open Source",
+  "educationalLevel": "Beginner",
+  "learningResourceType": "tutorial",
+  "author": "Open Source Guides",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "ossRole": "User/Consumer",
+  "timeRequired": "PT10M",
+  "inLanguage": [
+    "en"
+  ],
+  "keywords": [
+    "FOSS",
+    "open source",
+    "transparency",
+    "community"
+  ],
+  "dependsOn": [],
+  "prerequisiteNotes": "No prior experience needed.",
+  "sortingId": "1",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the four freedoms of free software.\n- Differentiate between FOSS and proprietary models.\n- Identify the benefits of open source in education and industry.\n- Describe the core principles of transparency, meritocracy, and community.",
+  "ospoRelevance": "Core",
+  "abstract": "This lesson addresses the foundational concepts of open source. It covers the four freedoms of software, the benefits of FOSS in education and industry, and the core principles of transparency and community.",
+  "dateCreated": "2026-04-05",
+  "dateModified": "2026-04-05",
+  "creativeWorkStatus": "Active"
+}
