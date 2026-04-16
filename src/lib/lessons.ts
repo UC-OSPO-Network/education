@@ -55,7 +55,7 @@ export async function getLessons(): Promise<Lesson[]> {
       : data.keywords || '';
 
     // Handle ossRole and oss_role
-    const oss_role = data.ossRole || data.oss_role || '';
+    const oss_role = String(data.ossRole ?? data.oss_role ?? '');
     const dependsOn = Array.isArray(data.dependsOn)
       ? data.dependsOn.filter((value) => typeof value === 'string' && value.trim() !== '')
       : [];
