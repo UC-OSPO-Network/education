@@ -17,7 +17,7 @@ const sidebarItems = siteChrome.nav.map((item) => ({
   ...item,
   current: isCurrentItem(basePath, Astro.url.pathname, item),
   hrefResolved: item.external ? item.href : withBasePath(import.meta.env.BASE_URL, item.href),
-  childrenResolved: item.children?.map((child) => ({
+  childrenResolved: (item.children ?? []).map((child) => ({
     ...child,
     current: isCurrentLink(basePath, Astro.url.pathname, child.href),
     hrefResolved: child.external ? child.href : withBasePath(import.meta.env.BASE_URL, child.href),
@@ -58,7 +58,7 @@ const sidebarItems = siteChrome.nav.map((item) => ({
               <nav class="site-sidebar__nav" aria-label="Site sections">
                 <ul class="site-sidebar__list">
                   {sidebarItems.map((item, index) => {
-                    const hasChildren = item.childrenResolved && item.childrenResolved.length > 0;
+                    const hasChildren = item.childrenResolved.length > 0;
                     const isExpanded = item.current || (hasChildren && item.childrenResolved.some((c) => c.current));
                     const checkboxId = `sidebar-toggle-${index}`;
                     return (

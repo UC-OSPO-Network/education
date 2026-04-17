@@ -43,91 +43,95 @@ export function isCurrentItem(basePath: string, currentPathname: string, item: C
   return item.children?.some((child) => isCurrentLink(basePath, currentPathname, child.href)) ?? false;
 }
 
+const nav: ChromeNavItem[] = [
+  {
+    label: "About",
+    href: "https://ucospo.net/about",
+    external: true,
+    children: [
+      {
+        label: "About UC OSPO Network",
+        href: "https://ucospo.net/about",
+        external: true,
+      },
+      {
+        label: "Guiding Themes",
+        href: "https://ucospo.net/about/guiding-themes",
+        external: true,
+      },
+    ],
+  },
+  {
+    label: "Events",
+    href: "https://ucospo.net/events",
+    external: true,
+  },
+  {
+    label: "Blog",
+    href: "https://ucospo.net/posts/",
+    external: true,
+  },
+  {
+    label: "Resources",
+    href: "https://ucospo.net/oss-resources",
+    external: true,
+    children: [
+      {
+        label: "OSS Resources",
+        href: "https://ucospo.net/oss-resources",
+        external: true,
+      },
+      {
+        label: "Template Guides",
+        href: "https://ucospo.net/oss-resources",
+        external: true,
+      },
+    ],
+  },
+  {
+    label: "Education",
+    href: "/",
+    currentSite: true,
+    matchPrefixes: ["/", "/lessons", "/pathways", "/develop-a-lesson", "/for-educators"],
+    children: [
+      { label: "All Pathways", href: "/" },
+      { label: "All Lessons", href: "/lessons" },
+      { label: "Browse Pathways", href: "/pathways" },
+      { label: "Develop a Lesson", href: "/develop-a-lesson" },
+      { label: "For Educators", href: "/for-educators" },
+    ],
+  },
+];
+
+const footerSocial: Array<ChromeLink & { icon: string }> = [
+  {
+    label: "GitHub",
+    href: "https://github.com/UC-OSPO-Network/",
+    icon: "/icons/github.svg",
+    external: true,
+  },
+  {
+    label: "Slack",
+    href: "https://join.slack.com/t/uc-ospo-network/shared_invite/zt-3ecp5b20z-ECL~4DkCUslB0t3mbH9xUg",
+    icon: "/icons/slack.svg",
+    external: true,
+  },
+  {
+    label: "RSS",
+    href: "https://ucospo.net/atom.xml",
+    icon: "/icons/rss.svg",
+    external: true,
+  },
+];
+
 export const siteChrome = {
   brand: {
     label: "UC OSPO Network",
     subtitle: "Education",
     homeHref: "https://ucospo.net/",
   },
-  nav: [
-    {
-      label: "About",
-      href: "https://ucospo.net/about",
-      external: true,
-      children: [
-        {
-          label: "About UC OSPO Network",
-          href: "https://ucospo.net/about",
-          external: true,
-        },
-        {
-          label: "Guiding Themes",
-          href: "https://ucospo.net/about/guiding-themes",
-          external: true,
-        },
-      ],
-    },
-    {
-      label: "Events",
-      href: "https://ucospo.net/events",
-      external: true,
-    },
-    {
-      label: "Blog",
-      href: "https://ucospo.net/posts/",
-      external: true,
-    },
-    {
-      label: "Resources",
-      href: "https://ucospo.net/oss-resources",
-      external: true,
-      children: [
-        {
-          label: "OSS Resources",
-          href: "https://ucospo.net/oss-resources",
-          external: true,
-        },
-        {
-          label: "Template Guides",
-          href: "https://ucospo.net/oss-resources",
-          external: true,
-        },
-      ],
-    },
-    {
-      label: "Education",
-      href: "/",
-      currentSite: true,
-      matchPrefixes: ["/", "/lessons", "/pathways", "/develop-a-lesson", "/for-educators"],
-      children: [
-        { label: "All Pathways", href: "/" },
-        { label: "All Lessons", href: "/lessons" },
-        { label: "Browse Pathways", href: "/pathways" },
-        { label: "Develop a Lesson", href: "/develop-a-lesson" },
-        { label: "For Educators", href: "/for-educators" },
-      ],
-    },
-  ] satisfies ChromeNavItem[],
+  nav,
   footer: {
-    social: [
-      {
-        label: "GitHub",
-        href: "https://github.com/UC-OSPO-Network/",
-        icon: "/icons/github.svg",
-        external: true,
-      },
-      {
-        label: "Slack",
-        href: "https://join.slack.com/t/uc-ospo-network/shared_invite/zt-3ecp5b20z-ECL~4DkCUslB0t3mbH9xUg",
-        icon: "/icons/slack.svg",
-        external: true,
-      },
-      {
-        label: "RSS",
-        href: "https://ucospo.net/atom.xml",
-        icon: "/icons/rss.svg",
-        external: true,
-      },
-    ] satisfies Array<ChromeLink & { icon: string }>,
+    social: footerSocial,
   },
-} as const;
+};

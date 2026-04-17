@@ -89,10 +89,10 @@ const basePath = import.meta.env.BASE_URL === "/" ? "" : import.meta.env.BASE_UR
 <script>
   const nav = document.getElementById("site-nav");
   const menuToggle = document.getElementById("site-menu-toggle");
-  const navItems = Array.from(document.querySelectorAll(".site-nav__item"));
-  const toggles = Array.from(document.querySelectorAll("[data-nav-toggle]"));
+  const navItems = Array.from(document.querySelectorAll<HTMLElement>(".site-nav__item"));
+  const toggles = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-nav-toggle]"));
 
-  function closeMenus(exceptItem) {
+  function closeMenus(exceptItem?: Element | null) {
     navItems.forEach((item) => {
       if (exceptItem && item === exceptItem) return;
       item.classList.remove("is-open");
@@ -110,8 +110,8 @@ const basePath = import.meta.env.BASE_URL === "/" ? "" : import.meta.env.BASE_UR
   }
 
   toggles.forEach((toggle) => {
-    toggle.addEventListener("click", (event) => {
-      const item = event.currentTarget.closest(".site-nav__item");
+    toggle.addEventListener("click", () => {
+      const item = toggle.closest(".site-nav__item");
       if (!item) return;
 
       const willOpen = !item.classList.contains("is-open");
