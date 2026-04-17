@@ -59,6 +59,27 @@ npm run build
 
 These checks run automatically on pull requests via GitHub Actions.
 
+### Accessibility Scanning
+
+The repository now includes an accessibility workflow at `.github/workflows/accessibility.yml`.
+It runs the repo's local Puppeteer + axe accessibility audit in GitHub Actions against a production-shaped `/education/` preview of the built site.
+
+- Runs automatically on pull requests that change site code, every Monday at 14:00 UTC, and manually from the Actions tab
+- Uploads the generated JSON audit report as a workflow artifact
+- Publishes a per-page violation summary to the workflow job summary
+- Supports optional CI gating through the `A11Y_FAIL_ERRORS_COUNT` repository variable
+
+To turn on blocking CI failures, add a repository variable named `A11Y_FAIL_ERRORS_COUNT` with a value greater than `0`.
+That threshold is passed into the audit script so the team can tune enforcement without another code change.
+
+For a local approximation of the same flow, run:
+
+```bash
+npm run a11y:local
+```
+
+That command builds the site, serves the generated files under `/education/`, and runs the repo's Puppeteer + axe audit against the local preview. If port `4321` is already in use, set `A11Y_PORT` first, for example `A11Y_PORT=4322 npm run a11y:local`.
+
 ### Run Locally
 
 To run the project locally in development mode:

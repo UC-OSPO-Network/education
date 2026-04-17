@@ -1,0 +1,78 @@
+name: Accessibility Scan
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'astro.config.mjs'
+      - 'package*.json'
+      - '.github/workflows/accessibility.yml'
+  schedule:
+    - cron: '0 14 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: accessibility-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run local accessibility audit
+        env:
+          A11Y_FAIL_ERRORS_COUNT: ${{ vars.A11Y_FAIL_ERRORS_COUNT || '0' }}
+        run: npm run a11y:local
+
+      - name: Publish accessibility summary
+        if: always()
+        run: |
+          node -e '
+            const fs = require("fs");
+            const reportPath = "scripts/accessibility/audit-results.json";
+            if (!fs.existsSync(reportPath)) {
+              console.log("## Accessibility Audit");
+              console.log("");
+              console.log("No audit results were generated.");
+              process.exit(0);
+            }
+            const results = JSON.parse(fs.readFileSync(reportPath, "utf8"));
+            const total = results.reduce((sum, result) => sum + (result.violations?.length || 0), 0);
+            console.log("## Accessibility Audit");
+            console.log("");
+            console.log("| Page | Violations |");
+            console.log("|---|---:|");
+            for (const result of results) {
+              console.log(`| ${result.page} | ${result.violations?.length || 0} |`);
+            }
+            console.log(`| Total | ${total} |`);
+          ' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload accessibility results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: accessibility-audit-results
+          path: scripts/accessibility/audit-results.json
+          if-no-files-found: warn
+          retention-days: 7
