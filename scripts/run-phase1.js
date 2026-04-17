@@ -9,10 +9,11 @@ console.log('║                                                           ║')
 console.log('╚═══════════════════════════════════════════════════════════╝');
 console.log('');
 
-console.log('This will run 3 automation scripts:');
-console.log('  1. estimate-time-required.js - Estimate lesson duration');
+console.log('This will run 4 automation scripts:');
+console.log('  1. generate-slugs.js         - Generate stable slugs and @id URLs');
 console.log('  2. standardize-languages.js  - Convert to IETF language codes');
-console.log('  3. scrape-metadata.js        - Extract author, license, dates');
+console.log('  3. estimate-time-required.js - Estimate lesson duration');
+console.log('  4. scrape-metadata.js        - Extract author, license, dates');
 console.log('');
 console.log('⚠️  NOTE: This will make web requests to all lesson URLs.');
 console.log('   It may take 5-10 minutes to complete.');
@@ -51,19 +52,25 @@ async function main() {
   const startTime = Date.now();
   const results = [];
 
-  // Script 1: Language standardization (fastest, no web requests)
+  // Script 1: Slug generation (fast, deterministic)
+  results.push({
+    name: 'Slug Generation',
+    ...await runScript('generate-slugs.js', 'Generating slugs and @id URLs')
+  });
+
+  // Script 2: Language standardization (fast, no web requests)
   results.push({
     name: 'Language Standardization',
     ...await runScript('standardize-languages.js', 'Standardizing language codes')
   });
 
-  // Script 2: Time estimation (web requests, may take time)
+  // Script 3: Time estimation (web requests, may take time)
   results.push({
     name: 'Time Estimation',
     ...await runScript('estimate-time-required.js', 'Estimating lesson durations')
   });
 
-  // Script 3: Metadata scraping (web requests, may take time)
+  // Script 4: Metadata scraping (web requests, may take time)
   results.push({
     name: 'Metadata Scraping',
     ...await runScript('scrape-metadata.js', 'Scraping author, license, and dates')
@@ -89,12 +96,13 @@ async function main() {
 
   if (successCount === results.length) {
     console.log('\n📁 Output files created in scripts/output/');
-    console.log('   Review the CSV files and import to Google Sheets.');
+    console.log('   For a merged review artifact, run: npm run enhance:merge');
+    console.log('   Preferred workflow for Sheets handoff: npm run sheets:prepare-update');
     console.log('\n📝 Next steps:');
     console.log('   1. Review the generated CSV files');
     console.log('   2. Spot-check automated values for accuracy');
-    console.log('   3. Import to Google Sheets');
-    console.log('   4. Proceed to Phase 2 (AI-assisted) when ready');
+    console.log('   3. Merge the outputs or use npm run sheets:prepare-update');
+    console.log('   4. Review/apply the merged CSV in Google Sheets');
   } else {
     console.log('\n⚠️  Some scripts failed. Check error messages above.');
     process.exit(1);

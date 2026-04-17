@@ -8,9 +8,9 @@
   "subTopic": "",
   "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Intermediate",
-  "learningResourceType": "Static Documents",
+  "learningResourceType": "handout",
   "author": "GitHub",
-  "license": "CC-BY-4.0",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Maintainer, Contributor",
   "inLanguage": [
     "en",
@@ -46,10 +46,8 @@
     "impact"
   ],
   "sortingId": "20",
-  "dependsOn": [
-    "starting-an-open-source-project"
-  ],
-  "prerequisiteNotes": "",
+  "dependsOn": [],
+  "prerequisiteNotes": "starting-an-open-source-project",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Identify key metrics for evaluating open source project health and success\n- Explain the importance of tracking and analyzing project activity and community growth\n- Apply tools and practices to monitor project metrics effectively\n- Demonstrate how to use metrics to make informed decisions about project direction\n- Recognize the relationship between metrics and project sustainability",
   "ospoRelevance": "Core",
   "abstract": "Understand the importance of tracking and analyzing metrics to evaluate the health and success of your open source project. This guide highlights key metrics, tools, and practices to monitor project activity and community growth.",
@@ -61,7 +59,7 @@
   "audience": "Developers, Maintainers",
   "competencyRequired": "",
   "contributor": "",
-  "creativeWorkStatus": "",
+  "creativeWorkStatus": "Active",
   "datePublished": "2025-12-26",
   "hasPart": "",
   "identifier": "",

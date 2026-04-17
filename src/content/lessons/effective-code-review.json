@@ -9,7 +9,7 @@
   "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Intermediate",
   "ossRole": "Maintainer, Contributor",
-  "learningResourceType": "Short Training Courses",
+  "learningResourceType": "tutorial",
   "inLanguage": [
     "en"
   ],
@@ -21,22 +21,21 @@
   ],
   "topic": "Maintaining",
   "sortingId": "22",
-  "dependsOn": [
-    "collaborative-git-for-teams"
-  ],
+  "dependsOn": [],
   "learningObjectives": "After this lesson, the learner should be able to:\n- Identify the purpose and benefits of code review in collaborative software development\n- Describe the typical workflow for conducting effective code reviews\n- Apply best practices for giving constructive, actionable feedback\n- Demonstrate how to prepare code for review to facilitate efficient feedback\n- Recognize how code review maintains project standards and improves code quality",
   "ospoRelevance": "High",
   "abstract": "This tutorial covers the principles and practices of code review, focusing on collaborative software development. It explains how to conduct code reviews effectively, provide feedback, and integrate changes.",
   "audience": "Software Developers, PhD Students, Open Source Contributors",
   "competencyRequired": "Git, collaborative coding",
-  "creativeWorkStatus": "active",
-  "dateCreated": "2023-04-12T10:45:13+00:00",
-  "dateModified": "2023-06-20T14:40:12+00:00",
-  "datePublished": "2023-06-20T14:40:12+00:00",
+  "creativeWorkStatus": "Active",
+  "dateCreated": "2023-04-12",
+  "dateModified": "2023-06-20",
+  "datePublished": "2023-06-20",
   "hasPart": "http://code-review-guide.io",
   "isPartOf": "Collaborative Development Series",
   "mentions": "GitHub Code Review, https://github.com/features/code-review, GitHub's code review feature",
   "teaches": "The student will be able to conduct a code review, provide constructive feedback, and manage changes.",
   "version": "1.1.0",
-  "timeRequired": "PT5M"
+  "timeRequired": "PT5M",
+  "prerequisiteNotes": "collaborative-git-for-teams"
 }

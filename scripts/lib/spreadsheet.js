@@ -1,9 +1,20 @@
-// Google Sheets integration using the existing getSheetData function
-import { getSheetData } from '../../src/lib/getSheetData.ts';
+import { fetchSheetRows } from './sheet-data.js';
 
 export async function getLessons() {
   console.log('Fetching lessons from Google Sheets...');
-  const lessons = await getSheetData();
+  const { rows, source, backupPath, fetchError } = await fetchSheetRows({
+    allowBackupFallback: true
+  });
+
+  if (source === 'backup') {
+    console.warn('⚠️  Falling back to the latest Google Sheets backup.');
+    if (fetchError) {
+      console.warn(`    Sheet fetch error: ${fetchError}`);
+    }
+    console.warn(`    Backup file: ${backupPath}`);
+  }
+
+  const lessons = rows;
   console.log(`Loaded ${lessons.length} lessons`);
   return lessons;
 }
@@ -40,8 +51,20 @@ export function createUpdateReport(original, enhanced, fields) {
 }
 
 export async function generateCSVUpdate(lessons, filename) {
-  // Generate CSV for manual upload to Google Sheets
-  const headers = Object.keys(lessons[0]);
+  // Generate CSV for manual upload to Google Sheets.
+  // Use the union of all row keys so newly added fields are not dropped just
+  // because they are missing from the first row object.
+  const headers = [];
+  const seenHeaders = new Set();
+
+  for (const lesson of lessons) {
+    for (const key of Object.keys(lesson)) {
+      if (seenHeaders.has(key)) continue;
+      seenHeaders.add(key);
+      headers.push(key);
+    }
+  }
+
   const rows = lessons.map(lesson =>
     headers.map(h => {
       const value = String(lesson[h] || '');

@@ -1,5 +1,9 @@
 # Quick Reference: What's Done vs What's Needed
 
+> Historical/generated note: this file describes a one-off learning-objectives import workflow.
+> Do not use it as the canonical metadata update process. For the current review/apply workflow, use
+> `/Users/shawnwang/Downloads/GitHub/education/scripts/UPDATING_GOOGLE_SHEETS.md`.
+
 ## ✅ DONE (By AI Agent)
 
 1. ✅ **Generated Learning Objectives for 52 lessons**
