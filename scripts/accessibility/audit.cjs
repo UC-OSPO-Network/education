@@ -6,7 +6,9 @@ async function runAccessibilityAudit() {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
-    const baseUrl = 'http://localhost:4321/education';
+    const basePath = process.env.AUDIT_BASE_PATH || '';
+    const normalizedBasePath = basePath && !basePath.startsWith('/') ? `/${basePath}` : basePath;
+    const baseUrl = `http://localhost:4321${normalizedBasePath}`;
     const pages = [
         { name: 'Home', url: baseUrl },
         { name: 'Browse Pathways', url: `${baseUrl}/pathways` },
