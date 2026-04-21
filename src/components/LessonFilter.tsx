@@ -10,16 +10,11 @@ interface LessonFilterProps {
 export default function LessonFilter({ lessons }: LessonFilterProps) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const [filters, setFilters] = useState<{
-    ossRole: string;
-    educationalLevel: string;
-    learnerCategory: string;
-    search: string;
-  }>({
+  const [filters, setFilters] = useState({
     ossRole: '',
     educationalLevel: '',
     learnerCategory: '',
-    search: ''
+    search: '',
   });
 
   useEffect(() => {
@@ -33,9 +28,7 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
 
     lessons.forEach((lesson) => {
       if (lesson.oss_role) {
-        lesson.oss_role.split(',').forEach((role) =>
-          ossRoles.add(role.trim())
-        );
+        lesson.oss_role.split(',').forEach((role) => ossRoles.add(role.trim()));
       }
       if (lesson.educationalLevel) levels.add(lesson.educationalLevel);
       if (lesson.learnerCategory) categories.add(lesson.learnerCategory);
@@ -44,7 +37,7 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
     return {
       ossRoles: Array.from(ossRoles).sort(),
       levels: Array.from(levels).sort(),
-      categories: Array.from(categories).sort()
+      categories: Array.from(categories).sort(),
     };
   }, [lessons]);
 
@@ -52,23 +45,19 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
     const index: Record<string, { name: string; url: string }> = {};
     lessons.forEach((lesson) => {
       if (!lesson.slug || !lesson.url) return;
-      index[lesson.slug] = {
-        name: lesson.name || lesson.slug,
-        url: lesson.url
-      };
+      index[lesson.slug] = { name: lesson.name || lesson.slug, url: lesson.url };
     });
     return index;
   }, [lessons]);
 
   const fuse = useMemo(() => {
     if (!lessons || lessons.length === 0) return null;
-
     return new Fuse(lessons, {
       keys: [
-        { name: "name", weight: 0.4 },
-        { name: "description", weight: 0.3 },
-        { name: "keywords", weight: 0.2 },
-        { name: "subTopic", weight: 0.1 },
+        { name: 'name', weight: 0.4 },
+        { name: 'description', weight: 0.3 },
+        { name: 'keywords', weight: 0.2 },
+        { name: 'subTopic', weight: 0.1 },
       ],
       threshold: 0.4,
       ignoreLocation: true,
@@ -78,232 +67,122 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
   const filteredLessons = useMemo(() => {
     let result = lessons;
 
-    // Apply fuzzy search
     if (filters.search && fuse) {
-      result = fuse.search(filters.search).map(r => r.item);
+      result = fuse.search(filters.search).map((r) => r.item);
     }
 
     return result.filter((lesson) => {
-      if (filters.ossRole && !lesson.oss_role?.includes(filters.ossRole)) {
-        return false;
-      }
-
-      if (
-        filters.educationalLevel &&
-        lesson.educationalLevel !== filters.educationalLevel
-      ) {
-        return false;
-      }
-
-      if (
-        filters.learnerCategory &&
-        lesson.learnerCategory !== filters.learnerCategory
-      ) {
-        return false;
-      }
-
+      if (filters.ossRole && !lesson.oss_role?.includes(filters.ossRole)) return false;
+      if (filters.educationalLevel && lesson.educationalLevel !== filters.educationalLevel) return false;
+      if (filters.learnerCategory && lesson.learnerCategory !== filters.learnerCategory) return false;
       return true;
     });
   }, [lessons, filters, fuse]);
 
-  const handleFilterChange = (
-    filterName: keyof typeof filters,
-    value: string
-  ) => {
+  const handleFilterChange = (filterName: keyof typeof filters, value: string) => {
     setFilters((prev) => ({ ...prev, [filterName]: value }));
   };
 
   const clearFilters = () => {
-    setFilters({
-      ossRole: '',
-      educationalLevel: '',
-      learnerCategory: '',
-      search: ''
-    });
+    setFilters({ ossRole: '', educationalLevel: '', learnerCategory: '', search: '' });
   };
 
+  if (isLoading) {
+    return (
+      <div className="lessons-loading">
+        <p>Loading lessons…</p>
+      </div>
+    );
+  }
+
   return (
-    <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem' }}>
-      {isLoading ? (
-        <div style={{ textAlign: 'center', padding: '4rem' }}>
-          <p style={{ color: 'var(--text-primary)', fontSize: '1.2rem' }}>Loading lessons...</p>
+    <div className="lessons-page">
+      {/* Filter panel */}
+      <div className="lessons-filter">
+        <div className="lessons-filter__grid">
+          <div className="lessons-filter__field">
+            <label className="lessons-filter__label">Search</label>
+            <input
+              type="text"
+              className="lessons-filter__input"
+              value={filters.search}
+              onChange={(e) => handleFilterChange('search', e.target.value)}
+              placeholder="Search lessons…"
+            />
+          </div>
+
+          <div className="lessons-filter__field">
+            <label className="lessons-filter__label">OSS Role</label>
+            <select
+              className="lessons-filter__select"
+              value={filters.ossRole}
+              onChange={(e) => handleFilterChange('ossRole', e.target.value)}
+            >
+              <option value="">All Roles</option>
+              {filterOptions.ossRoles.map((role) => (
+                <option key={role} value={role}>{role}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="lessons-filter__field">
+            <label className="lessons-filter__label">Skill Level</label>
+            <select
+              className="lessons-filter__select"
+              value={filters.educationalLevel}
+              onChange={(e) => handleFilterChange('educationalLevel', e.target.value)}
+            >
+              <option value="">All Levels</option>
+              {filterOptions.levels.map((level) => (
+                <option key={level} value={level}>{level}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="lessons-filter__field">
+            <label className="lessons-filter__label">Pathway</label>
+            <select
+              className="lessons-filter__select"
+              value={filters.learnerCategory}
+              onChange={(e) => handleFilterChange('learnerCategory', e.target.value)}
+            >
+              <option value="">All Pathways</option>
+              {filterOptions.categories.map((cat) => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+          </div>
         </div>
-      ) : (
-        <>
-          {/* Filter Controls */}
-          <div style={{
-            background: 'var(--bg-surface)',
-            padding: '1.5rem',
-            borderRadius: '12px',
-            marginBottom: '2rem',
-            border: '1px solid var(--border-light)'
-          }}>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: '1rem',
-              marginBottom: '1rem'
-            }}>
-              {/* Search */}
-              <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-primary)', fontWeight: '600' }}>
-                  Search
-                </label>
-                <input
-                  type="text"
-                  value={filters.search}
-                  onChange={(e) => handleFilterChange('search', e.target.value)}
-                  placeholder="Search lessons..."
-                  style={{
-                    width: '100%',
-                    padding: '0.65rem 0.75rem',
-                    borderRadius: '8px',
-                    border: '1px solid var(--border-light)',
-                    background: 'var(--bg-primary)',
-                    color: 'var(--text-primary)'
-                  }}
-                />
-              </div>
 
-              {/* OSS Role */}
-              <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-primary)', fontWeight: '600' }}>
-                  OSS Role
-                </label>
-                <select
-                  value={filters.ossRole}
-                  onChange={(e) => handleFilterChange('ossRole', e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '0.65rem 0.75rem',
-                    borderRadius: '8px',
-                    border: '1px solid var(--border-light)',
-                    background: 'var(--bg-primary)',
-                    color: 'var(--text-primary)'
-                  }}
-                >
-                  <option value="">All Roles</option>
-                  {filterOptions.ossRoles.map(role => (
-                    <option key={role} value={role}>{role}</option>
-                  ))}
-                </select>
-              </div>
+        <div className="lessons-filter__footer">
+          <p className="lessons-filter__count">
+            Showing {filteredLessons.length} of {lessons.length} lessons
+          </p>
+          <button className="lessons-filter__clear" onClick={clearFilters}>
+            Clear Filters
+          </button>
+        </div>
+      </div>
 
-              {/* Skill Level */}
-              <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-primary)', fontWeight: '600' }}>
-                  Skill Level
-                </label>
-                <select
-                  value={filters.educationalLevel}
-                  onChange={(e) => handleFilterChange('educationalLevel', e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '0.65rem 0.75rem',
-                    borderRadius: '8px',
-                    border: '1px solid var(--border-light)',
-                    background: 'var(--bg-primary)',
-                    color: 'var(--text-primary)'
-                  }}
-                >
-                  <option value="">All Levels</option>
-                  {filterOptions.levels.map(level => (
-                    <option key={level} value={level}>{level}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Pathway */}
-              <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-primary)', fontWeight: '600' }}>
-                  Pathway
-                </label>
-                <select
-                  value={filters.learnerCategory}
-                  onChange={(e) => handleFilterChange('learnerCategory', e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '0.65rem 0.75rem',
-                    borderRadius: '8px',
-                    border: '1px solid var(--border-light)',
-                    background: 'var(--bg-primary)',
-                    color: 'var(--text-primary)'
-                  }}
-                >
-                  <option value="">All Pathways</option>
-                  {filterOptions.categories.map(cat => (
-                    <option key={cat} value={cat}>{cat}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <p style={{ margin: 0, color: 'var(--text-secondary)' }}>
-                Showing {filteredLessons.length} of {lessons.length} lessons
-              </p>
-              <button
-                onClick={clearFilters}
-                style={{
-                  padding: '0.65rem 1rem',
-                  background: 'var(--bg-primary)',
-                  border: '1px solid var(--border-strong)',
-                  color: 'var(--text-primary)',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  fontSize: '0.9rem',
-                  fontWeight: '600'
-                }}
-              >
-                Clear Filters
-              </button>
-            </div>
+      {/* Results */}
+      <div className="lessons-grid">
+        {filteredLessons.length === 0 ? (
+          <div className="lessons-empty">
+            <p className="lessons-empty__message">No lessons match your filters.</p>
+            <button className="lessons-filter__clear" onClick={clearFilters}>
+              Clear Filters
+            </button>
           </div>
-
-          {/* Results */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-            gap: '2rem'
-          }}>
-            {filteredLessons.length === 0 ? (
-              <div style={{
-                gridColumn: '1 / -1',
-                textAlign: 'center',
-                padding: '3rem',
-                color: 'var(--text-secondary)'
-              }}>
-                <p style={{ fontSize: '1.2rem' }}>No lessons found matching your criteria.</p>
-                <button
-                  onClick={clearFilters}
-                  style={{
-                    marginTop: '1rem',
-                    padding: '0.75rem 1.5rem',
-                    background: 'var(--uc-gold)',
-                    color: 'var(--uc-blue)',
-                    border: 'none',
-                    borderRadius: '6px',
-                    cursor: 'pointer',
-                    fontSize: '1rem',
-                    fontWeight: '600'
-                  }}
-                >
-                  Clear Filters
-                </button>
-              </div>
-            ) : (
-              filteredLessons.map((lesson, index) => (
-                <LessonCard
-                  key={index}
-                  lesson={lesson}
-                  pathwayIcon="📚"
-                  lessonIndex={lessonIndex}
-                />
-              ))
-            )}
-          </div>
-        </>
-      )}
+        ) : (
+          filteredLessons.map((lesson, index) => (
+            <LessonCard
+              key={index}
+              lesson={lesson}
+              lessonIndex={lessonIndex}
+            />
+          ))
+        )}
+      </div>
     </div>
   );
 }

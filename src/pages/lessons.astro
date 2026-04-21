@@ -2,55 +2,38 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LessonFilter from '../components/LessonFilter.tsx';
 import { getActiveLessons } from '../lib/lessons';
+import '../components/lessons/lessons.css';
 
 const activeLessons = await getActiveLessons();
 ---
 
-
 <style>
   .page-header {
-    background: linear-gradient(135deg, var(--uc-blue) 0%, var(--uc-light-blue) 100%);
+    background: linear-gradient(135deg, var(--uc-blue) 0%, var(--uc-dark-blue) 100%);
     padding: 3rem 2rem;
-    margin: -2rem -2rem 2rem -2rem;
     text-align: center;
     border-bottom: 4px solid var(--uc-gold);
+    margin-bottom: 3rem;
   }
 
   .page-header h1 {
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 1rem 0;
     font-size: 2.5rem;
     color: var(--uc-white);
   }
 
   .page-header p {
-    margin: 0;
-    font-size: 1.1rem;
+    margin: 0 auto;
+    font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.9);
+    max-width: 700px;
   }
-  .error-state,
+
   .empty-state {
     text-align: center;
     padding: 4rem 2rem;
+    color: var(--text-secondary);
   }
-
-  .error-state h2 {
-    color: #b00020;
-  }
-
-  .error-state button {
-    margin-top: 1rem;
-    padding: 0.6rem 1.2rem;
-    background: var(--uc-blue);
-    color: white;
-    border: none;
-    border-radius: var(--radius-xs);
-    cursor: pointer;
-  }
-
-  .error-state button:hover {
-    opacity: 0.9;
-  }
-
 </style>
 
 <BaseLayout title="All Lessons">
@@ -59,12 +42,12 @@ const activeLessons = await getActiveLessons();
     <p>Browse and filter our complete collection of open source learning materials</p>
   </div>
 
-{activeLessons.length === 0 ? (
-  <div class="empty-state">
-    <h2>No lessons found</h2>
-    <p>No lessons found matching your criteria.</p>
-  </div>
-) : (
-  <LessonFilter lessons={activeLessons} client:load />
-)}
+  {activeLessons.length === 0 ? (
+    <div class="empty-state">
+      <h2>No lessons available</h2>
+      <p>Check back soon — lessons are being added regularly.</p>
+    </div>
+  ) : (
+    <LessonFilter lessons={activeLessons} client:load />
+  )}
 </BaseLayout>
