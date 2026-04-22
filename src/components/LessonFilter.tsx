@@ -95,111 +95,106 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
     });
   }
 
+  if (isLoading) {
+    return (
+      <div className="lessons-loading">
+        <p>Loading lessons…</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="content-container">
-      {isLoading ? (
-        <div className="empty-state">
-          <p>Loading lessons...</p>
-        </div>
-      ) : (
-        <>
-          <section className="filter-panel" aria-label="Lesson filters">
-            <div className="filter-grid">
-              <div className="filter-field">
-                <label htmlFor="lesson-search">Search</label>
-                <input
-                  id="lesson-search"
-                  className="filter-input"
-                  type="text"
-                  value={filters.search}
-                  onChange={(event) => handleFilterChange("search", event.target.value)}
-                  placeholder="Search lessons"
-                />
-              </div>
-
-              <div className="filter-field">
-                <label htmlFor="lesson-role">OSS Role</label>
-                <select
-                  id="lesson-role"
-                  className="filter-input"
-                  value={filters.ossRole}
-                  onChange={(event) => handleFilterChange("ossRole", event.target.value)}
-                >
-                  <option value="">All roles</option>
-                  {filterOptions.ossRoles.map((role) => (
-                    <option key={role} value={role}>
-                      {role}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="filter-field">
-                <label htmlFor="lesson-level">Skill Level</label>
-                <select
-                  id="lesson-level"
-                  className="filter-input"
-                  value={filters.educationalLevel}
-                  onChange={(event) => handleFilterChange("educationalLevel", event.target.value)}
-                >
-                  <option value="">All levels</option>
-                  {filterOptions.levels.map((level) => (
-                    <option key={level} value={level}>
-                      {level}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="filter-field">
-                <label htmlFor="lesson-pathway">Pathway</label>
-                <select
-                  id="lesson-pathway"
-                  className="filter-input"
-                  value={filters.learnerCategory}
-                  onChange={(event) => handleFilterChange("learnerCategory", event.target.value)}
-                >
-                  <option value="">All pathways</option>
-                  {filterOptions.categories.map((category) => (
-                    <option key={category} value={category}>
-                      {category}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="filter-summary">
-              <p>
-                Showing {filteredLessons.length} of {lessons.length} lessons
-              </p>
-              <button type="button" className="button-secondary" onClick={clearFilters}>
-                Clear Filters
-              </button>
-            </div>
-          </section>
-
-          <div className="lesson-results">
-            {filteredLessons.length === 0 ? (
-              <div className="empty-state" style={{ gridColumn: "1 / -1" }}>
-                <p>No lessons found matching your criteria.</p>
-                <button type="button" className="button-primary" onClick={clearFilters}>
-                  Reset Filters
-                </button>
-              </div>
-            ) : (
-              filteredLessons.map((lesson) => (
-                <LessonCard
-                  key={lesson.slug}
-                  lesson={lesson}
-                  pathwayIcon="📚"
-                  lessonIndex={lessonIndex}
-                />
-              ))
-            )}
+    <div className="lessons-page">
+      {/* Filter panel */}
+      <div className="lessons-filter">
+        <div className="lessons-filter__grid">
+          <div className="lessons-filter__field">
+            <label htmlFor="lesson-search" className="lessons-filter__label">Search</label>
+            <input
+              id="lesson-search"
+              type="text"
+              className="lessons-filter__input"
+              value={filters.search}
+              onChange={(e) => handleFilterChange("search", e.target.value)}
+              placeholder="Search lessons…"
+            />
           </div>
-        </>
-      )}
+
+          <div className="lessons-filter__field">
+            <label htmlFor="lesson-role" className="lessons-filter__label">OSS Role</label>
+            <select
+              id="lesson-role"
+              className="lessons-filter__select"
+              value={filters.ossRole}
+              onChange={(e) => handleFilterChange("ossRole", e.target.value)}
+            >
+              <option value="">All Roles</option>
+              {filterOptions.ossRoles.map((role) => (
+                <option key={role} value={role}>{role}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="lessons-filter__field">
+            <label htmlFor="lesson-level" className="lessons-filter__label">Skill Level</label>
+            <select
+              id="lesson-level"
+              className="lessons-filter__select"
+              value={filters.educationalLevel}
+              onChange={(e) => handleFilterChange("educationalLevel", e.target.value)}
+            >
+              <option value="">All Levels</option>
+              {filterOptions.levels.map((level) => (
+                <option key={level} value={level}>{level}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="lessons-filter__field">
+            <label htmlFor="lesson-pathway" className="lessons-filter__label">Pathway</label>
+            <select
+              id="lesson-pathway"
+              className="lessons-filter__select"
+              value={filters.learnerCategory}
+              onChange={(e) => handleFilterChange("learnerCategory", e.target.value)}
+            >
+              <option value="">All Pathways</option>
+              {filterOptions.categories.map((cat) => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="lessons-filter__footer">
+          <p className="lessons-filter__count">
+            Showing {filteredLessons.length} of {lessons.length} lessons
+          </p>
+          <button type="button" className="lessons-filter__clear" onClick={clearFilters}>
+            Clear Filters
+          </button>
+        </div>
+      </div>
+
+      {/* Results */}
+      <div className="lessons-grid">
+        {filteredLessons.length === 0 ? (
+          <div className="lessons-empty">
+            <p className="lessons-empty__message">No lessons match your filters.</p>
+            <button type="button" className="lessons-filter__clear" onClick={clearFilters}>
+              Clear Filters
+            </button>
+          </div>
+        ) : (
+          filteredLessons.map((lesson) => (
+            <LessonCard
+              key={lesson.slug}
+              lesson={lesson}
+              lessonIndex={lessonIndex}
+            />
+          ))
+        )}
+      </div>
     </div>
   );
 }

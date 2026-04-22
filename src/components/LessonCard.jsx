@@ -1,4 +1,4 @@
-import SkillBadge from "./SkillBadge.jsx";
+import { ChartBarIcon } from "@heroicons/react/24/outline";
 
 function isHttpUrl(value) {
   try {
@@ -18,10 +18,25 @@ function formatUrlLabel(url) {
   }
 }
 
-export default function LessonCard({ lesson, pathwayIcon, lessonIndex = {}, headingLevel = 2 }) {
+function getLevelConfig(level) {
+  if (!level) return { bg: "#6b7280", label: "Lesson" };
+  const n = level.toLowerCase();
+  if (n.includes("beginner"))     return { bg: "#005d46", label: "Beginner" };
+  if (n.includes("intermediate")) return { bg: "#a85a00", label: "Intermediate" };
+  if (n.includes("advanced"))     return { bg: "#8a2530", label: "Advanced" };
+  return { bg: "#6b7280", label: level };
+}
+
+export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3 }) {
   if (!lesson) return null;
 
   const lessonName = lesson.name || "Untitled Lesson";
+  const level = getLevelConfig(lesson.educationalLevel);
+  const topMeta = lesson.learningResourceType || lesson.subTopic || "Lesson";
+  const roleTags = lesson.oss_role
+    ? lesson.oss_role.split(",").map((r) => r.trim()).filter(Boolean).slice(0, 2)
+    : [];
+
   const dependencyRefs = Array.isArray(lesson.dependsOn)
     ? lesson.dependsOn.filter((value) => typeof value === "string" && value.trim() !== "")
     : [];
@@ -32,20 +47,12 @@ export default function LessonCard({ lesson, pathwayIcon, lessonIndex = {}, head
       if (!value) return null;
 
       if (isHttpUrl(value)) {
-        return {
-          key: value,
-          href: value,
-          label: formatUrlLabel(value),
-        };
+        return { key: value, href: value, label: formatUrlLabel(value) };
       }
 
       const targetLesson = lessonIndex[value];
       if (targetLesson?.url) {
-        return {
-          key: value,
-          href: targetLesson.url,
-          label: targetLesson.name || value,
-        };
+        return { key: value, href: targetLesson.url, label: targetLesson.name || value };
       }
 
       return null;
@@ -63,79 +70,66 @@ export default function LessonCard({ lesson, pathwayIcon, lessonIndex = {}, head
     (lesson.learnerCategory.includes(",") || lesson.learnerCategory.includes(";"));
 
   const lessonHref = `${import.meta.env.BASE_URL}lessons/${lesson.slug}`;
-  const roleTags = lesson.oss_role ? lesson.oss_role.split(",").slice(0, 2).map((role) => role.trim()) : [];
   const TitleTag = `h${headingLevel}`;
 
   return (
-    <article className="lesson-card">
-      <a className="lesson-card__overlay" href={lessonHref} aria-label={`Open lesson: ${lessonName}`} />
-      <div className="lesson-card__header">
-        <div className="lesson-card__badge-row">
-          <span className="lesson-card__meta-copy">{lesson.learningResourceType || "Lesson"}</span>
-          <SkillBadge level={lesson.educationalLevel} />
-        </div>
-
-        <div className="lesson-card__title-row">
-          <span className="lesson-card__icon" aria-hidden="true">
-            {pathwayIcon || "📚"}
-          </span>
-          <TitleTag className="lesson-card__title">{lessonName}</TitleTag>
-        </div>
+    <a className="lesson-card" href={lessonHref}>
+      {/* Colored level band */}
+      <div className="lesson-card__band" style={{ background: level.bg }}>
+        <ChartBarIcon className="lesson-card__band-icon" />
+        <span>{level.label}</span>
       </div>
 
+      {/* Dark metadata strip */}
+      <div className="lesson-card__meta-strip">
+        <p className="lesson-card__meta-type">{topMeta}</p>
+        {roleTags.length > 0 && (
+          <p className="lesson-card__meta-role">{roleTags.join(", ")}</p>
+        )}
+      </div>
+
+      {/* Body */}
       <div className="lesson-card__body">
+        <TitleTag className="lesson-card__title">{lessonName}</TitleTag>
+
         <p className="lesson-card__description">
-          {lesson.description || "No description available"}
+          {lesson.description || "No description available."}
         </p>
 
-        {prerequisiteLinks.length > 0 ? (
-          <div>
-            <p className="lesson-card__meta-label">Prerequisites</p>
-            <div className="lesson-card__link-list">
-              {prerequisiteLinks.map((link) => (
-                <a
-                  className="lesson-card__interactive"
-                  key={link.key}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
+        {prerequisiteLinks.length > 0 && (
+          <div className="lesson-card__prereqs">
+            <p className="lesson-card__prereq-label">Prerequisites</p>
+            {prerequisiteLinks.map((link) => (
+              <a
+                key={link.key}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="lesson-card__prereq-link"
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
-        ) : null}
+        )}
 
         <a
-          className="lesson-card__feedback lesson-card__interactive"
           href={feedbackUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          className="lesson-card__feedback"
         >
-          Give feedback
+          💬 Give Feedback
         </a>
 
-        <div className="lesson-card__tags">
-          {roleTags.map((role) => (
-            <span className="lesson-card__tag lesson-card__tag--accent" key={role}>
-              {role}
-            </span>
-          ))}
-
-          {lesson.learningResourceType ? (
-            <span className="lesson-card__tag lesson-card__tag--warm">
-              {lesson.learningResourceType}
-            </span>
-          ) : null}
-        </div>
-
-        {isMultiCategory ? (
-          <p className="lesson-card__footnote">
-            Featured in multiple pathways.
+        {isMultiCategory && (
+          <p className="lesson-card__multi-pathway">
+            ✨ Featured in multiple pathways
           </p>
-        ) : null}
+        )}
       </div>
-    </article>
+    </a>
   );
 }

@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import LessonFilter from "../components/LessonFilter.tsx";
 import { getActiveLessons } from "../lib/lessons";
+import "../components/lessons/lessons.css";
 
 const activeLessons = await getActiveLessons();
 ---
