@@ -108,7 +108,6 @@ const groupedLessons = pathwayLessons.reduce<Record<string, Lesson[]>>((acc, les
             {subtopicLessons.map((lesson) => (
               <LessonCard
                 lesson={lesson}
-                pathwayIcon={pathway.icon}
                 lessonIndex={lessonIndex}
                 headingLevel={3}
                 client:load

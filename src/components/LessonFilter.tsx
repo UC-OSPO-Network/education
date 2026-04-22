@@ -190,7 +190,6 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
             <LessonCard
               key={lesson.slug}
               lesson={lesson}
-              pathwayIcon="📚"
               lessonIndex={lessonIndex}
             />
           ))
