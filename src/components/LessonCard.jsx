@@ -21,9 +21,9 @@ function formatUrlLabel(url) {
 function getLevelConfig(level) {
   if (!level) return { bg: "#6b7280", label: "Lesson" };
   const n = level.toLowerCase();
-  if (n.includes("beginner"))     return { bg: "#10b981", label: "Beginner" };
-  if (n.includes("intermediate")) return { bg: "#f59e0b", label: "Intermediate" };
-  if (n.includes("advanced"))     return { bg: "#ef4444", label: "Advanced" };
+  if (n.includes("beginner"))     return { bg: "#005d46", label: "Beginner" };
+  if (n.includes("intermediate")) return { bg: "#a85a00", label: "Intermediate" };
+  if (n.includes("advanced"))     return { bg: "#8a2530", label: "Advanced" };
   return { bg: "#6b7280", label: level };
 }
 
@@ -124,23 +124,11 @@ export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3 
           💬 Give Feedback
         </a>
 
-        <div className="lesson-card__tags">
-          {roleTags.map((role, idx) => (
-            <span key={idx} className="lesson-card__tag lesson-card__tag--role">
-              {role}
-            </span>
-          ))}
-          {lesson.learningResourceType && (
-            <span className="lesson-card__tag lesson-card__tag--type">
-              {lesson.learningResourceType}
-            </span>
-          )}
-          {isMultiCategory && (
-            <p className="lesson-card__multi-pathway">
-              ✨ Featured in multiple pathways
-            </p>
-          )}
-        </div>
+        {isMultiCategory && (
+          <p className="lesson-card__multi-pathway">
+            ✨ Featured in multiple pathways
+          </p>
+        )}
       </div>
     </a>
   );
