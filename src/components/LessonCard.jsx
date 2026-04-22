@@ -1,9 +1,9 @@
-import { ChartBarIcon } from '@heroicons/react/24/outline';
+import { ChartBarIcon } from "@heroicons/react/24/outline";
 
 function isHttpUrl(value) {
   try {
     const url = new URL(value);
-    return url.protocol === 'http:' || url.protocol === 'https:';
+    return url.protocol === "http:" || url.protocol === "https:";
   } catch {
     return false;
   }
@@ -11,57 +11,66 @@ function isHttpUrl(value) {
 
 function formatUrlLabel(url) {
   try {
-    return new URL(url).hostname.replace(/^www\./, '');
+    const parsed = new URL(url);
+    return parsed.hostname.replace(/^www\./, "");
   } catch {
     return url;
   }
 }
 
 function getLevelConfig(level) {
-  if (!level) return { bg: '#6b7280', label: 'Lesson' };
+  if (!level) return { bg: "#6b7280", label: "Lesson" };
   const n = level.toLowerCase();
-  if (n.includes('beginner'))    return { bg: '#10b981', label: 'Beginner' };
-  if (n.includes('intermediate')) return { bg: '#f59e0b', label: 'Intermediate' };
-  if (n.includes('advanced'))    return { bg: '#ef4444', label: 'Advanced' };
-  return { bg: '#6b7280', label: level };
+  if (n.includes("beginner"))     return { bg: "#10b981", label: "Beginner" };
+  if (n.includes("intermediate")) return { bg: "#f59e0b", label: "Intermediate" };
+  if (n.includes("advanced"))     return { bg: "#ef4444", label: "Advanced" };
+  return { bg: "#6b7280", label: level };
 }
 
-export default function LessonCard({ lesson, lessonIndex = {} }) {
+export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3 }) {
   if (!lesson) return null;
 
-  const lessonName = lesson.name || 'Untitled Lesson';
+  const lessonName = lesson.name || "Untitled Lesson";
   const level = getLevelConfig(lesson.educationalLevel);
-  const topMeta = lesson.learningResourceType || lesson.subTopic || 'Lesson';
-  const roles = lesson.oss_role
-    ? lesson.oss_role.split(',').map((r) => r.trim()).filter(Boolean).slice(0, 2)
+  const topMeta = lesson.learningResourceType || lesson.subTopic || "Lesson";
+  const roleTags = lesson.oss_role
+    ? lesson.oss_role.split(",").map((r) => r.trim()).filter(Boolean).slice(0, 2)
     : [];
 
   const dependencyRefs = Array.isArray(lesson.dependsOn)
-    ? lesson.dependsOn.filter((v) => typeof v === 'string' && v.trim() !== '')
+    ? lesson.dependsOn.filter((value) => typeof value === "string" && value.trim() !== "")
     : [];
 
   const prerequisiteLinks = dependencyRefs
     .map((token) => {
       const value = token.trim();
       if (!value) return null;
-      if (isHttpUrl(value)) return { key: value, href: value, label: formatUrlLabel(value) };
-      const target = lessonIndex[value];
-      if (target?.url) return { key: value, href: target.url, label: target.name || value };
+
+      if (isHttpUrl(value)) {
+        return { key: value, href: value, label: formatUrlLabel(value) };
+      }
+
+      const targetLesson = lessonIndex[value];
+      if (targetLesson?.url) {
+        return { key: value, href: targetLesson.url, label: targetLesson.name || value };
+      }
+
       return null;
     })
     .filter(Boolean);
 
   const feedbackUrl =
-    'https://github.com/UC-OSPO-Network/education/issues/new' +
-    '?template=lesson-feedback.yml' +
+    "https://github.com/UC-OSPO-Network/education/issues/new" +
+    "?template=lesson-feedback.yml" +
     `&title=${encodeURIComponent(`Lesson Feedback: ${lessonName}`)}` +
     `&body=${encodeURIComponent(`Lesson: ${lessonName}\n\nFeedback:`)}`;
 
   const isMultiCategory =
     lesson.learnerCategory &&
-    (lesson.learnerCategory.includes(',') || lesson.learnerCategory.includes(';'));
+    (lesson.learnerCategory.includes(",") || lesson.learnerCategory.includes(";"));
 
   const lessonHref = `${import.meta.env.BASE_URL}lessons/${lesson.slug}`;
+  const TitleTag = `h${headingLevel}`;
 
   return (
     <a className="lesson-card" href={lessonHref}>
@@ -74,17 +83,17 @@ export default function LessonCard({ lesson, lessonIndex = {} }) {
       {/* Dark metadata strip */}
       <div className="lesson-card__meta-strip">
         <p className="lesson-card__meta-type">{topMeta}</p>
-        {roles.length > 0 && (
-          <p className="lesson-card__meta-role">{roles.join(', ')}</p>
+        {roleTags.length > 0 && (
+          <p className="lesson-card__meta-role">{roleTags.join(", ")}</p>
         )}
       </div>
 
       {/* Body */}
       <div className="lesson-card__body">
-        <h3 className="lesson-card__title">{lessonName}</h3>
+        <TitleTag className="lesson-card__title">{lessonName}</TitleTag>
 
         <p className="lesson-card__description">
-          {lesson.description || 'No description available.'}
+          {lesson.description || "No description available."}
         </p>
 
         {prerequisiteLinks.length > 0 && (
@@ -116,7 +125,7 @@ export default function LessonCard({ lesson, lessonIndex = {} }) {
         </a>
 
         <div className="lesson-card__tags">
-          {roles.map((role, idx) => (
+          {roleTags.map((role, idx) => (
             <span key={idx} className="lesson-card__tag lesson-card__tag--role">
               {role}
             </span>

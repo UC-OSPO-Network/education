@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getLessons, type Lesson } from "../../lib/lessons";
+import { getLessons, type Lesson, formatDuration } from "../../lib/lessons";
 import { PATHWAYS } from "../../types/lesson";
 
 type Props = {
@@ -65,15 +65,12 @@ export async function getStaticPaths() {
 
 const { lesson, relatedLessons } = Astro.props as Props;
 
-const pathway = PATHWAYS.find((p) => p.learnerCategories.includes(lesson.learnerCategory));
+const pathway = PATHWAYS.find((item) => item.learnerCategories.includes(lesson.learnerCategory));
 const pathwayHref = pathway ? `${import.meta.env.BASE_URL}pathways/${pathway.id}` : "";
-
 const summary =
   lesson.description?.trim() ||
   lesson.abstract?.trim() ||
-  "No description available for this lesson yet.";
-
-const detailHref = `${import.meta.env.BASE_URL}lessons/${lesson.slug}`;
+  "No description is available for this lesson yet.";
 const externalHref = lesson.url?.trim() ?? "";
 
 const coreMetadata: Array<{ label: string; value: unknown; kind?: "link" }> = [
@@ -83,7 +80,7 @@ const coreMetadata: Array<{ label: string; value: unknown; kind?: "link" }> = [
   { label: "Skill Level", value: lesson.educationalLevel },
   { label: "OSS Role(s)", value: lesson.oss_role || lesson.ossRole || "" },
   { label: "Resource Type", value: lesson.learningResourceType },
-  { label: "Time Required", value: lesson.timeRequired },
+  { label: "Time Required", value: formatDuration(lesson.timeRequired) },
   { label: "Author", value: lesson.author },
   { label: "License", value: lesson.license },
   { label: "Keywords", value: lesson.keywords },
@@ -116,276 +113,39 @@ const additionalMetadataEntries = Object.entries(lesson)
   .map(([key, value]) => ({ label: toTitleCaseLabel(key), value }));
 ---
 
-<style>
-  .page-header {
-    background: linear-gradient(135deg, var(--uc-blue) 0%, var(--uc-dark-blue) 100%);
-    padding: 3rem 2rem;
-    margin: -2rem -2rem 2rem -2rem;
-    border-bottom: 4px solid var(--uc-gold);
-  }
-
-  .breadcrumbs {
-    max-width: 1200px;
-    margin: 0 auto 1rem;
-    padding: 0 2rem;
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 0.95rem;
-  }
-
-  .breadcrumb-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    align-items: center;
-  }
-
-  .breadcrumb-sep {
-    opacity: 0.7;
-  }
-
-  .header-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 1.5rem;
-    align-items: start;
-  }
-
-  .title {
-    margin: 0 0 0.75rem 0;
-    font-size: clamp(2rem, 4vw, 2.75rem);
-    line-height: 1.15;
-    color: var(--uc-white);
-  }
-
-  .summary {
-    margin: 0;
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.92);
-    max-width: 70ch;
-  }
-
-  .cta {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: stretch;
-    min-width: 260px;
-  }
-
-  .primary-button {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.9rem 1.1rem;
-    border-radius: var(--radius-md);
-    background: var(--uc-gold);
-    color: var(--uc-blue);
-    font-weight: 800;
-    letter-spacing: 0.2px;
-    text-decoration: none;
-    border: 2px solid rgba(255, 255, 255, 0.12);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-  }
-
-  .primary-button:hover {
-    text-decoration: none;
-    transform: translateY(-1px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
-  }
-
-  .primary-button[aria-disabled="true"] {
-    opacity: 0.6;
-    pointer-events: none;
-    filter: grayscale(0.2);
-  }
-
-  .secondary-link {
-    text-align: center;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
-    text-decoration: none;
-  }
-
-  .secondary-link:hover {
-    color: var(--uc-light-gold);
-    text-decoration: underline;
-  }
-
-  .content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem 3rem;
-  }
-
-  .section {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-md);
-    padding: 1.75rem;
-    margin-bottom: 2rem;
-  }
-
-  .section h2 {
-    margin: 0 0 1rem 0;
-    font-size: 1.35rem;
-    color: var(--text-primary);
-  }
-
-  .metadata-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem 1.25rem;
-  }
-
-  .meta-item {
-    padding: 0.9rem 1rem;
-    border-radius: var(--radius-md);
-    background: var(--bg-primary);
-    border: 1px solid var(--border-light);
-  }
-
-  .meta-label {
-    display: block;
-    font-size: 0.82rem;
-    color: var(--text-secondary);
-    margin-bottom: 0.35rem;
-    letter-spacing: 0.4px;
-    text-transform: uppercase;
-  }
-
-  .meta-value {
-    display: block;
-    color: var(--text-primary);
-    font-weight: 600;
-    word-break: break-word;
-  }
-
-  .meta-value a {
-    color: var(--uc-blue);
-  }
-
-  .meta-value a:hover {
-    color: var(--uc-dark-blue);
-  }
-
-  .related-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-  }
-
-  .related-card {
-    display: block;
-    background: var(--bg-primary);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-md);
-    padding: 1rem;
-    text-decoration: none;
-    transition: transform 0.15s ease, border-color 0.15s ease;
-  }
-
-  .related-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--border-strong);
-    text-decoration: none;
-  }
-
-  .related-title {
-    margin: 0 0 0.5rem 0;
-    font-weight: 800;
-    color: var(--text-primary);
-    font-size: 1rem;
-    line-height: 1.35;
-  }
-
-  .related-meta {
-    margin: 0;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-  }
-
-  @media (max-width: 980px) {
-    .header-inner {
-      grid-template-columns: 1fr;
-    }
-    .cta {
-      min-width: auto;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-    }
-    .primary-button {
-      width: 100%;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .breadcrumbs,
-    .header-inner,
-    .content {
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-    .metadata-grid {
-      grid-template-columns: 1fr;
-    }
-    .related-grid {
-      grid-template-columns: 1fr;
-    }
-    .section {
-      padding: 1.25rem;
-    }
-  }
-</style>
-
-<BaseLayout title={lesson.name}>
-  <div class="page-header">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <ol class="breadcrumb-list">
-        <li><a href={import.meta.env.BASE_URL}>Home</a></li>
-        <li class="breadcrumb-sep" aria-hidden="true">/</li>
-        <li><a href={`${import.meta.env.BASE_URL}lessons`}>Lessons</a></li>
-        <li class="breadcrumb-sep" aria-hidden="true">/</li>
-        <li aria-current="page">{lesson.name}</li>
-      </ol>
-    </nav>
-
-    <div class="header-inner">
-      <div>
-        <h1 class="title">{lesson.name}</h1>
-        <p class="summary">{summary}</p>
-      </div>
-
-      <div class="cta">
+<BaseLayout title={lesson.name} description={summary}>
+  <section class="page-intro">
+    <div class="content-container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href={import.meta.env.BASE_URL}>Home</a></li>
+          <li class="breadcrumbs__separator" aria-hidden="true">/</li>
+          <li><a href={`${import.meta.env.BASE_URL}lessons`}>Lessons</a></li>
+          <li class="breadcrumbs__separator" aria-hidden="true">/</li>
+          <li aria-current="page">{lesson.name}</li>
+        </ol>
+      </nav>
+      <p class="page-intro__eyebrow">Lesson</p>
+      <h1 class="page-intro__title">{lesson.name}</h1>
+      <p class="page-intro__summary">{summary}</p>
+      <div class="page-intro__actions">
         <a
-          class="primary-button"
-          href={externalHref || detailHref}
+          class="button-primary"
+          href={externalHref || "#"}
           target={externalHref ? "_blank" : undefined}
           rel={externalHref ? "noopener noreferrer" : undefined}
           aria-disabled={externalHref ? "false" : "true"}
         >
           View External Lesson
-          <span aria-hidden="true">↗</span>
         </a>
-
-        {pathwayHref ? (
-          <a class="secondary-link" href={pathwayHref}>Browse this pathway</a>
-        ) : null}
+        {pathwayHref ? <a class="button-secondary" href={pathwayHref}>Browse This Pathway</a> : null}
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="content">
-    <section class="section" aria-labelledby="lesson-metadata">
-      <h2 id="lesson-metadata">Lesson metadata</h2>
-
+  <div class="content-container">
+    <section class="page-section" aria-labelledby="lesson-metadata">
+      <h2 class="section-heading" id="lesson-metadata">Lesson metadata</h2>
       <div class="metadata-grid">
         {coreMetadata.map(({ label, value, kind }) => {
           const formatted = formatValue(value);
@@ -411,8 +171,8 @@ const additionalMetadataEntries = Object.entries(lesson)
     </section>
 
     {additionalMetadataEntries.length > 0 ? (
-      <section class="section" aria-labelledby="additional-metadata">
-        <h2 id="additional-metadata">Additional metadata</h2>
+      <section class="page-section" aria-labelledby="additional-metadata">
+        <h2 class="section-heading" id="additional-metadata">Additional metadata</h2>
         <div class="metadata-grid">
           {additionalMetadataEntries.map(({ label, value }) => (
             <div class="meta-item">
@@ -424,12 +184,10 @@ const additionalMetadataEntries = Object.entries(lesson)
       </section>
     ) : null}
 
-    <section class="section" aria-labelledby="related-lessons">
-      <h2 id="related-lessons">Related lessons</h2>
+    <section class="page-section" aria-labelledby="related-lessons">
+      <h2 class="section-heading" id="related-lessons">Related lessons</h2>
       {relatedLessons.length === 0 ? (
-        <p style="margin: 0; color: var(--text-secondary);">
-          No related lessons found yet.
-        </p>
+        <p class="section-copy">No related lessons found yet.</p>
       ) : (
         <div class="related-grid">
           {relatedLessons.map((related) => (
@@ -437,9 +195,7 @@ const additionalMetadataEntries = Object.entries(lesson)
               <h3 class="related-title">{related.name}</h3>
               <p class="related-meta">
                 {related.educationalLevel}
-                {related.subTopic?.trim()
-                  ? ` • ${related.subTopic.trim()}`
-                  : ""}
+                {related.subTopic?.trim() ? ` • ${related.subTopic.trim()}` : ""}
               </p>
             </a>
           ))}

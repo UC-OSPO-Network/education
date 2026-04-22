@@ -47,7 +47,7 @@ jobs:
         id: validate-lessons
         continue-on-error: true
         run: |
-          git fetch origin "${{ github.base_ref }}" --depth=1
+          git fetch origin "${{ github.base_ref }}"
           git diff --name-only "origin/${{ github.base_ref }}...HEAD" > .github/changed-files.txt
           npm run validate:lessons -- \
             --changed-files .github/changed-files.txt \

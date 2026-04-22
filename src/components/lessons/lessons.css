@@ -275,9 +275,9 @@
   display: block;
   font-family: var(--font-sans);
   font-size: 0.8rem;
-  color: var(--uc-light-blue);
+  color: var(--uc-blue);
   text-decoration: underline;
-  text-decoration-color: rgba(200, 240, 255, 0.4);
+  text-decoration-color: rgba(0, 114, 163, 0.35);
   text-underline-offset: 3px;
   line-height: 1.3;
   overflow-wrap: anywhere;
@@ -285,8 +285,8 @@
 }
 
 .lesson-card__prereq-link:hover {
-  color: var(--uc-light-blue);
-  text-decoration-color: var(--uc-light-blue);
+  color: var(--uc-dark-blue);
+  text-decoration-color: var(--uc-dark-blue);
 }
 
 /* Feedback link */
@@ -294,15 +294,42 @@
   align-self: flex-start;
   font-family: var(--font-sans);
   font-size: 0.8rem;
-  color: var(--uc-light-blue);
+  color: var(--uc-blue);
   text-decoration: underline;
-  text-decoration-color: rgba(200, 240, 255, 0.35);
+  text-decoration-color: rgba(0, 114, 163, 0.35);
   text-underline-offset: 2px;
 }
 
 .lesson-card__feedback:hover {
+  color: var(--uc-dark-blue);
+  text-decoration-color: var(--uc-dark-blue);
+}
+
+/* Dark mode: restore light blue so it reads on dark card surface */
+html.theme-dark .lesson-card__prereq-link,
+html.theme-dark .lesson-card__feedback {
+  color: var(--uc-light-blue);
+  text-decoration-color: rgba(200, 240, 255, 0.4);
+}
+
+html.theme-dark .lesson-card__prereq-link:hover,
+html.theme-dark .lesson-card__feedback:hover {
   color: var(--uc-light-blue);
   text-decoration-color: var(--uc-light-blue);
+}
+
+@media (prefers-color-scheme: dark) {
+  .lesson-card__prereq-link,
+  .lesson-card__feedback {
+    color: var(--uc-light-blue);
+    text-decoration-color: rgba(200, 240, 255, 0.4);
+  }
+
+  .lesson-card__prereq-link:hover,
+  .lesson-card__feedback:hover {
+    color: var(--uc-light-blue);
+    text-decoration-color: var(--uc-light-blue);
+  }
 }
 
 /* Tags row — pushed to bottom */

@@ -20,9 +20,9 @@ function firstItems(value: string | undefined, limit = 2) {
 function getLevelConfig(level: string | undefined) {
   if (!level) return { bg: '#6b7280', label: 'Lesson' };
   const n = level.toLowerCase();
-  if (n.includes('beginner')) return { bg: '#10b981', label: 'Beginner' };
-  if (n.includes('intermediate')) return { bg: '#f59e0b', label: 'Intermediate' };
-  if (n.includes('advanced')) return { bg: '#ef4444', label: 'Advanced' };
+  if (n.includes('beginner')) return { bg: '#005d46', label: 'Beginner' };
+  if (n.includes('intermediate')) return { bg: '#a85a00', label: 'Intermediate' };
+  if (n.includes('advanced')) return { bg: '#8a2530', label: 'Advanced' };
   return { bg: '#6b7280', label: level };
 }
 

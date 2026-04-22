@@ -1,20 +1,19 @@
-import { useState, useMemo, useEffect } from 'react';
-import LessonCard from './LessonCard.jsx';
-import type { Lesson } from '../lib/lessons';
-import Fuse from 'fuse.js';
+import { useEffect, useMemo, useState } from "react";
+import Fuse from "fuse.js";
+import LessonCard from "./LessonCard.jsx";
+import type { Lesson } from "../lib/lessons";
 
 interface LessonFilterProps {
   lessons: Lesson[];
 }
 
 export default function LessonFilter({ lessons }: LessonFilterProps) {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
+  const [isLoading, setIsLoading] = useState(true);
   const [filters, setFilters] = useState({
-    ossRole: '',
-    educationalLevel: '',
-    learnerCategory: '',
-    search: '',
+    ossRole: "",
+    educationalLevel: "",
+    learnerCategory: "",
+    search: "",
   });
 
   useEffect(() => {
@@ -28,7 +27,7 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
 
     lessons.forEach((lesson) => {
       if (lesson.oss_role) {
-        lesson.oss_role.split(',').forEach((role) => ossRoles.add(role.trim()));
+        lesson.oss_role.split(",").forEach((role) => ossRoles.add(role.trim()));
       }
       if (lesson.educationalLevel) levels.add(lesson.educationalLevel);
       if (lesson.learnerCategory) categories.add(lesson.learnerCategory);
@@ -45,19 +44,23 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
     const index: Record<string, { name: string; url: string }> = {};
     lessons.forEach((lesson) => {
       if (!lesson.slug || !lesson.url) return;
-      index[lesson.slug] = { name: lesson.name || lesson.slug, url: lesson.url };
+      index[lesson.slug] = {
+        name: lesson.name || lesson.slug,
+        url: lesson.url,
+      };
     });
     return index;
   }, [lessons]);
 
   const fuse = useMemo(() => {
-    if (!lessons || lessons.length === 0) return null;
+    if (!lessons.length) return null;
+
     return new Fuse(lessons, {
       keys: [
-        { name: 'name', weight: 0.4 },
-        { name: 'description', weight: 0.3 },
-        { name: 'keywords', weight: 0.2 },
-        { name: 'subTopic', weight: 0.1 },
+        { name: "name", weight: 0.4 },
+        { name: "description", weight: 0.3 },
+        { name: "keywords", weight: 0.2 },
+        { name: "subTopic", weight: 0.1 },
       ],
       threshold: 0.4,
       ignoreLocation: true,
@@ -68,7 +71,7 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
     let result = lessons;
 
     if (filters.search && fuse) {
-      result = fuse.search(filters.search).map((r) => r.item);
+      result = fuse.search(filters.search).map((entry) => entry.item);
     }
 
     return result.filter((lesson) => {
@@ -77,15 +80,20 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
       if (filters.learnerCategory && lesson.learnerCategory !== filters.learnerCategory) return false;
       return true;
     });
-  }, [lessons, filters, fuse]);
+  }, [filters, fuse, lessons]);
 
-  const handleFilterChange = (filterName: keyof typeof filters, value: string) => {
+  function handleFilterChange(filterName: keyof typeof filters, value: string) {
     setFilters((prev) => ({ ...prev, [filterName]: value }));
-  };
+  }
 
-  const clearFilters = () => {
-    setFilters({ ossRole: '', educationalLevel: '', learnerCategory: '', search: '' });
-  };
+  function clearFilters() {
+    setFilters({
+      ossRole: "",
+      educationalLevel: "",
+      learnerCategory: "",
+      search: "",
+    });
+  }
 
   if (isLoading) {
     return (
@@ -101,22 +109,24 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
       <div className="lessons-filter">
         <div className="lessons-filter__grid">
           <div className="lessons-filter__field">
-            <label className="lessons-filter__label">Search</label>
+            <label htmlFor="lesson-search" className="lessons-filter__label">Search</label>
             <input
+              id="lesson-search"
               type="text"
               className="lessons-filter__input"
               value={filters.search}
-              onChange={(e) => handleFilterChange('search', e.target.value)}
+              onChange={(e) => handleFilterChange("search", e.target.value)}
               placeholder="Search lessons…"
             />
           </div>
 
           <div className="lessons-filter__field">
-            <label className="lessons-filter__label">OSS Role</label>
+            <label htmlFor="lesson-role" className="lessons-filter__label">OSS Role</label>
             <select
+              id="lesson-role"
               className="lessons-filter__select"
               value={filters.ossRole}
-              onChange={(e) => handleFilterChange('ossRole', e.target.value)}
+              onChange={(e) => handleFilterChange("ossRole", e.target.value)}
             >
               <option value="">All Roles</option>
               {filterOptions.ossRoles.map((role) => (
@@ -126,11 +136,12 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
           </div>
 
           <div className="lessons-filter__field">
-            <label className="lessons-filter__label">Skill Level</label>
+            <label htmlFor="lesson-level" className="lessons-filter__label">Skill Level</label>
             <select
+              id="lesson-level"
               className="lessons-filter__select"
               value={filters.educationalLevel}
-              onChange={(e) => handleFilterChange('educationalLevel', e.target.value)}
+              onChange={(e) => handleFilterChange("educationalLevel", e.target.value)}
             >
               <option value="">All Levels</option>
               {filterOptions.levels.map((level) => (
@@ -140,11 +151,12 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
           </div>
 
           <div className="lessons-filter__field">
-            <label className="lessons-filter__label">Pathway</label>
+            <label htmlFor="lesson-pathway" className="lessons-filter__label">Pathway</label>
             <select
+              id="lesson-pathway"
               className="lessons-filter__select"
               value={filters.learnerCategory}
-              onChange={(e) => handleFilterChange('learnerCategory', e.target.value)}
+              onChange={(e) => handleFilterChange("learnerCategory", e.target.value)}
             >
               <option value="">All Pathways</option>
               {filterOptions.categories.map((cat) => (
@@ -158,7 +170,7 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
           <p className="lessons-filter__count">
             Showing {filteredLessons.length} of {lessons.length} lessons
           </p>
-          <button className="lessons-filter__clear" onClick={clearFilters}>
+          <button type="button" className="lessons-filter__clear" onClick={clearFilters}>
             Clear Filters
           </button>
         </div>
@@ -169,15 +181,16 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
         {filteredLessons.length === 0 ? (
           <div className="lessons-empty">
             <p className="lessons-empty__message">No lessons match your filters.</p>
-            <button className="lessons-filter__clear" onClick={clearFilters}>
+            <button type="button" className="lessons-filter__clear" onClick={clearFilters}>
               Clear Filters
             </button>
           </div>
         ) : (
-          filteredLessons.map((lesson, index) => (
+          filteredLessons.map((lesson) => (
             <LessonCard
-              key={index}
+              key={lesson.slug}
               lesson={lesson}
+              pathwayIcon="📚"
               lessonIndex={lessonIndex}
             />
           ))

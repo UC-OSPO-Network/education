@@ -10,9 +10,6 @@ interface Props {
   lessons: Lesson[];
 }
 
-// -----------------------------
-// Static paths
-// -----------------------------
 export async function getStaticPaths() {
   const lessons = await getLessons();
   return PATHWAYS.map((pathway) => ({
@@ -23,9 +20,6 @@ export async function getStaticPaths() {
 
 const { pathway, lessons } = Astro.props as Props;
 
-// -----------------------------
-// Filter lessons for this pathway
-// -----------------------------
 const pathwayLessons = lessons.filter(
   (lesson) =>
     (lesson.keepStatus === "keep" || lesson.keepStatus === "keepCandidate") &&
@@ -45,143 +39,83 @@ const lessonIndex = Object.fromEntries(
     ]),
 );
 
-// Group by subTopic if available
-const groupedLessons = pathwayLessons.reduce<Record<string, Lesson[]>>(
-  (acc, lesson) => {
-    const topic = lesson.subTopic || "Other";
-    if (!acc[topic]) acc[topic] = [];
-    acc[topic].push(lesson);
-    return acc;
-  },
-  {},
-);
+const groupedLessons = pathwayLessons.reduce<Record<string, Lesson[]>>((acc, lesson) => {
+  const topic = lesson.subTopic || "Other";
+  if (!acc[topic]) acc[topic] = [];
+  acc[topic].push(lesson);
+  return acc;
+}, {});
 ---
 
-
 <style>
-  .pathway-header {
-    background: linear-gradient(
-      135deg,
-      var(--uc-blue) 0%,
-      var(--uc-dark-blue) 100%
-    );
-    padding: 3rem 2rem;
-    margin-bottom: 3rem;
-    text-align: center;
-    border-bottom: 4px solid var(--uc-gold);
-  }
-
-  .pathway-icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-  }
-
-  .pathway-header h1 {
-    margin: 0 0 1rem 0;
-    font-size: 2.5rem;
-    color: var(--uc-white);
-  }
-
-  .pathway-header p {
-    margin: 0;
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.9);
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
   .pathway-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem 2rem;
+    padding-bottom: 2rem;
   }
 
-  .subtopic-section {
-    margin-bottom: 4rem;
+  .pathway-section + .pathway-section {
+    margin-top: 2rem;
   }
 
-  .subtopic-header {
-    font-size: 1.4rem;
+  .pathway-subtopic {
+    margin: 0 0 1rem;
     color: var(--text-primary);
-    margin-bottom: 2rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 3px solid var(--uc-gold);
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-size: 1.3rem;
   }
 
   .lesson-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(18.5rem, 1fr));
+    gap: 1.5rem;
   }
 
-  @media (max-width: 768px) {
-    .lesson-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .back-link {
-    display: inline-block;
-    margin-bottom: 2rem;
-    color: var(--uc-blue);
-    text-decoration: none;
-    font-weight: 600;
-  }
-
-  .back-link:hover {
-    color: var(--uc-gold);
-  }
-
-  .no-lessons {
-    text-align: center;
-    padding: 3rem;
-    color: var(--text-secondary);
+  .pathway-empty p {
+    margin: 0;
   }
 </style>
 
-<BaseLayout title={pathway.name}>
-  <div class="pathway-header">
-    <div class="pathway-icon">{pathway.icon}</div>
-    <h1>{pathway.name}</h1>
-    <p>{pathway.description}</p>
-  </div>
-
-  <div class="pathway-content">
-    <a href={`${import.meta.env.BASE_URL}pathways`} class="back-link"
-      >← Back to All Pathways</a
-    >
-
-    {Object.keys(groupedLessons).length === 0 ? (
-      <div class="no-lessons">
-        <p style="font-size: 1.2rem;">
-          No lessons available for this pathway yet.
-        </p>
-        <p>
-          Check back soon or{" "}
-          <a href={`${import.meta.env.BASE_URL}lessons`}>
-            browse all lessons
-          </a>
-          .
-        </p>
+<BaseLayout title={pathway.name} description={pathway.description}>
+  <section class="page-intro">
+    <div class="content-container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href={import.meta.env.BASE_URL}>Home</a></li>
+          <li class="breadcrumbs__separator" aria-hidden="true">/</li>
+          <li><a href={`${import.meta.env.BASE_URL}pathways`}>Pathways</a></li>
+          <li class="breadcrumbs__separator" aria-hidden="true">/</li>
+          <li aria-current="page">{pathway.name}</li>
+        </ol>
+      </nav>
+      <p class="page-intro__eyebrow">Pathway</p>
+      <h1 class="page-intro__title">{pathway.name}</h1>
+      <p class="page-intro__summary">{pathway.description}</p>
+      <div class="page-intro__actions">
+        <a class="button-secondary" href={`${import.meta.env.BASE_URL}pathways`}>Back to All Pathways</a>
+        <a class="button-link" href={`${import.meta.env.BASE_URL}lessons`}>Browse all lessons</a>
       </div>
+    </div>
+  </section>
+
+  <div class="content-container pathway-content">
+    {Object.keys(groupedLessons).length === 0 ? (
+      <section class="page-section empty-state pathway-empty">
+        <p>No lessons are available for this pathway yet.</p>
+      </section>
     ) : (
       Object.entries(groupedLessons).map(([subtopic, subtopicLessons]) => (
-        <div class="subtopic-section">
-          <h2 class="subtopic-header">{subtopic}</h2>
+        <section class="pathway-section page-section">
+          <h2 class="pathway-subtopic">{subtopic}</h2>
           <div class="lesson-grid">
             {subtopicLessons.map((lesson) => (
               <LessonCard
                 lesson={lesson}
                 pathwayIcon={pathway.icon}
                 lessonIndex={lessonIndex}
+                headingLevel={3}
                 client:load
               />
             ))}
           </div>
-        </div>
+        </section>
       ))
     )}
   </div>
