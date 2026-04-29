@@ -3,7 +3,7 @@
  *
  * Creates URL-friendly identifiers from lesson names for:
  * - Lesson detail page URLs (/lessons/building-community)
- * - Bioschemas @id property (https://education.ucospo.net/lessons/building-community)
+ * - Bioschemas @id property (https://ucospo.net/education/lessons/building-community)
  *
  * Usage: node scripts/generate-slugs.js
  * Output: scripts/output/slugs-YYYY-MM-DD.csv
@@ -64,7 +64,7 @@ async function generateSlugs() {
     updates.push({
       ...lesson,
       slug: slug,
-      '@id': `https://education.ucospo.net/lessons/${slug}`
+      '@id': `https://ucospo.net/education/lessons/${slug}`
     });
   }
 

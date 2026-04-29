@@ -87,15 +87,15 @@ The main site (ucospo.net repo) needs to adopt the same navigation structure for
 1. **Add "Education" dropdown to main navigation**:
    ```html
    <li class="nav-item">
-     <a href="https://education.ucospo.net" class="nav-link">
+     <a href="https://ucospo.net/education" class="nav-link">
        Education
        <span class="dropdown-arrow">▼</span>
      </a>
      <div class="dropdown-menu">
-       <a href="https://education.ucospo.net">All Pathways</a>
-       <a href="https://education.ucospo.net/lessons">All Lessons</a>
-       <a href="https://education.ucospo.net/pathways">Browse Pathways</a>
-       <a href="https://education.ucospo.net/develop-a-lesson">Develop a Lesson</a>
+       <a href="https://ucospo.net/education">All Pathways</a>
+       <a href="https://ucospo.net/education/lessons">All Lessons</a>
+       <a href="https://ucospo.net/education/pathways">Browse Pathways</a>
+       <a href="https://ucospo.net/education/develop-a-lesson">Develop a Lesson</a>
      </div>
    </li>
    ```
@@ -118,14 +118,14 @@ The main site (ucospo.net repo) needs to adopt the same navigation structure for
 
 ### 3. Update URLs After Domain Setup
 
-Once `education.ucospo.net` is configured (see issue #35), update these URLs:
+Once `ucospo.net/education` is configured (see issue #35), update these URLs:
 
 **In education site** (`UnifiedNav.astro`):
 - Change `/education` to `/` throughout
 - Links currently use `/education` prefix for local dev
 
 **In main site**:
-- Update Education dropdown links to point to `education.ucospo.net`
+- Update Education dropdown links to point to `ucospo.net/education`
 
 ### 4. Test Cross-Site Navigation
 
@@ -153,13 +153,13 @@ UC OSPO Network Site
 ├── Blog
 ├── Resources ▼
 │   └── OSS Resources
-└── Education ▼ [Links to education.ucospo.net]
+└── Education ▼ [Links to ucospo.net/education]
     ├── All Pathways
     ├── All Lessons
     ├── Browse Pathways
     └── Develop a Lesson
 
-Education Site (education.ucospo.net)
+Education Site (ucospo.net/education)
 ├── Logo (links to ucospo.net)
 ├── About ▼ [Links to main site]
 │   ├── About UC OSPO Network
@@ -215,7 +215,7 @@ Gold border: 3px solid var(--uc-gold)
    - ⏳ Deploy to ucospo.net
 
 3. **Domain setup** (Issue #35):
-   - ⏳ Configure education.ucospo.net subdomain
+   - ⏳ Configure ucospo.net/education subdomain
    - ⏳ Update Astro config in education repo
    - ⏳ Update links in both sites
 
@@ -231,14 +231,14 @@ If you're implementing this on the main ucospo.net site:
 
 1. **Copy the navigation structure** from `UnifiedNav.astro`
 2. **Highlight the appropriate section** - use `current-site` class on whichever section matches the current site
-3. **Update dropdown links** - Education dropdown should point to education.ucospo.net URLs
+3. **Update dropdown links** - Education dropdown should point to ucospo.net/education URLs
 4. **Match the footer** - Use same 4-column structure
 5. **Test dropdowns** - Ensure hover/click behavior works on your platform (Jekyll, Hugo, etc.)
 
 ## 🐛 Known Issues / TODO
 
 - [ ] Add actual UC OSPO logo (currently placeholder)
-- [ ] Test with real domain (education.ucospo.net)
+- [ ] Test with real domain (ucospo.net/education)
 - [ ] Verify dropdown behavior on all browsers
 - [ ] Add keyboard navigation enhancements
 - [ ] Consider adding search functionality
