@@ -1,10 +1,10 @@
 // Color-coded skill level badge component
 // Green = Beginner, Orange = Intermediate, Red = Advanced
+import { ChartBarIcon } from '@heroicons/react/24/outline';
 
 export default function SkillBadge({ level }) {
   if (!level) return null;
 
-  // Determine badge color based on skill level
   const getBadgeStyle = (level) => {
     const normalizedLevel = level.toLowerCase();
 
@@ -27,7 +27,6 @@ export default function SkillBadge({ level }) {
         label: 'Advanced'
       };
     } else {
-      // Default fallback for any other level
       return {
         background: 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)',
         color: '#ffffff',
@@ -54,11 +53,7 @@ export default function SkillBadge({ level }) {
       boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
       zIndex: 10
     }}>
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}>
-        <rect x="1" y="11" width="3" height="4" fill="currentColor" opacity="0.6"/>
-        <rect x="6" y="7" width="3" height="8" fill="currentColor" opacity="0.8"/>
-        <rect x="11" y="3" width="3" height="12" fill="currentColor"/>
-      </svg>
+      <ChartBarIcon style={{ width: 16, height: 16, flexShrink: 0 }} />
       {style.label}
     </div>
   );

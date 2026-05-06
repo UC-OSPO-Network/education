@@ -1,146 +1,75 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import StackedPathways from '../components/StackedPathways.jsx';
+import WelcomeHeader from '../components/home/WelcomeHeader.astro';
+import BrowseAllLessonsPanel from '../components/home/BrowseAllLessonsPanel.astro';
+import PathwayShowcase from '../components/home/PathwayShowcase';
+import '../components/home/home.css';
+import { PATHWAYS, type PathwayInfo } from '../types/lesson';
+import { getActiveLessons, type Lesson } from '../lib/lessons';
+import type { CategoryIconName, HomepagePathwayItem, HomepagePathwaySection } from '../components/home/types';
+
+const activeLessons = await getActiveLessons();
+
+function getSectionSortKey(lessons: Lesson[]) {
+  return lessons
+    .map((lesson) => lesson.sortingId?.trim())
+    .filter(Boolean)
+    .sort((a, b) => a!.localeCompare(b!, undefined, { numeric: true }))[0] ?? null;
+}
+
+function buildHomepageSections(pathway: PathwayInfo): HomepagePathwaySection[] {
+  const grouped = activeLessons
+    .filter((lesson) => pathway.learnerCategories.includes(lesson.learnerCategory))
+    .reduce<Record<string, Lesson[]>>((acc, lesson) => {
+      const title = lesson.subTopic?.trim() || 'Other';
+      acc[title] ??= [];
+      acc[title].push(lesson);
+      return acc;
+    }, {});
+
+  return Object.entries(grouped)
+    .sort(([titleA, lessonsA], [titleB, lessonsB]) => {
+      const keyA = getSectionSortKey(lessonsA);
+      const keyB = getSectionSortKey(lessonsB);
+
+      if (keyA && keyB) {
+        return keyA.localeCompare(keyB, undefined, { numeric: true });
+      }
+
+      if (keyA) return -1;
+      if (keyB) return 1;
+
+      return titleA.localeCompare(titleB);
+    })
+    .map(([title, lessons]) => ({
+      title,
+      lessons: lessons.slice(0, 4),
+    }))
+    .slice(0, 2);
+}
+
+const homepagePathways: HomepagePathwayItem[] = PATHWAYS.map((pathway) => ({
+  id: pathway.id,
+  title: pathway.name,
+  description: pathway.description,
+  iconName: pathway.id as CategoryIconName,
+  sections: buildHomepageSections(pathway),
+}));
+
+const defaultHomepagePathwayId =
+  homepagePathways.find((pathway) => pathway.sections.length > 0)?.id ??
+  homepagePathways[0]?.id ??
+  '';
 ---
 
-<style>
-  .hero {
-    text-align: left;
-    padding: 4rem 2rem 3rem;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .hero h1 {
-    font-size: 2.75rem;
-    font-weight: 700;
-    color: var(--uc-white);
-    margin-bottom: 1.5rem;
-    line-height: 1.1;
-    letter-spacing: 0.5px;
-  }
-
-  .hero .subtitle {
-    font-size: 1.3rem;
-    color: var(--uc-light-blue);
-    margin-bottom: 2.5rem;
-    font-weight: 400;
-    letter-spacing: 0.3px;
-    line-height: 1.5;
-  }
-
-  .hero-ctas {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-  }
-
-  .cta-primary,
-  .cta-secondary {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    border-radius: 50px;
-    font-size: 1rem;
-    font-weight: 700;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  }
-
-  .cta-primary {
-    background: var(--uc-gold);
-    color: var(--uc-dark-gray);
-  }
-
-  .cta-primary:hover {
-    background: var(--uc-light-gold);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(255, 181, 17, 0.4);
-    text-decoration: none;
-  }
-
-  .cta-secondary {
-    background: transparent;
-    color: var(--uc-white);
-    border: 2px solid var(--uc-white);
-  }
-
-  .cta-secondary:hover {
-    background: var(--uc-white);
-    color: var(--uc-dark-gray);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
-    text-decoration: none;
-  }
-
-  .pathways-section {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0;
-  }
-
-  .browse-all {
-    text-align: center;
-    margin: 3rem 0 4rem;
-    padding: 0 2rem;
-  }
-
-  .browse-button {
-    display: inline-block;
-    padding: 1rem 3rem;
-    background: var(--uc-light-gray);
-    color: var(--uc-dark-gray);
-    border-radius: 50px;
-    font-size: 1rem;
-    font-weight: 700;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  }
-
-  .browse-button:hover {
-    background: var(--uc-white);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-    text-decoration: none;
-  }
-
-  @media (max-width: 768px) {
-    .hero {
-      padding: 3rem 1.5rem 2rem;
-    }
-
-    .hero h1 {
-      font-size: 2rem;
-    }
-
-    .hero .subtitle {
-      font-size: 1.1rem;
-    }
-  }
-</style>
-
 <BaseLayout title="Open Source Learning Pathways">
-  <div class="hero">
-    <h1>OPEN SOURCE EDUCATION, CURATED</h1>
-    <p class="subtitle">
-      Quality-vetted lessons on contributing, licensing, governance, and community practices—structured into pathways for teaching or independent learning.
-    </p>
-    <div class="hero-ctas">
-      <a href={`${import.meta.env.BASE_URL}pathways`} class="cta-primary">Browse Pathways</a>
-      <a href={`${import.meta.env.BASE_URL}for-educators`} class="cta-secondary">For Educators</a>
-    </div>
+  <div class="home-page">
+    <WelcomeHeader />
+
+    <section class="home-showcase" aria-labelledby="pathways-heading">
+      <h2 id="pathways-heading" class="sr-only">Learning pathways</h2>
+      <PathwayShowcase items={homepagePathways} defaultActiveId={defaultHomepagePathwayId} client:load />
+      <BrowseAllLessonsPanel />
+    </section>
   </div>
-
-  <section id="pathways" class="pathways-section" aria-labelledby="pathways-heading">
-    <h2 id="pathways-heading" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;">Learning Pathways</h2>
-    <StackedPathways client:load />
-
-    <div class="browse-all">
-      <a href={`${import.meta.env.BASE_URL}lessons`} class="browse-button">BROWSE ALL LESSONS</a>
-    </div>
-  </section>
 </BaseLayout>

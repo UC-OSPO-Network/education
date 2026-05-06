@@ -8,12 +8,12 @@
   "subTopic": "",
   "learnerCategory": "Maintaining & Sustaining Software",
   "educationalLevel": "Intermediate",
-  "learningResourceType": "Tutorial",
+  "learningResourceType": "Short Training Courses",
   "author": "CodeRefinery Team",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Contributor, Maintainer",
   "inLanguage": [
-    "English"
+    "en"
   ],
   "keywords": [
     "modular programming",
@@ -26,12 +26,12 @@
     "intermediate-python"
   ],
   "prerequisiteNotes": "",
-  "learningObjectives": "Know about pure functions (functions without side effects, functions which given same input always return same output).\nLearn why and how to limit side effects of functions.\nDiscuss why and how to limit side effects of data. Also discuss when mutable data may be preferable.\nDiscuss why single-purpose functions are often preferred over multi-purpose functions.\nSplit-apply-combine, which lets you more easily parallelize. Make your code modular in a way that lets you split the steps and parallelize.\nUnderstand how a command line interface to a code can improve usability and also make the code more versatile (to be combined with workflow management tools).\nConnect modular code development to the remaining lessons (version control, testing, documentation, reusability).",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the principles of modular programming and its benefits\n- Demonstrate how to write reusable, single-purpose functions\n- Apply strategies to limit side effects and improve code testability\n- Implement command line interfaces to improve code versatility\n- Recognize how modular design supports parallelization and collaboration",
   "ospoRelevance": "Moderate",
   "abstract": "This lesson introduces the concept of modular programming in Python. It covers how to structure code into reusable modules and how to organize and test these modules for better maintainability and collaboration.",
   "dateCreated": "2020-05-15T10:00:00+00:00",
   "dateModified": "2023-02-10T14:40:12+00:00",
-  "timeRequired": "",
+  "timeRequired": "PT3M",
   "about": "",
   "accessibilitySummary": "",
   "audience": "Researchers, Software Developers, Data Scientists",

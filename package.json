@@ -7,6 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "sheets:prepare-update": "node scripts/prepare-sheets-update.js",
     "migrate:lessons": "node scripts/migrate-to-singletons.js",
     "migrate:depends-on": "node scripts/migrate-depends-on.js",
     "sync:lesson-slugs": "node scripts/sync-lesson-slugs.js",
@@ -30,6 +31,7 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.4.0",
+    "@heroicons/react": "^2.2.0",
     "@keystatic/astro": "^5.0.6",
     "@keystatic/core": "^0.5.48",
     "astro": "^5.13.8",

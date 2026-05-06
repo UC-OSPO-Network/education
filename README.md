@@ -2,7 +2,7 @@
 
 Work regarding the education subgroup. This repository hosts the Astro-based website for the UC OSPO Education Lesson & Pathways.
 
-- [Draft inventory of lessons](https://docs.google.com/spreadsheets/d/1JqM5OYX4f-T0jR-GJ5UeI7PnGJP6o4jtPRNtDJUGPmI/edit?gid=1792935546#gid=1792935546) - lessons pulled from existing Carpentries & Code Refinery.
+- [Lesson inventory spreadsheet](https://docs.google.com/spreadsheets/d/1Xl27XUuV_n5zG9_8Xq_87wTzN-P_A2W_Zz4k5_W-Q4/edit) - review hub for lesson metadata updates and migration support.
 - [Process we are following](https://docs.google.com/document/d/1D4tCqMkB6-QTdvCSR2N-6VZSSUUOQZ87Kl4UEsuHeRs/edit?tab=t.0#heading=h.yyzjiyx43ln0) - these are converted to issues in the GH project.
 - [Meeting notes](https://docs.google.com/document/d/1-CJxDt05f9YoYfGB8-NC0zvQZbEJzHT1P7keRciMlrY/edit?tab=t.0#heading=h.vs4sjkl9adbl)
 
@@ -118,9 +118,17 @@ Visit the live site to explore the lesson library:
 - **GitHub Integration**: In production, content is managed directly via GitHub PRs, but you can use the local UI to generate the commits.
 
 **2. Google Sheets (Legacy/Migration)**
-- The [lesson inventory spreadsheet](https://docs.google.com/spreadsheets/d/1JqM5OYX4f-T0jR-GJ5UeI7PnGJP6o4jtPRNtDJUGPmI/edit?gid=1792935546#gid=1792935546) was used for initial content population.
-- **Note**: This sheet is **NOT** automatically synced during the build. It serves as a historical reference.
-- **Manual Import**: If you need to re-import from Sheets (warning: overwrites local changes), run:
+- The [lesson inventory spreadsheet](https://docs.google.com/spreadsheets/d/1Xl27XUuV_n5zG9_8Xq_87wTzN-P_A2W_Zz4k5_W-Q4/edit) is used as a metadata review hub and migration support surface.
+- **Note**: This sheet is **NOT** automatically synced during the build and is not the canonical source of site content.
+- **Preferred review/update workflow**: generate the review CSV with:
+  ```bash
+  npm run sheets:prepare-update
+  ```
+- Then follow the canonical review/apply guide in:
+  ```bash
+  scripts/UPDATING_GOOGLE_SHEETS.md
+  ```
+- **Manual re-import**: If you need to re-import from Sheets into repo content (warning: overwrites local changes), run:
   ```bash
   npm run migrate:lessons
   ```

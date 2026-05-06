@@ -25,19 +25,29 @@ These scripts automate metadata extraction and enhancement for the 56 lessons in
 
 ## Quick Start
 
+### Prepare A Google Sheets Review Artifact
+
+```bash
+npm run sheets:prepare-update
+```
+
+This is the preferred operator workflow for Google Sheets review. It runs:
+1. slug generation
+2. language standardization
+3. time estimation
+4. metadata scraping
+5. merge into a single CSV review artifact
+
+**Total time**: ~15 minutes for 56 lessons
+
 ### Run All Phase 1 Scripts
 
 ```bash
 npm run enhance:phase1
-npm run enhance:merge
 ```
 
-This runs all 3 Phase 1 scripts and merges the output:
-1. Language standardization (fast, no web requests)
-2. Time estimation (makes web requests, ~5 min)
-3. Metadata scraping (makes web requests, ~10 min)
-
-**Total time**: ~15 minutes for 56 lessons
+This runs the four automated phase-1 generators but does **not** create the final merged review CSV by itself.
+For Google Sheets review/apply work, use `npm run sheets:prepare-update`.
 
 ### Run Individual Scripts
 
@@ -99,8 +109,9 @@ scripts/output/
 
 **Import to Google Sheets**:
 
-1. **(Recommended)** Use the **Inventory Tools** Google Apps Script. See [UPDATING_GOOGLE_SHEETS.md](UPDATING_GOOGLE_SHEETS.md) for setup and usage.
-2. Alternatively, manually copy-paste columns from the individual CSVs or the merged CSV.
+1. **(Recommended)** Use the **Inventory Tools** Apps Script preview/apply workflow described in [UPDATING_GOOGLE_SHEETS.md](UPDATING_GOOGLE_SHEETS.md).
+2. Use the merged CSV as a review artifact for the `Inventory` tab.
+3. Treat Google Sheets as a review hub, not the authoritative source of site content.
 
 ## Script Details
 

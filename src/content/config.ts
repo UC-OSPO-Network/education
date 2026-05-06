@@ -18,13 +18,14 @@ const lessons = defineCollection({
     topic: z.string().default(''),
     subTopic: z.string().default(''),
     learnerCategory: z.string().default(''),
-    educationalLevel: z.string().default('Unknown'),
-    learningResourceType: z.string().default(''),
+    educationalLevel: z.enum(['Beginner', 'Intermediate', 'Advanced']).default('Beginner'),
+    learningResourceType: z.enum(['Static Documents', 'Short Training Courses', 'Long Form Training']).default('Short Training Courses'),
     
     // people metadata
     author: z.string().default(''),
     license: z.string().default(''),
     ossRole: z.string().default(''),
+    timeRequired: z.string().default(''),
     
     // arrays
     inLanguage: z.array(z.string()).default([]),

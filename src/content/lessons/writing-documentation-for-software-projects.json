@@ -8,12 +8,12 @@
   "subTopic": "",
   "learnerCategory": "Contributing to a Project",
   "educationalLevel": "Intermediate",
-  "learningResourceType": "Tutorial",
+  "learningResourceType": "Short Training Courses",
   "author": "Intersect Team, intersect@training.org",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Contributor, Maintainer",
   "inLanguage": [
-    "English"
+    "en"
   ],
   "keywords": [
     "documentation",
@@ -26,12 +26,12 @@
     "https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/"
   ],
   "prerequisiteNotes": "Requires Python! I recommend we link to this instead",
-  "learningObjectives": "Identify the role and benefits of documentation in research and software projects.\nDescribe different types of documentation (e.g., README, API reference, tutorials) and their purposes.\nRecognize best practices for writing clear, accessible documentation.\nList tools and formats commonly used for documentation (e.g., Markdown, reStructuredText, Sphinx).\nIdentify strategies for keeping documentation up to date.\nRecognize how to involve community members in contributing to documentation.\nDescribe the relationship between documentation quality and project sustainability.",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Identify the role and benefits of documentation in research and software projects\n- Describe different types of documentation (README, API reference, tutorials) and their purposes\n- Apply best practices for writing clear, accessible, and user-friendly documentation\n- Use tools and formats commonly used for documentation (Markdown, reStructuredText, Sphinx)\n- Implement strategies for keeping documentation up to date and involving community contributors",
   "ospoRelevance": "Moderate",
   "abstract": "This tutorial covers best practices for writing documentation in software projects. It explains how to create clear, comprehensive, and user-friendly documentation using tools like Sphinx and Markdown.",
   "dateCreated": "2022-11-10T10:10:13+00:00",
   "dateModified": "2023-01-15T12:50:12+00:00",
-  "timeRequired": "",
+  "timeRequired": "PT5M",
   "about": "",
   "accessibilitySummary": "",
   "audience": "Developers, PhD Students, Technical Writers",

@@ -8,12 +8,12 @@
   "subTopic": "",
   "learnerCategory": "Contributing to a Project",
   "educationalLevel": "Intermediate",
-  "learningResourceType": "Tutorial",
+  "learningResourceType": "Short Training Courses",
   "author": "Intersect Team, intersect@training.org",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "ossRole": "Contributor, Maintainer",
   "inLanguage": [
-    "English"
+    "en"
   ],
   "keywords": [
     "GitHub",
@@ -27,12 +27,12 @@
     "introduction-to-git"
   ],
   "prerequisiteNotes": "Intro to Git",
-  "learningObjectives": "Identify the purpose of issue tracking in software and project management.\nDescribe common components of an issue (e.g., title, description, labels, assignee).\nRecognize how to create clear, actionable issues.\nList best practices for prioritizing and organizing issues.\nIdentify strategies for collaborating on issues within a team or community.\nDescribe how issue tracking supports project planning and sustainability.\nRecognize the role of issue templates in standardizing contributions.",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Identify the purpose of issue tracking in software and project management\n- Describe common components of an issue (title, description, labels, assignee)\n- Create clear, actionable issues that facilitate collaboration\n- Apply best practices for prioritizing and organizing issues\n- Demonstrate how issue tracking supports project planning and sustainability",
   "ospoRelevance": "Moderate",
   "abstract": "This tutorial introduces issue tracking for software development, focusing on using GitHub Issues to manage bugs, features, and project milestones.",
   "dateCreated": "2023-02-20T08:14:13+00:00",
   "dateModified": "2023-06-18T15:54:12+00:00",
-  "timeRequired": "",
+  "timeRequired": "PT5M",
   "about": "",
   "accessibilitySummary": "",
   "audience": "Developers, Project Managers, PhD Students",

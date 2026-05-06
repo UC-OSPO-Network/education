@@ -1,5 +1,9 @@
 # Implementation Status Report
 
+> Historical/generated note: this file describes a one-off learning-objectives workflow.
+> For the current metadata review/apply process, use
+> `/Users/shawnwang/Downloads/GitHub/education/scripts/UPDATING_GOOGLE_SHEETS.md`.
+
 ## ✅ COMPLETED: All Automated Implementation Steps
 
 ### What Has Been Done

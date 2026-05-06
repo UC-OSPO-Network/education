@@ -317,6 +317,7 @@ async function loadValidLearnerCategories() {
 async function validate() {
   const args = parseArgs(process.argv.slice(2));
   const reportJsonPath = args['report-json'] ? path.resolve(process.cwd(), String(args['report-json'])) : null;
+  const softFailExternal = !!args['soft-fail-external'];
   const changedFiles = await resolveChangedFiles(args['changed-files']);
   const urlTimeoutMs = parseIntegerOption('url-timeout-ms', args['url-timeout-ms'], DEFAULT_URL_TIMEOUT_MS);
   const urlRetries = parseIntegerOption('url-retries', args['url-retries'], DEFAULT_URL_RETRIES);
@@ -526,7 +527,8 @@ async function validate() {
       addRuleViolation(
         'broken-url',
         entry.lesson,
-        `URL check failed with HTTP ${result.statusCode} (${entry.url})`
+        `URL check failed with HTTP ${result.statusCode} (${entry.url})`,
+        { warningOnly: softFailExternal }
       );
     } else if (result.outcome === 'transient-failure') {
       addRuleViolation(
