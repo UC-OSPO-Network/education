@@ -10,19 +10,19 @@ export default function SkillBadge({ level }) {
 
     if (normalizedLevel.includes('beginner')) {
       return {
-        background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+        background: 'linear-gradient(135deg, #00875b 0%, #006b49 100%)',
         color: '#ffffff',
         label: 'Beginner'
       };
     } else if (normalizedLevel.includes('intermediate')) {
       return {
-        background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+        background: 'linear-gradient(135deg, #a76900 0%, #865400 100%)',
         color: '#ffffff',
         label: 'Intermediate'
       };
     } else if (normalizedLevel.includes('advanced')) {
       return {
-        background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+        background: 'linear-gradient(135deg, #c1121f 0%, #9f0f1a 100%)',
         color: '#ffffff',
         label: 'Advanced'
       };

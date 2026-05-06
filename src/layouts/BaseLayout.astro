@@ -25,6 +25,7 @@ const sidebarItems = siteChrome.nav.map((item) => ({
 }));
 ---
 
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -38,17 +39,6 @@ const sidebarItems = siteChrome.nav.map((item) => ({
   <body>
     <div class="site-shell">
       <UnifiedNav />
-
-      <script>
-        if (import.meta.env.DEV) {
-          import("react").then(async (React) => {
-            import("react-dom").then(async (ReactDOM) => {
-              const axe = (await import("@axe-core/react")).default;
-              axe(React, ReactDOM, 1000);
-            });
-          });
-        }
-      </script>
 
       <main id="main-content" class="site-main">
         <div class="site-layout">

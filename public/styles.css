@@ -17,14 +17,14 @@
 }
 
 :root {
-  --uc-blue: #003cb3;
-  --uc-dark-blue: #00297d;
+  --uc-blue: #005581;
+  --uc-dark-blue: #003a5d;
   --uc-light-blue: #7ab3ff;
-  --uc-gold: #ff9100;
-  --uc-light-gold: #ffbc66;
+  --uc-gold: #8a6a00;
+  --uc-light-gold: #f2c94c;
   --uc-white: #ffffff;
   --uc-dark-gray: #1a1f2b;
-  --uc-light-gray: #a8b4c5;
+  --uc-light-gray: #73777d;
 
   --bg-primary: #ffffff;
   --bg-surface: #ffffff;
@@ -642,7 +642,7 @@ summary:focus-visible {
 }
 
 .breadcrumbs__separator {
-  color: var(--border-strong);
+  color: var(--text-secondary);
 }
 
 .page-section {
