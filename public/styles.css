@@ -1,11 +1,12 @@
 /* UC Official Brand Colors */
 :root {
-  --uc-blue: #0072A3;
-  --uc-gold: #FFE699;
+  --uc-blue: #005581;
+  --uc-gold: #8A6A00;
+  --uc-gold-on-dark: #FFE699;
   --uc-white: #FFFFFF;
-  --uc-dark-blue: #005581;
+  --uc-dark-blue: #003A5D;
   --uc-light-blue: #C8F0FF;
-  --uc-light-gold: #FFE552;
+  --uc-light-gold: #F2C94C;
   --uc-dark-gray: #1E1E1E;
   --uc-med-gray: #2A2A2A;
   --uc-light-gray: #CCCCCC;
@@ -81,7 +82,7 @@ body {
 }
 
 a {
-  color: var(--uc-light-blue);
+  color: var(--uc-blue);
   text-decoration: none;
   transition: color 0.2s ease;
 }

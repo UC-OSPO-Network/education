@@ -66,6 +66,9 @@ jobs:
       - name: Check internal links
         run: npm run check:links
 
+      - name: Check accessibility
+        run: npm run check-a11y
+
       # ============================================
       # Step 6: Report lesson validation
       # ============================================

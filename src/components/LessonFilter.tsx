@@ -146,10 +146,11 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
             }}>
               {/* Search */}
               <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-primary)', fontWeight: '600' }}>
+                <label htmlFor="lesson-search" style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-primary)', fontWeight: '600' }}>
                   Search
                 </label>
                 <input
+                  id="lesson-search"
                   type="text"
                   value={filters.search}
                   onChange={(e) => handleFilterChange('search', e.target.value)}
@@ -167,10 +168,11 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
 
               {/* OSS Role */}
               <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-primary)', fontWeight: '600' }}>
+                <label htmlFor="lesson-oss-role" style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-primary)', fontWeight: '600' }}>
                   OSS Role
                 </label>
                 <select
+                  id="lesson-oss-role"
                   value={filters.ossRole}
                   onChange={(e) => handleFilterChange('ossRole', e.target.value)}
                   style={{
@@ -191,10 +193,11 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
 
               {/* Skill Level */}
               <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-primary)', fontWeight: '600' }}>
+                <label htmlFor="lesson-skill-level" style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-primary)', fontWeight: '600' }}>
                   Skill Level
                 </label>
                 <select
+                  id="lesson-skill-level"
                   value={filters.educationalLevel}
                   onChange={(e) => handleFilterChange('educationalLevel', e.target.value)}
                   style={{
@@ -215,10 +218,11 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
 
               {/* Pathway */}
               <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-primary)', fontWeight: '600' }}>
+                <label htmlFor="lesson-pathway" style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-primary)', fontWeight: '600' }}>
                   Pathway
                 </label>
                 <select
+                  id="lesson-pathway"
                   value={filters.learnerCategory}
                   onChange={(e) => handleFilterChange('learnerCategory', e.target.value)}
                   style={{

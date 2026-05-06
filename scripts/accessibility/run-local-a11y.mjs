@@ -1,6 +1,6 @@
 import { spawn } from 'node:child_process';
 import { createReadStream } from 'node:fs';
-import { access, cp, mkdtemp, mkdir, rm, stat } from 'node:fs/promises';
+import { access, cp, mkdtemp, mkdir, readdir, rm, stat, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
@@ -14,7 +14,13 @@ const port = Number.parseInt(process.env.A11Y_PORT || '4321', 10);
 const baseUrl = `http://127.0.0.1:${port}/education`;
 const previewRoot = await mkdtemp(path.join(tmpdir(), 'education-a11y-'));
 const previewEducationRoot = path.join(previewRoot, 'education');
-const auditOutputPath = path.join(repoRoot, 'scripts', 'accessibility', 'audit-results.json');
+const sitemapPath = path.join(previewEducationRoot, 'sitemap.xml');
+const pa11yBinary = path.join(
+  repoRoot,
+  'node_modules',
+  '.bin',
+  process.platform === 'win32' ? 'pa11y-ci.cmd' : 'pa11y-ci',
+);
 
 const contentTypes = {
   '.css': 'text/css; charset=utf-8',
@@ -49,6 +55,42 @@ function runCommand(command, args, extraEnv = {}) {
       reject(new Error(`${command} ${args.join(' ')} exited with code ${code}`));
     });
   });
+}
+
+async function findIndexPages(dir, root = dir) {
+  const entries = await readdir(dir, { withFileTypes: true });
+  const pages = [];
+
+  for (const entry of entries) {
+    const entryPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      pages.push(...(await findIndexPages(entryPath, root)));
+    } else if (entry.isFile() && entry.name === 'index.html') {
+      const relativeDir = path.relative(root, dir).split(path.sep).join('/');
+      const urlPath = relativeDir ? `/education/${relativeDir}/` : '/education/';
+      pages.push(`${baseUrl.replace(/\/$/, '')}${urlPath.replace(/^\/education/, '')}`);
+    }
+  }
+
+  return pages.sort();
+}
+
+async function writeSitemap() {
+  const pageUrls = await findIndexPages(previewEducationRoot);
+  if (pageUrls.length === 0) {
+    throw new Error(`No built pages found under ${previewEducationRoot}`);
+  }
+
+  const sitemap = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ...pageUrls.map((url) => `  <url><loc>${url}</loc></url>`),
+    '</urlset>',
+    '',
+  ].join('\n');
+
+  await writeFile(sitemapPath, sitemap);
+  console.log(`Generated accessibility sitemap with ${pageUrls.length} pages.`);
 }
 
 async function resolveFilePath(requestPath) {
@@ -146,6 +188,7 @@ console.log('Preparing local preview under /education/ ...');
 await mkdir(previewEducationRoot, { recursive: true });
 await cp(path.join(repoRoot, 'dist'), previewEducationRoot, { recursive: true });
 await access(path.join(previewEducationRoot, 'index.html'));
+await writeSitemap();
 
 let server;
 try {
@@ -153,13 +196,17 @@ try {
   server = await startStaticServer();
   await waitForServer();
 
-  console.log('Running accessibility audit...');
-  await runCommand(process.execPath, ['scripts/accessibility/audit.cjs'], {
-    A11Y_BASE_URL: baseUrl,
-    A11Y_OUTPUT_FILE: auditOutputPath,
-  });
+  console.log('Running pa11y-ci accessibility audit...');
+  await runCommand(pa11yBinary, [
+    '--sitemap',
+    `${baseUrl}/sitemap.xml`,
+    '--sitemap-find',
+    'http://127.0.0.1:[0-9]+',
+    '--sitemap-replace',
+    `http://127.0.0.1:${port}`,
+  ]);
 
-  console.log(`Local accessibility audit complete. Results saved to ${auditOutputPath}`);
+  console.log('Local accessibility audit complete.');
 } finally {
   if (server) {
     await new Promise((resolve, reject) => {

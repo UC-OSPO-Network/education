@@ -2,126 +2,7 @@
 import UnifiedNav from '../components/UnifiedNav.astro';
 const { title } = Astro.props;
 ---
-
-<style>
-  :global(body) {
-    background: var(--bg-primary);
-    color: var(--text-primary);
-  }
-
-  .site-shell {
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    min-height: 100vh;
-  }
-
-  .site-main {
-    min-height: calc(100vh - 200px);
-    background: inherit;
-  }
-
-  .unified-footer {
-    padding: 3rem 2rem 2rem;
-    border-top: 3px solid var(--uc-gold);
-    background: var(--uc-blue);
-    margin-top: 4rem;
-    color: var(--uc-white);
-  }
-
-  .footer-container {
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .footer-section h3 {
-    color: var(--uc-gold);
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-  }
-
-  .footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .footer-links li {
-    margin-bottom: 0.5rem;
-  }
-
-  .footer-links a {
-    color: var(--uc-white);
-    text-decoration: none;
-    transition: color 0.2s;
-    font-size: 0.95rem;
-  }
-
-  .footer-links a:hover {
-    color: var(--uc-gold);
-    text-decoration: underline;
-  }
-
-  .footer-campus-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 0.5rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .footer-social {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-  .footer-social a {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--uc-white);
-    text-decoration: none;
-    padding: 0.5rem;
-    border-radius: var(--radius-xs);
-    transition: background-color 0.2s;
-  }
-
-  .footer-social a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .footer-bottom {
-    text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .footer-bottom p {
-    margin: 0.25rem 0;
-    color: var(--uc-light-gray);
-    font-size: 0.9rem;
-  }
-
-  @media (max-width: 768px) {
-    .footer-content {
-      grid-template-columns: 1fr;
-    }
-
-    .footer-campus-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-</style>
-
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -130,22 +11,130 @@ const { title } = Astro.props;
     <meta name="description" content="Open Source Learning Pathways from the UC Open Source Program Office" />
     <!-- Link to global CSS -->
     <link rel="stylesheet" href={`${import.meta.env.BASE_URL}styles.css`} />
+    <style>
+      :global(body) {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+      }
+
+      .site-shell {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+      }
+
+      .site-main {
+        min-height: calc(100vh - 200px);
+        background: inherit;
+      }
+
+      .unified-footer {
+        padding: 3rem 2rem 2rem;
+        border-top: 3px solid var(--uc-gold-on-dark);
+        background: var(--uc-blue);
+        margin-top: 4rem;
+        color: var(--uc-white);
+      }
+
+      .footer-container {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-section h3 {
+        color: var(--uc-gold-on-dark);
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-links a,
+      .footer-campus-grid a {
+        color: var(--uc-white);
+        text-decoration: none;
+        transition: color 0.2s;
+        font-size: 0.95rem;
+      }
+
+      .footer-links a:hover,
+      .footer-campus-grid a:hover {
+        color: var(--uc-gold-on-dark);
+        text-decoration: underline;
+      }
+
+      .footer-campus-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 0.5rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-social {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .footer-social a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--uc-white);
+        text-decoration: none;
+        padding: 0.5rem;
+        border-radius: var(--radius-xs);
+        transition: background-color 0.2s;
+      }
+
+      .footer-social a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .footer-bottom p {
+        margin: 0.25rem 0;
+        color: var(--uc-light-gray);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-campus-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="site-shell">
       <UnifiedNav />
-
-      <script>
-        // Axe Accessibility Testing (Dev Mode Only)
-        if (import.meta.env.DEV) {
-          import("react").then(async (React) => {
-            import("react-dom").then(async (ReactDOM) => {
-              const axe = (await import("@axe-core/react")).default;
-              axe(React, ReactDOM, 1000);
-            });
-          });
-        }
-      </script>
 
       <main id="main-content" class="site-main">
         <slot />
