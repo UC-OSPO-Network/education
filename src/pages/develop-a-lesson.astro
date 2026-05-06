@@ -8,57 +8,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     min-height: 100vh;
   }
 
-  .hero {
-    text-align: center;
-    padding: 4rem 2rem 3rem;
-    max-width: 900px;
-    margin: 0 auto;
-    background-color: var(--bg-primary);
-  }
-
-  .hero h1 {
-    font-size: 2.75rem;
-    font-weight: 700;
+  .hero-subtitle {
+    margin: 1rem auto 0;
+    max-width: 44rem;
     color: var(--text-primary);
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-  }
-
-  .hero .subtitle {
-    font-size: 1.3rem;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    font-weight: 400;
-  }
-
-  .hero .tagline {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    max-width: 700px;
-    margin: 0 auto 2rem;
-    line-height: 1.6;
-  }
-
-  .cta-button {
-    display: inline-block;
-    padding: 1.25rem 3rem;
-    background: var(--uc-light-gold);
-    color: var(--uc-dark-gray);
-    border-radius: var(--radius-pill);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 12px rgba(255, 181, 17, 0.3);
-    margin-top: 1rem;
-  }
-
-  .cta-button:hover {
-    background: var(--uc-white);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 181, 17, 0.5);
-    text-decoration: none;
   }
 
   .content-section {
@@ -215,7 +170,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .timeline-quarter {
     font-weight: 700;
-    color: var(--uc-gold-on-dark);
+    color: var(--uc-light-gold);
     min-width: 80px;
     margin-right: 1rem;
   }
@@ -267,20 +222,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .cta-section p {
-    color: var(--uc-gold-on-dark);
+    color: var(--uc-white);
     font-size: 1.2rem;
     margin-bottom: 2rem;
   }
 
   @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 2rem;
-    }
-
-    .hero .subtitle {
-      font-size: 1.1rem;
-    }
-
     .program-details {
       grid-template-columns: 1fr;
     }
@@ -297,18 +244,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="Develop a Lesson - UC OSPO">
   <div class="page-wrapper">
-    <div class="hero">
-    <h1>Develop an Open Source Lesson</h1>
-    <p class="subtitle">Join the 2026 UC OSPO Collaborative Lesson Development Program</p>
-    <p class="tagline">
-      Help build critical open source education resources through Carpentries-trained
-      collaborative lesson development. Work with a team, receive expert training and mentorship,
-      and publish your lesson to reach learners worldwide.
-    </p>
-    <a href="https://github.com/UC-OSPO-Network/education/issues/new?template=lesson-proposal.yml" class="cta-button">
-      SUBMIT A PROPOSAL
-    </a>
-  </div>
+    <section class="page-intro page-intro--center">
+      <div class="content-container">
+        <p class="page-intro__eyebrow">Education</p>
+        <h1 class="page-intro__title">Develop an Open Source Lesson</h1>
+        <p class="hero-subtitle">Join the 2026 UC OSPO Collaborative Lesson Development Program</p>
+        <p class="page-intro__summary">
+          Help build critical open source education resources through Carpentries-trained
+          collaborative lesson development. Work with a team, receive expert training and mentorship,
+          and publish your lesson to reach learners worldwide.
+        </p>
+        <div class="page-intro__actions" style="justify-content: center;">
+          <a
+            href="https://github.com/UC-OSPO-Network/education/issues/new?template=lesson-proposal.yml"
+            class="button-primary"
+          >
+            Submit a Proposal
+          </a>
+        </div>
+      </div>
+    </section>
 
   <div class="content-section">
     <h2 class="section-title">Program Overview</h2>
@@ -528,8 +483,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="cta-section">
       <h2>Ready to Make an Impact?</h2>
       <p>Submit your lesson proposal and help build the future of open source education.</p>
-      <a href="https://github.com/UC-OSPO-Network/education/issues/new?template=lesson-proposal.yml" class="cta-button">
-        SUBMIT YOUR PROPOSAL
+      <a href="https://github.com/UC-OSPO-Network/education/issues/new?template=lesson-proposal.yml" class="button-primary">
+        Submit Your Proposal
       </a>
       <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--uc-white);">
         Questions? Contact Tim Dennis or open a discussion on GitHub.

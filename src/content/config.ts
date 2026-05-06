@@ -15,11 +15,12 @@ const lessons = defineCollection({
     url: z.string().url().or(z.literal('')).default(''),
     
     // categories
+    domain: z.enum(['Research Software', 'Data Science', 'Institutional Policy', 'GIS', 'General Open Source']).default('General Open Source'),
     topic: z.string().default(''),
     subTopic: z.string().default(''),
     learnerCategory: z.string().default(''),
     educationalLevel: z.enum(['Beginner', 'Intermediate', 'Advanced']).default('Beginner'),
-    learningResourceType: z.enum(['Static Documents', 'Short Training Courses', 'Long Form Training']).default('Short Training Courses'),
+    learningResourceType: z.enum(['tutorial', 'presentation', 'handout', 'video lecture', 'e-Learning module', 'quiz', 'exercise', 'workshop']).default('tutorial'),
     
     // people metadata
     author: z.string().default(''),
@@ -42,6 +43,7 @@ const lessons = defineCollection({
     abstract: z.string().default(''),
     dateCreated: z.string().default(''),
     dateModified: z.string().default(''),
+    creativeWorkStatus: z.enum(['Active', 'Under development', 'Archived']).default('Active'),
     
   }).passthrough(), // allows extra fields
 });

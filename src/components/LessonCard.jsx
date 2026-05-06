@@ -1,12 +1,9 @@
-import SkillBadge from './SkillBadge.jsx';
-
-// Lesson card component matching student Figma design
-// Features: dark header, light body, skill badge, tag pills
+import { ChartBarIcon } from "@heroicons/react/24/outline";
 
 function isHttpUrl(value) {
   try {
     const url = new URL(value);
-    return url.protocol === 'http:' || url.protocol === 'https:';
+    return url.protocol === "http:" || url.protocol === "https:";
   } catch {
     return false;
   }
@@ -15,335 +12,124 @@ function isHttpUrl(value) {
 function formatUrlLabel(url) {
   try {
     const parsed = new URL(url);
-    return parsed.hostname.replace(/^www\./, '');
+    return parsed.hostname.replace(/^www\./, "");
   } catch {
     return url;
   }
 }
 
-export default function LessonCard({ lesson, pathwayIcon, lessonIndex = {} }) {
+function getLevelConfig(level) {
+  if (!level) return { bg: "#6b7280", label: "Lesson" };
+  const n = level.toLowerCase();
+  if (n.includes("beginner"))     return { bg: "#005d46", label: "Beginner" };
+  if (n.includes("intermediate")) return { bg: "#a85a00", label: "Intermediate" };
+  if (n.includes("advanced"))     return { bg: "#8a2530", label: "Advanced" };
+  return { bg: "#6b7280", label: level };
+}
+
+export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3 }) {
   if (!lesson) return null;
 
-  const lessonName = lesson.name || 'Untitled Lesson';
+  const lessonName = lesson.name || "Untitled Lesson";
+  const level = getLevelConfig(lesson.educationalLevel);
+  const topMeta = lesson.learningResourceType || lesson.subTopic || "Lesson";
+  const roleTags = lesson.oss_role
+    ? lesson.oss_role.split(",").map((r) => r.trim()).filter(Boolean).slice(0, 2)
+    : [];
+
   const dependencyRefs = Array.isArray(lesson.dependsOn)
-      ? lesson.dependsOn.filter((value) => typeof value === 'string' && value.trim() !== '')
-      : [];
+    ? lesson.dependsOn.filter((value) => typeof value === "string" && value.trim() !== "")
+    : [];
+
   const prerequisiteLinks = dependencyRefs
-      .map((token) => {
-        const value = token.trim();
-        if (!value) return null;
+    .map((token) => {
+      const value = token.trim();
+      if (!value) return null;
 
-        if (isHttpUrl(value)) {
-          return {
-            key: value,
-            href: value,
-            label: formatUrlLabel(value),
-            fallback: false
-          };
-        }
+      if (isHttpUrl(value)) {
+        return { key: value, href: value, label: formatUrlLabel(value) };
+      }
 
-        const targetLesson = lessonIndex[value];
-        if (targetLesson && targetLesson.url) {
-          return {
-            key: value,
-            href: targetLesson.url,
-            label: targetLesson.name || value,
-            fallback: false
-          };
-        }
+      const targetLesson = lessonIndex[value];
+      if (targetLesson?.url) {
+        return { key: value, href: targetLesson.url, label: targetLesson.name || value };
+      }
 
-        return null;
-      })
-      .filter(Boolean);
+      return null;
+    })
+    .filter(Boolean);
 
   const feedbackUrl =
-      'https://github.com/UC-OSPO-Network/education/issues/new' +
-      '?template=lesson-feedback.yml' +
-      `&title=${encodeURIComponent(`Lesson Feedback: ${lessonName}`)}` +
-      `&body=${encodeURIComponent(`Lesson: ${lessonName}\n\nFeedback:`)}`;
+    "https://github.com/UC-OSPO-Network/education/issues/new" +
+    "?template=lesson-feedback.yml" +
+    `&title=${encodeURIComponent(`Lesson Feedback: ${lessonName}`)}` +
+    `&body=${encodeURIComponent(`Lesson: ${lessonName}\n\nFeedback:`)}`;
 
-  // Determine if lesson appears in multiple pathways
   const isMultiCategory =
-      lesson.learnerCategory &&
-      (lesson.learnerCategory.includes(',') ||
-          lesson.learnerCategory.includes(';'));
+    lesson.learnerCategory &&
+    (lesson.learnerCategory.includes(",") || lesson.learnerCategory.includes(";"));
 
   const lessonHref = `${import.meta.env.BASE_URL}lessons/${lesson.slug}`;
+  const TitleTag = `h${headingLevel}`;
 
   return (
-      <div
-          style={{
-            position: 'relative',
-            background:
-                'linear-gradient(180deg, var(--bg-surface-strong) 0%, var(--bg-surface-strong) 35%, var(--bg-surface) 35%, var(--bg-surface) 100%)',
-            borderRadius: '16px',
-            overflow: 'hidden',
-            border: '1px solid var(--border-light)',
-            transition: 'all 0.3s ease',
-            cursor: 'pointer',
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            minWidth: 0,
-            boxSizing: 'border-box'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = 'var(--border-strong)';
-            e.currentTarget.style.transform = 'translateY(-4px)';
-            e.currentTarget.style.boxShadow =
-                '0 12px 28px rgba(18, 24, 33, 0.16)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = 'var(--border-light)';
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = 'none';
-          }}
-          onClick={() => {
-            window.location.href = lessonHref;
-          }}
-      >
-        {/* Dark Header Section */}
-        <div
-            style={{
-              padding: '1.5rem 1.75rem',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '0.9rem',
-              height: '220px',
-              minWidth: 0,
-              boxSizing: 'border-box',
-              overflow: 'hidden'
-            }}
-        >
-          <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
-            <SkillBadge level={lesson.educationalLevel} />
-          </div>
-
-          <div
-              style={{
-                display: 'flex',
-                alignItems: 'flex-start',
-                gap: '1rem',
-                minWidth: 0
-              }}
-          >
-            {/* Icon */}
-            <div
-                style={{
-                  fontSize: '2rem',
-                  flexShrink: 0,
-                  lineHeight: 1
-                }}
-            >
-              {pathwayIcon || '📚'}
-            </div>
-
-            {/* Title */}
-            <h3
-                style={{
-                  margin: 0,
-                  fontSize: '1.2rem',
-                  fontWeight: '700',
-                  color: 'var(--text-primary)',
-                  lineHeight: '1.4',
-                  flex: 1,
-                  minWidth: 0,
-                  overflowWrap: 'anywhere',
-                  wordBreak: 'break-word',
-                  display: '-webkit-box',
-                  WebkitBoxOrient: 'vertical',
-                  WebkitLineClamp: 3,
-                  overflow: 'hidden'
-                }}
-            >
-              {lessonName}
-            </h3>
-          </div>
-        </div>
-
-        {/* Light Body Section */}
-        <div
-            style={{
-              padding: '1.5rem 1.75rem',
-              flex: 1,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '1rem',
-              minWidth: 0,
-              overflow: 'hidden'
-            }}
-        >
-          {/* Description */}
-          <p
-              style={{
-                margin: 0,
-                fontSize: '0.95rem',
-                color: 'var(--text-secondary)',
-                lineHeight: '1.6',
-                flex: 1,
-                overflowWrap: 'anywhere',
-                wordBreak: 'break-word'
-              }}
-          >
-            {lesson.description || 'No description available'}
-          </p>
-
-          {prerequisiteLinks.length > 0 && (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', minWidth: 0, width: '100%' }}>
-                <p
-                    style={{
-                      margin: 0,
-                      fontSize: '0.82rem',
-                      color: 'var(--text-secondary)',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.04em',
-                      fontWeight: '600'
-                    }}
-                >
-                  Prerequisites
-                </p>
-                <div
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'stretch',
-                      gap: '0.45rem',
-                      minWidth: 0,
-                      width: '100%'
-                    }}
-                >
-                  {prerequisiteLinks.map((link) => (
-                      <a
-                          key={link.key}
-                          href={link.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          style={{
-                            display: 'block',
-                            fontSize: '0.82rem',
-                            color: '#72CDF4',
-                            textDecoration: 'underline',
-                            textDecorationColor: 'rgba(114, 205, 244, 0.5)',
-                            textUnderlineOffset: '3px',
-                            width: '100%',
-                            maxWidth: '100%',
-                            minWidth: 0,
-                            boxSizing: 'border-box',
-                            overflowWrap: 'anywhere',
-                            wordBreak: 'break-word',
-                            whiteSpace: 'normal',
-                            lineHeight: '1.3'
-                          }}
-                      >
-                        {link.label}
-                      </a>
-                  ))}
-                </div>
-              </div>
-          )}
-
-          {/* Feedback Button */}
-          <a
-              href={feedbackUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              style={{
-                alignSelf: 'flex-start',
-                display: 'block',
-                fontSize: '0.85rem',
-                color: '#72CDF4',
-                textDecoration: 'underline',
-                textDecorationColor: 'rgba(114, 205, 244, 0.6)',
-                textUnderlineOffset: '2px',
-                cursor: 'pointer',
-                maxWidth: '100%',
-                overflowWrap: 'anywhere',
-                wordBreak: 'break-word',
-                whiteSpace: 'normal'
-              }}
-          >
-            💬 Give Feedback
-          </a>
-
-          {/* Tags and Meta Info */}
-          <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0.75rem'
-              }}
-          >
-            {/* Tag Pills */}
-            <div
-                style={{
-                  display: 'flex',
-                  gap: '0.5rem',
-                  flexWrap: 'wrap'
-                }}
-            >
-              {lesson.oss_role &&
-                  lesson.oss_role
-                      .split(',')
-                      .slice(0, 2)
-                      .map((role, idx) => (
-                          <span
-                              key={idx}
-                              style={{
-                                padding: '0.35rem 0.85rem',
-                                background: 'rgba(0, 114, 163, 0.08)',
-                                border: '1px solid rgba(0, 114, 163, 0.18)',
-                                color: 'var(--uc-blue)',
-                                borderRadius: '16px',
-                                fontSize: '0.8rem',
-                                fontWeight: '600',
-                                whiteSpace: 'normal',
-                                overflowWrap: 'anywhere',
-                                wordBreak: 'break-word',
-                                maxWidth: '100%'
-                              }}
-                          >
-                    {role.trim()}
-                  </span>
-                      ))}
-
-              {lesson.learningResourceType && (
-                  <span
-                      style={{
-                        padding: '0.35rem 0.85rem',
-                        background: 'rgba(255, 181, 17, 0.15)',
-                        border: '1px solid rgba(255, 181, 17, 0.3)',
-                        color: '#FFB511',
-                        borderRadius: '16px',
-                        fontSize: '0.8rem',
-                        fontWeight: '600',
-                        whiteSpace: 'normal',
-                        overflowWrap: 'anywhere',
-                        wordBreak: 'break-word',
-                        maxWidth: '100%'
-                      }}
-                  >
-                {lesson.learningResourceType}
-              </span>
-              )}
-            </div>
-
-            {/* Multi-category indicator */}
-            {isMultiCategory && (
-                <p
-                    style={{
-                      margin: 0,
-                      fontSize: '0.8rem',
-                      color: 'var(--text-secondary)',
-                      fontStyle: 'italic'
-                    }}
-                >
-                  ✨ This lesson is featured in multiple pathways
-                </p>
-            )}
-          </div>
-        </div>
+    <a className="lesson-card" href={lessonHref}>
+      {/* Colored level band */}
+      <div className="lesson-card__band" style={{ background: level.bg }}>
+        <ChartBarIcon className="lesson-card__band-icon" />
+        <span>{level.label}</span>
       </div>
+
+      {/* Dark metadata strip */}
+      <div className="lesson-card__meta-strip">
+        <p className="lesson-card__meta-type">{topMeta}</p>
+        {roleTags.length > 0 && (
+          <p className="lesson-card__meta-role">{roleTags.join(", ")}</p>
+        )}
+      </div>
+
+      {/* Body */}
+      <div className="lesson-card__body">
+        <TitleTag className="lesson-card__title">{lessonName}</TitleTag>
+
+        <p className="lesson-card__description">
+          {lesson.description || "No description available."}
+        </p>
+
+        {prerequisiteLinks.length > 0 && (
+          <div className="lesson-card__prereqs">
+            <p className="lesson-card__prereq-label">Prerequisites</p>
+            {prerequisiteLinks.map((link) => (
+              <a
+                key={link.key}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="lesson-card__prereq-link"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        )}
+
+        <a
+          href={feedbackUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          className="lesson-card__feedback"
+        >
+          💬 Give Feedback
+        </a>
+
+        {isMultiCategory && (
+          <p className="lesson-card__multi-pathway">
+            ✨ Featured in multiple pathways
+          </p>
+        )}
+      </div>
+    </a>
   );
 }

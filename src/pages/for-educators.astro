@@ -1,35 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import EducatorToolkit from '../components/EducatorToolkit.astro';
 ---
 
 <style>
   .page-wrapper {
     background-color: var(--bg-primary);
     min-height: 100vh;
-  }
-
-  .hero {
-    text-align: center;
-    padding: 4rem 2rem 3rem;
-    max-width: 900px;
-    margin: 0 auto;
-    background-color: var(--bg-primary);
-  }
-
-  .hero h1 {
-    font-size: 2.75rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-  }
-
-  .hero .subtitle {
-    font-size: 1.3rem;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    font-weight: 400;
-    line-height: 1.6;
   }
 
   .content-section {
@@ -194,22 +171,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .cta-button {
     display: inline-block;
     padding: 1rem 2.5rem;
-    background: var(--uc-light-gold);
-    color: var(--uc-dark-gray);
+    background: var(--uc-blue);
+    color: var(--uc-white);
     border-radius: var(--radius-pill);
     font-size: 1rem;
     font-weight: 700;
     text-decoration: none;
     transition: all 0.3s ease;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 12px rgba(255, 181, 17, 0.3);
     margin: 0 0.5rem 0.5rem;
   }
 
   .cta-button:hover {
-    background: var(--uc-light-gold);
+    background: var(--uc-gold);
+    color: #1a1a1a;
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(255, 181, 17, 0.5);
     text-decoration: none;
   }
 
@@ -251,30 +227,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     margin: 0.5rem 0 0 0;
     padding-left: 1.5rem;
   }
-
-  @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 2rem;
-    }
-
-    .hero .subtitle {
-      font-size: 1.1rem;
-    }
-
-    .feature-grid {
-      grid-template-columns: 1fr;
-    }
-  }
 </style>
 
 <BaseLayout title="For Educators - UC OSPO">
   <div class="page-wrapper">
-    <div class="hero">
-      <h1>Resources for Educators</h1>
-      <p class="subtitle">
+    <section class="page-intro page-intro--center">
+      <div class="content-container">
+        <p class="page-intro__eyebrow">Education</p>
+        <h1 class="page-intro__title">Resources for Educators</h1>
+        <p class="page-intro__summary">
         Quality-vetted open source lessons ready to integrate into your courses, workshops, or training programs.
-      </p>
-    </div>
+        </p>
+      </div>
+    </section>
 
     <div class="content-section">
       <h2 class="section-title">Why Use UC OSPO Education Resources?</h2>
@@ -321,25 +286,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
 
         <div class="feature-card">
-          <h3><span class="feature-icon">🌐</span> University-Backed</h3>
+          <h3><span class="feature-icon">🌐</span> UC-Vetted</h3>
           <p>
             Supported by the University of California Open Source Program Office network,
-            ensuring ongoing curation and quality.
+            ensuring high-quality curation across the UC system.
           </p>
         </div>
       </div>
 
-      <h2 class="section-title">How Educators Use These Resources</h2>
+      <EducatorToolkit />
+
+      <h2 class="section-title">How Instructors Use These Resources</h2>
 
       <div class="use-cases">
         <div class="use-case">
-          <h4>🎓 University Courses</h4>
+          <h4>🎓 Workshops & Courses</h4>
           <p>
-            Integrate lessons into computer science, software engineering, or information science courses.
-            Use pathways as course modules or supplement existing curriculum.
+            Integrate lessons into computer science courses, library workshops, or research staff training.
+            Use pathways as modular units or supplement existing curriculum.
           </p>
           <p class="pathways-list">
-            Example: "Contributing to a Project" pathway for a software engineering course on collaborative development
+            Example: "Contributing to a Project" pathway for a lab session on collaborative development
           </p>
         </div>
 

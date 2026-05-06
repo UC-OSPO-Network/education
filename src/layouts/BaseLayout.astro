@@ -1,209 +1,143 @@
 ---
-import UnifiedNav from '../components/UnifiedNav.astro';
-const { title } = Astro.props;
+import UnifiedNav from "../components/UnifiedNav.astro";
+import { isCurrentItem, isCurrentLink, siteChrome, withBasePath } from "../lib/siteChrome";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Open source learning pathways and curated lessons from the UC OSPO Network.",
+} = Astro.props as Props;
+
+const basePath = import.meta.env.BASE_URL === "/" ? "" : import.meta.env.BASE_URL.replace(/\/$/, "");
+const sidebarItems = siteChrome.nav.map((item) => ({
+  ...item,
+  current: isCurrentItem(basePath, Astro.url.pathname, item),
+  hrefResolved: item.external ? item.href : withBasePath(import.meta.env.BASE_URL, item.href),
+  childrenResolved: (item.children ?? []).map((child) => ({
+    ...child,
+    current: isCurrentLink(basePath, Astro.url.pathname, child.href),
+    hrefResolved: child.external ? child.href : withBasePath(import.meta.env.BASE_URL, child.href),
+  })),
+}));
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>{title} | UC OSPO</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Open Source Learning Pathways from the UC Open Source Program Office" />
-    <!-- Link to global CSS -->
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <link rel="stylesheet" href={`${import.meta.env.BASE_URL}styles.css`} />
-    <style>
-      :global(body) {
-        background: var(--bg-primary);
-        color: var(--text-primary);
-      }
-
-      .site-shell {
-        background: var(--bg-primary);
-        color: var(--text-primary);
-        min-height: 100vh;
-      }
-
-      .site-main {
-        min-height: calc(100vh - 200px);
-        background: inherit;
-      }
-
-      .unified-footer {
-        padding: 3rem 2rem 2rem;
-        border-top: 3px solid var(--uc-gold-on-dark);
-        background: var(--uc-blue);
-        margin-top: 4rem;
-        color: var(--uc-white);
-      }
-
-      .footer-container {
-        max-width: 1400px;
-        margin: 0 auto;
-      }
-
-      .footer-content {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        margin-bottom: 2rem;
-      }
-
-      .footer-section h3 {
-        color: var(--uc-gold-on-dark);
-        font-size: 1.1rem;
-        margin-bottom: 1rem;
-        font-weight: 600;
-      }
-
-      .footer-links {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .footer-links li {
-        margin-bottom: 0.5rem;
-      }
-
-      .footer-links a,
-      .footer-campus-grid a {
-        color: var(--uc-white);
-        text-decoration: none;
-        transition: color 0.2s;
-        font-size: 0.95rem;
-      }
-
-      .footer-links a:hover,
-      .footer-campus-grid a:hover {
-        color: var(--uc-gold-on-dark);
-        text-decoration: underline;
-      }
-
-      .footer-campus-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 0.5rem;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .footer-social {
-        display: flex;
-        gap: 1rem;
-        margin-top: 1rem;
-      }
-
-      .footer-social a {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: var(--uc-white);
-        text-decoration: none;
-        padding: 0.5rem;
-        border-radius: var(--radius-xs);
-        transition: background-color 0.2s;
-      }
-
-      .footer-social a:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-      }
-
-      .footer-bottom {
-        text-align: center;
-        padding-top: 2rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
-      }
-
-      .footer-bottom p {
-        margin: 0.25rem 0;
-        color: var(--uc-light-gray);
-        font-size: 0.9rem;
-      }
-
-      @media (max-width: 768px) {
-        .footer-content {
-          grid-template-columns: 1fr;
-        }
-
-        .footer-campus-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-    </style>
+    <title>{title} | UC OSPO Education</title>
   </head>
   <body>
     <div class="site-shell">
       <UnifiedNav />
 
       <main id="main-content" class="site-main">
-        <slot />
+        <div class="site-layout">
+          <aside class="site-sidebar" aria-label="Section navigation">
+            <div class="site-sidebar__inner">
+              <p class="site-sidebar__eyebrow">UC OSPO Network</p>
+              <nav class="site-sidebar__nav" aria-label="Site sections">
+                <ul class="site-sidebar__list">
+                  {sidebarItems.map((item, index) => {
+                    const hasChildren = item.childrenResolved.length > 0;
+                    const isExpanded = item.current || (hasChildren && item.childrenResolved.some((c) => c.current));
+                    const checkboxId = `sidebar-toggle-${index}`;
+                    return (
+                      <li class={`site-sidebar__item${item.current ? " is-current" : ""}${hasChildren ? " has-children" : ""}`}>
+                        {hasChildren && (
+                          <input 
+                            type="checkbox" 
+                            id={checkboxId} 
+                            class="site-sidebar__toggle-checkbox sr-only" 
+                            checked={isExpanded ? true : undefined} 
+                          />
+                        )}
+                        <div class="site-sidebar__item-header">
+                          <a
+                            class="site-sidebar__link"
+                            href={item.hrefResolved}
+                            target={item.external ? "_blank" : undefined}
+                            rel={item.external ? "noopener noreferrer" : undefined}
+                          >
+                            {item.label}
+                          </a>
+                          {hasChildren && (
+                            <label for={checkboxId} class="site-sidebar__toggle-label">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="site-sidebar__caret">
+                                <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                              </svg>
+                              <span class="sr-only">Toggle {item.label}</span>
+                            </label>
+                          )}
+                        </div>
+
+                        {hasChildren ? (
+                          <ul class="site-sidebar__sublist">
+                            {item.childrenResolved.map((child) => (
+                              <li class={`site-sidebar__subitem${child.current ? " is-current" : ""}`}>
+                                <a
+                                  class="site-sidebar__sublink"
+                                  href={child.hrefResolved}
+                                  target={child.external ? "_blank" : undefined}
+                                  rel={child.external ? "noopener noreferrer" : undefined}
+                                >
+                                  {child.label}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </nav>
+            </div>
+          </aside>
+
+          <div class="site-content">
+            <slot />
+          </div>
+        </div>
       </main>
 
-      <footer class="unified-footer">
-        <div class="footer-container">
-          <div class="footer-content">
-            <!-- About Section -->
-            <div class="footer-section">
-              <h3>UC OSPO Network</h3>
-              <ul class="footer-links">
-                <li><a href="https://ucospo.net/about">About</a></li>
-                <li><a href="https://ucospo.net/about/guiding-themes">Guiding Themes</a></li>
-                <li><a href="https://ucospo.net/events">Events</a></li>
-                <li><a href="https://ucospo.net/blog">Blog</a></li>
-              </ul>
-            </div>
+      <footer class="site-footer">
+        <div class="site-footer__inner">
+          <a class="site-footer__brand" href={siteChrome.brand.homeHref} aria-label="UC OSPO Network">
+            <img
+              src={`${import.meta.env.BASE_URL}uc-ospo-network-logo.svg`}
+              alt="UC OSPO Network"
+              class="logo-dark"
+            />
+            <img
+              src={`${import.meta.env.BASE_URL}uc-ospo-network-logo-light.svg`}
+              alt="UC OSPO Network"
+              class="logo-light"
+            />
+          </a>
 
-            <!-- Education Section -->
-            <div class="footer-section">
-              <h3>Education</h3>
-              <ul class="footer-links">
-                <li><a href={import.meta.env.BASE_URL}>Learning Pathways</a></li>
-                <li><a href={`${import.meta.env.BASE_URL}lessons`}>Browse Lessons</a></li>
-                <li><a href={`${import.meta.env.BASE_URL}pathways`}>All Pathways</a></li>
-                <li><a href={`${import.meta.env.BASE_URL}develop-a-lesson`}>Develop a Lesson</a></li>
-              </ul>
-            </div>
-
-            <!-- UC Campuses -->
-            <div class="footer-section">
-              <h3>UC Campuses</h3>
-              <ul class="footer-campus-grid">
-                <li><a href="https://ucospo.net/berkeley">Berkeley</a></li>
-                <li><a href="https://ucospo.net/davis">Davis</a></li>
-                <li><a href="https://ucospo.net/los-angeles">Los Angeles</a></li>
-                <li><a href="https://ucospo.net/san-diego">San Diego</a></li>
-                <li><a href="https://ucospo.net/santa-barbara">Santa Barbara</a></li>
-                <li><a href="https://ucospo.net/santa-cruz">Santa Cruz</a></li>
-              </ul>
-            </div>
-
-            <!-- Connect Section -->
-            <div class="footer-section">
-              <h3>Connect</h3>
-              <div class="footer-social">
-                <a href="https://github.com/UC-OSPO-Network" target="_blank" rel="noopener" aria-label="GitHub">
-                  <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                  </svg>
-                </a>
-                <a href="https://ucospo.net/atom.xml" target="_blank" rel="noopener" aria-label="RSS Feed">
-                  <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="footer-bottom">
-            <p style="margin-bottom: 0.5rem; color: var(--uc-white); font-weight: 500;">
-              © 2025 UC OSPO Network. All rights reserved.
-            </p>
-            <p>
-              Supporting open source education and collaboration across the University of California system
-            </p>
-          </div>
+          <nav class="site-footer__social" aria-label="UC OSPO social links">
+            {siteChrome.footer.social.map((item) => (
+              <a
+                class="site-footer__social-link"
+                href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
+                aria-label={item.label}
+              >
+                <img src={`${import.meta.env.BASE_URL}${item.icon.replace(/^\//, "")}`} alt="" aria-hidden="true" />
+              </a>
+            ))}
+          </nav>
         </div>
       </footer>
     </div>
