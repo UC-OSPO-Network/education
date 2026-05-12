@@ -314,7 +314,7 @@ summary:focus-visible {
   z-index: 1000;
   padding: 0.7rem 1rem;
   border-radius: var(--radius-sm);
-  background: var(--uc-gold);
+  background: var(--uc-light-gold);
   color: #1a1a1a;
   font-weight: 700;
 }

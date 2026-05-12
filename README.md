@@ -62,23 +62,24 @@ These checks run automatically on pull requests via GitHub Actions.
 ### Accessibility Scanning
 
 The repository now includes an accessibility workflow at `.github/workflows/accessibility.yml`.
-It runs the repo's local Puppeteer + axe accessibility audit in GitHub Actions against a production-shaped `/education/` preview of the built site.
+It runs layered accessibility checks against a production-shaped `/education/` preview of the built site.
 
-- Runs automatically on pull requests that change site code, every Monday at 14:00 UTC, and manually from the Actions tab
-- Uploads the generated JSON audit report as a workflow artifact
-- Publishes a per-page violation summary to the workflow job summary
-- Supports optional CI gating through the `A11Y_FAIL_ERRORS_COUNT` repository variable
+- `npm run check-a11y` builds the static site, serves it locally under `/education/`, generates a sitemap, and runs `pa11y-ci` against every built page with WCAG 2.1 AA settings.
+- `npm run check-a11y:flows` runs Chromium Playwright tests for keyboard navigation, interactive states, and `@axe-core/playwright` checks after those states are opened.
+- `npm run check-a11y:all` runs both layers.
 
-To turn on blocking CI failures, add a repository variable named `A11Y_FAIL_ERRORS_COUNT` with a value greater than `0`.
-That threshold is passed into the audit script so the team can tune enforcement without another code change.
+Pull requests block on the full-page pa11y scan. Playwright flow checks run on pull requests as a nonblocking rollout step and run as part of the full scheduled/manual accessibility workflow.
 
-For a local approximation of the same flow, run:
+For local checks, run:
 
 ```bash
-npm run a11y:local
+npm run check-a11y
+npm run check-a11y:flows
+npm run check-a11y:all
 ```
 
-That command builds the site, serves the generated files under `/education/`, and runs the repo's Puppeteer + axe audit against the local preview. If port `4321` is already in use, set `A11Y_PORT` first, for example `A11Y_PORT=4322 npm run a11y:local`.
+If port `4321` is already in use, set `A11Y_PORT` first, for example `A11Y_PORT=4322 npm run check-a11y`.
+See `docs/ACCESSIBILITY_GUIDE.md` and `docs/SCREEN_READER_QA_CHECKLIST.md` for contributor guidance and manual release checks.
 
 ### Run Locally
 

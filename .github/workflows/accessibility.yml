@@ -41,5 +41,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
       - name: Run accessibility check
+        if: github.event_name == 'pull_request'
         run: npm run check-a11y
+
+      - name: Run accessibility flow check
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        run: npm run check-a11y:flows
+
+      - name: Run full accessibility check
+        if: github.event_name != 'pull_request'
+        run: npm run check-a11y:all
