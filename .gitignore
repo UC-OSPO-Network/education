@@ -39,6 +39,7 @@ test-results/
 .history/
 *.local
 .codex/*
+.claude/
 
 # Vim
 *.swp
