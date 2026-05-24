@@ -48,7 +48,9 @@
     "@astrojs/check": "^0.9.6",
     "@axe-core/playwright": "^4.11.0",
     "@playwright/test": "^1.56.1",
+    "@types/js-yaml": "^4.0.9",
     "@types/papaparse": "^5.5.2",
+    "js-yaml": "^4.1.1",
     "pa11y": "^9.0.1",
     "pa11y-ci": "^4.0.1",
     "typescript": "^5.9.3"

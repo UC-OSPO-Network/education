@@ -1,23 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getLessons } from '../../lib/lessons';
+import type { HealthSnapshot } from '../../lib/githubHealth';
 import githubHealthRaw from '../../data/github-health.json';
-
-type HealthRecord = {
-  stars: number;
-  forks: number;
-  openIssues: number;
-  pushedAt: string | null;
-  updatedAt: string | null;
-  contributorCount: number | null;
-  contributorCountTruncated: boolean;
-  license: string | null;
-  archived: boolean;
-};
-
-type HealthSnapshot = {
-  fetchedAt: string | null;
-  lessons: Record<string, HealthRecord>;
-};
 
 const healthData = githubHealthRaw as unknown as HealthSnapshot;
 
@@ -56,6 +40,7 @@ export const GET: APIRoute = async () => {
               contributors: health.contributorCount ?? null,
               openIssues: health.openIssues ?? 0,
               archived: health.archived ?? false,
+              citation: health.citation ?? null,
               fetchedAt: healthData.fetchedAt ?? null,
             }
           : null,

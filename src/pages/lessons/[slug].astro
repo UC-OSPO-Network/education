@@ -4,35 +4,20 @@ import LessonJsonLd from "../../components/LessonJsonLd.astro";
 import { getLessons, type Lesson, formatDuration } from "../../lib/lessons";
 import { PATHWAYS } from "../../types/lesson";
 import githubHealthRaw from "../../data/github-health.json";
+import type { HealthSnapshot } from "../../lib/githubHealth";
+import { formatAuthorsApa, formatAuthorsBibtex } from "../../lib/githubHealth";
 
-const healthData = githubHealthRaw as { fetchedAt: string | null; lessons: Record<string, { pushedAt: string | null }> };
+const healthData = githubHealthRaw as unknown as HealthSnapshot;
 
 type Props = {
   lesson: Lesson;
   relatedLessons: Lesson[];
+  prereqLessons: { slug: string; name: string }[];
 };
-
-function formatValue(value: unknown): string {
-  if (value === null || value === undefined) return "";
-  if (Array.isArray(value)) return value.filter(Boolean).join(", ");
-  if (typeof value === "string") return value.trim();
-  if (typeof value === "number" || typeof value === "boolean") return String(value);
-  try {
-    return JSON.stringify(value);
-  } catch {
-    return String(value);
-  }
-}
-
-function toTitleCaseLabel(key: string): string {
-  return key
-    .replace(/([a-z])([A-Z])/g, "$1 $2")
-    .replace(/_/g, " ")
-    .replace(/\b\w/g, (c) => c.toUpperCase());
-}
 
 export async function getStaticPaths() {
   const lessons = await getLessons();
+  const slugToName = Object.fromEntries(lessons.map((l) => [l.slug, l.name]));
 
   const candidates = lessons.filter(
     (lesson) => typeof lesson.slug === "string" && lesson.slug.trim().length > 0,
@@ -57,74 +42,122 @@ export async function getStaticPaths() {
     const relatedLessons =
       relatedBySubtopic.length > 0 ? relatedBySubtopic : relatedByPathway;
 
+    const prereqLessons = (lesson.dependsOn ?? [])
+      .filter((slug) => slugToName[slug])
+      .map((slug) => ({ slug, name: slugToName[slug] }));
+
     return {
       params: { slug: lesson.slug },
       props: {
         lesson,
         relatedLessons: relatedLessons.slice(0, 6),
+        prereqLessons,
       } satisfies Props,
     };
   });
 }
 
-const { lesson, relatedLessons } = Astro.props as Props;
+const { lesson, relatedLessons, prereqLessons } = Astro.props as Props;
 
-const repoHealth = lesson.repoUrl ? (healthData.lessons[lesson.repoUrl] ?? null) : null;
-const repoLastUpdated = repoHealth?.pushedAt ?? null;
-
-const pathway = PATHWAYS.find((item) => item.learnerCategories.includes(lesson.learnerCategory));
-const pathwayHref = pathway ? `${import.meta.env.BASE_URL}pathways/${pathway.id}` : "";
+const pathway = PATHWAYS.find((item) =>
+  item.learnerCategories.includes(lesson.learnerCategory),
+);
+const pathwayHref = pathway
+  ? `${import.meta.env.BASE_URL}pathways/${pathway.id}`
+  : "";
 const summary =
   lesson.description?.trim() ||
   lesson.abstract?.trim() ||
-  "No description is available for this lesson yet.";
+  "";
 const externalHref = lesson.url?.trim() ?? "";
 
-const coreMetadata: Array<{ label: string; value: unknown; kind?: "link" }> = [
-  { label: "Slug", value: lesson.slug },
-  { label: "Pathway", value: lesson.learnerCategory, kind: pathwayHref ? "link" : undefined },
-  ...(repoLastUpdated ? [{ label: "Repo Last Updated", value: repoLastUpdated }] : []),
-  { label: "Subtopic", value: lesson.subTopic },
-  { label: "Skill Level", value: lesson.educationalLevel },
-  { label: "OSS Role(s)", value: lesson.oss_role || lesson.ossRole || "" },
-  { label: "Resource Type", value: lesson.learningResourceType },
-  { label: "Time Required", value: formatDuration(lesson.timeRequired) },
-  { label: "Author", value: lesson.author },
-  { label: "License", value: lesson.license },
-  { label: "Keywords", value: lesson.keywords },
-  { label: "Language(s)", value: lesson.inLanguage },
-];
+const repoHealth = lesson.repoUrl
+  ? (healthData.lessons[lesson.repoUrl] ?? null)
+  : null;
+const repoLastUpdated = repoHealth?.pushedAt ?? null;
 
-const excludedAdditionalKeys = new Set<string>([
-  "name",
-  "slug",
-  "keepStatus",
-  "description",
-  "abstract",
-  "url",
-  "author",
-  "license",
-  "learnerCategory",
-  "educationalLevel",
-  "ossRole",
-  "oss_role",
-  "subTopic",
-  "timeRequired",
-  "learningResourceType",
-  "inLanguage",
-  "keywords",
-]);
+// Build citation — prefer CFF data, fall back to lesson metadata
+const cffCitation = repoHealth?.citation ?? null;
+const citationAuthors = cffCitation?.authors ?? [];
+const citationYear = cffCitation?.dateReleased
+  ? cffCitation.dateReleased.slice(0, 4)
+  : new Date().getFullYear().toString();
+const citationTitle = cffCitation?.title ?? lesson.name;
+const citationDoi = cffCitation?.doi ?? null;
+const citationUrl = citationDoi
+  ? `https://doi.org/${citationDoi}`
+  : lesson.url?.trim() || lesson.repoUrl?.trim() || "";
+const citationVersion = cffCitation?.version ?? null;
 
-const additionalMetadataEntries = Object.entries(lesson)
-  .filter(([key, value]) => !excludedAdditionalKeys.has(key) && formatValue(value) !== "")
-  .sort(([a], [b]) => a.localeCompare(b))
-  .map(([key, value]) => ({ label: toTitleCaseLabel(key), value }));
+const apaAuthors = formatAuthorsApa(citationAuthors, lesson.author);
+const bibtexAuthors = formatAuthorsBibtex(citationAuthors, lesson.author);
+const bibtexId = lesson.slug.replace(/-/g, '_');
+
+const apaCitation = [
+  `${apaAuthors} (${citationYear}).`,
+  `${citationTitle}.`,
+  citationVersion ? `(Version ${citationVersion}).` : null,
+  `UC OSPO Network.`,
+  citationUrl,
+].filter(Boolean).join(' ');
+
+const bibtexCitation = `@misc{${bibtexId}_${citationYear},
+  author    = {${bibtexAuthors}},
+  title     = {${citationTitle}},
+  year      = {${citationYear}},
+  publisher = {UC OSPO Network},
+  url       = {${citationUrl}}${citationDoi ? `,\n  doi       = {${citationDoi}}` : ""}${citationVersion ? `,\n  version   = {${citationVersion}}` : ""}
+}`;
+
+// Parse bullet lines out of the learningObjectives block
+const outcomeLines = (lesson.learningObjectives ?? "")
+  .split("\n")
+  .map((l) => l.trim())
+  .filter((l) => l.startsWith("- ") || l.startsWith("* "))
+  .map((l) => l.replace(/^[-*]\s+/, ""));
+
+// Keywords as array
+const keywordList = lesson.keywords
+  ? lesson.keywords
+      .split(",")
+      .map((k) => k.trim())
+      .filter(Boolean)
+  : [];
+
+// OSS roles as array
+const ossRoles = (lesson.ossRole ?? lesson.oss_role ?? "")
+  .split(",")
+  .map((r) => r.trim())
+  .filter(Boolean);
+
+function shortLicense(url: string | undefined): string {
+  if (!url) return "";
+  const m = url.match(/licenses\/([^/]+)\/([^/]+)/);
+  if (m) return `CC ${m[1].toUpperCase()} ${m[2]}`;
+  const m2 = url.match(/licenses\/([^/]+)/);
+  if (m2) return `CC ${m2[1].toUpperCase()}`;
+  return url;
+}
+
+function formatMonth(dateStr: string | null): string {
+  if (!dateStr) return "";
+  const parts = dateStr.split("-");
+  const year = parts[0];
+  const month = parseInt(parts[1], 10);
+  const names = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return `${names[month - 1]} ${year}`;
+}
+
+const duration = formatDuration(lesson.timeRequired);
+const licenseShort = shortLicense(lesson.license);
+const hasPrereqs = prereqLessons.length > 0 || !!lesson.competencyRequired?.trim();
 ---
 
 <BaseLayout title={lesson.name} description={summary}>
   <Fragment slot="head">
     <LessonJsonLd lesson={lesson} canonicalUrl={Astro.url.href} />
   </Fragment>
+
   <section class="page-intro">
     <div class="content-container">
       <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -136,9 +169,26 @@ const additionalMetadataEntries = Object.entries(lesson)
           <li aria-current="page">{lesson.name}</li>
         </ol>
       </nav>
-      <p class="page-intro__eyebrow">Lesson</p>
+
+      <div class="lesson-badges">
+        {lesson.learnerCategory && (
+          <span class="lesson-badge lesson-badge--pathway">
+            {lesson.learnerCategory}
+          </span>
+        )}
+        {lesson.educationalLevel && (
+          <span class="lesson-badge lesson-badge--level">
+            {lesson.educationalLevel}
+          </span>
+        )}
+        {duration && (
+          <span class="lesson-badge lesson-badge--time">{duration}</span>
+        )}
+      </div>
+
       <h1 class="page-intro__title">{lesson.name}</h1>
-      <p class="page-intro__summary">{summary}</p>
+      {summary && <p class="page-intro__summary">{summary}</p>}
+
       <div class="page-intro__actions">
         <a
           class="button-primary"
@@ -147,62 +197,183 @@ const additionalMetadataEntries = Object.entries(lesson)
           rel={externalHref ? "noopener noreferrer" : undefined}
           aria-disabled={externalHref ? "false" : "true"}
         >
-          View External Lesson
+          View Lesson ↗
         </a>
-        {pathwayHref ? <a class="button-secondary" href={pathwayHref}>Browse This Pathway</a> : null}
+        {pathwayHref && (
+          <a class="button-secondary" href={pathwayHref}>Browse Pathway</a>
+        )}
       </div>
     </div>
   </section>
 
   <div class="content-container">
-    <section class="page-section" aria-labelledby="lesson-metadata">
-      <h2 class="section-heading" id="lesson-metadata">Lesson metadata</h2>
-      <div class="metadata-grid">
-        {coreMetadata.map(({ label, value, kind }) => {
-          const formatted = formatValue(value);
-          if (label === "Pathway" && kind === "link" && pathwayHref) {
-            return (
-              <div class="meta-item">
-                <span class="meta-label">{label}</span>
-                <span class="meta-value">
-                  <a href={pathwayHref}>{formatted || "—"}</a>
+    <div class="lesson-detail">
+
+      <div class="lesson-body">
+        {outcomeLines.length > 0 && (
+          <section class="page-section" aria-labelledby="outcomes-heading">
+            <h2 class="section-heading" id="outcomes-heading">Learning outcomes</h2>
+            <ul class="lesson-outcomes">
+              {outcomeLines.map((line) => <li>{line}</li>)}
+            </ul>
+          </section>
+        )}
+
+        {hasPrereqs && (
+          <section class="page-section" aria-labelledby="prereqs-heading">
+            <h2 class="section-heading" id="prereqs-heading">Prerequisites</h2>
+            {prereqLessons.length > 0 && (
+              <ul class="lesson-prereq-list">
+                {prereqLessons.map(({ slug, name }) => (
+                  <li>
+                    <a href={`${import.meta.env.BASE_URL}lessons/${slug}`}>
+                      {name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {lesson.competencyRequired?.trim() && (
+              <p class="lesson-prereq-note">{lesson.competencyRequired}</p>
+            )}
+          </section>
+        )}
+      </div>
+
+      <aside class="lesson-sidebar" aria-label="Lesson details">
+        <div class="page-section">
+          <h2 class="section-heading">Details</h2>
+
+          {lesson.author?.trim() && (
+            <div class="lesson-detail-row">
+              <span class="lesson-detail-label">Author</span>
+              <span class="lesson-detail-value">{lesson.author}</span>
+            </div>
+          )}
+
+          {lesson.audience?.trim() && (
+            <div class="lesson-detail-row">
+              <span class="lesson-detail-label">Suitable for</span>
+              <span class="lesson-detail-value">{lesson.audience}</span>
+            </div>
+          )}
+
+          {licenseShort && (
+            <div class="lesson-detail-row">
+              <span class="lesson-detail-label">License</span>
+              <span class="lesson-detail-value">
+                {lesson.license?.startsWith("http") ? (
+                  <a
+                    href={lesson.license}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {licenseShort}
+                  </a>
+                ) : (
+                  licenseShort
+                )}
+              </span>
+            </div>
+          )}
+
+          {lesson.inLanguage && lesson.inLanguage.length > 0 && (
+            <div class="lesson-detail-row">
+              <span class="lesson-detail-label">Language</span>
+              <span class="lesson-detail-value">
+                {lesson.inLanguage.join(", ")}
+              </span>
+            </div>
+          )}
+
+          {ossRoles.length > 0 && (
+            <div class="lesson-detail-row">
+              <span class="lesson-detail-label">OSS role</span>
+              <span class="lesson-detail-value">{ossRoles.join(", ")}</span>
+            </div>
+          )}
+
+          {keywordList.length > 0 && (
+            <div class="lesson-detail-row">
+              <span class="lesson-detail-label">Topics</span>
+              <div class="lesson-tags">
+                {keywordList.map((tag) => (
+                  <span class="lesson-tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {lesson.repoUrl?.trim() && (
+          <div class="page-section">
+            <h2 class="section-heading">Source</h2>
+            <div class="lesson-detail-row">
+              <span class="lesson-detail-label">Repository</span>
+              <span class="lesson-detail-value">
+                <a
+                  href={lesson.repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub ↗
+                </a>
+              </span>
+            </div>
+            {repoLastUpdated && (
+              <div class="lesson-detail-row">
+                <span class="lesson-detail-label">Last updated</span>
+                <span class="lesson-detail-value">
+                  {formatMonth(repoLastUpdated)}
                 </span>
               </div>
-            );
-          }
+            )}
+          </div>
+        )}
 
-          return (
-            <div class="meta-item">
-              <span class="meta-label">{label}</span>
-              <span class="meta-value">{formatted || "—"}</span>
-            </div>
-          );
-        })}
-      </div>
-    </section>
+        <div class="page-section" aria-labelledby="cite-heading">
+          <h2 class="section-heading" id="cite-heading">Cite this lesson</h2>
+          {cffCitation && (
+            <p class="lesson-cite-note">
+              Metadata from <code>CITATION.cff</code>.
+            </p>
+          )}
 
-    {additionalMetadataEntries.length > 0 ? (
-      <section class="page-section" aria-labelledby="additional-metadata">
-        <h2 class="section-heading" id="additional-metadata">Additional metadata</h2>
-        <div class="metadata-grid">
-          {additionalMetadataEntries.map(({ label, value }) => (
-            <div class="meta-item">
-              <span class="meta-label">{label}</span>
-              <span class="meta-value">{formatValue(value)}</span>
+          <div class="lesson-cite-block">
+            <div class="lesson-cite-header">
+              <span class="lesson-cite-label">APA</span>
+              <button class="lesson-cite-copy" data-copy={apaCitation} aria-label="Copy APA citation">
+                Copy
+              </button>
             </div>
-          ))}
+            <p class="lesson-cite-text">{apaCitation}</p>
+          </div>
+
+          <div class="lesson-cite-block">
+            <div class="lesson-cite-header">
+              <span class="lesson-cite-label">BibTeX</span>
+              <button class="lesson-cite-copy" data-copy={bibtexCitation} aria-label="Copy BibTeX citation">
+                Copy
+              </button>
+            </div>
+            <pre class="lesson-cite-pre"><code>{bibtexCitation}</code></pre>
+          </div>
         </div>
-      </section>
-    ) : null}
+      </aside>
 
-    <section class="page-section" aria-labelledby="related-lessons">
-      <h2 class="section-heading" id="related-lessons">Related lessons</h2>
+    </div>
+
+    <section class="page-section lesson-related" aria-labelledby="related-heading">
+      <h2 class="section-heading" id="related-heading">Related lessons</h2>
       {relatedLessons.length === 0 ? (
         <p class="section-copy">No related lessons found yet.</p>
       ) : (
         <div class="related-grid">
           {relatedLessons.map((related) => (
-            <a class="related-card" href={`${import.meta.env.BASE_URL}lessons/${related.slug}`}>
+            <a
+              class="related-card"
+              href={`${import.meta.env.BASE_URL}lessons/${related.slug}`}
+            >
               <h3 class="related-title">{related.name}</h3>
               <p class="related-meta">
                 {related.educationalLevel}
@@ -214,4 +385,17 @@ const additionalMetadataEntries = Object.entries(lesson)
       )}
     </section>
   </div>
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.lesson-cite-copy').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const text = btn.dataset.copy;
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(() => {
+        const original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = original; }, 2000);
+      });
+    });
+  });
+</script>
 </BaseLayout>

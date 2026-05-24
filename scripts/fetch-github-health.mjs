@@ -1,6 +1,7 @@
 /**
- * Fetches GitHub repository health signals for all lessons that have a repoUrl.
- * Writes a snapshot to src/data/github-health.json for use at build time.
+ * Fetches GitHub repository health signals and CITATION.cff data for all
+ * lessons that have a repoUrl. Writes a snapshot to src/data/github-health.json
+ * for use at build time.
  *
  * Usage:
  *   GITHUB_TOKEN=your_token node scripts/fetch-github-health.mjs
@@ -10,6 +11,7 @@
 import { readFileSync, writeFileSync, readdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import yaml from 'js-yaml';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const lessonsDir = join(__dirname, '../src/content/lessons');
@@ -31,6 +33,129 @@ function parseGithubRepo(url) {
 function formatDate(isoString) {
   if (!isoString) return null;
   return isoString.slice(0, 10);
+}
+
+/**
+ * Normalise a CITATION.cff author entry into a plain object.
+ * CFF authors can be people {family-names, given-names, orcid, affiliation}
+ * or entities {name}.
+ */
+function normaliseCffAuthor(a) {
+  if (!a || typeof a !== 'object') return null;
+  if (a['family-names'] || a['given-names']) {
+    return {
+      family: a['family-names'] ?? null,
+      given: a['given-names'] ?? null,
+      orcid: a.orcid ? String(a.orcid).replace('https://orcid.org/', '') : null,
+      affiliation: a.affiliation ?? null,
+    };
+  }
+  if (a.name) {
+    return { name: a.name };
+  }
+  return null;
+}
+
+/**
+ * Coerce a YAML date value to YYYY-MM-DD.
+ * yaml.load parses unquoted YYYY-MM-DD values as JS Date objects.
+ */
+function coerceDate(value) {
+  if (!value) return null;
+  if (value instanceof Date) {
+    return isNaN(value.getTime()) ? null : value.toISOString().slice(0, 10);
+  }
+  if (typeof value === 'string') {
+    // Already ISO — return as-is
+    if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
+    // Try parsing other formats
+    const d = new Date(value);
+    return isNaN(d.getTime()) ? null : d.toISOString().slice(0, 10);
+  }
+  return null;
+}
+
+/**
+ * Return true if the CFF file appears to be an unfilled template
+ * (cffinit emits "FIXME" placeholders).
+ */
+function isCffTemplate(cff) {
+  if (cff.title === 'FIXME') return true;
+  if (Array.isArray(cff.authors)) {
+    const allFixme = cff.authors.every(
+      (a) => a['family-names'] === 'FIXME' || a['given-names'] === 'FIXME' || a.name === 'FIXME'
+    );
+    if (allFixme) return true;
+  }
+  return false;
+}
+
+/**
+ * Try to fetch CITATION.cff from the repo's default branch.
+ * Returns a structured citation object or null if not found / unparseable.
+ */
+async function fetchCitation(owner, repo, defaultBranch, headers) {
+  const branch = defaultBranch || 'main';
+  const url = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/CITATION.cff`;
+
+  let res = await fetch(url, { headers });
+
+  // Some repos use 'master' when defaultBranch wasn't returned
+  if (!res.ok && branch !== 'master') {
+    res = await fetch(
+      `https://raw.githubusercontent.com/${owner}/${repo}/master/CITATION.cff`,
+      { headers }
+    );
+  }
+
+  if (!res.ok) return null;
+
+  const text = await res.text();
+  let cff;
+  try {
+    cff = yaml.load(text);
+  } catch {
+    console.warn(`    CITATION.cff parse error for ${owner}/${repo}`);
+    return null;
+  }
+
+  if (!cff || typeof cff !== 'object') return null;
+
+  if (isCffTemplate(cff)) {
+    console.warn(`    CITATION.cff is an unfilled template — skipping`);
+    return null;
+  }
+
+  const authors = Array.isArray(cff.authors)
+    ? cff.authors.map(normaliseCffAuthor).filter(Boolean)
+    : [];
+
+  // DOI can be top-level (cff.doi) or buried in identifiers[].value as a doi.org URL
+  let doi = cff.doi ?? null;
+  if (!doi && Array.isArray(cff.identifiers)) {
+    const doiEntry = cff.identifiers.find(
+      (id) => id.type === 'doi' || (id.type === 'url' && String(id.value ?? '').includes('doi.org'))
+    );
+    if (doiEntry) {
+      doi = String(doiEntry.value).replace('https://doi.org/', '').replace('http://doi.org/', '');
+    }
+  }
+
+  // version can sometimes be a non-sensible date string — keep only sane values
+  const rawVersion = cff.version != null ? String(cff.version) : null;
+  const version = rawVersion && rawVersion.length < 40 && !/GMT|UTC/.test(rawVersion)
+    ? rawVersion
+    : null;
+
+  return {
+    source: 'cff',
+    title: cff.title ?? null,
+    doi,
+    version,
+    dateReleased: coerceDate(cff['date-released']),
+    license: cff.license ?? null,
+    authors,
+  };
 }
 
 async function fetchRepoHealth(owner, repo, headers) {
@@ -61,6 +186,13 @@ async function fetchRepoHealth(owner, repo, headers) {
     }
   }
 
+  const citation = await fetchCitation(owner, repo, data.default_branch, headers);
+  if (citation) {
+    console.log(`    CITATION.cff found — ${citation.authors.length} author(s)${citation.doi ? ', DOI: ' + citation.doi : ''}`);
+  } else {
+    console.log(`    No CITATION.cff`);
+  }
+
   return {
     stars: data.stargazers_count ?? 0,
     forks: data.forks_count ?? 0,
@@ -71,6 +203,7 @@ async function fetchRepoHealth(owner, repo, headers) {
     contributorCountTruncated,
     license: data.license?.spdx_id ?? null,
     archived: data.archived ?? false,
+    citation,
   };
 }
 
@@ -87,8 +220,8 @@ async function main() {
 
   const files = readdirSync(lessonsDir).filter((f) => f.endsWith('.json'));
 
-  // Collect unique repoUrls and which lesson files map to them
-  const repoMap = new Map(); // repoUrl -> { parsed, files[] }
+  // Collect unique repoUrls and which lessons map to them
+  const repoMap = new Map();
   for (const file of files) {
     const lesson = JSON.parse(readFileSync(join(lessonsDir, file), 'utf8'));
     const repoUrl = lesson.repoUrl?.trim();
@@ -104,7 +237,7 @@ async function main() {
     repoMap.get(repoUrl).names.push(lesson.name);
   }
 
-  console.log(`\nFetching health for ${repoMap.size} unique repos (${files.length} lessons)...\n`);
+  console.log(`\nFetching health + citations for ${repoMap.size} unique repos (${files.length} lessons)...\n`);
 
   const results = {};
   let fetched = 0;
@@ -112,8 +245,7 @@ async function main() {
 
   for (const [repoUrl, { parsed, names }] of repoMap) {
     const label = `${parsed.owner}/${parsed.repo}`;
-    const lessons = names.join(', ');
-    console.log(`  Fetch: ${label}  (${lessons})`);
+    console.log(`  Fetch: ${label}  (${names.join(', ')})`);
 
     const health = await fetchRepoHealth(parsed.owner, parsed.repo, headers);
     if (health) {

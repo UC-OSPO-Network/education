@@ -1,4 +1,1187 @@
 {
-  "fetchedAt": null,
-  "lessons": {}
+  "fetchedAt": "2026-05-24T22:47:10.444Z",
+  "lessons": {
+    "https://github.com/github/opensource.guide": {
+      "stars": 15456,
+      "forks": 15388,
+      "openIssues": 8,
+      "pushedAt": "2026-05-21",
+      "updatedAt": "2026-05-24",
+      "contributorCount": 100,
+      "contributorCountTruncated": true,
+      "license": "CC-BY-4.0",
+      "archived": false,
+      "citation": null
+    },
+    "https://github.com/carpentries-incubator/better-research-software": {
+      "stars": 19,
+      "forks": 20,
+      "openIssues": 34,
+      "pushedAt": "2026-05-19",
+      "updatedAt": "2026-05-05",
+      "contributorCount": 19,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "citation": {
+        "source": "cff",
+        "title": "Building Better Research Software",
+        "doi": "10.5281/zenodo.12666088",
+        "version": "beta-Dec2025",
+        "dateReleased": "2025-12-10",
+        "license": "CC-BY-4.0",
+        "authors": [
+          {
+            "family": "Gibson",
+            "given": "Sarah",
+            "orcid": "0000-0003-0356-2765",
+            "affiliation": null
+          },
+          {
+            "family": "Goel",
+            "given": "Aman",
+            "orcid": "0000-0003-3567-2096",
+            "affiliation": null
+          },
+          {
+            "family": "Hodges",
+            "given": "Toby",
+            "orcid": "0000-0003-1766-456X",
+            "affiliation": "The Carpentries"
+          },
+          {
+            "family": "Jaffa",
+            "given": "Sarah",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Kopec-Harding",
+            "given": "Kamilla",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Nenadic",
+            "given": "Aleksandra",
+            "orcid": "0000-0002-2269-3894",
+            "affiliation": "Software Sustainability Institute / The University of Manchester"
+          },
+          {
+            "family": "Sauze",
+            "given": "Colin",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Stevens",
+            "given": "Sarah",
+            "orcid": "0000-0002-7040-548X",
+            "affiliation": "The University of Wisconsin-Madison"
+          }
+        ]
+      }
+    },
+    "https://github.com/hsf-training/hsf-training-cicd": {
+      "stars": 5,
+      "forks": 7,
+      "openIssues": 7,
+      "pushedAt": "2026-04-06",
+      "updatedAt": "2025-09-04",
+      "contributorCount": 100,
+      "contributorCountTruncated": true,
+      "license": "NOASSERTION",
+      "archived": false,
+      "citation": null
+    },
+    "https://github.com/the-turing-way/the-turing-way": {
+      "stars": 2147,
+      "forks": 749,
+      "openIssues": 607,
+      "pushedAt": "2026-05-20",
+      "updatedAt": "2026-05-24",
+      "contributorCount": 100,
+      "contributorCountTruncated": true,
+      "license": "NOASSERTION",
+      "archived": false,
+      "citation": {
+        "source": "cff",
+        "title": "The Turing Way handbook for reproducible, ethical and collaborative research",
+        "doi": "10.5281/zenodo.3233853",
+        "version": "1.2.3",
+        "dateReleased": "2025-04-14",
+        "license": "CC-BY-4.0",
+        "authors": [
+          {
+            "name": "The Turing Way Community"
+          }
+        ]
+      }
+    },
+    "https://github.com/coderefinery/git-collaborative": {
+      "stars": 10,
+      "forks": 44,
+      "openIssues": 13,
+      "pushedAt": "2026-03-30",
+      "updatedAt": "2026-05-18",
+      "contributorCount": 17,
+      "contributorCountTruncated": false,
+      "license": "CC-BY-4.0",
+      "archived": false,
+      "citation": {
+        "source": "cff",
+        "title": "Collaborative distributed version control",
+        "doi": null,
+        "version": null,
+        "dateReleased": "2025-03-19",
+        "license": "CC-BY-4.0",
+        "authors": [
+          {
+            "name": "CodeRefinery"
+          },
+          {
+            "family": "Bast",
+            "given": "Radovan",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Wikfeldt",
+            "given": "Kjartan Thor",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Hellsvik",
+            "given": "Johan",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Darst",
+            "given": "Richard",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Razick",
+            "given": "Sabry",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Pushpadas",
+            "given": "Dhanya",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Lindi",
+            "given": "Bjørn",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Pilstål",
+            "given": "Robert",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Alim Rasel",
+            "given": "Annajiat",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Suvilehto",
+            "given": "Jyry",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Fouilloux",
+            "given": "Anne",
+            "orcid": null,
+            "affiliation": null
+          }
+        ]
+      }
+    },
+    "https://github.com/INTERSECT-training/CI-CD": {
+      "stars": 0,
+      "forks": 1,
+      "openIssues": 1,
+      "pushedAt": "2026-05-19",
+      "updatedAt": "2025-09-18",
+      "contributorCount": 3,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "citation": null
+    },
+    "https://github.com/INTERSECT-training/Code-Review": {
+      "stars": 0,
+      "forks": 7,
+      "openIssues": 1,
+      "pushedAt": "2026-05-19",
+      "updatedAt": "2025-09-17",
+      "contributorCount": 5,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "citation": null
+    },
+    "https://github.com/carpentries-incubator/python-intermediate-development": {
+      "stars": 61,
+      "forks": 77,
+      "openIssues": 70,
+      "pushedAt": "2026-05-23",
+      "updatedAt": "2026-05-23",
+      "contributorCount": 40,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "citation": {
+        "source": "cff",
+        "title": "Intermediate Research Software Development Skills (Python)",
+        "doi": "10.5281/zenodo.6532056",
+        "version": "beta-May2026",
+        "dateReleased": "2026-05-23",
+        "license": "CC-BY-4.0",
+        "authors": [
+          {
+            "family": "Nenadic",
+            "given": "Aleksandra",
+            "orcid": "0000-0002-2269-3894",
+            "affiliation": null
+          },
+          {
+            "family": "Crouch",
+            "given": "Steve",
+            "orcid": "0000-0001-8985-6814",
+            "affiliation": null
+          },
+          {
+            "family": "Kiley",
+            "given": "Thomas",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Silva",
+            "given": "Raniere",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Michonneau",
+            "given": "François",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Belkin",
+            "given": "Maxim",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Graham",
+            "given": "James",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Wilson",
+            "given": "Greg",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Bluteau",
+            "given": "Matthew",
+            "orcid": "0000-0001-9498-8475",
+            "affiliation": null
+          },
+          {
+            "family": "Hodges",
+            "given": "Toby",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Kamvar",
+            "given": "Zhian",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Burg",
+            "given": "Sven",
+            "orcid": "0000-0003-1250-6968",
+            "affiliation": null
+          },
+          {
+            "family": "Cabunoc Mayes",
+            "given": "Abby",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Robinson",
+            "given": "Martin",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Mangham",
+            "given": "Sam",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Laird",
+            "given": "Jacalyn",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Stevens",
+            "given": "Sarah",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Leinweber",
+            "given": "Katrin",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Becker",
+            "given": "Erin",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Rodrigues",
+            "given": "João",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Lowe",
+            "given": "Douglas",
+            "orcid": "0000-0002-1248-3594",
+            "affiliation": null
+          },
+          {
+            "family": "Goel",
+            "given": "Aman",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Graham",
+            "given": "Matthew M.",
+            "orcid": "0000-0001-9104-7960",
+            "affiliation": null
+          },
+          {
+            "family": "Gopinathan",
+            "given": "Devaraj",
+            "orcid": "0000-0002-0490-3229",
+            "affiliation": null
+          },
+          {
+            "family": "Camphuijsen",
+            "given": "Jaro",
+            "orcid": "0000-0002-8928-7831",
+            "affiliation": null
+          },
+          {
+            "family": "Crocioni",
+            "given": "Giulia",
+            "orcid": "0000-0002-0823-0121",
+            "affiliation": null
+          },
+          {
+            "family": "Close",
+            "given": "William",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Löffler",
+            "given": "Frank",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Rijn",
+            "given": "Sander",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Saunders",
+            "given": "Harry",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Field",
+            "given": "Matthew",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Gadgil",
+            "given": "Sanket",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Zarębski",
+            "given": "Kristian",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Collie",
+            "given": "Kingsley",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Neep",
+            "given": "Tom",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Alves",
+            "given": "Renato",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Katz",
+            "given": "Daniel",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Reeve",
+            "given": "Jen",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Murphy",
+            "given": "G.K.",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Sverchkov",
+            "given": "Yuriy",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Hartley",
+            "given": "S.",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Konovalov",
+            "given": "Olexandr",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Guyer",
+            "given": "Jonathan",
+            "orcid": null,
+            "affiliation": null
+          }
+        ]
+      }
+    },
+    "https://github.com/hsf-training/hsf-training-docker": {
+      "stars": 3,
+      "forks": 19,
+      "openIssues": 11,
+      "pushedAt": "2026-04-06",
+      "updatedAt": "2025-09-21",
+      "contributorCount": 68,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "citation": null
+    },
+    "https://github.com/coderefinery/git-intro": {
+      "stars": 39,
+      "forks": 76,
+      "openIssues": 39,
+      "pushedAt": "2026-03-30",
+      "updatedAt": "2026-05-18",
+      "contributorCount": 24,
+      "contributorCountTruncated": false,
+      "license": "CC-BY-4.0",
+      "archived": false,
+      "citation": {
+        "source": "cff",
+        "title": "Introduction to version control",
+        "doi": null,
+        "version": null,
+        "dateReleased": "2025-03-19",
+        "license": "CC-BY-4.0",
+        "authors": [
+          {
+            "name": "CodeRefinery"
+          },
+          {
+            "family": "Bast",
+            "given": "Radovan",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Wikfeldt",
+            "given": "Kjartan Thor",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Darst",
+            "given": "Richard",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Razick",
+            "given": "Sabry",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Iusan",
+            "given": "Diana",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Lindi",
+            "given": "Bjørn",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Andrei",
+            "given": "Constantin-Octavian",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Suvilehto",
+            "given": "Jyry",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Fasshauer",
+            "given": "Elke",
+            "orcid": null,
+            "affiliation": null
+          }
+        ]
+      }
+    },
+    "https://github.com/INTERSECT-training/Issue-Tracking": {
+      "stars": 0,
+      "forks": 1,
+      "openIssues": 1,
+      "pushedAt": "2026-05-19",
+      "updatedAt": "2025-09-18",
+      "contributorCount": 3,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "citation": {
+        "source": "cff",
+        "title": "INTERSECT: Issue Tracking",
+        "doi": null,
+        "version": "0.2.0",
+        "dateReleased": "2023-07-07",
+        "license": null,
+        "authors": [
+          {
+            "family": "Mundt",
+            "given": "Miranda",
+            "orcid": "0000-0002-5283-2138",
+            "affiliation": null
+          }
+        ]
+      }
+    },
+    "https://github.com/INTERSECT-training/Making-Good-PRs": {
+      "stars": 0,
+      "forks": 1,
+      "openIssues": 0,
+      "pushedAt": "2026-05-19",
+      "updatedAt": "2025-09-18",
+      "contributorCount": 3,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "citation": {
+        "source": "cff",
+        "title": "INTERSECT: Making Good Pull Requests",
+        "doi": null,
+        "version": "0.2.0",
+        "dateReleased": "2023-07-07",
+        "license": null,
+        "authors": [
+          {
+            "family": "Mundt",
+            "given": "Miranda",
+            "orcid": "0000-0002-5283-2138",
+            "affiliation": null
+          }
+        ]
+      }
+    },
+    "https://github.com/coderefinery/modular-type-along": {
+      "stars": 4,
+      "forks": 9,
+      "openIssues": 9,
+      "pushedAt": "2026-03-30",
+      "updatedAt": "2026-05-18",
+      "contributorCount": 6,
+      "contributorCountTruncated": false,
+      "license": "CC-BY-4.0",
+      "archived": false,
+      "citation": {
+        "source": "cff",
+        "title": "Modular code development type-along",
+        "doi": null,
+        "version": null,
+        "dateReleased": "2025-02-26",
+        "license": "CC-BY-4.0",
+        "authors": [
+          {
+            "name": "CodeRefinery"
+          },
+          {
+            "family": "Bast",
+            "given": "Radovan",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Darst",
+            "given": "Richard",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Tian",
+            "given": "Yu",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Juselius",
+            "given": "Jonas",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Di Remigio Eikås",
+            "given": "Roberto",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Bjørndalen",
+            "given": "Ole Martin",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Fouilloux",
+            "given": "Anne",
+            "orcid": null,
+            "affiliation": null
+          }
+        ]
+      }
+    },
+    "https://github.com/MolSSI-Education/python-package-best-practices": {
+      "stars": 44,
+      "forks": 34,
+      "openIssues": 1,
+      "pushedAt": "2026-03-18",
+      "updatedAt": "2026-05-13",
+      "contributorCount": 27,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "citation": {
+        "source": "cff",
+        "title": "Best Practices in Python Package Development (Version 2021.08.0)",
+        "doi": "10.34974/2H9M-0E15",
+        "version": "2021.08.0",
+        "dateReleased": "2021-08-20",
+        "license": null,
+        "authors": [
+          {
+            "family": "Nash",
+            "given": "Jessica A.",
+            "orcid": "0000-0003-1967-5094",
+            "affiliation": "The Molecular Sciences Software Institute"
+          },
+          {
+            "family": "Altarawy",
+            "given": "Doaa",
+            "orcid": "0000-0002-7795-4422",
+            "affiliation": "The Molecular Sciences Software Institute"
+          },
+          {
+            "family": "Barnes",
+            "given": "Taylor A.",
+            "orcid": "0000-0001-9396-1094",
+            "affiliation": "The Molecular Sciences Software Institute"
+          },
+          {
+            "family": "Ellis",
+            "given": "Samuel J.",
+            "orcid": null,
+            "affiliation": "The Molecular Sciences Software Institute"
+          },
+          {
+            "family": "Irrgang",
+            "given": "M. Eric",
+            "orcid": "0000-0002-1272-3551",
+            "affiliation": "University of Virginia"
+          },
+          {
+            "family": "Marin-Rimoldi",
+            "given": "Eliseo",
+            "orcid": null,
+            "affiliation": "The Molecular Sciences Software Institute"
+          },
+          {
+            "family": "Pritchard",
+            "given": "Benjamin",
+            "orcid": "0000-0003-2136-0606",
+            "affiliation": "The Molecular Sciences Software Institute"
+          },
+          {
+            "family": "Radifar",
+            "given": "Muhammad",
+            "orcid": "0000-0001-9156-9478",
+            "affiliation": "Postdoctoral Institute for Computational Studies"
+          },
+          {
+            "family": "Smith",
+            "given": "Daniel G.A.",
+            "orcid": "0000-0001-8626-0900",
+            "affiliation": "The Molecular Sciences Software Institute"
+          }
+        ]
+      }
+    },
+    "https://github.com/INTERSECT-training/packaging": {
+      "stars": 4,
+      "forks": 4,
+      "openIssues": 6,
+      "pushedAt": "2026-05-19",
+      "updatedAt": "2025-10-01",
+      "contributorCount": 9,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "citation": {
+        "source": "cff",
+        "title": "INTERSECT: Packaging",
+        "doi": null,
+        "version": null,
+        "dateReleased": "2024-07-17",
+        "license": null,
+        "authors": [
+          {
+            "family": "Schreiner",
+            "given": "Henry",
+            "orcid": "0000-0002-7833-783X",
+            "affiliation": null
+          },
+          {
+            "family": "Niemeyer",
+            "given": "Kyle",
+            "orcid": "0000-0003-4425-7097",
+            "affiliation": null
+          },
+          {
+            "family": "Holland",
+            "given": "John Gerrard",
+            "orcid": "0000-0001-6845-8657",
+            "affiliation": null
+          },
+          {
+            "family": "Dang",
+            "given": "George",
+            "orcid": "0009-0008-1566-8245",
+            "affiliation": null
+          },
+          {
+            "family": "Restrepo",
+            "given": "Maria Isabel",
+            "orcid": null,
+            "affiliation": null
+          }
+        ]
+      }
+    },
+    "https://github.com/carpentries-incubator/python_packaging": {
+      "stars": 6,
+      "forks": 6,
+      "openIssues": 1,
+      "pushedAt": "2024-10-22",
+      "updatedAt": "2026-01-09",
+      "contributorCount": 3,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "citation": null
+    },
+    "https://github.com/carpentries-incubator/lesson-R-packaging": {
+      "stars": 5,
+      "forks": 10,
+      "openIssues": 27,
+      "pushedAt": "2026-05-19",
+      "updatedAt": "2025-09-17",
+      "contributorCount": 8,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "citation": {
+        "source": "cff",
+        "title": "lesson-R-packaging",
+        "doi": null,
+        "version": null,
+        "dateReleased": null,
+        "license": "CC-BY-4.0",
+        "authors": [
+          {
+            "family": "Rodriguez-Sanchez",
+            "given": "Pablo",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Vreede",
+            "given": "Barbara",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "de Boer",
+            "given": "Lieke",
+            "orcid": null,
+            "affiliation": null
+          }
+        ]
+      }
+    },
+    "https://github.com/carpentries-incubator/docker-introduction": {
+      "stars": 53,
+      "forks": 52,
+      "openIssues": 47,
+      "pushedAt": "2026-05-19",
+      "updatedAt": "2026-01-14",
+      "contributorCount": 62,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "citation": null
+    },
+    "https://github.com/alan-turing-institute/rse-course": {
+      "stars": 264,
+      "forks": 122,
+      "openIssues": 46,
+      "pushedAt": "2025-04-24",
+      "updatedAt": "2026-04-19",
+      "contributorCount": 28,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "citation": null
+    },
+    "https://github.com/coderefinery/social-coding": {
+      "stars": 9,
+      "forks": 16,
+      "openIssues": 14,
+      "pushedAt": "2026-03-30",
+      "updatedAt": "2026-05-18",
+      "contributorCount": 13,
+      "contributorCountTruncated": false,
+      "license": "CC-BY-4.0",
+      "archived": false,
+      "citation": {
+        "source": "cff",
+        "title": "Social coding and open software - What can you do to get credit for your code and allow reuse?",
+        "doi": null,
+        "version": null,
+        "dateReleased": "2025-03-19",
+        "license": "CC-BY-4.0",
+        "authors": [
+          {
+            "name": "CodeRefinery"
+          },
+          {
+            "family": "Bast",
+            "given": "Radovan",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Wikfeldt",
+            "given": "Kjartan Thor",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Hellsvik",
+            "given": "Johan",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Darst",
+            "given": "Richard",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Razick",
+            "given": "Sabry",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Suvilehto",
+            "given": "Jyry",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Fouilloux",
+            "given": "Anne",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Smirnova",
+            "given": "Oxana",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Whalley",
+            "given": "Lucy",
+            "orcid": null,
+            "affiliation": null
+          }
+        ]
+      }
+    },
+    "https://github.com/coderefinery/testing": {
+      "stars": 12,
+      "forks": 41,
+      "openIssues": 16,
+      "pushedAt": "2026-04-22",
+      "updatedAt": "2026-05-18",
+      "contributorCount": 28,
+      "contributorCountTruncated": false,
+      "license": "CC-BY-4.0",
+      "archived": false,
+      "citation": {
+        "source": "cff",
+        "title": "Automated testing",
+        "doi": null,
+        "version": null,
+        "dateReleased": "2025-03-19",
+        "license": "CC-BY-4.0",
+        "authors": [
+          {
+            "name": "CodeRefinery"
+          },
+          {
+            "family": "Bast",
+            "given": "Radovan",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Wikfeldt",
+            "given": "Kjartan Thor",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Darst",
+            "given": "Richard",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Lindi",
+            "given": "Bjørn",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Hellsvik",
+            "given": "Johan",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Smart",
+            "given": "Poojan",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "van Vliet",
+            "given": "Marijn",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Di Remigio Eikås",
+            "given": "Roberto",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Wehner",
+            "given": "Jens",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Ruokolainen",
+            "given": "Teemu",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Valberg-Madsen",
+            "given": "Janus",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Vathsavayi",
+            "given": "Sri Harsha",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Skrypnyk",
+            "given": "Rostyslav",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Thiele",
+            "given": "Jan Philipp",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Rehnberg",
+            "given": "Viktor",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Pfau",
+            "given": "Thomas",
+            "orcid": null,
+            "affiliation": null
+          }
+        ]
+      }
+    },
+    "https://github.com/INTERSECT-training/software-licensing": {
+      "stars": 0,
+      "forks": 4,
+      "openIssues": 8,
+      "pushedAt": "2026-05-19",
+      "updatedAt": "2025-09-17",
+      "contributorCount": 4,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "citation": null
+    },
+    "https://github.com/INTERSECT-training/testing": {
+      "stars": 0,
+      "forks": 3,
+      "openIssues": 1,
+      "pushedAt": "2026-05-19",
+      "updatedAt": "2025-09-17",
+      "contributorCount": 7,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "citation": null
+    },
+    "https://github.com/INTERSECT-training/Documentation": {
+      "stars": 0,
+      "forks": 2,
+      "openIssues": 1,
+      "pushedAt": "2026-05-19",
+      "updatedAt": "2025-09-18",
+      "contributorCount": 3,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "citation": {
+        "source": "cff",
+        "title": "INTERSECT: Better Documentation",
+        "doi": null,
+        "version": "0.2.0",
+        "dateReleased": "2023-07-07",
+        "license": null,
+        "authors": [
+          {
+            "family": "Mundt",
+            "given": "Miranda",
+            "orcid": "0000-0002-5283-2138",
+            "affiliation": null
+          }
+        ]
+      }
+    },
+    "https://github.com/firstcontributions/first-contributions": {
+      "stars": 54126,
+      "forks": 103032,
+      "openIssues": 104,
+      "pushedAt": "2026-05-24",
+      "updatedAt": "2026-05-24",
+      "contributorCount": 100,
+      "contributorCountTruncated": true,
+      "license": "MIT",
+      "archived": false,
+      "citation": null
+    }
+  }
 }
