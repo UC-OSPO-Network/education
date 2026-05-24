@@ -6,8 +6,10 @@ export type Lesson = {
   keepStatus: 'keep' | 'keepCandidate' | 'drop';
   description: string;
   url: string;
+  repoUrl?: string;
   author?: string;
   license?: string;
+  domain?: string;
   learnerCategory: string;
   educationalLevel: string;
   ossRole?: string;

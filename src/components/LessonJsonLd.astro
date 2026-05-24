@@ -1,0 +1,39 @@
+---
+import type { Lesson } from "../lib/lessons";
+
+interface Props {
+  lesson: Lesson;
+  canonicalUrl: string;
+}
+
+const { lesson, canonicalUrl } = Astro.props as Props;
+
+function nonEmpty(value: unknown): boolean {
+  if (value === null || value === undefined) return false;
+  if (typeof value === "string") return value.trim() !== "";
+  if (Array.isArray(value)) return value.length > 0;
+  return true;
+}
+
+const data: Record<string, unknown> = {
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+};
+
+if (nonEmpty(lesson.name)) data.name = lesson.name;
+if (nonEmpty(lesson.abstract || lesson.description))
+  data.description = (lesson.abstract || lesson.description).trim();
+if (nonEmpty(canonicalUrl)) data.url = canonicalUrl;
+if (nonEmpty(lesson.educationalLevel)) data.educationalLevel = lesson.educationalLevel;
+if (nonEmpty(lesson.learningResourceType)) data.learningResourceType = lesson.learningResourceType;
+if (nonEmpty(lesson.keywords)) data.keywords = lesson.keywords.split(",").map((k: string) => k.trim()).filter(Boolean);
+if (nonEmpty(lesson.timeRequired)) data.timeRequired = lesson.timeRequired;
+if (nonEmpty(lesson.inLanguage)) data.inLanguage = lesson.inLanguage;
+if (nonEmpty(lesson.license)) data.license = lesson.license;
+if (nonEmpty(lesson.author)) data.author = { "@type": "Person", name: lesson.author };
+if (nonEmpty(lesson.learningObjectives)) data.teaches = lesson.learningObjectives;
+if (nonEmpty(lesson.learnerCategory))
+  data.isPartOf = { "@type": "Course", name: lesson.learnerCategory };
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(data)} />

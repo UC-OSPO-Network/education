@@ -1,7 +1,11 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import LessonJsonLd from "../../components/LessonJsonLd.astro";
 import { getLessons, type Lesson, formatDuration } from "../../lib/lessons";
 import { PATHWAYS } from "../../types/lesson";
+import githubHealthRaw from "../../data/github-health.json";
+
+const healthData = githubHealthRaw as { fetchedAt: string | null; lessons: Record<string, { pushedAt: string | null }> };
 
 type Props = {
   lesson: Lesson;
@@ -65,6 +69,9 @@ export async function getStaticPaths() {
 
 const { lesson, relatedLessons } = Astro.props as Props;
 
+const repoHealth = lesson.repoUrl ? (healthData.lessons[lesson.repoUrl] ?? null) : null;
+const repoLastUpdated = repoHealth?.pushedAt ?? null;
+
 const pathway = PATHWAYS.find((item) => item.learnerCategories.includes(lesson.learnerCategory));
 const pathwayHref = pathway ? `${import.meta.env.BASE_URL}pathways/${pathway.id}` : "";
 const summary =
@@ -76,6 +83,7 @@ const externalHref = lesson.url?.trim() ?? "";
 const coreMetadata: Array<{ label: string; value: unknown; kind?: "link" }> = [
   { label: "Slug", value: lesson.slug },
   { label: "Pathway", value: lesson.learnerCategory, kind: pathwayHref ? "link" : undefined },
+  ...(repoLastUpdated ? [{ label: "Repo Last Updated", value: repoLastUpdated }] : []),
   { label: "Subtopic", value: lesson.subTopic },
   { label: "Skill Level", value: lesson.educationalLevel },
   { label: "OSS Role(s)", value: lesson.oss_role || lesson.ossRole || "" },
@@ -114,6 +122,9 @@ const additionalMetadataEntries = Object.entries(lesson)
 ---
 
 <BaseLayout title={lesson.name} description={summary}>
+  <Fragment slot="head">
+    <LessonJsonLd lesson={lesson} canonicalUrl={Astro.url.href} />
+  </Fragment>
   <section class="page-intro">
     <div class="content-container">
       <nav class="breadcrumbs" aria-label="Breadcrumb">
