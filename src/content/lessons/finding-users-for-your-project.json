@@ -46,7 +46,9 @@
         "promotion"
     ],
     "sortingId": "19",
-    "dependsOn": [],
+    "dependsOn": [
+        "best-practices-for-maintainers"
+    ],
     "prerequisiteNotes": "starting-an-open-source-project",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Identify strategies to attract and grow a user base for open source projects\n- Apply techniques to improve project discoverability and visibility\n- Demonstrate how to engage with communities and leverage social platforms for outreach\n- Recognize the importance of user feedback in project development\n- Implement marketing and communication strategies for open source projects",
     "ospoRelevance": "Core",
@@ -70,5 +72,6 @@
     "teaches": "",
     "version": "",
     "workTranslation": "",
-    "domain": "General Open Source"
+    "domain": "General Open Source",
+    "repoUrl": "https://github.com/github/opensource.guide"
 }

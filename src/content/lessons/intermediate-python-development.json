@@ -23,7 +23,9 @@
         "packaging"
     ],
     "sortingId": "29",
-    "dependsOn": [],
+    "dependsOn": [
+        "introduction-to-git"
+    ],
     "prerequisiteNotes": "python-basics",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Apply intermediate Python development skills including virtual environments and packaging\n- Demonstrate collaborative development using Git feature branch workflows\n- Implement comprehensive testing strategies using pytest\n- Design modular software following Model-View-Controller architecture\n- Create well-documented, maintainable Python projects following community standards",
     "ospoRelevance": "Moderate",
@@ -47,5 +49,6 @@
     "teaches": "Intermediate skills in collaborative research software development, including version control, testing, packaging, documentation, and sustainable coding practices using Python.",
     "version": "1.0.0",
     "workTranslation": "",
-    "domain": "Research Software"
+    "domain": "Research Software",
+    "repoUrl": "https://github.com/carpentries-incubator/python-intermediate-development"
 }

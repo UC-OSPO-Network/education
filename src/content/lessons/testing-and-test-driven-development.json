@@ -22,7 +22,9 @@
         "pytest"
     ],
     "sortingId": "31",
-    "dependsOn": [],
+    "dependsOn": [
+        "introduction-to-git"
+    ],
     "prerequisiteNotes": "python-basics",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the principles and benefits of test-driven development (TDD)\n- Demonstrate how to write unit tests using pytest\n- Apply TDD practices to improve code quality and design\n- Implement automated testing strategies for software projects\n- Recognize the role of testing in continuous integration workflows",
     "ospoRelevance": "Core",
@@ -46,5 +48,6 @@
     "teaches": "The student will be able to write unit tests and apply test-driven development practices using pytest.",
     "version": "2.0.0",
     "workTranslation": "",
-    "domain": "General Open Source"
+    "domain": "General Open Source",
+    "repoUrl": "https://github.com/coderefinery/testing"
 }

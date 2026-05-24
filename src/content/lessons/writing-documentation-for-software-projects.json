@@ -23,7 +23,7 @@
     ],
     "sortingId": "5",
     "dependsOn": [
-        "https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/"
+        "best-practices-for-maintainers"
     ],
     "prerequisiteNotes": "Requires Python! I recommend we link to this instead",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Identify the role and benefits of documentation in research and software projects\n- Describe different types of documentation (README, API reference, tutorials) and their purposes\n- Apply best practices for writing clear, accessible, and user-friendly documentation\n- Use tools and formats commonly used for documentation (Markdown, reStructuredText, Sphinx)\n- Implement strategies for keeping documentation up to date and involving community contributors",
@@ -48,5 +48,6 @@
     "teaches": "The student will be able to write comprehensive documentation for software projects using Sphinx and Markdown.",
     "version": "1.0.2",
     "workTranslation": "",
-    "domain": "General Open Source"
+    "domain": "General Open Source",
+    "repoUrl": "https://github.com/INTERSECT-training/Documentation"
 }

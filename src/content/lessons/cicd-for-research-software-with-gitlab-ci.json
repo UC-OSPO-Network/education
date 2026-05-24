@@ -23,7 +23,9 @@
         "research software"
     ],
     "sortingId": "16",
-    "dependsOn": [],
+    "dependsOn": [
+        "unit-testing-and-tdd-in-python"
+    ],
     "prerequisiteNotes": "introduction-to-git | python-packaging | unit-testing-and-tdd-in-python",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the principles of CI/CD in the context of research software development\n- Configure GitLab CI pipelines to automate testing and deployment\n- Apply CI/CD practices to improve research software quality and reproducibility\n- Demonstrate how to integrate automated testing into research workflows\n- Identify best practices for CI/CD in scientific computing environments",
     "ospoRelevance": "Moderate",
@@ -47,5 +49,6 @@
     "teaches": "The student will be able to set up and automate CI/CD pipelines for research software using GitLab CI.",
     "version": "1.0.0",
     "workTranslation": "",
-    "domain": "Research Software"
+    "domain": "Research Software",
+    "repoUrl": "https://github.com/hsf-training/hsf-training-cicd"
 }

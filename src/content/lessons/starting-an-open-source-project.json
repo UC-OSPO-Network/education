@@ -46,7 +46,9 @@
         "launch"
     ],
     "sortingId": "18",
-    "dependsOn": [],
+    "dependsOn": [
+        "introduction-to-git"
+    ],
     "prerequisiteNotes": "introduction-to-git | understanding-software-licensing",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Define the purpose and goals of a new open source project\n- Identify the foundational steps for launching a successful open source project\n- Apply best practices for choosing an appropriate open source license\n- Demonstrate how to set up version control and create a contributor-friendly environment\n- Recognize the importance of documentation and community guidelines from the start",
     "ospoRelevance": "Core",
@@ -70,5 +72,6 @@
     "teaches": "",
     "version": "",
     "workTranslation": "",
-    "domain": "General Open Source"
+    "domain": "General Open Source",
+    "repoUrl": "https://github.com/github/opensource.guide"
 }

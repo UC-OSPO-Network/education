@@ -28,7 +28,7 @@
     "prerequisiteNotes": "",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the concept of version control and its importance in software development\n- Demonstrate how to initialize and manage Git repositories\n- Apply basic Git commands to track changes and manage project history\n- Identify the benefits of distributed version control systems\n- Use Git to collaborate on projects and maintain code history",
     "ospoRelevance": "Moderate",
-    "abstract": "This lesson introduces the basics of Git for version control, focusing on how to track changes, work with repositories, and manage a project‚Äôs history using Git.",
+    "abstract": "This lesson introduces the basics of Git for version control, focusing on how to track changes, work with repositories, and manage a project\u201a\u00c4\u00f4s history using Git.",
     "dateCreated": "2021-04-10",
     "dateModified": "2023-03-10",
     "timeRequired": "PT10M",
@@ -48,5 +48,6 @@
     "teaches": "The student will be able to use Git for version control, create and manage repositories, and track changes in a project.",
     "version": "1.0.0",
     "workTranslation": "",
-    "domain": "General Open Source"
+    "domain": "General Open Source",
+    "repoUrl": "https://github.com/coderefinery/git-intro"
 }

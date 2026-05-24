@@ -46,7 +46,9 @@
         "impact"
     ],
     "sortingId": "20",
-    "dependsOn": [],
+    "dependsOn": [
+        "building-community"
+    ],
     "prerequisiteNotes": "starting-an-open-source-project",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Identify key metrics for evaluating open source project health and success\n- Explain the importance of tracking and analyzing project activity and community growth\n- Apply tools and practices to monitor project metrics effectively\n- Demonstrate how to use metrics to make informed decisions about project direction\n- Recognize the relationship between metrics and project sustainability",
     "ospoRelevance": "Core",
@@ -70,5 +72,6 @@
     "teaches": "",
     "version": "",
     "workTranslation": "",
-    "domain": "General Open Source"
+    "domain": "General Open Source",
+    "repoUrl": "https://github.com/github/opensource.guide"
 }

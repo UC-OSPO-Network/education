@@ -1,14 +1,10 @@
 # Lesson URL Audit Report
 
-*Generated on: Wed, 11 Mar 2026 06:52:08 GMT*
+*Generated on: Tue, 19 May 2026 02:55:46 GMT*
 
 | Status | Code | Lesson (File) | URL | Details |
 | :--- | :--- | :--- | :--- | :--- |
-| ❌ Error | 404 | **example-advanced.json**<br>(`example-advanced.json`) | [Link](https://example.com/advanced) | Not Found |
-| ❌ Error | 404 | **example-beginner.json**<br>(`example-beginner.json`) | [Link](https://example.com/beginner) | Not Found |
-| ❌ Error | 404 | **intermediate-r-next-level-data-visualization.json**<br>(`intermediate-r-next-level-data-visualization.json`) | [Link](https://ucdavisdatalab.github.io/workshop_intermediate_r/data-visualization-in-r.html) | Not Found |
-| ❌ Error | 404 | **reproducibility-principles-and-practices.json**<br>(`reproducibility-principles-and-practices.json`) | [Link](https://ucdavisdatalab.github.io/workshop_reproducible_research/chapters/index.html) | Not Found |
-| ❌ Dead | N/A | **testing-again.json**<br>(`testing-again.json`) | [Link](MISSING) | No URL field found |
+| ❌ Error | 429 | **geocoding.json**<br>(`geocoding.json`) | [Link](https://github.com/ucdavisdatalab/geocoding-workshop/blob/master/README.md) | Too Many Requests |
 | ⚠️ Redirect | 301 | **collaboration-in-open-research-projects.json**<br>(`collaboration-in-open-research-projects.json`) | [Link](https://book.the-turing-way.org/collaboration/collaboration) | → /collaboration/collaboration/ |
 | ⚠️ Redirect | 301 | **python-packaging.json**<br>(`python-packaging.json`) | [Link](https://carpentries-incubator.github.io/python_packaging) | → https://carpentries-incubator.github.io/python_packaging/ |
 | ⚠️ Redirect | 301 | **reproducible-research.json**<br>(`reproducible-research.json`) | [Link](https://book.the-turing-way.org/reproducible-research/reproducible-research) | → /reproducible-research/reproducible-research/ |
@@ -21,13 +17,12 @@
 | ✅ OK | 200 | **coordinate-reference-systems.json**<br>(`coordinate-reference-systems.json`) | [Link](https://ucdavisdatalab.github.io/workshop_coordinate_reference_systems/) |  |
 | ✅ OK | 200 | **developing-your-data-science-portfolio.json**<br>(`developing-your-data-science-portfolio.json`) | [Link](https://ucdavisdatalab.github.io/workshop_portfolios/) |  |
 | ✅ OK | 200 | **effective-code-review.json**<br>(`effective-code-review.json`) | [Link](https://intersect-training.org/Code-Review/) |  |
-| ✅ OK | 200 | **example.json**<br>(`example.json`) | [Link](https://example.com) |  |
 | ✅ OK | 200 | **finding-users-for-your-project.json**<br>(`finding-users-for-your-project.json`) | [Link](https://opensource.guide/finding-users/) |  |
-| ✅ OK | 200 | **geocoding.json**<br>(`geocoding.json`) | [Link](https://github.com/ucdavisdatalab/geocoding-workshop/blob/master/README.md) |  |
 | ✅ OK | 200 | **how-to-contribute-to-open-source.json**<br>(`how-to-contribute-to-open-source.json`) | [Link](https://opensource.guide/how-to-contribute/) |  |
 | ✅ OK | 200 | **intermediate-python-development.json**<br>(`intermediate-python-development.json`) | [Link](https://carpentries-incubator.github.io/python-intermediate-development/) |  |
 | ✅ OK | 200 | **intermediate-python-next-level-data-visualization.json**<br>(`intermediate-python-next-level-data-visualization.json`) | [Link](https://ucdavisdatalab.github.io/workshop_intermediate_python/chapters/05_viz.html) |  |
 | ✅ OK | 200 | **intermediate-python.json**<br>(`intermediate-python.json`) | [Link](https://ucdavisdatalab.github.io/workshop_intermediate_python/chapters/index.html) |  |
+| ✅ OK | 200 | **intermediate-r-next-level-data-visualization.json**<br>(`intermediate-r-next-level-data-visualization.json`) | [Link](https://ucdavisdatalab.github.io/workshop_intermediate_r/) |  |
 | ✅ OK | 200 | **intermediate-r.json**<br>(`intermediate-r.json`) | [Link](https://ucdavisdatalab.github.io/workshop_intermediate_r/) |  |
 | ✅ OK | 200 | **intermediate-research-software-development-skills-python-lesson-material.json**<br>(`intermediate-research-software-development-skills-python-lesson-material.json`) | [Link](https://carpentries-incubator.github.io/python-intermediate-development/) |  |
 | ✅ OK | 200 | **introduction-to-basic-statistics-with-r.json**<br>(`introduction-to-basic-statistics-with-r.json`) | [Link](https://ucdavisdatalab.github.io/basic_stats_r_1/) |  |
@@ -62,4 +57,6 @@
 | ✅ OK | 200 | **testing-and-test-driven-development.json**<br>(`testing-and-test-driven-development.json`) | [Link](https://coderefinery.github.io/testing/) |  |
 | ✅ OK | 200 | **understanding-software-licensing.json**<br>(`understanding-software-licensing.json`) | [Link](https://intersect-training.org/software-licensing/) |  |
 | ✅ OK | 200 | **unit-testing-and-tdd-in-python.json**<br>(`unit-testing-and-tdd-in-python.json`) | [Link](https://intersect-training.org/testing/instructor/) |  |
+| ✅ OK | 200 | **what-is-open-source.json**<br>(`what-is-open-source.json`) | [Link](https://opensource.guide/starting-a-project/#what-does-open-source-mean) |  |
 | ✅ OK | 200 | **writing-documentation-for-software-projects.json**<br>(`writing-documentation-for-software-projects.json`) | [Link](https://intersect-training.org/Documentation/) |  |
+| ✅ OK | 200 | **your-first-web-contribution.json**<br>(`your-first-web-contribution.json`) | [Link](https://github.com/firstcontributions/first-contributions) |  |

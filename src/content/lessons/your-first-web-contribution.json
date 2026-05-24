@@ -33,5 +33,6 @@
     "abstract": "This hands-on tutorial walks absolute beginners through making their very first open source contribution using the GitHub web editor. It bypasses technical Git setup to focus on the social and procedural mechanics of a Pull Request.",
     "dateCreated": "2026-04-05",
     "creativeWorkStatus": "Active",
-    "audience": "Beginners, Software Developers"
+    "audience": "Beginners, Software Developers",
+    "repoUrl": "https://github.com/firstcontributions/first-contributions"
 }

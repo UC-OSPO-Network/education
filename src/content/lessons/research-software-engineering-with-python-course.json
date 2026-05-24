@@ -23,7 +23,9 @@
         "project management"
     ],
     "sortingId": "28",
-    "dependsOn": [],
+    "dependsOn": [
+        "modular-programming-with-python"
+    ],
     "prerequisiteNotes": "This is a python based course | python-packaging | python-packaging-for-beginners | cicd-for-research-software-with-gitlab-ci | unit-testing-and-tdd-in-python | python-package-development-best-practices | intermediate-python | collaboration-in-open-research-projects | introduction-to-git | responsible-data-science | introduction-to-version-control-with-git",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Apply software engineering best practices to research software development\n- Demonstrate version control, testing, and project management skills\n- Implement design patterns and software architecture principles in research code\n- Create sustainable and maintainable research software projects\n- Recognize the role of Research Software Engineers in modern research",
     "ospoRelevance": "Moderate",
@@ -47,5 +49,6 @@
     "teaches": "The student will be able to apply software development best practices, use version control, write tests, and manage research software projects.",
     "version": "1.0.0",
     "workTranslation": "",
-    "domain": "Research Software"
+    "domain": "Research Software",
+    "repoUrl": "https://github.com/alan-turing-institute/rse-course"
 }

@@ -22,7 +22,9 @@
         "open science"
     ],
     "sortingId": "25",
-    "dependsOn": [],
+    "dependsOn": [
+        "introduction-to-git"
+    ],
     "prerequisiteNotes": "No programming experience needed. It would be best for a student who has experience with research papers and research projects and wants to detailed understanding of terms and concepts, but that is not necessary No programming experience needed.  It would be best for a student who has experience with research papers and research projects and wants to detailed understanding of terms and concepts, but that is not necessary.",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the principles and importance of reproducible research\n- Apply best practices for data management and version control in research\n- Demonstrate how to use Git and other tools to ensure research reproducibility\n- Identify strategies for documenting research workflows and methodologies\n- Recognize ethical considerations in reproducible research practices",
     "ospoRelevance": "High",
@@ -46,5 +48,6 @@
     "teaches": "The student will be able to apply best practices for reproducible research, including using Git for version control and managing research data.",
     "version": "1.0.0",
     "workTranslation": "",
-    "domain": "Research Software"
+    "domain": "Research Software",
+    "repoUrl": "https://github.com/the-turing-way/the-turing-way"
 }

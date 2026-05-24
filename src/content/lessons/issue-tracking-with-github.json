@@ -23,7 +23,9 @@
         "features"
     ],
     "sortingId": "7",
-    "dependsOn": [],
+    "dependsOn": [
+        "best-practices-for-maintainers"
+    ],
     "prerequisiteNotes": "Intro to Git | introduction-to-git",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Identify the purpose of issue tracking in software and project management\n- Describe common components of an issue (title, description, labels, assignee)\n- Create clear, actionable issues that facilitate collaboration\n- Apply best practices for prioritizing and organizing issues\n- Demonstrate how issue tracking supports project planning and sustainability",
     "ospoRelevance": "Moderate",
@@ -47,5 +49,6 @@
     "teaches": "The student will be able to manage issues in a software development project using GitHub Issues.",
     "version": "1.3.0",
     "workTranslation": "",
-    "domain": "General Open Source"
+    "domain": "General Open Source",
+    "repoUrl": "https://github.com/INTERSECT-training/Issue-Tracking"
 }

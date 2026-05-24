@@ -45,5 +45,6 @@
     "teaches": "",
     "version": "",
     "workTranslation": "",
-    "domain": "General Open Source"
+    "domain": "General Open Source",
+    "repoUrl": "https://github.com/github/opensource.guide"
 }

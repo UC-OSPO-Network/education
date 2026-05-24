@@ -59,5 +59,6 @@
     "timeRequired": "PT14M",
     "subTopic": "Open Source Literacy",
     "dateCreated": "",
-    "domain": "General Open Source"
+    "domain": "General Open Source",
+    "repoUrl": "https://github.com/github/opensource.guide"
 }

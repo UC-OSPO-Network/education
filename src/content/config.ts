@@ -13,6 +13,7 @@ const lessons = defineCollection({
     // content
     description: z.string().default(''),
     url: z.string().url().or(z.literal('')).default(''),
+    repoUrl: z.string().url().or(z.literal('')).default(''),
     
     // categories
     domain: z.enum(['Research Software', 'Data Science', 'Institutional Policy', 'GIS', 'General Open Source']).default('General Open Source'),

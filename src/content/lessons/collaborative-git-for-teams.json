@@ -23,7 +23,9 @@
         "merging"
     ],
     "sortingId": "8",
-    "dependsOn": [],
+    "dependsOn": [
+        "introduction-to-git"
+    ],
     "prerequisiteNotes": "introduction-to-git | how-to-contribute-to-open-source",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Demonstrate collaborative Git usage including branching, merging, and conflict resolution\n- Apply Git workflows for team collaboration and code management\n- Identify best practices for managing branches in collaborative projects\n- Resolve merge conflicts effectively in team environments\n- Implement Git workflows that support continuous integration and delivery",
     "ospoRelevance": "Moderate",
@@ -47,5 +49,6 @@
     "teaches": "The student will be able to use Git collaboratively, manage branches, resolve merge conflicts, and set up Git workflows for team projects.",
     "version": "1.1.0",
     "workTranslation": "",
-    "domain": "General Open Source"
+    "domain": "General Open Source",
+    "repoUrl": "https://github.com/coderefinery/git-collaborative"
 }

@@ -22,7 +22,9 @@
         "TDD"
     ],
     "sortingId": "17",
-    "dependsOn": [],
+    "dependsOn": [
+        "modular-programming-with-python"
+    ],
     "prerequisiteNotes": "intermediate-python",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Identify the purpose and benefits of testing in software development\n- Describe different types of tests (unit tests, integration tests, functional tests)\n- Apply testing frameworks like pytest to write and run tests\n- Demonstrate test-driven development (TDD) practices in Python\n- Implement testing strategies that integrate with continuous integration workflows",
     "ospoRelevance": "Moderate",
@@ -46,5 +48,6 @@
     "teaches": "The student will be able to write and run unit tests in Python and understand the principles of test-driven development.",
     "version": "1.0.0",
     "workTranslation": "",
-    "domain": "Research Software"
+    "domain": "Research Software",
+    "repoUrl": "https://github.com/INTERSECT-training/testing"
 }

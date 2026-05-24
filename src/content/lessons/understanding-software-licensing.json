@@ -49,5 +49,6 @@
     "teaches": "The student will be able to identify different types of software licenses and apply the correct license to their project.",
     "version": "1.0.1",
     "workTranslation": "",
-    "domain": "Institutional Policy"
+    "domain": "Institutional Policy",
+    "repoUrl": "https://github.com/INTERSECT-training/software-licensing"
 }

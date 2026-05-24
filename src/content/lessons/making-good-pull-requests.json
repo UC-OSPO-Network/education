@@ -48,5 +48,6 @@
     "teaches": "The student will be able to create clear and well-structured pull requests for software projects.",
     "version": "1.2.0",
     "workTranslation": "",
-    "domain": "General Open Source"
+    "domain": "General Open Source",
+    "repoUrl": "https://github.com/INTERSECT-training/Making-Good-PRs"
 }

@@ -47,7 +47,9 @@
         "community"
     ],
     "sortingId": "2",
-    "dependsOn": [],
+    "dependsOn": [
+        "building-community"
+    ],
     "prerequisiteNotes": "Strongly recommended: Building Community | building-community",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Design transparent governance structures for open source projects\n- Evaluate different leadership models and their applicability to various project contexts\n- Create project policies that support long-term sustainability and community growth\n- Demonstrate effective decision-making processes in open source communities\n- Assess the impact of governance choices on project health and contributor satisfaction",
     "ospoRelevance": "Core",
@@ -71,5 +73,6 @@
     "teaches": "How to design transparent governance structures, set project policies, and lead open source communities effectively.",
     "version": "",
     "workTranslation": "",
-    "domain": "General Open Source"
+    "domain": "General Open Source",
+    "repoUrl": "https://github.com/github/opensource.guide"
 }

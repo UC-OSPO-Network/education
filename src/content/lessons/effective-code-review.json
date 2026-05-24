@@ -21,7 +21,9 @@
     ],
     "topic": "Maintaining",
     "sortingId": "22",
-    "dependsOn": [],
+    "dependsOn": [
+        "collaborative-git-for-teams"
+    ],
     "learningObjectives": "After this lesson, the learner should be able to:\n- Identify the purpose and benefits of code review in collaborative software development\n- Describe the typical workflow for conducting effective code reviews\n- Apply best practices for giving constructive, actionable feedback\n- Demonstrate how to prepare code for review to facilitate efficient feedback\n- Recognize how code review maintains project standards and improves code quality",
     "ospoRelevance": "High",
     "abstract": "This tutorial covers the principles and practices of code review, focusing on collaborative software development. It explains how to conduct code reviews effectively, provide feedback, and integrate changes.",
@@ -39,5 +41,6 @@
     "timeRequired": "PT5M",
     "prerequisiteNotes": "collaborative-git-for-teams",
     "domain": "General Open Source",
-    "subTopic": "Community Management"
+    "subTopic": "Community Management",
+    "repoUrl": "https://github.com/INTERSECT-training/Code-Review"
 }

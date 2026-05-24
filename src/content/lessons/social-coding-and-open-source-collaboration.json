@@ -49,5 +49,6 @@
     "teaches": "The student will be able to collaborate on open source projects, contribute to GitHub repositories, and engage with the developer community.",
     "version": "1.0.0",
     "workTranslation": "",
-    "domain": "General Open Source"
+    "domain": "General Open Source",
+    "repoUrl": "https://github.com/coderefinery/social-coding"
 }

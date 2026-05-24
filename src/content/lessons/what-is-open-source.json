@@ -32,5 +32,6 @@
     "dateCreated": "2026-04-05",
     "dateModified": "2026-04-05",
     "creativeWorkStatus": "Active",
-    "audience": "Beginners, Researchers, Library Staff"
+    "audience": "Beginners, Researchers, Library Staff",
+    "repoUrl": "https://github.com/github/opensource.guide"
 }

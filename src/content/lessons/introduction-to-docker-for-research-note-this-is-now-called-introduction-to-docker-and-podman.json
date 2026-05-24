@@ -47,5 +47,6 @@
     "teaches": "The student will be able to create, manage, and share Docker containers for software development and reproducible research.",
     "version": "1.0.0",
     "workTranslation": "",
-    "domain": "Research Software"
+    "domain": "Research Software",
+    "repoUrl": "https://github.com/hsf-training/hsf-training-docker"
 }
