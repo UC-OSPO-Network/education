@@ -16,14 +16,18 @@
         "en"
     ],
     "keywords": [
-        "english fair fair-software research-software"
+        "FAIR software",
+        "research software",
+        "reproducibility",
+        "software engineering",
+        "open science"
     ],
     "sortingId": "24",
     "dependsOn": [
         "introduction-to-git"
     ],
     "prerequisiteNotes": "This is a python based course | pre-requisites | Course lists like version control in git and command line, but the course does cover the information with exercises for the student | python-packaging | python-packaging-for-beginners | python-package-development-best-practices | python-basics | collaboration-in-open-research-projects | introduction-to-git | introduction-to-unix-command-line | introduction-to-version-control-with-git",
-    "learningObjectives": "For researchers wanting to adhere to FAIR practies.  Course provides code for exercises.\nIntroduce what FAIR means especially in relationship to code written for research purposes.\nCourse is comprehensive covering the research code lifecylce, describing good practices at each stage:\n Creating a github project (along with practices to help with version control); \nPractices to help with reproductibility (eg creating reproducible environment for other reseaerches, dependencies trees, VMs); \nPractices to annotate code to ensure that others can understand and use the code;\nCode structure recommendations; Testing and Documentation practices",
+    "learningObjectives": "After attending this training, you will be able to:\n- Explain key principles of open and reproducible research and their implications for research software development.\n- Analyse software for maintainability, reproducibility and reuse, identifying risks and opportunities for improvement.\n- Apply professional software development workflows for version control, reproducible environment management and collaboration.\n- Design modular and extensible software to support reuse and scalable development.\n- Design and implement testing, documentation and quality assurance practices to support correct and reusable research software.\n- Evaluate software projects for openness, sustainability, reusability and collaborative practices.\n- Select appropriate tools and practices to support collaborative and open research software development.",
     "ospoRelevance": "Core",
     "abstract": "This short course is teaching tools and practices for producing and sharing quality, sustainable and FAIR (Findable, Accessible, Interoperable and Reusable) research software to support open and reproducible research. The course can be delivered over 2 full or 4 half days.",
     "dateCreated": "2023-10-03",
@@ -42,7 +46,7 @@
     "notes": "",
     "mentions": "",
     "recordedAt": "",
-    "teaches": "",
+    "teaches": "Explain key principles of open and reproducible research; Analyse software for maintainability and reuse; Apply professional software development workflows; Design modular and extensible software; Design and implement testing and documentation practices; Evaluate software projects for openness and sustainability; Select appropriate tools for collaborative research software development.",
     "version": "",
     "workTranslation": "",
     "domain": "Research Software",
