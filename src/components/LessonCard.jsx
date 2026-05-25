@@ -3,13 +3,12 @@ import HealthSignalRow from "./HealthSignalRow.jsx";
 
 /** @typedef {import("../lib/githubHealth").HealthRecord} HealthRecord */
 
-function formatUrlLabel(url) {
-  try {
-    const parsed = new URL(url);
-    return parsed.hostname.replace(/^www\./, "");
-  } catch {
-    return url;
-  }
+function formatDuration(duration) {
+  if (!duration?.startsWith("PT")) return null;
+  const match = duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?/);
+  if (!match) return null;
+  const parts = [match[1] ? `${match[1]}h` : "", match[2] ? `${match[2]}m` : ""].filter(Boolean);
+  return parts.length ? parts.join(" ") : null;
 }
 
 function getLevelConfig(level) {
@@ -19,6 +18,15 @@ function getLevelConfig(level) {
   if (n.includes("intermediate")) return { bg: "#a85a00", label: "Intermediate" };
   if (n.includes("advanced"))     return { bg: "#8a2530", label: "Advanced" };
   return { bg: "#6b7280", label: level };
+}
+
+function formatUrlLabel(url) {
+  try {
+    const parsed = new URL(url);
+    return parsed.hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
 }
 
 /**
@@ -36,6 +44,7 @@ export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3,
   const level = getLevelConfig(lesson.educationalLevel);
   const topMeta = lesson.learningResourceType || lesson.subTopic || "Lesson";
   const roleTags = (lesson.roles ?? []).slice(0, 2);
+  const duration = formatDuration(lesson.timeRequired);
 
   const prerequisiteLinks = (lesson.prerequisites ?? [])
     .map((prereq) => {
@@ -56,12 +65,6 @@ export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3,
     })
     .filter(Boolean);
 
-  const feedbackUrl =
-    "https://github.com/UC-OSPO-Network/education/issues/new" +
-    "?template=lesson-feedback.yml" +
-    `&title=${encodeURIComponent(`Lesson Feedback: ${lessonName}`)}` +
-    `&body=${encodeURIComponent(`Lesson: ${lessonName}\n\nFeedback:`)}`;
-
   const isMultiPathway = (lesson.pathways ?? []).length > 1;
   const lessonHref = `${import.meta.env.BASE_URL}lessons/${lesson.slug}`;
   const TitleTag = `h${headingLevel}`;
@@ -70,10 +73,17 @@ export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3,
     <article className="lesson-card">
       <a className="lesson-card__cover-link" href={lessonHref} aria-label="Open lesson page"></a>
 
+
       {/* Colored level band */}
       <div className="lesson-card__band" style={{ background: level.bg }}>
         <ChartBarIcon className="lesson-card__band-icon" />
         <span>{level.label}</span>
+        {duration && (
+          <>
+            <span className="lesson-card__band-sep" aria-hidden="true">·</span>
+            <span>{duration}</span>
+          </>
+        )}
       </div>
 
       {/* Dark metadata strip */}
@@ -86,7 +96,12 @@ export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3,
 
       {/* Body */}
       <div className="lesson-card__body">
-        <TitleTag className="lesson-card__title">{lessonName}</TitleTag>
+        <TitleTag className="lesson-card__title">
+          {/* Stretched link — ::after covers the full card; prereq links sit above it via z-index */}
+          <a href={lessonHref} className="lesson-card__title-link">
+            {lessonName}
+          </a>
+        </TitleTag>
 
         <p className="lesson-card__description">
           {lesson.description || "No description available."}
@@ -101,7 +116,6 @@ export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3,
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
                 className="lesson-card__prereq-link"
               >
                 {link.label}
@@ -110,20 +124,8 @@ export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3,
           </div>
         )}
 
-        <a
-          href={feedbackUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={(e) => e.stopPropagation()}
-          className="lesson-card__feedback"
-        >
-          💬 Give Feedback
-        </a>
-
         {isMultiPathway && (
-          <p className="lesson-card__multi-pathway">
-            ✨ Featured in multiple pathways
-          </p>
+          <p className="lesson-card__multi-pathway">Featured in multiple pathways</p>
         )}
 
         <HealthSignalRow health={health} />

@@ -1,6 +1,6 @@
-name: Lesson Feedback
-description: Share feedback, report issues, or suggest improvements for a lesson
-title: "Lesson Feedback: "
+name: Catalog Feedback
+description: Share feedback, report issues, or suggest improvements for lessons or the catalog inventory
+title: "Feedback: "
 labels:
   - lesson-feedback
   - education
@@ -10,11 +10,11 @@ body:
   - type: input
     id: lesson-name
     attributes:
-      label: Lesson name
-      description: Name of the lesson you are providing feedback for
-      placeholder: e.g. Introduction to Open Source
+      label: Lesson or topic (optional)
+      description: Name the lesson or topic if relevant — leave blank for general feedback about the catalog
+      placeholder: e.g. Introduction to Open Source, or leave blank
     validations:
-      required: true
+      required: false
 
   - type: dropdown
     id: feedback-type
@@ -22,6 +22,8 @@ body:
       label: Feedback type
       description: What kind of feedback are you providing?
       options:
+        - General catalog feedback
+        - Missing lesson suggestion
         - Bug / Error in content
         - Suggestion / Improvement
         - Quality / Clarity feedback
@@ -31,10 +33,11 @@ body:
   - type: textarea
     id: description
     attributes:
-      label: Feedback description
+      label: Feedback
       description: >
         Please describe your feedback clearly.
-        If reporting a bug, mention the section, heading, or link.
+        If reporting a bug, mention the lesson, section, or link.
+        If suggesting a missing lesson, describe the topic and audience.
       placeholder: Write your feedback here...
     validations:
       required: true
