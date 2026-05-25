@@ -1,14 +1,5 @@
 import { ChartBarIcon } from "@heroicons/react/24/outline";
 
-function isHttpUrl(value) {
-  try {
-    const url = new URL(value);
-    return url.protocol === "http:" || url.protocol === "https:";
-  } catch {
-    return false;
-  }
-}
-
 function formatUrlLabel(url) {
   try {
     const parsed = new URL(url);
@@ -33,28 +24,23 @@ export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3 
   const lessonName = lesson.name || "Untitled Lesson";
   const level = getLevelConfig(lesson.educationalLevel);
   const topMeta = lesson.learningResourceType || lesson.subTopic || "Lesson";
-  const roleTags = lesson.oss_role
-    ? lesson.oss_role.split(",").map((r) => r.trim()).filter(Boolean).slice(0, 2)
-    : [];
+  const roleTags = (lesson.roles ?? []).slice(0, 2);
 
-  const dependencyRefs = Array.isArray(lesson.dependsOn)
-    ? lesson.dependsOn.filter((value) => typeof value === "string" && value.trim() !== "")
-    : [];
-
-  const prerequisiteLinks = dependencyRefs
-    .map((token) => {
-      const value = token.trim();
-      if (!value) return null;
-
-      if (isHttpUrl(value)) {
-        return { key: value, href: value, label: formatUrlLabel(value) };
+  const prerequisiteLinks = (lesson.prerequisites ?? [])
+    .map((prereq) => {
+      if (prereq.type === "url") {
+        return {
+          key: prereq.value,
+          href: prereq.value,
+          label: prereq.label ?? formatUrlLabel(prereq.value),
+        };
       }
-
-      const targetLesson = lessonIndex[value];
-      if (targetLesson?.url) {
-        return { key: value, href: targetLesson.url, label: targetLesson.name || value };
+      if (prereq.type === "lesson") {
+        const target = lessonIndex[prereq.value];
+        if (target?.url) {
+          return { key: prereq.value, href: target.url, label: target.name || prereq.value };
+        }
       }
-
       return null;
     })
     .filter(Boolean);
@@ -65,10 +51,7 @@ export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3 
     `&title=${encodeURIComponent(`Lesson Feedback: ${lessonName}`)}` +
     `&body=${encodeURIComponent(`Lesson: ${lessonName}\n\nFeedback:`)}`;
 
-  const isMultiCategory =
-    lesson.learnerCategory &&
-    (lesson.learnerCategory.includes(",") || lesson.learnerCategory.includes(";"));
-
+  const isMultiPathway = (lesson.pathways ?? []).length > 1;
   const lessonHref = `${import.meta.env.BASE_URL}lessons/${lesson.slug}`;
   const TitleTag = `h${headingLevel}`;
 
@@ -124,7 +107,7 @@ export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3 
           💬 Give Feedback
         </a>
 
-        {isMultiCategory && (
+        {isMultiPathway && (
           <p className="lesson-card__multi-pathway">
             ✨ Featured in multiple pathways
           </p>

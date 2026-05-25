@@ -122,7 +122,7 @@ scripts/output/
 **Examples**:
 - "Building Community" → `slug: "building-community"`
 - "CI/CD for Research Software" → `slug: "cicd-for-research-software"`
-- Constructs `@id` URLs: `https://education.ucospo.net/lessons/{slug}`
+- Constructs `@id` URLs: `https://ucospo.net/education/lessons/{slug}`
 
 **Accuracy**: 100% (deterministic, no web requests)
 

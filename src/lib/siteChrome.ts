@@ -83,7 +83,7 @@ const nav: ChromeNavItem[] = [
       },
       {
         label: "Template Guides",
-        href: "https://ucospo.net/oss-resources",
+        href: "https://ucospo.net/oss-resources/template-guides/readme-guide",
         external: true,
       },
     ],

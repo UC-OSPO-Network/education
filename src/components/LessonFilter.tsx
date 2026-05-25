@@ -10,9 +10,9 @@ interface LessonFilterProps {
 export default function LessonFilter({ lessons }: LessonFilterProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [filters, setFilters] = useState({
-    ossRole: "",
+    role: "",
     educationalLevel: "",
-    learnerCategory: "",
+    pathway: "",
     search: "",
   });
 
@@ -21,22 +21,20 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
   }, []);
 
   const filterOptions = useMemo(() => {
-    const ossRoles = new Set<string>();
+    const roles = new Set<string>();
     const levels = new Set<string>();
-    const categories = new Set<string>();
+    const pathways = new Set<string>();
 
     lessons.forEach((lesson) => {
-      if (lesson.oss_role) {
-        lesson.oss_role.split(",").forEach((role) => ossRoles.add(role.trim()));
-      }
+      lesson.roles.forEach((r) => roles.add(r));
       if (lesson.educationalLevel) levels.add(lesson.educationalLevel);
-      if (lesson.learnerCategory) categories.add(lesson.learnerCategory);
+      lesson.pathways.forEach((p) => pathways.add(p));
     });
 
     return {
-      ossRoles: Array.from(ossRoles).sort(),
+      roles: Array.from(roles).sort(),
       levels: Array.from(levels).sort(),
-      categories: Array.from(categories).sort(),
+      pathways: Array.from(pathways).sort(),
     };
   }, [lessons]);
 
@@ -44,17 +42,13 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
     const index: Record<string, { name: string; url: string }> = {};
     lessons.forEach((lesson) => {
       if (!lesson.slug || !lesson.url) return;
-      index[lesson.slug] = {
-        name: lesson.name || lesson.slug,
-        url: lesson.url,
-      };
+      index[lesson.slug] = { name: lesson.name || lesson.slug, url: lesson.url };
     });
     return index;
   }, [lessons]);
 
   const fuse = useMemo(() => {
     if (!lessons.length) return null;
-
     return new Fuse(lessons, {
       keys: [
         { name: "name", weight: 0.4 },
@@ -75,9 +69,9 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
     }
 
     return result.filter((lesson) => {
-      if (filters.ossRole && !lesson.oss_role?.includes(filters.ossRole)) return false;
+      if (filters.role && !lesson.roles.includes(filters.role)) return false;
       if (filters.educationalLevel && lesson.educationalLevel !== filters.educationalLevel) return false;
-      if (filters.learnerCategory && lesson.learnerCategory !== filters.learnerCategory) return false;
+      if (filters.pathway && !lesson.pathways.includes(filters.pathway)) return false;
       return true;
     });
   }, [filters, fuse, lessons]);
@@ -87,12 +81,7 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
   }
 
   function clearFilters() {
-    setFilters({
-      ossRole: "",
-      educationalLevel: "",
-      learnerCategory: "",
-      search: "",
-    });
+    setFilters({ role: "", educationalLevel: "", pathway: "", search: "" });
   }
 
   if (isLoading) {
@@ -105,7 +94,6 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
 
   return (
     <div className="lessons-page">
-      {/* Filter panel */}
       <div className="lessons-filter">
         <div className="lessons-filter__grid">
           <div className="lessons-filter__field">
@@ -125,11 +113,11 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
             <select
               id="lesson-role"
               className="lessons-filter__select"
-              value={filters.ossRole}
-              onChange={(e) => handleFilterChange("ossRole", e.target.value)}
+              value={filters.role}
+              onChange={(e) => handleFilterChange("role", e.target.value)}
             >
               <option value="">All Roles</option>
-              {filterOptions.ossRoles.map((role) => (
+              {filterOptions.roles.map((role) => (
                 <option key={role} value={role}>{role}</option>
               ))}
             </select>
@@ -155,12 +143,12 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
             <select
               id="lesson-pathway"
               className="lessons-filter__select"
-              value={filters.learnerCategory}
-              onChange={(e) => handleFilterChange("learnerCategory", e.target.value)}
+              value={filters.pathway}
+              onChange={(e) => handleFilterChange("pathway", e.target.value)}
             >
               <option value="">All Pathways</option>
-              {filterOptions.categories.map((cat) => (
-                <option key={cat} value={cat}>{cat}</option>
+              {filterOptions.pathways.map((p) => (
+                <option key={p} value={p}>{p}</option>
               ))}
             </select>
           </div>
@@ -176,7 +164,6 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
         </div>
       </div>
 
-      {/* Results */}
       <div className="lessons-grid">
         {filteredLessons.length === 0 ? (
           <div className="lessons-empty">

@@ -65,7 +65,7 @@ Scripts analyzed your 56 lessons and filled in missing metadata. Results are in 
 **1. Slug Generation** (`generate-slugs.js`)
 - Created URL-friendly unique IDs for each lesson
 - Example: "Building Community" → `slug: "building-community"`
-- Generated Bioschemas `@id` URLs: `https://education.ucospo.net/lessons/{slug}`
+- Generated Bioschemas `@id` URLs: `https://ucospo.net/education/lessons/{slug}`
 - **Result:** 56/56 lessons ✅ (100% success)
 
 **2. Language Standardization** (`standardize-languages.js`)

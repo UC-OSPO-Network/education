@@ -19,7 +19,7 @@ function getSectionSortKey(lessons: Lesson[]) {
 
 function buildHomepageSections(pathway: PathwayInfo): HomepagePathwaySection[] {
   const grouped = activeLessons
-    .filter((lesson) => pathway.learnerCategories.includes(lesson.learnerCategory))
+    .filter((lesson) => lesson.pathways.some((p) => pathway.learnerCategories.includes(p)))
     .reduce<Record<string, Lesson[]>>((acc, lesson) => {
       const title = lesson.subTopic?.trim() || 'Other';
       acc[title] ??= [];
