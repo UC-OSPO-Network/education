@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-05-25T17:42:29.752Z",
+  "status": "pass",
+  "mode": "delta-none",
+  "changedFilesSource": "git-local",
+  "changedFiles": [
+    ".github/ISSUE_TEMPLATE/lesson-contributor.yml",
+    ".github/lesson-validation-report.json",
+    "scripts/aggressive-fix.js",
+    "scripts/apply-gemini-dependsOn.mjs",
+    "scripts/output/gemini-dependsOn-prompt.md",
+    "scripts/validate-lessons.js",
+    "source/ospo-education-site-state-2026-05.md",
+    "source/sloan-response/UCLA_Wakimoto_Letter of support.pdf",
+    "source/sloan-response/sloan-reviewer-comments-2026.md",
+    "source/sloan-response/sloan-reviewer-response-2024.md",
+    "source/sloan-response/sloan-reviewer-response-draft.md",
+    "source/sloan-response/tim-feedback-for-stephanie.md"
+  ],
+  "changedLessonFiles": [],
+  "summary": {
+    "lessonsChecked": 56,
+    "changedFilesProvided": 12,
+    "changedLessonFiles": 0,
+    "scopedLessons": 0,
+    "dependencyRefsChecked": 0,
+    "urlChecksRun": 0,
+    "blockingErrors": 0,
+    "warnings": 0
+  },
+  "blockingErrors": [],
+  "warnings": [],
+  "urlChecks": {
+    "timeoutMs": 9000,
+    "retries": 2,
+    "concurrency": 4,
+    "results": []
+  }
+}
