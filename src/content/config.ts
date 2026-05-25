@@ -30,6 +30,7 @@ const lessons = defineCollection({
     learningResourceType: z.enum(['tutorial', 'presentation', 'handout', 'video lecture', 'e-Learning module', 'quiz', 'exercise', 'workshop']).default('tutorial'),
 
     author: z.string().default(''),
+    provider: z.string().default(''),
     license: z.string().default(''),
 
     // Canonical field. ossRole kept for back-compat with existing JSON files.
@@ -63,4 +64,14 @@ const lessons = defineCollection({
   }).passthrough(),
 });
 
-export const collections = { lessons };
+const pathways = defineCollection({
+  type: 'data',
+  schema: z.object({
+    name: z.string(),
+    description: z.string(),
+    icon: z.string().default(''),
+    order: z.number().default(99),
+  }),
+});
+
+export const collections = { lessons, pathways };

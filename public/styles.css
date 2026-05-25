@@ -563,6 +563,31 @@ summary:focus-visible {
   display: block;
 }
 
+.site-footer__legal {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  width: 100%;
+}
+
+.site-footer__legal-link {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+}
+
+.site-footer__legal-link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.site-footer__wcag-badge {
+  display: block;
+}
+
 @media (prefers-color-scheme: dark) {
   .site-footer__brand .logo-dark {
     display: none;
@@ -1141,6 +1166,40 @@ summary:focus-visible {
   background: rgba(138, 106, 0, 0.08);
   color: var(--uc-gold);
   border-color: rgba(138, 106, 0, 0.2);
+}
+
+.lesson-badge--provider {
+  background: rgba(0, 129, 85, 0.07);
+  color: #006644;
+  border-color: rgba(0, 129, 85, 0.2);
+  text-decoration: none;
+}
+
+a.lesson-badge--provider:hover {
+  background: rgba(0, 129, 85, 0.14);
+  border-color: rgba(0, 129, 85, 0.4);
+}
+
+.lesson-detail-row--provider {
+  align-items: flex-start;
+}
+
+.lesson-provider-link {
+  font-weight: 600;
+  color: #006644;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.lesson-provider-link:hover {
+  text-decoration: underline;
+}
+
+.lesson-provider-desc {
+  margin: 0.35rem 0 0;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
 }
 
 .lesson-detail {

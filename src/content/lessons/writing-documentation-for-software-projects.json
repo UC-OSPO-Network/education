@@ -6,12 +6,10 @@
     "url": "https://intersect-training.org/Documentation/",
     "topic": "Maintaining, Contributing",
     "subTopic": "Open Source Literacy",
-    "learnerCategory": "Contributing to a Project",
     "educationalLevel": "Intermediate",
     "learningResourceType": "tutorial",
     "author": "Intersect Team, intersect@training.org",
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "ossRole": "Contributor, Maintainer",
     "inLanguage": [
         "en"
     ],
@@ -22,9 +20,6 @@
         "API documentation"
     ],
     "sortingId": "5",
-    "dependsOn": [
-        "best-practices-for-maintainers"
-    ],
     "prerequisiteNotes": "Requires Python! I recommend we link to this instead",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Identify the role and benefits of documentation in research and software projects\n- Describe different types of documentation (README, API reference, tutorials) and their purposes\n- Apply best practices for writing clear, accessible, and user-friendly documentation\n- Use tools and formats commonly used for documentation (Markdown, reStructuredText, Sphinx)\n- Implement strategies for keeping documentation up to date and involving community contributors",
     "ospoRelevance": "Moderate",
@@ -49,5 +44,19 @@
     "version": "1.0.2",
     "workTranslation": "",
     "domain": "General Open Source",
-    "repoUrl": "https://github.com/INTERSECT-training/Documentation"
+    "repoUrl": "https://github.com/INTERSECT-training/Documentation",
+    "roles": [
+        "Contributor",
+        "Maintainer"
+    ],
+    "pathways": [
+        "contributing"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "best-practices-for-maintainers"
+        }
+    ],
+    "provider": "INTERSECT"
 }

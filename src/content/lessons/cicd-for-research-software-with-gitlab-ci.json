@@ -6,12 +6,10 @@
     "url": "https://hsf-training.github.io/hsf-training-cicd/",
     "topic": "DevOps",
     "subTopic": "Testing",
-    "learnerCategory": "Maintaining & Sustaining Software",
     "educationalLevel": "Intermediate",
     "learningResourceType": "tutorial",
     "author": "HSF Training Team",
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "ossRole": "Maintainer, Contributor",
     "inLanguage": [
         "en"
     ],
@@ -23,9 +21,6 @@
         "research software"
     ],
     "sortingId": "16",
-    "dependsOn": [
-        "unit-testing-and-tdd-in-python"
-    ],
     "prerequisiteNotes": "introduction-to-git | python-packaging | unit-testing-and-tdd-in-python",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the principles of CI/CD in the context of research software development\n- Configure GitLab CI pipelines to automate testing and deployment\n- Apply CI/CD practices to improve research software quality and reproducibility\n- Demonstrate how to integrate automated testing into research workflows\n- Identify best practices for CI/CD in scientific computing environments",
     "ospoRelevance": "Moderate",
@@ -50,5 +45,19 @@
     "version": "1.0.0",
     "workTranslation": "",
     "domain": "Research Software",
-    "repoUrl": "https://github.com/hsf-training/hsf-training-cicd"
+    "repoUrl": "https://github.com/hsf-training/hsf-training-cicd",
+    "roles": [
+        "Maintainer",
+        "Contributor"
+    ],
+    "pathways": [
+        "maintaining"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "unit-testing-and-tdd-in-python"
+        }
+    ],
+    "provider": "HSF Training"
 }

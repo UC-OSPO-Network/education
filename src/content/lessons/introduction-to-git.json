@@ -6,12 +6,10 @@
     "url": "https://coderefinery.github.io/git-intro/",
     "topic": "Git/Beg. VCS",
     "subTopic": "Version Control Basics",
-    "learnerCategory": "Getting Started with Open Source",
     "educationalLevel": "Beginner",
     "learningResourceType": "tutorial",
     "author": "CodeRefinery Team",
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "ossRole": "Contributor, Maintainer",
     "inLanguage": [
         "en"
     ],
@@ -22,13 +20,10 @@
         "project management"
     ],
     "sortingId": "4",
-    "dependsOn": [
-        "understanding-software-licensing"
-    ],
     "prerequisiteNotes": "",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the concept of version control and its importance in software development\n- Demonstrate how to initialize and manage Git repositories\n- Apply basic Git commands to track changes and manage project history\n- Identify the benefits of distributed version control systems\n- Use Git to collaborate on projects and maintain code history",
     "ospoRelevance": "Moderate",
-    "abstract": "This lesson introduces the basics of Git for version control, focusing on how to track changes, work with repositories, and manage a project\u201a\u00c4\u00f4s history using Git.",
+    "abstract": "This lesson introduces the basics of Git for version control, focusing on how to track changes, work with repositories, and manage a project‚Äôs history using Git.",
     "dateCreated": "2021-04-10",
     "dateModified": "2023-03-10",
     "timeRequired": "PT10M",
@@ -49,5 +44,19 @@
     "version": "1.0.0",
     "workTranslation": "",
     "domain": "General Open Source",
-    "repoUrl": "https://github.com/coderefinery/git-intro"
+    "repoUrl": "https://github.com/coderefinery/git-intro",
+    "roles": [
+        "Contributor",
+        "Maintainer"
+    ],
+    "pathways": [
+        "getting-started"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "understanding-software-licensing"
+        }
+    ],
+    "provider": "CodeRefinery"
 }

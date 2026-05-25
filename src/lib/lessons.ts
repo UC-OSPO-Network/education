@@ -1,7 +1,7 @@
 import { getCollection } from 'astro:content';
 
 export type PrerequisiteRef =
-  | { type: 'lesson'; value: string }
+  | { type: 'lesson'; value: string; label?: string }
   | { type: 'url'; value: string; label?: string }
   | { type: 'text'; value: string; label?: string };
 
@@ -20,6 +20,7 @@ export type Lesson = {
   educationalLevel: string;
   learningResourceType: string;
   author: string;
+  provider: string;
   license: string;
   roles: string[];
   timeRequired: string;
@@ -96,6 +97,7 @@ export async function getLessons(): Promise<Lesson[]> {
       educationalLevel: String(d.educationalLevel ?? 'Beginner'),
       learningResourceType: String(d.learningResourceType ?? 'tutorial'),
       author: String(d.author ?? ''),
+      provider: String(d.provider ?? ''),
       license: String(d.license ?? ''),
       roles,
       timeRequired: String(d.timeRequired ?? ''),

@@ -7,12 +7,10 @@
     "domain": "General Open Source",
     "topic": "Contributing",
     "subTopic": "Open Source Literacy",
-    "learnerCategory": "Getting Started with Open Source",
     "educationalLevel": "Beginner",
     "learningResourceType": "tutorial",
     "author": "First Contributions Team",
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "ossRole": "Contributor",
     "timeRequired": "PT15M",
     "inLanguage": [
         "en"
@@ -23,9 +21,6 @@
         "contribution",
         "first-timers"
     ],
-    "dependsOn": [
-        "what-is-open-source"
-    ],
     "prerequisiteNotes": "A GitHub account is required.",
     "sortingId": "2",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Navigate the GitHub web interface to edit a file.\n- Understand the high-level concept of a 'Fork' and a 'Pull Request'.\n- Successfully submit a browser-based contribution to a public repository.\n- Experience the immediate 'dopamine hit' of a successful collaborative edit.",
@@ -34,5 +29,18 @@
     "dateCreated": "2026-04-05",
     "creativeWorkStatus": "Active",
     "audience": "Beginners, Software Developers",
-    "repoUrl": "https://github.com/firstcontributions/first-contributions"
+    "repoUrl": "https://github.com/firstcontributions/first-contributions",
+    "roles": [
+        "Contributor"
+    ],
+    "pathways": [
+        "getting-started"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "what-is-open-source"
+        }
+    ],
+    "provider": "GitHub / Open Source Guides"
 }

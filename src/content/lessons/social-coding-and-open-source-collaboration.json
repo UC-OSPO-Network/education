@@ -6,12 +6,10 @@
     "url": "https://coderefinery.github.io/social-coding/",
     "topic": "Community, Git/Beg. VCS",
     "subTopic": "Open Source Literacy",
-    "learnerCategory": "Getting Started with Open Source",
     "educationalLevel": "Beginner",
     "learningResourceType": "tutorial",
     "author": "CodeRefinery Team",
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "ossRole": "Community Manager, Maintainer",
     "inLanguage": [
         "en"
     ],
@@ -23,9 +21,6 @@
         "developer community"
     ],
     "sortingId": "7",
-    "dependsOn": [
-        "how-to-contribute-to-open-source"
-    ],
     "prerequisiteNotes": "Readers should already be familiar with OSS as a concept",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Communicate effectively and inclusively with open source maintainers.\n- Understand the 'release early, often' development mindset.\n- Identify and perform valuable non-code contributions (e.g., documentation, testing).",
     "ospoRelevance": "Core",
@@ -50,5 +45,19 @@
     "version": "1.0.0",
     "workTranslation": "",
     "domain": "General Open Source",
-    "repoUrl": "https://github.com/coderefinery/social-coding"
+    "repoUrl": "https://github.com/coderefinery/social-coding",
+    "roles": [
+        "Community Manager",
+        "Maintainer"
+    ],
+    "pathways": [
+        "getting-started"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "how-to-contribute-to-open-source"
+        }
+    ],
+    "provider": "CodeRefinery"
 }

@@ -13,6 +13,7 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
     role: "",
     educationalLevel: "",
     pathway: "",
+    domain: "",
     search: "",
   });
 
@@ -24,17 +25,20 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
     const roles = new Set<string>();
     const levels = new Set<string>();
     const pathways = new Set<string>();
+    const domains = new Set<string>();
 
     lessons.forEach((lesson) => {
       lesson.roles.forEach((r) => roles.add(r));
       if (lesson.educationalLevel) levels.add(lesson.educationalLevel);
       lesson.pathways.forEach((p) => pathways.add(p));
+      if (lesson.domain) domains.add(lesson.domain);
     });
 
     return {
       roles: Array.from(roles).sort(),
       levels: Array.from(levels).sort(),
       pathways: Array.from(pathways).sort(),
+      domains: Array.from(domains).sort(),
     };
   }, [lessons]);
 
@@ -72,6 +76,7 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
       if (filters.role && !lesson.roles.includes(filters.role)) return false;
       if (filters.educationalLevel && lesson.educationalLevel !== filters.educationalLevel) return false;
       if (filters.pathway && !lesson.pathways.includes(filters.pathway)) return false;
+      if (filters.domain && lesson.domain !== filters.domain) return false;
       return true;
     });
   }, [filters, fuse, lessons]);
@@ -81,7 +86,7 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
   }
 
   function clearFilters() {
-    setFilters({ role: "", educationalLevel: "", pathway: "", search: "" });
+    setFilters({ role: "", educationalLevel: "", pathway: "", domain: "", search: "" });
   }
 
   if (isLoading) {
@@ -149,6 +154,21 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
               <option value="">All Pathways</option>
               {filterOptions.pathways.map((p) => (
                 <option key={p} value={p}>{p}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="lessons-filter__field">
+            <label htmlFor="lesson-domain" className="lessons-filter__label">Domain</label>
+            <select
+              id="lesson-domain"
+              className="lessons-filter__select"
+              value={filters.domain}
+              onChange={(e) => handleFilterChange("domain", e.target.value)}
+            >
+              <option value="">All Domains</option>
+              {filterOptions.domains.map((d) => (
+                <option key={d} value={d}>{d}</option>
               ))}
             </select>
           </div>

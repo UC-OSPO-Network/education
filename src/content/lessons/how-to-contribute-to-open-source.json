@@ -6,12 +6,10 @@
     "url": "https://opensource.guide/how-to-contribute/",
     "topic": "Contributing",
     "subTopic": "Open Source Literacy",
-    "learnerCategory": "Getting Started with Open Source",
     "educationalLevel": "Beginner",
     "learningResourceType": "handout",
     "author": "being users of software they contribute to",
     "license": "",
-    "ossRole": "Contributor",
     "inLanguage": [
         "en"
     ],
@@ -19,9 +17,6 @@
         "Contributing"
     ],
     "sortingId": "6",
-    "dependsOn": [
-        "best-practices-for-maintainers"
-    ],
     "prerequisiteNotes": "",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Use discovery tools to find beginner-friendly open source projects.\n- Interpret standard GitHub labels like 'good first issue'.\n- Evaluate a project's health and welcoming nature for new contributors.",
     "ospoRelevance": "Moderate",
@@ -46,5 +41,18 @@
     "version": "",
     "workTranslation": "",
     "domain": "General Open Source",
-    "repoUrl": "https://github.com/github/opensource.guide"
+    "repoUrl": "https://github.com/github/opensource.guide",
+    "roles": [
+        "Contributor"
+    ],
+    "pathways": [
+        "getting-started"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "best-practices-for-maintainers"
+        }
+    ],
+    "provider": "GitHub / Open Source Guides"
 }

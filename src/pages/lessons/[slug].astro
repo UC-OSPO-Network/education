@@ -3,9 +3,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import LessonJsonLd from "../../components/LessonJsonLd.astro";
 import Citation from "../../components/Citation.astro";
 import { getLessons, getRelatedLessons, type Lesson, formatDuration } from "../../lib/lessons";
+import { lookupProvider } from "../../lib/providers";
 import { normalizeCitation } from "../../lib/citation";
 import { getCatalogCitation } from "../../lib/catalogCitation";
-import { PATHWAYS } from "../../types/lesson";
+import { getCollection } from "astro:content";
 import githubHealthRaw from "../../data/github-health.json";
 import type { HealthSnapshot } from "../../lib/githubHealth";
 
@@ -15,10 +16,13 @@ type Props = {
   lesson: Lesson;
   relatedLessons: Lesson[];
   prereqLessons: { slug: string; name: string }[];
+  pathwayName: string;
+  pathwayId: string;
 };
 
 export async function getStaticPaths() {
-  const lessons = await getLessons();
+  const [lessons, pathways] = await Promise.all([getLessons(), getCollection("pathways")]);
+  const pathwayMap = Object.fromEntries(pathways.map((p) => [p.id, p.data.name]));
   const slugToName = Object.fromEntries(lessons.map((l) => [l.slug, l.name]));
 
   const candidates = lessons.filter(
@@ -26,27 +30,23 @@ export async function getStaticPaths() {
   );
 
   return candidates.map((lesson) => {
+    const pathwayId = lesson.pathways[0] ?? "";
+    const pathwayName = pathwayMap[pathwayId] ?? "";
     const relatedLessons = getRelatedLessons(lesson, lessons);
-
     const prereqLessons = lesson.prerequisites
       .filter((p) => p.type === "lesson" && slugToName[p.value])
       .map((p) => ({ slug: p.value, name: slugToName[p.value] }));
 
     return {
       params: { slug: lesson.slug },
-      props: { lesson, relatedLessons, prereqLessons } satisfies Props,
+      props: { lesson, relatedLessons, prereqLessons, pathwayName, pathwayId } satisfies Props,
     };
   });
 }
 
-const { lesson, relatedLessons, prereqLessons } = Astro.props as Props;
+const { lesson, relatedLessons, prereqLessons, pathwayName, pathwayId } = Astro.props as Props;
 
-const pathway = PATHWAYS.find((item) =>
-  lesson.pathways.some((p) => item.learnerCategories.includes(p)),
-);
-const pathwayHref = pathway
-  ? `${import.meta.env.BASE_URL}pathways/${pathway.id}`
-  : "";
+const pathwayHref = pathwayId ? `${import.meta.env.BASE_URL}pathways/${pathwayId}` : "";
 const summary = lesson.description?.trim() || lesson.abstract?.trim() || "";
 const externalHref = lesson.url?.trim() ?? "";
 
@@ -97,6 +97,7 @@ function formatMonth(dateStr: string | null): string {
 }
 
 const licenseShort = shortLicense(lesson.license);
+const provider = lesson.provider ? lookupProvider(lesson.provider) : null;
 const hasPrereqs =
   prereqLessons.length > 0 ||
   prereqUrls.length > 0 ||
@@ -121,9 +122,9 @@ const hasPrereqs =
       </nav>
 
       <div class="lesson-badges">
-        {lesson.pathways.length > 0 && (
+        {pathwayName && (
           <span class="lesson-badge lesson-badge--pathway">
-            {lesson.pathways[0]}
+            {pathwayName}
           </span>
         )}
         {lesson.educationalLevel && (
@@ -133,6 +134,20 @@ const hasPrereqs =
         )}
         {duration && (
           <span class="lesson-badge lesson-badge--time">{duration}</span>
+        )}
+        {lesson.provider && (
+          provider ? (
+            <a
+              class="lesson-badge lesson-badge--provider"
+              href={provider.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {provider.name} ↗
+            </a>
+          ) : (
+            <span class="lesson-badge lesson-badge--provider">{lesson.provider}</span>
+          )
         )}
       </div>
 
@@ -204,6 +219,18 @@ const hasPrereqs =
       <aside class="lesson-sidebar" aria-label="Lesson details">
         <div class="page-section">
           <h2 class="section-heading">Details</h2>
+
+          {provider && (
+            <div class="lesson-detail-row lesson-detail-row--provider">
+              <span class="lesson-detail-label">Provider</span>
+              <div class="lesson-detail-value">
+                <a href={provider.url} target="_blank" rel="noopener noreferrer" class="lesson-provider-link">
+                  {provider.name} ↗
+                </a>
+                <p class="lesson-provider-desc">{provider.shortDescription}</p>
+              </div>
+            </div>
+          )}
 
           {lesson.author?.trim() && (
             <div class="lesson-detail-row">

@@ -1,21 +1,13 @@
 import { collection, config, fields } from '@keystatic/core';
-import { PATHWAYS } from './src/types/lesson';
 
-const learnerCategoryOptions = PATHWAYS.flatMap((pathway) => pathway.learnerCategories).map(
-  (category) => ({
-    label: category,
-    value: category,
-  })
-);
-
-const uniqueLearnerCategoryOptions = Array.from(
-  new Map(learnerCategoryOptions.map((option) => [option.value, option])).values()
-).sort((a, b) => a.label.localeCompare(b.label));
-
-const learnerCategorySelectOptions = [
-  { label: 'Unassigned', value: '' },
-  ...uniqueLearnerCategoryOptions,
-];
+const pathwayOptions = [
+  { label: 'Getting Started with Open Source', value: 'getting-started' },
+  { label: 'Contributing to a Project', value: 'contributing' },
+  { label: 'Maintaining & Sustaining Software', value: 'maintaining' },
+  { label: 'Building Inclusive Communities', value: 'building-communities' },
+  { label: 'Understanding Licensing & Compliance', value: 'licensing' },
+  { label: 'Strategic Practices & Career Development', value: 'strategic' },
+] as const;
 
 const educationalLevelOptions = [
   { label: 'Beginner', value: 'Beginner' },
@@ -42,7 +34,7 @@ const learningResourceTypeOptions = [
   { label: 'Exercise', value: 'exercise' },
 ] as const;
 
-const ossRoleOptions = [
+const roleOptions = [
   { label: 'Developer', value: 'Developer' },
   { label: 'Contributor', value: 'Contributor' },
   { label: 'Community Manager', value: 'Community Manager' },
@@ -139,12 +131,15 @@ export default config({
           validation: { isRequired: true },
         }),
         author: fields.text({ label: 'Author' }),
+        provider: fields.text({
+          label: 'Provider (organization)',
+          description: 'Organization that produced this lesson (e.g. UC Davis DataLab, CodeRefinery). Follows Bioschemas TrainingMaterial provider field.',
+        }),
         license: fields.text({ label: 'License' }),
-        learnerCategory: fields.select({
-          label: 'Pathway (learnerCategory)',
-          options: learnerCategorySelectOptions,
-          defaultValue: '',
-          description: 'Pick the primary pathway for this lesson (or leave Unassigned).',
+        pathways: fields.multiselect({
+          label: 'Pathways',
+          options: pathwayOptions,
+          description: 'One or more pathways this lesson belongs to.',
         }),
         educationalLevel: fields.select({
           label: 'Skill level (educationalLevel)',
@@ -157,11 +152,10 @@ export default config({
           defaultValue: 'General Open Source',
           description: 'High-level category for discovery filters.',
         }),
-        ossRole: fields.select({
-          label: 'OSS Role',
-          options: ossRoleOptions,
-          defaultValue: 'Contributor',
-          description: 'Standardized Bioschemas role.',
+        roles: fields.multiselect({
+          label: 'OSS Roles',
+          options: roleOptions,
+          description: 'Standardized Bioschemas roles (select all that apply).',
         }),
         subTopic: fields.text({ label: 'Sub-topic' }),
         timeRequired: fields.text({
@@ -195,11 +189,32 @@ export default config({
           description: 'Specific tool or sub-topic (e.g. QGIS, Python, Git)',
         }),
         sortingId: fields.text({ label: 'Sorting ID' }),
-        dependsOn: fields.array(fields.text({ label: 'Dependency (slug or URL)' }), {
-          label: 'Depends On',
-          itemLabel: (props) => props.value || 'dependency',
-          description: 'Prerequisite lesson slugs and/or external URLs',
-        }),
+        prerequisites: fields.array(
+          fields.object({
+            type: fields.select({
+              label: 'Type',
+              options: [
+                { label: 'Lesson (slug)', value: 'lesson' },
+                { label: 'External URL', value: 'url' },
+                { label: 'Free text', value: 'text' },
+              ],
+              defaultValue: 'lesson',
+            }),
+            value: fields.text({
+              label: 'Slug / URL / Text',
+              validation: { isRequired: true },
+            }),
+            label: fields.text({
+              label: 'Display label (optional)',
+              description: 'Override the link text shown to learners',
+            }),
+          }),
+          {
+            label: 'Prerequisites',
+            itemLabel: (props) => props.fields.value.value || props.fields.type.value,
+            description: 'Prerequisite lessons (slug), external URLs, or free-text notes',
+          }
+        ),
         prerequisiteNotes: fields.text({
           label: 'Prerequisite Notes',
           multiline: true,

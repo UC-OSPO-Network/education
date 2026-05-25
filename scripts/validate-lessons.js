@@ -463,12 +463,14 @@ async function validate() {
       );
     }
 
-    if (!Array.isArray(data.dependsOn)) {
+    // dependsOn is the legacy field name; prerequisites is the current name.
+    // Only flag if the field is present but has the wrong type.
+    if ('dependsOn' in data && !Array.isArray(data.dependsOn)) {
       addRuleViolation('invalid-dependsOn-type', lesson, 'dependsOn must be an array');
       continue;
     }
 
-    for (const token of data.dependsOn) {
+    for (const token of (data.dependsOn ?? [])) {
       dependencyRefCount += 1;
 
       if (typeof token !== 'string' || token.trim() === '') {

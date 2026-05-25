@@ -6,12 +6,10 @@
     "url": "https://carpentries-incubator.github.io/docker-introduction/",
     "topic": "DevOps",
     "subTopic": "Reproducible Research",
-    "learnerCategory": "Maintaining & Sustaining Software",
     "educationalLevel": "Beginner",
     "learningResourceType": "tutorial",
     "author": "The Carpentries Incubator",
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "ossRole": "Contributor, Maintainer",
     "inLanguage": [
         "en"
     ],
@@ -19,9 +17,6 @@
         "docker english containers hacktoberfest"
     ],
     "sortingId": "32",
-    "dependsOn": [
-        "introduction-to-docker-for-research-note-this-is-now-called-introduction-to-docker-and-podman"
-    ],
     "prerequisiteNotes": "reproducible-research",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the concept of containerization and its role in reproducible research\n- Demonstrate how to create and manage Docker containers for research environments\n- Apply containerization to ensure computational reproducibility\n- Identify best practices for sharing reproducible environments\n- Recognize the benefits of containers for research collaboration",
     "ospoRelevance": "Moderate",
@@ -46,5 +41,19 @@
     "version": "",
     "workTranslation": "",
     "domain": "Research Software",
-    "repoUrl": "https://github.com/carpentries-incubator/docker-introduction"
+    "repoUrl": "https://github.com/carpentries-incubator/docker-introduction",
+    "roles": [
+        "Contributor",
+        "Maintainer"
+    ],
+    "pathways": [
+        "maintaining"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "introduction-to-docker-for-research-note-this-is-now-called-introduction-to-docker-and-podman"
+        }
+    ],
+    "provider": "The Carpentries Incubator"
 }

@@ -7,12 +7,10 @@
     "domain": "General Open Source",
     "topic": "Open Source Literacy",
     "subTopic": "Open Source Literacy",
-    "learnerCategory": "Getting Started with Open Source",
     "educationalLevel": "Beginner",
     "learningResourceType": "tutorial",
     "author": "Open Source Guides",
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "ossRole": "User/Consumer",
     "timeRequired": "PT10M",
     "inLanguage": [
         "en"
@@ -23,7 +21,6 @@
         "transparency",
         "community"
     ],
-    "dependsOn": [],
     "prerequisiteNotes": "No prior experience needed.",
     "sortingId": "1",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the four freedoms of free software.\n- Differentiate between FOSS and proprietary models.\n- Identify the benefits of open source in education and industry.\n- Describe the core principles of transparency, meritocracy, and community.",
@@ -33,5 +30,13 @@
     "dateModified": "2026-04-05",
     "creativeWorkStatus": "Active",
     "audience": "Beginners, Researchers, Library Staff",
-    "repoUrl": "https://github.com/github/opensource.guide"
+    "repoUrl": "https://github.com/github/opensource.guide",
+    "roles": [
+        "User/Consumer"
+    ],
+    "pathways": [
+        "getting-started"
+    ],
+    "prerequisites": [],
+    "provider": "GitHub / Open Source Guides"
 }

@@ -6,12 +6,10 @@
     "url": "https://intersect-training.org/CI-CD/",
     "topic": "DevOps",
     "subTopic": "Testing",
-    "learnerCategory": "Maintaining & Sustaining Software",
     "educationalLevel": "Intermediate",
     "learningResourceType": "tutorial",
     "author": "Intersect Team, intersect@training.org",
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "ossRole": "Maintainer, Contributor",
     "inLanguage": [
         "en"
     ],
@@ -24,9 +22,6 @@
         "automation"
     ],
     "sortingId": "15",
-    "dependsOn": [
-        "testing-and-test-driven-development"
-    ],
     "prerequisiteNotes": "introduction-to-git | python-packaging",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Distinguish between Continuous Integration (CI), Continuous Delivery, and Continuous Deployment\n- Identify types of breaking changes in different development contexts\n- Configure a basic CI pipeline using GitHub Actions for code testing and packaging\n- Apply CI/CD principles to automate workflows beyond code testing\n- Demonstrate how to use matrix strategies to test across multiple environments\n- Automate building and publishing artifacts using GitHub Actions",
     "ospoRelevance": "High",
@@ -51,5 +46,19 @@
     "version": "1.2.0",
     "workTranslation": "",
     "domain": "General Open Source",
-    "repoUrl": "https://github.com/INTERSECT-training/CI-CD"
+    "repoUrl": "https://github.com/INTERSECT-training/CI-CD",
+    "roles": [
+        "Maintainer",
+        "Contributor"
+    ],
+    "pathways": [
+        "maintaining"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "testing-and-test-driven-development"
+        }
+    ],
+    "provider": "INTERSECT"
 }

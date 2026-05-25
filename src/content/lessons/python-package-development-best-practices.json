@@ -6,12 +6,10 @@
     "url": "https://education.molssi.org/python-package-best-practices/",
     "topic": "Packaging, Python",
     "subTopic": "Packaging",
-    "learnerCategory": "Maintaining & Sustaining Software",
     "educationalLevel": "Intermediate",
     "learningResourceType": "tutorial",
     "author": "MolSSI Education Team",
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "ossRole": "Contributor, Maintainer",
     "inLanguage": [
         "en"
     ],
@@ -24,9 +22,6 @@
         "PyPI"
     ],
     "sortingId": "23",
-    "dependsOn": [
-        "python-packaging-for-beginners"
-    ],
     "prerequisiteNotes": "python-packaging-for-beginners | r-packaging",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Apply best practices for structuring Python packages for scientific software\n- Demonstrate how to write comprehensive tests and manage dependencies\n- Implement version control workflows for collaborative package development\n- Create clear documentation using tools like Read The Docs\n- Configure continuous integration for automated testing and deployment",
     "ospoRelevance": "High",
@@ -51,5 +46,19 @@
     "version": "1.0.0",
     "workTranslation": "",
     "domain": "Research Software",
-    "repoUrl": "https://github.com/MolSSI-Education/python-package-best-practices"
+    "repoUrl": "https://github.com/MolSSI-Education/python-package-best-practices",
+    "roles": [
+        "Contributor",
+        "Maintainer"
+    ],
+    "pathways": [
+        "maintaining"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "python-packaging-for-beginners"
+        }
+    ],
+    "provider": "MolSSI"
 }

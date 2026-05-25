@@ -6,9 +6,7 @@
     "url": "https://opensource.guide/best-practices/",
     "author": "GitHub",
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "learnerCategory": "Getting Started with Open Source",
     "educationalLevel": "Beginner",
-    "ossRole": "Maintainer, Community Manager",
     "learningResourceType": "handout",
     "inLanguage": [
         "en",
@@ -45,9 +43,6 @@
     ],
     "topic": "Maintaining",
     "sortingId": "5",
-    "dependsOn": [
-        "introduction-to-git"
-    ],
     "ospoRelevance": "Core",
     "abstract": "This guide provides essential practices for open source project maintainers to ensure sustainability, manage contributions effectively, and foster a welcoming project environment. Topics include documentation, issue tracking, and communication strategies.",
     "audience": "Individuals, Companies",
@@ -60,5 +55,19 @@
     "subTopic": "Open Source Literacy",
     "dateCreated": "",
     "domain": "General Open Source",
-    "repoUrl": "https://github.com/github/opensource.guide"
+    "repoUrl": "https://github.com/github/opensource.guide",
+    "roles": [
+        "Maintainer",
+        "Community Manager"
+    ],
+    "pathways": [
+        "getting-started"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "introduction-to-git"
+        }
+    ],
+    "provider": "GitHub / Open Source Guides"
 }

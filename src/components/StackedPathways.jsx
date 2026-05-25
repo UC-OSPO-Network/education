@@ -56,7 +56,10 @@ export default function StackedPathways() {
         return (
           <div
             key={pathway.id}
+            role="button"
+            tabIndex={0}
             onClick={() => setExpandedId(pathway.id)}
+            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setExpandedId(pathway.id)}
             style={{
               position: 'relative',
               marginBottom: isExpanded ? '2rem' : '-20px',

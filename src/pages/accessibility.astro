@@ -1,0 +1,150 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Accessibility Statement";
+const description =
+  "UC OSPO Education is committed to ensuring digital accessibility for people with disabilities. Learn about our conformance status, testing approach, and how to report issues.";
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="page-intro">
+    <div class="content-container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href={import.meta.env.BASE_URL}>Home</a></li>
+          <li class="breadcrumbs__separator" aria-hidden="true">/</li>
+          <li aria-current="page">Accessibility</li>
+        </ol>
+      </nav>
+      <h1 class="page-intro__title">Accessibility Statement</h1>
+      <p class="page-intro__summary">
+        The UC OSPO Education site is committed to ensuring digital accessibility for people with disabilities.
+      </p>
+    </div>
+  </section>
+
+  <div class="content-container">
+    <div class="accessibility-content page-section">
+
+      <section aria-labelledby="conformance-heading">
+        <h2 id="conformance-heading">Conformance Status</h2>
+        <p>
+          This site aims to conform to the <strong>Web Content Accessibility Guidelines (WCAG) 2.1 Level AA</strong>.
+          Conformance is self-certified following accessibility testing completed in May 2026, evaluated against the
+          UC IMT-1300 Information Technology Accessibility Policy.
+        </p>
+        <a
+          href="https://www.w3.org/WAI/WCAG2AA-Conformance"
+          title="Explanation of WCAG 2.1 Level AA Conformance"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="wcag-badge-link"
+        >
+          <img
+            src="https://www.w3.org/WAI/wcag21/wcag2.1AA-blue-v.svg"
+            alt="Level AA conformance, W3C WAI Web Content Accessibility Guidelines 2.1"
+            width="88"
+            height="31"
+          />
+        </a>
+        <h3>Testing methods</h3>
+        <ul>
+          <li>Automated scanning with Pa11y (WCAG2AA ruleset) across all pages</li>
+          <li>Playwright + axe-core integration tests covering key user flows</li>
+          <li>Manual keyboard navigation review</li>
+          <li>Color contrast verification</li>
+          <li>Semantic structure and ARIA review</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="stack-heading">
+        <h2 id="stack-heading">Technical Stack</h2>
+        <p>
+          This site is a static site built with <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a>,
+          React (for interactive filter components), and plain CSS. It is hosted on GitHub Pages and served at
+          <code>ucospo.net/education</code>.
+        </p>
+      </section>
+
+      <section aria-labelledby="feedback-heading">
+        <h2 id="feedback-heading">Contact and Feedback</h2>
+        <p>
+          We welcome accessibility feedback. If you encounter a barrier or cannot access content on this site,
+          please contact us and we will work to provide the information in an alternate format.
+        </p>
+        <ul>
+          <li>
+            <strong>GitHub:</strong>{" "}
+            <a href="https://github.com/UC-OSPO-Network/education/issues/new" target="_blank" rel="noopener noreferrer">
+              Open an issue
+            </a>{" "}
+            in the UC OSPO Education repository
+          </li>
+          <li>
+            <strong>Email:</strong> Contact the UC OSPO Network via the{" "}
+            <a href="https://ucospo.net" target="_blank" rel="noopener noreferrer">ucospo.net</a> website
+          </li>
+        </ul>
+        <p>We aim to respond within 5 business days.</p>
+      </section>
+
+      <section aria-labelledby="limitations-heading">
+        <h2 id="limitations-heading">Known Limitations</h2>
+        <ul>
+          <li>
+            Some lesson content is hosted on external sites over which we have no control. We link to these
+            resources but cannot guarantee their accessibility.
+          </li>
+          <li>
+            The Keystatic CMS interface (available only in development mode) is not covered by this statement.
+          </li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="complaints-heading">
+        <h2 id="complaints-heading">Formal Complaint Process</h2>
+        <p>
+          If you are dissatisfied with our response, you may contact the UCLA Disabilities and Computing Program (DCP)
+          or file a complaint under UC ITAP policy.
+        </p>
+      </section>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .accessibility-content {
+    max-width: 48rem;
+  }
+
+  .accessibility-content h2 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.4rem;
+  }
+
+  .accessibility-content h3 {
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .accessibility-content p,
+  .accessibility-content ul {
+    margin-bottom: 1rem;
+  }
+
+  .accessibility-content ul {
+    padding-left: 1.5rem;
+  }
+
+  .accessibility-content li {
+    margin-bottom: 0.35rem;
+  }
+
+  .wcag-badge-link {
+    display: inline-block;
+    margin: 0.75rem 0 1.25rem;
+  }
+</style>

@@ -1,42 +1,49 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getLessons } from "../../lib/lessons";
-import { PATHWAYS, type PathwayInfo, type Lesson } from "../../types/lesson";
+import { getLessons, type Lesson } from "../../lib/lessons";
+import { getCollection } from "astro:content";
 import LessonCard from "../../components/LessonCard.jsx";
 import "../../components/lessons/lessons.css";
 
 interface Props {
-  pathway: PathwayInfo;
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
   lessons: Lesson[];
 }
 
 export async function getStaticPaths() {
-  const lessons = await getLessons();
-  return PATHWAYS.map((pathway) => ({
+  const [lessons, pathways] = await Promise.all([
+    getLessons(),
+    getCollection("pathways"),
+  ]);
+
+  return pathways.map((pathway) => ({
     params: { id: pathway.id },
-    props: { pathway, lessons },
+    props: {
+      id: pathway.id,
+      name: pathway.data.name,
+      description: pathway.data.description,
+      icon: pathway.data.icon,
+      lessons,
+    } satisfies Props,
   }));
 }
 
-const { pathway, lessons } = Astro.props as Props;
+const { id, name, description, lessons } = Astro.props as Props;
 
 const pathwayLessons = lessons.filter(
   (lesson) =>
     (lesson.keepStatus === "keep" || lesson.keepStatus === "keepCandidate") &&
     lesson.url.trim() !== "" &&
-    lesson.pathways.some((p) => pathway.learnerCategories.includes(p)),
+    lesson.pathways.includes(id),
 );
 
 const lessonIndex = Object.fromEntries(
   lessons
     .filter((lesson) => lesson.slug && lesson.url)
-    .map((lesson) => [
-      lesson.slug,
-      {
-        name: lesson.name || lesson.slug,
-        url: lesson.url,
-      },
-    ]),
+    .map((lesson) => [lesson.slug, { name: lesson.name || lesson.slug, url: lesson.url }]),
 );
 
 const groupedLessons = pathwayLessons.reduce<Record<string, Lesson[]>>((acc, lesson) => {
@@ -73,7 +80,7 @@ const groupedLessons = pathwayLessons.reduce<Record<string, Lesson[]>>((acc, les
   }
 </style>
 
-<BaseLayout title={pathway.name} description={pathway.description}>
+<BaseLayout title={name} description={description}>
   <section class="page-intro">
     <div class="content-container">
       <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -82,12 +89,12 @@ const groupedLessons = pathwayLessons.reduce<Record<string, Lesson[]>>((acc, les
           <li class="breadcrumbs__separator" aria-hidden="true">/</li>
           <li><a href={`${import.meta.env.BASE_URL}pathways`}>Pathways</a></li>
           <li class="breadcrumbs__separator" aria-hidden="true">/</li>
-          <li aria-current="page">{pathway.name}</li>
+          <li aria-current="page">{name}</li>
         </ol>
       </nav>
       <p class="page-intro__eyebrow">Pathway</p>
-      <h1 class="page-intro__title">{pathway.name}</h1>
-      <p class="page-intro__summary">{pathway.description}</p>
+      <h1 class="page-intro__title">{name}</h1>
+      <p class="page-intro__summary">{description}</p>
       <div class="page-intro__actions">
         <a class="button-secondary" href={`${import.meta.env.BASE_URL}pathways`}>Back to All Pathways</a>
         <a class="button-link" href={`${import.meta.env.BASE_URL}lessons`}>Browse all lessons</a>

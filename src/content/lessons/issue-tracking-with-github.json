@@ -6,12 +6,10 @@
     "url": "https://intersect-training.org/Issue-Tracking/",
     "topic": "Git/Beg. VCS",
     "subTopic": "Version Control Basics",
-    "learnerCategory": "Contributing to a Project",
     "educationalLevel": "Intermediate",
     "learningResourceType": "tutorial",
     "author": "Intersect Team, intersect@training.org",
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "ossRole": "Contributor, Maintainer",
     "inLanguage": [
         "en"
     ],
@@ -23,9 +21,6 @@
         "features"
     ],
     "sortingId": "7",
-    "dependsOn": [
-        "best-practices-for-maintainers"
-    ],
     "prerequisiteNotes": "Intro to Git | introduction-to-git",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Identify the purpose of issue tracking in software and project management\n- Describe common components of an issue (title, description, labels, assignee)\n- Create clear, actionable issues that facilitate collaboration\n- Apply best practices for prioritizing and organizing issues\n- Demonstrate how issue tracking supports project planning and sustainability",
     "ospoRelevance": "Moderate",
@@ -50,5 +45,19 @@
     "version": "1.3.0",
     "workTranslation": "",
     "domain": "General Open Source",
-    "repoUrl": "https://github.com/INTERSECT-training/Issue-Tracking"
+    "repoUrl": "https://github.com/INTERSECT-training/Issue-Tracking",
+    "roles": [
+        "Contributor",
+        "Maintainer"
+    ],
+    "pathways": [
+        "contributing"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "best-practices-for-maintainers"
+        }
+    ],
+    "provider": "INTERSECT"
 }

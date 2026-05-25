@@ -6,12 +6,10 @@
     "url": "https://intersect-training.org/Making-Good-PRs/",
     "topic": "Git/Beg. VCS, Contributing",
     "subTopic": "Version Control Basics",
-    "learnerCategory": "Getting Started with Open Source",
     "educationalLevel": "Beginner",
     "learningResourceType": "tutorial",
     "author": "Intersect Team, intersect@training.org",
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "ossRole": "Contributor, Maintainer",
     "inLanguage": [
         "en"
     ],
@@ -22,9 +20,6 @@
         "collaboration"
     ],
     "sortingId": "8",
-    "dependsOn": [
-        "social-coding-and-open-source-collaboration"
-    ],
     "prerequisiteNotes": "Intro to Git",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Execute the complete pull request lifecycle from fork to merge.\n- Create a dedicated feature branch for a contribution.\n- Respond professionally to code review feedback.",
     "ospoRelevance": "High",
@@ -49,5 +44,19 @@
     "version": "1.2.0",
     "workTranslation": "",
     "domain": "General Open Source",
-    "repoUrl": "https://github.com/INTERSECT-training/Making-Good-PRs"
+    "repoUrl": "https://github.com/INTERSECT-training/Making-Good-PRs",
+    "roles": [
+        "Contributor",
+        "Maintainer"
+    ],
+    "pathways": [
+        "getting-started"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "social-coding-and-open-source-collaboration"
+        }
+    ],
+    "provider": "INTERSECT"
 }
