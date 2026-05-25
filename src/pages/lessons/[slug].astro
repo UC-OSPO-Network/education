@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import LessonJsonLd from "../../components/LessonJsonLd.astro";
 import Citation from "../../components/Citation.astro";
 import { getLessons, getRelatedLessons, type Lesson, formatDuration } from "../../lib/lessons";
+import { lookupProvider } from "../../lib/providers";
 import { normalizeCitation } from "../../lib/citation";
 import { getCatalogCitation } from "../../lib/catalogCitation";
 import { getCollection } from "astro:content";
@@ -96,6 +97,7 @@ function formatMonth(dateStr: string | null): string {
 }
 
 const licenseShort = shortLicense(lesson.license);
+const provider = lesson.provider ? lookupProvider(lesson.provider) : null;
 const hasPrereqs =
   prereqLessons.length > 0 ||
   prereqUrls.length > 0 ||
@@ -132,6 +134,20 @@ const hasPrereqs =
         )}
         {duration && (
           <span class="lesson-badge lesson-badge--time">{duration}</span>
+        )}
+        {lesson.provider && (
+          provider ? (
+            <a
+              class="lesson-badge lesson-badge--provider"
+              href={provider.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {provider.name} ↗
+            </a>
+          ) : (
+            <span class="lesson-badge lesson-badge--provider">{lesson.provider}</span>
+          )
         )}
       </div>
 

@@ -57,5 +57,6 @@
             "type": "lesson",
             "value": "modular-programming-with-python"
         }
-    ]
+    ],
+    "provider": "INTERSECT"
 }

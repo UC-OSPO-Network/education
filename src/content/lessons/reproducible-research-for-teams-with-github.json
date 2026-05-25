@@ -44,5 +44,6 @@
     "pathways": [
         "contributing"
     ],
-    "prerequisites": []
+    "prerequisites": [],
+    "provider": "UC Davis DataLab"
 }

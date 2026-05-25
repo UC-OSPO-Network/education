@@ -54,5 +54,6 @@
             "type": "lesson",
             "value": "collaborative-git-for-teams"
         }
-    ]
+    ],
+    "provider": "The Carpentries Incubator"
 }

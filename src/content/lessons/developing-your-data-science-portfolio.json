@@ -44,5 +44,6 @@
     "pathways": [
         "strategic"
     ],
-    "prerequisites": []
+    "prerequisites": [],
+    "provider": "UC Davis DataLab"
 }

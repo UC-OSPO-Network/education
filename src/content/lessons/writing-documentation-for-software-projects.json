@@ -57,5 +57,6 @@
             "type": "lesson",
             "value": "best-practices-for-maintainers"
         }
-    ]
+    ],
+    "provider": "INTERSECT"
 }

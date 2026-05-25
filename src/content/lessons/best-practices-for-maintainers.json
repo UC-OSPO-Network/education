@@ -68,5 +68,6 @@
             "type": "lesson",
             "value": "introduction-to-git"
         }
-    ]
+    ],
+    "provider": "GitHub / Open Source Guides"
 }

@@ -30,6 +30,7 @@ const lessons = defineCollection({
     learningResourceType: z.enum(['tutorial', 'presentation', 'handout', 'video lecture', 'e-Learning module', 'quiz', 'exercise', 'workshop']).default('tutorial'),
 
     author: z.string().default(''),
+    provider: z.string().default(''),
     license: z.string().default(''),
 
     // Canonical field. ossRole kept for back-compat with existing JSON files.

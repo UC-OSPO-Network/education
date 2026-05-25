@@ -58,5 +58,6 @@
             "type": "lesson",
             "value": "how-to-contribute-to-open-source"
         }
-    ]
+    ],
+    "provider": "CodeRefinery"
 }

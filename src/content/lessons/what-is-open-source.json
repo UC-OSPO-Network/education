@@ -37,5 +37,6 @@
     "pathways": [
         "getting-started"
     ],
-    "prerequisites": []
+    "prerequisites": [],
+    "provider": "GitHub / Open Source Guides"
 }

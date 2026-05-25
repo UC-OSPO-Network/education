@@ -53,5 +53,6 @@
     "pathways": [
         "maintaining"
     ],
-    "prerequisites": []
+    "prerequisites": [],
+    "provider": "HSF Training"
 }

@@ -59,5 +59,6 @@
             "type": "lesson",
             "value": "python-packaging-for-beginners"
         }
-    ]
+    ],
+    "provider": "MolSSI"
 }

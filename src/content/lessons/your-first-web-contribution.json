@@ -41,5 +41,6 @@
             "type": "lesson",
             "value": "what-is-open-source"
         }
-    ]
+    ],
+    "provider": "GitHub / Open Source Guides"
 }

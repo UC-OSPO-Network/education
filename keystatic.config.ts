@@ -131,6 +131,10 @@ export default config({
           validation: { isRequired: true },
         }),
         author: fields.text({ label: 'Author' }),
+        provider: fields.text({
+          label: 'Provider (organization)',
+          description: 'Organization that produced this lesson (e.g. UC Davis DataLab, CodeRefinery). Follows Bioschemas TrainingMaterial provider field.',
+        }),
         license: fields.text({ label: 'License' }),
         pathways: fields.multiselect({
           label: 'Pathways',

@@ -57,5 +57,6 @@
             "type": "lesson",
             "value": "understanding-software-licensing"
         }
-    ]
+    ],
+    "provider": "CodeRefinery"
 }

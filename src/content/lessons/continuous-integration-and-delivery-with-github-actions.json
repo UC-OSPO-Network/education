@@ -59,5 +59,6 @@
             "type": "lesson",
             "value": "testing-and-test-driven-development"
         }
-    ]
+    ],
+    "provider": "INTERSECT"
 }

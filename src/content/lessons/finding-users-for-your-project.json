@@ -80,5 +80,6 @@
             "type": "lesson",
             "value": "best-practices-for-maintainers"
         }
-    ]
+    ],
+    "provider": "GitHub / Open Source Guides"
 }

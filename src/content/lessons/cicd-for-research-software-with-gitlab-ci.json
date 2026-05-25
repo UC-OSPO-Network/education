@@ -58,5 +58,6 @@
             "type": "lesson",
             "value": "unit-testing-and-tdd-in-python"
         }
-    ]
+    ],
+    "provider": "HSF Training"
 }

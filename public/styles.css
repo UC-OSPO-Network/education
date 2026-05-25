@@ -1143,6 +1143,18 @@ summary:focus-visible {
   border-color: rgba(138, 106, 0, 0.2);
 }
 
+.lesson-badge--provider {
+  background: rgba(0, 129, 85, 0.07);
+  color: #006644;
+  border-color: rgba(0, 129, 85, 0.2);
+  text-decoration: none;
+}
+
+a.lesson-badge--provider:hover {
+  background: rgba(0, 129, 85, 0.14);
+  border-color: rgba(0, 129, 85, 0.4);
+}
+
 .lesson-detail {
   display: grid;
   grid-template-columns: 1fr 21rem;

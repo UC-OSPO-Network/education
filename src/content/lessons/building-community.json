@@ -81,5 +81,6 @@
             "type": "lesson",
             "value": "social-coding-and-open-source-collaboration"
         }
-    ]
+    ],
+    "provider": "GitHub / Open Source Guides"
 }

@@ -58,5 +58,6 @@
             "type": "lesson",
             "value": "introduction-to-git"
         }
-    ]
+    ],
+    "provider": "The Turing Way"
 }
