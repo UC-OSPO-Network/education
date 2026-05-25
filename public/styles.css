@@ -1155,6 +1155,28 @@ a.lesson-badge--provider:hover {
   border-color: rgba(0, 129, 85, 0.4);
 }
 
+.lesson-detail-row--provider {
+  align-items: flex-start;
+}
+
+.lesson-provider-link {
+  font-weight: 600;
+  color: #006644;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.lesson-provider-link:hover {
+  text-decoration: underline;
+}
+
+.lesson-provider-desc {
+  margin: 0.35rem 0 0;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
 .lesson-detail {
   display: grid;
   grid-template-columns: 1fr 21rem;

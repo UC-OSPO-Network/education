@@ -220,6 +220,18 @@ const hasPrereqs =
         <div class="page-section">
           <h2 class="section-heading">Details</h2>
 
+          {provider && (
+            <div class="lesson-detail-row lesson-detail-row--provider">
+              <span class="lesson-detail-label">Provider</span>
+              <div class="lesson-detail-value">
+                <a href={provider.url} target="_blank" rel="noopener noreferrer" class="lesson-provider-link">
+                  {provider.name} ↗
+                </a>
+                <p class="lesson-provider-desc">{provider.shortDescription}</p>
+              </div>
+            </div>
+          )}
+
           {lesson.author?.trim() && (
             <div class="lesson-detail-row">
               <span class="lesson-detail-label">Author</span>
