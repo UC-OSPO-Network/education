@@ -6,12 +6,10 @@
     "url": "https://carpentries-incubator.github.io/better-research-software/",
     "topic": "Research",
     "subTopic": "Packaging",
-    "learnerCategory": "Maintaining & Sustaining Software",
     "educationalLevel": "Intermediate",
     "learningResourceType": "tutorial",
     "author": "The Carpentries Incubator",
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "ossRole": "Contributor, Maintainer",
     "inLanguage": [
         "en"
     ],
@@ -23,9 +21,6 @@
         "open science"
     ],
     "sortingId": "24",
-    "dependsOn": [
-        "introduction-to-git"
-    ],
     "prerequisiteNotes": "This is a python based course | pre-requisites | Course lists like version control in git and command line, but the course does cover the information with exercises for the student | python-packaging | python-packaging-for-beginners | python-package-development-best-practices | python-basics | collaboration-in-open-research-projects | introduction-to-git | introduction-to-unix-command-line | introduction-to-version-control-with-git",
     "learningObjectives": "After attending this training, you will be able to:\n- Explain key principles of open and reproducible research and their implications for research software development.\n- Analyse software for maintainability, reproducibility and reuse, identifying risks and opportunities for improvement.\n- Apply professional software development workflows for version control, reproducible environment management and collaboration.\n- Design modular and extensible software to support reuse and scalable development.\n- Design and implement testing, documentation and quality assurance practices to support correct and reusable research software.\n- Evaluate software projects for openness, sustainability, reusability and collaborative practices.\n- Select appropriate tools and practices to support collaborative and open research software development.",
     "ospoRelevance": "Core",
@@ -50,5 +45,18 @@
     "version": "",
     "workTranslation": "",
     "domain": "Research Software",
-    "repoUrl": "https://github.com/carpentries-incubator/better-research-software"
+    "repoUrl": "https://github.com/carpentries-incubator/better-research-software",
+    "roles": [
+        "Contributor",
+        "Maintainer"
+    ],
+    "pathways": [
+        "maintaining"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "introduction-to-git"
+        }
+    ]
 }

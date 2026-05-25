@@ -6,12 +6,10 @@
     "url": "https://carpentries-incubator.github.io/python-intermediate-development/",
     "topic": "Python",
     "subTopic": "Software Design Patterns",
-    "learnerCategory": "Maintaining & Sustaining Software",
     "educationalLevel": "Intermediate",
     "learningResourceType": "tutorial",
     "author": "Carpentries Incubator Team",
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "ossRole": "Contributor, Maintainer",
     "inLanguage": [
         "en"
     ],
@@ -23,9 +21,6 @@
         "packaging"
     ],
     "sortingId": "29",
-    "dependsOn": [
-        "introduction-to-git"
-    ],
     "prerequisiteNotes": "python-basics",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Apply intermediate Python development skills including virtual environments and packaging\n- Demonstrate collaborative development using Git feature branch workflows\n- Implement comprehensive testing strategies using pytest\n- Design modular software following Model-View-Controller architecture\n- Create well-documented, maintainable Python projects following community standards",
     "ospoRelevance": "Moderate",
@@ -50,5 +45,18 @@
     "version": "1.0.0",
     "workTranslation": "",
     "domain": "Research Software",
-    "repoUrl": "https://github.com/carpentries-incubator/python-intermediate-development"
+    "repoUrl": "https://github.com/carpentries-incubator/python-intermediate-development",
+    "roles": [
+        "Contributor",
+        "Maintainer"
+    ],
+    "pathways": [
+        "maintaining"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "introduction-to-git"
+        }
+    ]
 }

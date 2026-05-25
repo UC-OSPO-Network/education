@@ -1,21 +1,14 @@
 import { collection, config, fields } from '@keystatic/core';
-import { PATHWAYS } from './src/types/lesson';
-
-const learnerCategoryOptions = PATHWAYS.flatMap((pathway) => pathway.learnerCategories).map(
-  (category) => ({
-    label: category,
-    value: category,
-  })
-);
-
-const uniqueLearnerCategoryOptions = Array.from(
-  new Map(learnerCategoryOptions.map((option) => [option.value, option])).values()
-).sort((a, b) => a.label.localeCompare(b.label));
 
 const learnerCategorySelectOptions = [
   { label: 'Unassigned', value: '' },
-  ...uniqueLearnerCategoryOptions,
-];
+  { label: 'Building Community', value: 'Building Community' },
+  { label: 'Contributing to a Project', value: 'Contributing to a Project' },
+  { label: 'Getting Started with Open Source', value: 'Getting Started with Open Source' },
+  { label: 'Maintaining & Sustaining Software', value: 'Maintaining & Sustaining Software' },
+  { label: 'Strategic Practices & Career Development', value: 'Strategic Practices & Career Development' },
+  { label: 'Understanding Licensing & Compliance', value: 'Understanding Licensing & Compliance' },
+] as const;
 
 const educationalLevelOptions = [
   { label: 'Beginner', value: 'Beginner' },

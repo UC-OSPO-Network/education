@@ -1,7 +1,11 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PathwayCard from "../../components/PathwayCard.astro";
-import { PATHWAYS } from "../../types/lesson.ts";
+import { getCollection } from "astro:content";
+
+const pathways = (await getCollection("pathways")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
 <style>
@@ -30,8 +34,8 @@ import { PATHWAYS } from "../../types/lesson.ts";
 
   <div class="content-container">
     <div class="pathways-grid">
-      {PATHWAYS.map((pathway) => (
-        <PathwayCard pathway={pathway} />
+      {pathways.map((pathway) => (
+        <PathwayCard pathway={{ id: pathway.id, ...pathway.data }} />
       ))}
     </div>
   </div>

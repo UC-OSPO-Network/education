@@ -6,12 +6,10 @@
     "url": "https://opensource.guide/building-community/",
     "topic": "Community",
     "subTopic": "Collaboration",
-    "learnerCategory": "Building Community",
     "educationalLevel": "Intermediate",
     "learningResourceType": "handout",
     "author": "GitHub",
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "ossRole": "Community Manager, Maintainer",
     "inLanguage": [
         "en",
         "bg",
@@ -46,9 +44,6 @@
         "inclusivity"
     ],
     "sortingId": "1",
-    "dependsOn": [
-        "social-coding-and-open-source-collaboration"
-    ],
     "prerequisiteNotes": "Readers should already be familiar with OSS as a concept, and would benefit from having experience as a contributor Readers should already be familiar with OSS as a concept, and would benefit from having experience as a contributor.",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the importance of fostering an inclusive and welcoming community in open source projects\n- Identify effective communication strategies for engaging with contributors and users\n- Demonstrate conflict resolution techniques to maintain a healthy project environment\n- Apply best practices for encouraging contributor engagement and collaboration\n- Recognize the key elements that make a community sustainable and thriving",
     "ospoRelevance": "Core",
@@ -73,5 +68,18 @@
     "version": "",
     "workTranslation": "",
     "domain": "General Open Source",
-    "repoUrl": "https://github.com/github/opensource.guide"
+    "repoUrl": "https://github.com/github/opensource.guide",
+    "roles": [
+        "Community Manager",
+        "Maintainer"
+    ],
+    "pathways": [
+        "building-communities"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "social-coding-and-open-source-collaboration"
+        }
+    ]
 }

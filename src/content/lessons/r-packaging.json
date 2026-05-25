@@ -6,12 +6,10 @@
     "url": "https://carpentries-incubator.github.io/lesson-R-packaging/",
     "topic": "Packaging, R",
     "subTopic": "Packaging",
-    "learnerCategory": "Maintaining & Sustaining Software",
     "educationalLevel": "Beginner",
     "learningResourceType": "tutorial",
     "author": "The Carpentries Incubator",
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "ossRole": "Contributor, Maintainer",
     "inLanguage": [
         "en"
     ],
@@ -19,9 +17,6 @@
         "lesson-materials lessons-page best-practices r"
     ],
     "sortingId": "12",
-    "dependsOn": [
-        "introduction-to-git"
-    ],
     "prerequisiteNotes": "intermediate-r | r-basics | introduction-to-git",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Understand what an R package is and why it is useful for code organization\n- Identify the tools used to create and manage R packages\n- Build, install, and attach custom R packages\n- Apply licensing best practices to new R packages\n- Create a battery of basic tests for R package validation",
     "ospoRelevance": "Moderate",
@@ -46,5 +41,18 @@
     "version": "",
     "workTranslation": "",
     "domain": "Data Science",
-    "repoUrl": "https://github.com/carpentries-incubator/lesson-R-packaging"
+    "repoUrl": "https://github.com/carpentries-incubator/lesson-R-packaging",
+    "roles": [
+        "Contributor",
+        "Maintainer"
+    ],
+    "pathways": [
+        "maintaining"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "introduction-to-git"
+        }
+    ]
 }

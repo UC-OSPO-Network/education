@@ -6,12 +6,10 @@
     "url": "https://coderefinery.github.io/git-collaborative/",
     "topic": "Git/Beg. VCS, Contributing",
     "subTopic": "Version Control Basics",
-    "learnerCategory": "Contributing to a Project",
     "educationalLevel": "Intermediate",
     "learningResourceType": "tutorial",
     "author": "CodeRefinery Team",
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "ossRole": "Contributor, Maintainer",
     "inLanguage": [
         "en"
     ],
@@ -23,9 +21,6 @@
         "merging"
     ],
     "sortingId": "8",
-    "dependsOn": [
-        "introduction-to-git"
-    ],
     "prerequisiteNotes": "introduction-to-git | how-to-contribute-to-open-source",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Demonstrate collaborative Git usage including branching, merging, and conflict resolution\n- Apply Git workflows for team collaboration and code management\n- Identify best practices for managing branches in collaborative projects\n- Resolve merge conflicts effectively in team environments\n- Implement Git workflows that support continuous integration and delivery",
     "ospoRelevance": "Moderate",
@@ -50,5 +45,18 @@
     "version": "1.1.0",
     "workTranslation": "",
     "domain": "General Open Source",
-    "repoUrl": "https://github.com/coderefinery/git-collaborative"
+    "repoUrl": "https://github.com/coderefinery/git-collaborative",
+    "roles": [
+        "Contributor",
+        "Maintainer"
+    ],
+    "pathways": [
+        "contributing"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "introduction-to-git"
+        }
+    ]
 }

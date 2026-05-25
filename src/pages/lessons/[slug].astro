@@ -5,7 +5,7 @@ import Citation from "../../components/Citation.astro";
 import { getLessons, getRelatedLessons, type Lesson, formatDuration } from "../../lib/lessons";
 import { normalizeCitation } from "../../lib/citation";
 import { getCatalogCitation } from "../../lib/catalogCitation";
-import { PATHWAYS } from "../../types/lesson";
+import { getCollection } from "astro:content";
 import githubHealthRaw from "../../data/github-health.json";
 import type { HealthSnapshot } from "../../lib/githubHealth";
 
@@ -15,10 +15,13 @@ type Props = {
   lesson: Lesson;
   relatedLessons: Lesson[];
   prereqLessons: { slug: string; name: string }[];
+  pathwayName: string;
+  pathwayId: string;
 };
 
 export async function getStaticPaths() {
-  const lessons = await getLessons();
+  const [lessons, pathways] = await Promise.all([getLessons(), getCollection("pathways")]);
+  const pathwayMap = Object.fromEntries(pathways.map((p) => [p.id, p.data.name]));
   const slugToName = Object.fromEntries(lessons.map((l) => [l.slug, l.name]));
 
   const candidates = lessons.filter(
@@ -26,27 +29,23 @@ export async function getStaticPaths() {
   );
 
   return candidates.map((lesson) => {
+    const pathwayId = lesson.pathways[0] ?? "";
+    const pathwayName = pathwayMap[pathwayId] ?? "";
     const relatedLessons = getRelatedLessons(lesson, lessons);
-
     const prereqLessons = lesson.prerequisites
       .filter((p) => p.type === "lesson" && slugToName[p.value])
       .map((p) => ({ slug: p.value, name: slugToName[p.value] }));
 
     return {
       params: { slug: lesson.slug },
-      props: { lesson, relatedLessons, prereqLessons } satisfies Props,
+      props: { lesson, relatedLessons, prereqLessons, pathwayName, pathwayId } satisfies Props,
     };
   });
 }
 
-const { lesson, relatedLessons, prereqLessons } = Astro.props as Props;
+const { lesson, relatedLessons, prereqLessons, pathwayName, pathwayId } = Astro.props as Props;
 
-const pathway = PATHWAYS.find((item) =>
-  lesson.pathways.some((p) => item.learnerCategories.includes(p)),
-);
-const pathwayHref = pathway
-  ? `${import.meta.env.BASE_URL}pathways/${pathway.id}`
-  : "";
+const pathwayHref = pathwayId ? `${import.meta.env.BASE_URL}pathways/${pathwayId}` : "";
 const summary = lesson.description?.trim() || lesson.abstract?.trim() || "";
 const externalHref = lesson.url?.trim() ?? "";
 
@@ -121,9 +120,9 @@ const hasPrereqs =
       </nav>
 
       <div class="lesson-badges">
-        {lesson.pathways.length > 0 && (
+        {pathwayName && (
           <span class="lesson-badge lesson-badge--pathway">
-            {lesson.pathways[0]}
+            {pathwayName}
           </span>
         )}
         {lesson.educationalLevel && (

@@ -6,12 +6,10 @@
     "url": "https://carpentries-incubator.github.io/python-intermediate-development/",
     "topic": "Research, Python",
     "subTopic": "Testing",
-    "learnerCategory": "Maintaining & Sustaining Software",
     "educationalLevel": "Intermediate",
     "learningResourceType": "tutorial",
     "author": "The Carpentries Incubator",
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "ossRole": "Contributor, Maintainer",
     "inLanguage": [
         "en"
     ],
@@ -19,9 +17,6 @@
         "training training-materials software-development carpentry-lesson python software-engineering-research intermediate software-design"
     ],
     "sortingId": "26",
-    "dependsOn": [
-        "modular-programming-with-python"
-    ],
     "prerequisiteNotes": "This is a python based course | python-packaging | python-packaging-for-beginners | cicd-for-research-software-with-gitlab-ci | unit-testing-and-tdd-in-python | python-package-development-best-practices | intermediate-python | collaboration-in-open-research-projects | introduction-to-git | responsible-data-science | introduction-to-version-control-with-git",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Apply intermediate software development skills to research projects using Python\n- Demonstrate collaborative development practices in research environments\n- Implement testing, documentation, and version control for research software\n- Design reliable and maintainable research software following best practices\n- Recognize the importance of code quality and sustainability in research",
     "ospoRelevance": "Moderate",
@@ -46,5 +41,18 @@
     "version": "",
     "workTranslation": "",
     "domain": "Research Software",
-    "repoUrl": "https://github.com/carpentries-incubator/python-intermediate-development"
+    "repoUrl": "https://github.com/carpentries-incubator/python-intermediate-development",
+    "roles": [
+        "Contributor",
+        "Maintainer"
+    ],
+    "pathways": [
+        "maintaining"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "modular-programming-with-python"
+        }
+    ]
 }

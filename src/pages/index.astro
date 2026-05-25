@@ -4,11 +4,16 @@ import WelcomeHeader from '../components/home/WelcomeHeader.astro';
 import BrowseAllLessonsPanel from '../components/home/BrowseAllLessonsPanel.astro';
 import PathwayShowcase from '../components/home/PathwayShowcase';
 import '../components/home/home.css';
-import { PATHWAYS, type PathwayInfo } from '../types/lesson';
+import { getCollection } from 'astro:content';
 import { getActiveLessons, type Lesson } from '../lib/lessons';
 import type { CategoryIconName, HomepagePathwayItem, HomepagePathwaySection } from '../components/home/types';
 
-const activeLessons = await getActiveLessons();
+const [activeLessons, pathways] = await Promise.all([
+  getActiveLessons(),
+  getCollection('pathways'),
+]);
+
+const sortedPathways = pathways.sort((a, b) => a.data.order - b.data.order);
 
 function getSectionSortKey(lessons: Lesson[]) {
   return lessons
@@ -17,9 +22,9 @@ function getSectionSortKey(lessons: Lesson[]) {
     .sort((a, b) => a!.localeCompare(b!, undefined, { numeric: true }))[0] ?? null;
 }
 
-function buildHomepageSections(pathway: PathwayInfo): HomepagePathwaySection[] {
+function buildHomepageSections(pathwayId: string): HomepagePathwaySection[] {
   const grouped = activeLessons
-    .filter((lesson) => lesson.pathways.some((p) => pathway.learnerCategories.includes(p)))
+    .filter((lesson) => lesson.pathways.includes(pathwayId))
     .reduce<Record<string, Lesson[]>>((acc, lesson) => {
       const title = lesson.subTopic?.trim() || 'Other';
       acc[title] ??= [];
@@ -31,29 +36,21 @@ function buildHomepageSections(pathway: PathwayInfo): HomepagePathwaySection[] {
     .sort(([titleA, lessonsA], [titleB, lessonsB]) => {
       const keyA = getSectionSortKey(lessonsA);
       const keyB = getSectionSortKey(lessonsB);
-
-      if (keyA && keyB) {
-        return keyA.localeCompare(keyB, undefined, { numeric: true });
-      }
-
+      if (keyA && keyB) return keyA.localeCompare(keyB, undefined, { numeric: true });
       if (keyA) return -1;
       if (keyB) return 1;
-
       return titleA.localeCompare(titleB);
     })
-    .map(([title, lessons]) => ({
-      title,
-      lessons: lessons.slice(0, 4),
-    }))
+    .map(([title, lessons]) => ({ title, lessons: lessons.slice(0, 4) }))
     .slice(0, 2);
 }
 
-const homepagePathways: HomepagePathwayItem[] = PATHWAYS.map((pathway) => ({
+const homepagePathways: HomepagePathwayItem[] = sortedPathways.map((pathway) => ({
   id: pathway.id,
-  title: pathway.name,
-  description: pathway.description,
+  title: pathway.data.name,
+  description: pathway.data.description,
   iconName: pathway.id as CategoryIconName,
-  sections: buildHomepageSections(pathway),
+  sections: buildHomepageSections(pathway.id),
 }));
 
 const defaultHomepagePathwayId =

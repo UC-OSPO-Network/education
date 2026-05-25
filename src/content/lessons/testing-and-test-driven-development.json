@@ -6,12 +6,10 @@
     "url": "https://coderefinery.github.io/testing/",
     "topic": "Testing",
     "subTopic": "Testing",
-    "learnerCategory": "Maintaining & Sustaining Software",
     "educationalLevel": "Intermediate",
     "learningResourceType": "tutorial",
     "author": "CodeRefinery Team",
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "ossRole": "Maintainer, Contributor",
     "inLanguage": [
         "en"
     ],
@@ -22,9 +20,6 @@
         "pytest"
     ],
     "sortingId": "31",
-    "dependsOn": [
-        "introduction-to-git"
-    ],
     "prerequisiteNotes": "python-basics",
     "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the principles and benefits of test-driven development (TDD)\n- Demonstrate how to write unit tests using pytest\n- Apply TDD practices to improve code quality and design\n- Implement automated testing strategies for software projects\n- Recognize the role of testing in continuous integration workflows",
     "ospoRelevance": "Core",
@@ -49,5 +44,18 @@
     "version": "2.0.0",
     "workTranslation": "",
     "domain": "General Open Source",
-    "repoUrl": "https://github.com/coderefinery/testing"
+    "repoUrl": "https://github.com/coderefinery/testing",
+    "roles": [
+        "Maintainer",
+        "Contributor"
+    ],
+    "pathways": [
+        "maintaining"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "introduction-to-git"
+        }
+    ]
 }
