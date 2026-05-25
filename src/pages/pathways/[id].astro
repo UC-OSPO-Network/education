@@ -24,7 +24,7 @@ const pathwayLessons = lessons.filter(
   (lesson) =>
     (lesson.keepStatus === "keep" || lesson.keepStatus === "keepCandidate") &&
     lesson.url.trim() !== "" &&
-    pathway.learnerCategories.includes(lesson.learnerCategory),
+    lesson.pathways.some((p) => pathway.learnerCategories.includes(p)),
 );
 
 const lessonIndex = Object.fromEntries(

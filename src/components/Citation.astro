@@ -1,0 +1,69 @@
+---
+import { renderApa, renderBibtex, type NormalizedCitation } from "../lib/citation";
+
+interface Props {
+  lessonSlug: string;
+  citation: NormalizedCitation;
+}
+
+const { lessonSlug, citation } = Astro.props;
+
+const apaCitation = renderApa(citation);
+const bibtexCitation = renderBibtex(citation, lessonSlug);
+const bibtexFile = `${lessonSlug}-citation.bib`;
+const bibtexDownloadHref = `data:text/plain;charset=utf-8,${encodeURIComponent(bibtexCitation)}`;
+---
+
+<div class="page-section" aria-labelledby="cite-heading">
+  <h2 class="section-heading" id="cite-heading">Cite this lesson</h2>
+  {citation.source === 'cff' && (
+    <p class="lesson-cite-note">
+      Metadata from <code>CITATION.cff</code>.
+    </p>
+  )}
+
+  <div class="lesson-cite-block">
+    <div class="lesson-cite-header">
+      <span class="lesson-cite-label">APA</span>
+      <button class="lesson-cite-copy" data-copy={apaCitation} aria-label="Copy APA citation">
+        Copy
+      </button>
+    </div>
+    <p class="lesson-cite-text">{apaCitation}</p>
+  </div>
+
+  <div class="lesson-cite-block">
+    <div class="lesson-cite-header">
+      <span class="lesson-cite-label">BibTeX</span>
+      <div class="lesson-cite-actions">
+        <button class="lesson-cite-copy" data-copy={bibtexCitation} aria-label="Copy BibTeX citation">
+          Copy
+        </button>
+        <a class="lesson-cite-download" href={bibtexDownloadHref} download={bibtexFile}>
+          Download .bib
+        </a>
+      </div>
+    </div>
+    <pre class="lesson-cite-pre"><code>{bibtexCitation}</code></pre>
+  </div>
+
+  <script>
+    const section = document.currentScript?.closest('[aria-labelledby="cite-heading"]');
+    const buttons = section
+      ? section.querySelectorAll('.lesson-cite-copy')
+      : document.querySelectorAll('.lesson-cite-copy');
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const text = button.getAttribute('data-copy');
+        if (!text) return;
+        navigator.clipboard.writeText(text).then(() => {
+          const original = button.textContent;
+          button.textContent = 'Copied!';
+          setTimeout(() => {
+            button.textContent = original;
+          }, 2000);
+        });
+      });
+    });
+  </script>
+</div>

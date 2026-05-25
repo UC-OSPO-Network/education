@@ -1,11 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import LessonJsonLd from "../../components/LessonJsonLd.astro";
-import { getLessons, type Lesson, formatDuration } from "../../lib/lessons";
+import Citation from "../../components/Citation.astro";
+import { getLessons, getRelatedLessons, type Lesson, formatDuration } from "../../lib/lessons";
+import { normalizeCitation } from "../../lib/citation";
+import { getCatalogCitation } from "../../lib/catalogCitation";
 import { PATHWAYS } from "../../types/lesson";
 import githubHealthRaw from "../../data/github-health.json";
 import type { HealthSnapshot } from "../../lib/githubHealth";
-import { formatAuthorsApa, formatAuthorsBibtex } from "../../lib/githubHealth";
 
 const healthData = githubHealthRaw as unknown as HealthSnapshot;
 
@@ -24,35 +26,15 @@ export async function getStaticPaths() {
   );
 
   return candidates.map((lesson) => {
-    const relatedByPathway = lessons.filter(
-      (other) =>
-        other.slug !== lesson.slug &&
-        other.keepStatus !== "drop" &&
-        other.url.trim() !== "" &&
-        other.learnerCategory === lesson.learnerCategory,
-    );
+    const relatedLessons = getRelatedLessons(lesson, lessons);
 
-    const relatedBySubtopic = relatedByPathway.filter((other) => {
-      const currentSubtopic = lesson.subTopic?.trim() ?? "";
-      const otherSubtopic = other.subTopic?.trim() ?? "";
-      if (currentSubtopic === "") return otherSubtopic === "";
-      return otherSubtopic === currentSubtopic;
-    });
-
-    const relatedLessons =
-      relatedBySubtopic.length > 0 ? relatedBySubtopic : relatedByPathway;
-
-    const prereqLessons = (lesson.dependsOn ?? [])
-      .filter((slug) => slugToName[slug])
-      .map((slug) => ({ slug, name: slugToName[slug] }));
+    const prereqLessons = lesson.prerequisites
+      .filter((p) => p.type === "lesson" && slugToName[p.value])
+      .map((p) => ({ slug: p.value, name: slugToName[p.value] }));
 
     return {
       params: { slug: lesson.slug },
-      props: {
-        lesson,
-        relatedLessons: relatedLessons.slice(0, 6),
-        prereqLessons,
-      } satisfies Props,
+      props: { lesson, relatedLessons, prereqLessons } satisfies Props,
     };
   });
 }
@@ -60,15 +42,12 @@ export async function getStaticPaths() {
 const { lesson, relatedLessons, prereqLessons } = Astro.props as Props;
 
 const pathway = PATHWAYS.find((item) =>
-  item.learnerCategories.includes(lesson.learnerCategory),
+  lesson.pathways.some((p) => item.learnerCategories.includes(p)),
 );
 const pathwayHref = pathway
   ? `${import.meta.env.BASE_URL}pathways/${pathway.id}`
   : "";
-const summary =
-  lesson.description?.trim() ||
-  lesson.abstract?.trim() ||
-  "";
+const summary = lesson.description?.trim() || lesson.abstract?.trim() || "";
 const externalHref = lesson.url?.trim() ?? "";
 
 const repoHealth = lesson.repoUrl
@@ -76,59 +55,28 @@ const repoHealth = lesson.repoUrl
   : null;
 const repoLastUpdated = repoHealth?.pushedAt ?? null;
 
-// Build citation — prefer CFF data, fall back to lesson metadata
-const cffCitation = repoHealth?.citation ?? null;
-const citationAuthors = cffCitation?.authors ?? [];
-const citationYear = cffCitation?.dateReleased
-  ? cffCitation.dateReleased.slice(0, 4)
-  : new Date().getFullYear().toString();
-const citationTitle = cffCitation?.title ?? lesson.name;
-const citationDoi = cffCitation?.doi ?? null;
-const citationUrl = citationDoi
-  ? `https://doi.org/${citationDoi}`
-  : lesson.url?.trim() || lesson.repoUrl?.trim() || "";
-const citationVersion = cffCitation?.version ?? null;
+const catalogCitation = getCatalogCitation();
+const normalizedCitation = normalizeCitation({
+  lessonName: lesson.name,
+  lessonAuthor: lesson.author,
+  lessonUrl: lesson.url,
+  repoUrl: lesson.repoUrl,
+  cffCitation: repoHealth?.citation ?? null,
+  catalogCitation,
+});
 
-const apaAuthors = formatAuthorsApa(citationAuthors, lesson.author);
-const bibtexAuthors = formatAuthorsBibtex(citationAuthors, lesson.author);
-const bibtexId = lesson.slug.replace(/-/g, '_');
+// URL prerequisites to display alongside internal lesson links
+const prereqUrls = lesson.prerequisites.filter(
+  (p): p is { type: "url"; value: string; label?: string } => p.type === "url",
+);
 
-const apaCitation = [
-  `${apaAuthors} (${citationYear}).`,
-  `${citationTitle}.`,
-  citationVersion ? `(Version ${citationVersion}).` : null,
-  `UC OSPO Network.`,
-  citationUrl,
-].filter(Boolean).join(' ');
-
-const bibtexCitation = `@misc{${bibtexId}_${citationYear},
-  author    = {${bibtexAuthors}},
-  title     = {${citationTitle}},
-  year      = {${citationYear}},
-  publisher = {UC OSPO Network},
-  url       = {${citationUrl}}${citationDoi ? `,\n  doi       = {${citationDoi}}` : ""}${citationVersion ? `,\n  version   = {${citationVersion}}` : ""}
-}`;
-
-// Parse bullet lines out of the learningObjectives block
 const outcomeLines = (lesson.learningObjectives ?? "")
   .split("\n")
   .map((l) => l.trim())
   .filter((l) => l.startsWith("- ") || l.startsWith("* "))
   .map((l) => l.replace(/^[-*]\s+/, ""));
 
-// Keywords as array
-const keywordList = lesson.keywords
-  ? lesson.keywords
-      .split(",")
-      .map((k) => k.trim())
-      .filter(Boolean)
-  : [];
-
-// OSS roles as array
-const ossRoles = (lesson.ossRole ?? lesson.oss_role ?? "")
-  .split(",")
-  .map((r) => r.trim())
-  .filter(Boolean);
+const duration = formatDuration(lesson.timeRequired);
 
 function shortLicense(url: string | undefined): string {
   if (!url) return "";
@@ -148,9 +96,11 @@ function formatMonth(dateStr: string | null): string {
   return `${names[month - 1]} ${year}`;
 }
 
-const duration = formatDuration(lesson.timeRequired);
 const licenseShort = shortLicense(lesson.license);
-const hasPrereqs = prereqLessons.length > 0 || !!lesson.competencyRequired?.trim();
+const hasPrereqs =
+  prereqLessons.length > 0 ||
+  prereqUrls.length > 0 ||
+  !!lesson.competencyRequired?.trim();
 ---
 
 <BaseLayout title={lesson.name} description={summary}>
@@ -171,9 +121,9 @@ const hasPrereqs = prereqLessons.length > 0 || !!lesson.competencyRequired?.trim
       </nav>
 
       <div class="lesson-badges">
-        {lesson.learnerCategory && (
+        {lesson.pathways.length > 0 && (
           <span class="lesson-badge lesson-badge--pathway">
-            {lesson.learnerCategory}
+            {lesson.pathways[0]}
           </span>
         )}
         {lesson.educationalLevel && (
@@ -233,6 +183,17 @@ const hasPrereqs = prereqLessons.length > 0 || !!lesson.competencyRequired?.trim
                 ))}
               </ul>
             )}
+            {prereqUrls.length > 0 && (
+              <ul class="lesson-prereq-list">
+                {prereqUrls.map((p) => (
+                  <li>
+                    <a href={p.value} target="_blank" rel="noopener noreferrer">
+                      {p.label ?? p.value}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
             {lesson.competencyRequired?.trim() && (
               <p class="lesson-prereq-note">{lesson.competencyRequired}</p>
             )}
@@ -286,18 +247,18 @@ const hasPrereqs = prereqLessons.length > 0 || !!lesson.competencyRequired?.trim
             </div>
           )}
 
-          {ossRoles.length > 0 && (
+          {lesson.roles.length > 0 && (
             <div class="lesson-detail-row">
               <span class="lesson-detail-label">OSS role</span>
-              <span class="lesson-detail-value">{ossRoles.join(", ")}</span>
+              <span class="lesson-detail-value">{lesson.roles.join(", ")}</span>
             </div>
           )}
 
-          {keywordList.length > 0 && (
+          {lesson.keywords.length > 0 && (
             <div class="lesson-detail-row">
               <span class="lesson-detail-label">Topics</span>
               <div class="lesson-tags">
-                {keywordList.map((tag) => (
+                {lesson.keywords.map((tag) => (
                   <span class="lesson-tag">{tag}</span>
                 ))}
               </div>
@@ -331,34 +292,7 @@ const hasPrereqs = prereqLessons.length > 0 || !!lesson.competencyRequired?.trim
           </div>
         )}
 
-        <div class="page-section" aria-labelledby="cite-heading">
-          <h2 class="section-heading" id="cite-heading">Cite this lesson</h2>
-          {cffCitation && (
-            <p class="lesson-cite-note">
-              Metadata from <code>CITATION.cff</code>.
-            </p>
-          )}
-
-          <div class="lesson-cite-block">
-            <div class="lesson-cite-header">
-              <span class="lesson-cite-label">APA</span>
-              <button class="lesson-cite-copy" data-copy={apaCitation} aria-label="Copy APA citation">
-                Copy
-              </button>
-            </div>
-            <p class="lesson-cite-text">{apaCitation}</p>
-          </div>
-
-          <div class="lesson-cite-block">
-            <div class="lesson-cite-header">
-              <span class="lesson-cite-label">BibTeX</span>
-              <button class="lesson-cite-copy" data-copy={bibtexCitation} aria-label="Copy BibTeX citation">
-                Copy
-              </button>
-            </div>
-            <pre class="lesson-cite-pre"><code>{bibtexCitation}</code></pre>
-          </div>
-        </div>
+        <Citation lessonSlug={lesson.slug} citation={normalizedCitation} />
       </aside>
 
     </div>
@@ -385,17 +319,4 @@ const hasPrereqs = prereqLessons.length > 0 || !!lesson.competencyRequired?.trim
       )}
     </section>
   </div>
-<script>
-  document.querySelectorAll<HTMLButtonElement>('.lesson-cite-copy').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const text = btn.dataset.copy;
-      if (!text) return;
-      navigator.clipboard.writeText(text).then(() => {
-        const original = btn.textContent;
-        btn.textContent = 'Copied!';
-        setTimeout(() => { btn.textContent = original; }, 2000);
-      });
-    });
-  });
-</script>
 </BaseLayout>

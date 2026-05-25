@@ -8,15 +8,6 @@ type LessonPreviewCardProps = {
   compact?: boolean;
 };
 
-function firstItems(value: string | undefined, limit = 2) {
-  if (!value) return [];
-  return value
-    .split(',')
-    .map((item) => item.trim())
-    .filter(Boolean)
-    .slice(0, limit);
-}
-
 function getLevelConfig(level: string | undefined) {
   if (!level) return { bg: '#6b7280', label: 'Lesson' };
   const n = level.toLowerCase();
@@ -32,7 +23,7 @@ export default function LessonPreviewCard({
   compact = false,
 }: LessonPreviewCardProps) {
   const href = `${import.meta.env.BASE_URL}lessons/${lesson.slug}`;
-  const roles = firstItems(lesson.oss_role);
+  const roles = (lesson.roles ?? []).slice(0, 2);
   const topMeta = lesson.learningResourceType || lesson.subTopic || 'Lesson';
   const compactClass = compact ? 'is-compact' : '';
   const level = getLevelConfig(lesson.educationalLevel);
