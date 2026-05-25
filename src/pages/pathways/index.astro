@@ -2,10 +2,25 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PathwayCard from "../../components/PathwayCard.astro";
 import { getCollection } from "astro:content";
+import { getLessons } from "../../lib/lessons";
 
-const pathways = (await getCollection("pathways")).sort(
-  (a, b) => a.data.order - b.data.order,
+const [pathways, allLessons] = await Promise.all([
+  getCollection("pathways"),
+  getLessons(),
+]);
+
+pathways.sort((a, b) => a.data.order - b.data.order);
+
+const activeLessons = allLessons.filter(
+  (l) => (l.keepStatus === "keep" || l.keepStatus === "keepCandidate") && l.url.trim() !== "",
 );
+
+const lessonCountByPathway: Record<string, number> = {};
+for (const lesson of activeLessons) {
+  for (const pid of lesson.pathways) {
+    lessonCountByPathway[pid] = (lessonCountByPathway[pid] ?? 0) + 1;
+  }
+}
 ---
 
 <style>
@@ -35,7 +50,10 @@ const pathways = (await getCollection("pathways")).sort(
   <div class="content-container">
     <div class="pathways-grid">
       {pathways.map((pathway) => (
-        <PathwayCard pathway={{ id: pathway.id, ...pathway.data }} />
+        <PathwayCard
+          pathway={{ id: pathway.id, ...pathway.data }}
+          lessonCount={lessonCountByPathway[pathway.id] ?? 0}
+        />
       ))}
     </div>
   </div>

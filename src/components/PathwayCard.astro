@@ -6,9 +6,10 @@ interface Props {
     description: string;
     icon: string;
   };
+  lessonCount?: number;
 }
 
-const { pathway } = Astro.props;
+const { pathway, lessonCount = 0 } = Astro.props;
 ---
 
 <style>
@@ -70,6 +71,17 @@ const { pathway } = Astro.props;
     margin: 0;
     line-height: 1.5;
   }
+
+  .pathway-count {
+    display: inline-block;
+    margin-top: 0.85rem;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+  }
 </style>
 
 <a href={`${import.meta.env.BASE_URL}pathways/${pathway.id}`} class="pathway-card">
@@ -78,4 +90,7 @@ const { pathway } = Astro.props;
     <h2 class="pathway-title">{pathway.name}</h2>
   </div>
   <p class="pathway-description">{pathway.description}</p>
+  {lessonCount > 0 && (
+    <span class="pathway-count">{lessonCount} {lessonCount === 1 ? "lesson" : "lessons"}</span>
+  )}
 </a>
