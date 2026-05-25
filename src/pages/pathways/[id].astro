@@ -56,6 +56,26 @@ const groupedLessons = pathwayLessons.reduce<Record<string, Lesson[]>>((acc, les
   acc[topic].push(lesson);
   return acc;
 }, {});
+
+const LEVEL_ORDER: Record<string, number> = { beginner: 0, intermediate: 1, advanced: 2 };
+
+for (const group of Object.values(groupedLessons)) {
+  group.sort((a, b) => {
+    const levelDiff =
+      (LEVEL_ORDER[a.educationalLevel.toLowerCase()] ?? 3) -
+      (LEVEL_ORDER[b.educationalLevel.toLowerCase()] ?? 3);
+    if (levelDiff !== 0) return levelDiff;
+    return (parseInt(a.sortingId) || 999) - (parseInt(b.sortingId) || 999);
+  });
+}
+
+const sortedGroups = Object.entries(groupedLessons).sort(([keyA, aLessons], [keyB, bLessons]) => {
+  if (keyA === "Other") return 1;
+  if (keyB === "Other") return -1;
+  const minA = Math.min(...aLessons.map((l) => parseInt(l.sortingId) || 999));
+  const minB = Math.min(...bLessons.map((l) => parseInt(l.sortingId) || 999));
+  return minA - minB;
+});
 ---
 
 <style>
@@ -112,7 +132,7 @@ const groupedLessons = pathwayLessons.reduce<Record<string, Lesson[]>>((acc, les
         <p>No lessons are available for this pathway yet.</p>
       </section>
     ) : (
-      Object.entries(groupedLessons).map(([subtopic, subtopicLessons]) => (
+      sortedGroups.map(([subtopic, subtopicLessons]) => (
         <section class="pathway-section page-section">
           <h2 class="pathway-subtopic">{subtopic}</h2>
           <div class="lesson-grid">
