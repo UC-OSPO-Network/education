@@ -1,0 +1,87 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const base = import.meta.env.BASE_URL;
+// pagefind-ui.js uses this as prefix for all result URLs.
+// e.g. "/education/" + "lessons/foo/" → "/education/lessons/foo/"
+const pagefindBase = base;
+const pagefindCss = `${base}pagefind/pagefind-ui.css`;
+const pagefindJs = `${base}pagefind/pagefind-ui.js`;
+---
+
+<BaseLayout
+  title="Search"
+  description="Search all lessons and resources in the UC OSPO Education catalog."
+>
+  <Fragment slot="head">
+    <link rel="stylesheet" href={pagefindCss} />
+  </Fragment>
+
+  <section class="page-intro">
+    <div class="content-container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href={base}>Home</a></li>
+          <li class="breadcrumbs__separator" aria-hidden="true">/</li>
+          <li aria-current="page">Search</li>
+        </ol>
+      </nav>
+      <h1 class="page-intro__title">Search</h1>
+      <p class="page-intro__summary">
+        Find lessons, pathways, and resources across the UC OSPO Education catalog.
+      </p>
+    </div>
+  </section>
+
+  <div class="content-container">
+    <div class="search-page page-section" data-pagefind-ignore="all">
+      <div id="search"></div>
+      <noscript>
+        <p>JavaScript is required for site search.</p>
+      </noscript>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  #search {
+    --pagefind-ui-scale: 1;
+    --pagefind-ui-primary: var(--uc-blue);
+    --pagefind-ui-text: var(--text-primary);
+    --pagefind-ui-background: var(--bg-primary);
+    --pagefind-ui-border: var(--border-light);
+    --pagefind-ui-tag: var(--bg-surface-strong);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: var(--radius-md);
+    --pagefind-ui-font: var(--font-sans);
+    max-width: 52rem;
+  }
+
+  .search-page {
+    padding-block: 1.5rem;
+  }
+</style>
+
+<script define:vars={{ pagefindJs, pagefindBase }}>
+  const container = document.getElementById("search");
+  if (container) {
+    const s = document.createElement("script");
+    s.src = pagefindJs;
+    s.onload = () => {
+      // PagefindUI is injected as a global by pagefind-ui.js
+      new window.PagefindUI({
+        element: "#search",
+        baseUrl: pagefindBase,
+        showSubResults: true,
+        showImages: false,
+        excerptLength: 25,
+        resetStyles: false,
+      });
+    };
+    s.onerror = () => {
+      container.innerHTML =
+        '<p class="search-unavailable">Search index not found — run <code>npm run build</code> to generate it.</p>';
+    };
+    document.head.appendChild(s);
+  }
+</script>

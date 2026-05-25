@@ -51,7 +51,7 @@ const sidebarItems = siteChrome.nav.map((item) => ({
 
       <main id="main-content" class="site-main">
         <div class="site-layout">
-          <aside class="site-sidebar" aria-label="Section navigation">
+          <aside class="site-sidebar" aria-label="Section navigation" data-pagefind-ignore>
             <div class="site-sidebar__inner">
               <p class="site-sidebar__eyebrow">UC OSPO Network</p>
               <nav class="site-sidebar__nav" aria-label="Site sections">
@@ -113,7 +113,7 @@ const sidebarItems = siteChrome.nav.map((item) => ({
             </div>
           </aside>
 
-          <div class="site-content">
+          <div class="site-content" data-pagefind-body>
             <slot />
           </div>
         </div>

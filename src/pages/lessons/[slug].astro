@@ -105,6 +105,15 @@ const hasPrereqs =
 ---
 
 <BaseLayout title={lesson.name} description={summary}>
+  {/* Pagefind filter metadata — visually hidden, indexed for faceted search */}
+  <div class="sr-only" aria-hidden="true">
+    {lesson.educationalLevel && <span data-pagefind-filter="level">{lesson.educationalLevel}</span>}
+    {lesson.domain && <span data-pagefind-filter="domain">{lesson.domain}</span>}
+    {lesson.roles.map((role) => <span data-pagefind-filter="role">{role}</span>)}
+    {lesson.pathways.map((p) => <span data-pagefind-filter="pathway">{p}</span>)}
+    {lesson.provider && <span data-pagefind-filter="provider">{lesson.provider}</span>}
+    <span data-pagefind-meta="type">lesson</span>
+  </div>
   <Fragment slot="head">
     <LessonJsonLd lesson={lesson} canonicalUrl={Astro.url.href} />
   </Fragment>
