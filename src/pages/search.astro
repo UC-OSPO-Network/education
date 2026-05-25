@@ -75,17 +75,18 @@ const pagefindCss = `${pagefindPath}pagefind-component-ui.css`;
     const el = document.getElementById("search");
     if (!el) return;
     try {
-      // Load pagefind core and set base URL before the UI initialises.
-      // baseUrl tells pagefind to prefix all result URLs with /education/
-      // so links resolve correctly on the GitHub Pages subpath deployment.
-      const pf = await import(pagefindPath + "pagefind.js");
-      if (pf.options) await pf.options({ baseUrl: base });
-
-      // Load the Component UI — registers <pagefind-searchbox> web component
+      // Load the Component UI — registers web components including
+      // <pagefind-config> and <pagefind-searchbox>
       await import(pagefindPath + "pagefind-component-ui.js");
 
-      // Swap in the web component (autofocus so users can type immediately)
-      el.innerHTML = "<pagefind-searchbox autofocus></pagefind-searchbox>";
+      // <pagefind-config> must be inserted before <pagefind-searchbox> so it
+      // can set bundle-path and base-url on the shared pagefind instance
+      // before the searchbox tries to load the index. Dynamic import leaves
+      // document.currentScript null, so detectBundlePath() falls back to
+      // /pagefind/ — pagefind-config overrides that explicitly.
+      el.innerHTML =
+        `<pagefind-config bundle-path="${pagefindPath}" base-url="${base}"></pagefind-config>` +
+        `<pagefind-searchbox autofocus></pagefind-searchbox>`;
     } catch {
       el.innerHTML =
         '<p class="search-unavailable">Search index not found — run <code>npm run build</code> to generate it.</p>';
