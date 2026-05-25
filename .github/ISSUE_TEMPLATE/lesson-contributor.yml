@@ -1,0 +1,145 @@
+name: Lesson Contributor — Express Interest
+description: Join the authoring or review team for a lesson in the July-September 2026 development cycle
+title: "[CONTRIBUTOR]: "
+labels: ["contributor-interest", "lesson-development"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## UC OSPO Education — Lesson Development Cohort (July-September 2026)
+
+        Four lessons are in active development this summer. We're looking for co-authors, peer reviewers, beta teachers, and subject matter experts.
+
+        **Lessons open for contributors:**
+        - UC Licensing Module (UC policy-focused)
+        - Research Software: Citable and Discoverable
+        - Librarians as Open Source Stewards
+        - Open Source AI (OSAID framing)
+
+        All materials are licensed CC BY 4.0. Named authorship and citable credit (Zenodo DOI, JOSE submission) included for all tracks.
+
+        ---
+
+  - type: dropdown
+    id: lesson
+    attributes:
+      label: Which lesson are you interested in?
+      description: Select the lesson you want to contribute to. You can open separate issues if you're interested in more than one.
+      options:
+        - UC Licensing Module
+        - Research Software: Citable and Discoverable
+        - Librarians as Open Source Stewards
+        - Open Source AI
+        - Not sure yet — open to placement
+    validations:
+      required: true
+
+  - type: dropdown
+    id: contribution-track
+    attributes:
+      label: How do you want to contribute?
+      description: Pick the track that fits your availability. See the [full description of each track](https://github.com/UC-OSPO-Network/education/drafts/lesson-dev-appeal.md) for details on commitment and credit.
+      options:
+        - "Author + CLDT cohort — ~18 hours training + async writing over 10-14 weeks"
+        - "Peer reviewer — 1-2 async review rounds on draft episodes"
+        - "Beta teacher — pilot the lesson at my institution after first draft"
+        - "Subject matter expert — one 60-min consultation, no ongoing commitment"
+    validations:
+      required: true
+
+  - type: textarea
+    id: background
+    attributes:
+      label: Relevant background
+      description: What do you bring to this lesson? Include subject matter expertise, teaching experience, or community ties. Two or three sentences is enough.
+      placeholder: e.g., "I'm a research software engineer at a national lab and have taught Software Carpentry for five years. I've also contributed to the Choose a License docs and have strong opinions about CITATION.cff."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: availability
+    attributes:
+      label: Availability (July-September 2026)
+      description: Check all months when you have capacity to contribute.
+      options:
+        - label: July 2026
+        - label: August 2026
+        - label: September 2026
+
+  - type: dropdown
+    id: cldt-experience
+    attributes:
+      label: CLDT experience (authoring track only — skip if reviewing)
+      description: The authoring track involves Carpentries Lesson Development Training. What's your current status?
+      options:
+        - No experience — interested in joining a cohort as part of this program
+        - Attended CLDT previously
+        - Certified Carpentries instructor (no CLDT yet)
+        - Already developing a Carpentries lesson
+        - Not applicable — I'm signing up for review, beta teaching, or SME consult
+    validations:
+      required: false
+
+  - type: input
+    id: affiliation
+    attributes:
+      label: Affiliation
+      description: Institution or organization (UC campus, national lab, independent, etc.)
+      placeholder: e.g., UC San Diego, SSI, independent RSE
+    validations:
+      required: true
+
+  - type: input
+    id: contact
+    attributes:
+      label: Best way to reach you
+      description: Email or GitHub handle — we'll use this to follow up
+      placeholder: e.g., researcher@university.edu or @githubhandle
+    validations:
+      required: true
+
+  - type: dropdown
+    id: referral
+    attributes:
+      label: How did you hear about this?
+      options:
+        - Carpentries community channels
+        - rOpenSci or pyOpenSci
+        - Library Carpentry / library mailing list
+        - UC colleague or campus OSPO
+        - Social media (Mastodon, Bluesky, LinkedIn)
+        - UC Open conference
+        - Other
+    validations:
+      required: false
+
+  - type: textarea
+    id: questions
+    attributes:
+      label: Questions or notes
+      description: Anything you want to know before committing, or context that would help us place you on a team.
+      placeholder: Optional
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Confirmation
+      options:
+        - label: I understand contributions will be published under CC BY 4.0
+          required: true
+        - label: I'm available for at least one of the months listed above
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+        **What happens after you submit:**
+
+        1. We'll follow up within a week to confirm your track and lesson placement.
+        2. Authors joining the CLDT cohort will get scheduling info for the training sessions.
+        3. Reviewers and beta teachers will hear from us when the first draft is ready, roughly mid-cycle.
+        4. All contributors will be added to the lesson's `CONTRIBUTORS` file and Zenodo record.
+
+        Questions before submitting? Open a [Discussion](https://github.com/UC-OSPO-Network/education/discussions) or email Tim Dennis.
