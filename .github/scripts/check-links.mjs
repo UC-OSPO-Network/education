@@ -39,9 +39,10 @@ function extractInternalLinks(html, filePath) {
   while ((match = hrefRegex.exec(html)) !== null) {
     const href = match[1];
 
-    // Skip external links, anchors, mailto, tel, etc.
+    // Skip external links, anchors, data URIs, mailto, tel, etc.
     if (href.startsWith('http://') ||
         href.startsWith('https://') ||
+        href.startsWith('data:') ||
         href.startsWith('mailto:') ||
         href.startsWith('tel:') ||
         href.startsWith('#')) {
