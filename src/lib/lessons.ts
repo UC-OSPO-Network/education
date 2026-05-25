@@ -1,7 +1,7 @@
 import { getCollection } from 'astro:content';
 
 export type PrerequisiteRef =
-  | { type: 'lesson'; value: string }
+  | { type: 'lesson'; value: string; label?: string }
   | { type: 'url'; value: string; label?: string }
   | { type: 'text'; value: string; label?: string };
 

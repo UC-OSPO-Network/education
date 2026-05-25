@@ -29,7 +29,8 @@
     "validate:data": "node .github/scripts/validate-data.mjs",
     "validate:build": "node .github/scripts/validate-build.mjs",
     "validate:links": "node .github/scripts/check-links.mjs",
-    "check:links": "node .github/scripts/check-links.mjs"
+    "check:links": "node .github/scripts/check-links.mjs",
+    "lint": "eslint src --ext .jsx,.tsx"
   },
   "dependencies": {
     "@astrojs/react": "^4.4.0",
@@ -48,9 +49,12 @@
     "@axe-core/playwright": "^4.11.0",
     "@playwright/test": "^1.56.1",
     "@types/js-yaml": "^4.0.9",
+    "eslint": "^9.39.4",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
     "js-yaml": "^4.1.1",
     "pa11y": "^9.0.1",
     "pa11y-ci": "^4.0.1",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.59.4"
   }
 }
