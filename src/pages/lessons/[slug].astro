@@ -50,9 +50,7 @@ const pathwayHref = pathwayId ? `${import.meta.env.BASE_URL}pathways/${pathwayId
 const summary = lesson.description?.trim() || lesson.abstract?.trim() || "";
 const externalHref = lesson.url?.trim() ?? "";
 
-const repoHealth = lesson.repoUrl
-  ? (healthData.lessons[lesson.repoUrl] ?? null)
-  : null;
+const repoHealth = healthData.lessons[lesson.slug] ?? null;
 const repoLastUpdated = repoHealth?.pushedAt ?? null;
 
 const catalogCitation = getCatalogCitation();

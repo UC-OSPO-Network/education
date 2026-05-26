@@ -143,6 +143,13 @@
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
+.lesson-card__cover-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
 .lesson-card:hover {
   color: inherit;
   text-decoration: none;
@@ -150,13 +157,16 @@
   box-shadow: var(--shadow-strong);
 }
 
-.lesson-card:focus-visible {
+.lesson-card:focus-within {
   outline: 3px solid var(--uc-gold);
   outline-offset: 3px;
 }
 
 /* Level band */
 .lesson-card__band {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -178,6 +188,9 @@
 
 /* Metadata strip */
 .lesson-card__meta-strip {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
   padding: 0.6rem 1rem 0.7rem;
   background: var(--bg-subtle);
   border-bottom: 1px solid var(--border-light);
@@ -205,6 +218,9 @@
 
 /* Body */
 .lesson-card__body {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -272,6 +288,9 @@
 }
 
 .lesson-card__prereq-link {
+  position: relative;
+  z-index: 3;
+  pointer-events: auto;
   display: inline-block;
   font-family: var(--font-sans);
   font-size: 0.75rem;
@@ -297,6 +316,9 @@
 
 /* Feedback link */
 .lesson-card__feedback {
+  position: relative;
+  z-index: 3;
+  pointer-events: auto;
   align-self: flex-end;
   margin-top: auto;
   font-family: var(--font-sans);
@@ -318,6 +340,52 @@
   text-decoration: none;
 }
 
+.lesson-card__health {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.55rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  line-height: 1.35;
+}
+
+.lesson-card__health-item,
+.lesson-card__health-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.18rem;
+  min-height: 1.25rem;
+  color: inherit;
+  white-space: nowrap;
+}
+
+.lesson-card__health-link {
+  position: relative;
+  z-index: 3;
+  pointer-events: auto;
+  text-decoration: none;
+}
+
+.lesson-card__health-link:hover {
+  color: var(--uc-blue);
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+.lesson-card__health-link:focus-visible {
+  outline: 2px solid var(--uc-gold);
+  outline-offset: 2px;
+}
+
+.lesson-card__health-item--stale {
+  color: #9a5a00;
+  font-weight: 600;
+}
+
 @media (prefers-color-scheme: dark) {
   .lesson-card__prereq-link {
     color: var(--uc-light-blue);
@@ -329,6 +397,14 @@
     color: var(--uc-light-blue);
     background: rgba(122, 179, 255, 0.14);
     border-color: rgba(122, 179, 255, 0.38);
+  }
+
+  .lesson-card__health-link:hover {
+    color: var(--uc-light-blue);
+  }
+
+  .lesson-card__health-item--stale {
+    color: #f0b35a;
   }
 
 }

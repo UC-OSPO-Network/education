@@ -14,7 +14,7 @@ export const GET: APIRoute = async () => {
     .filter((l) => l.keepStatus !== 'drop')
     .sort((a, b) => a.name.localeCompare(b.name))
     .map((l) => {
-      const health = l.repoUrl ? healthLessons[l.repoUrl] ?? null : null;
+      const health = healthLessons[l.slug] ?? null;
       return {
         name: l.name,
         slug: l.slug,
@@ -40,6 +40,10 @@ export const GET: APIRoute = async () => {
               contributors: health.contributorCount ?? null,
               openIssues: health.openIssues ?? 0,
               archived: health.archived ?? false,
+              license: health.license ?? null,
+              sponsorsUrl: health.sponsorsUrl ?? null,
+              hasFunding: health.hasFunding ?? false,
+              hasCodeOfConduct: health.hasCodeOfConduct ?? false,
               citation: health.citation ?? null,
               fetchedAt: healthData.fetchedAt ?? null,
             }

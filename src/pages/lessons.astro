@@ -2,9 +2,13 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import LessonFilter from "../components/LessonFilter.tsx";
 import { getActiveLessons } from "../lib/lessons";
+import githubHealthRaw from "../data/github-health.json";
+import type { HealthSnapshot } from "../lib/githubHealth";
 import "../components/lessons/lessons.css";
 
 const activeLessons = await getActiveLessons();
+const healthData = githubHealthRaw as unknown as HealthSnapshot;
+const healthBySlug = healthData.lessons ?? {};
 ---
 
 <BaseLayout
@@ -30,6 +34,6 @@ const activeLessons = await getActiveLessons();
       </div>
     </div>
   ) : (
-    <LessonFilter lessons={activeLessons} client:load />
+    <LessonFilter lessons={activeLessons} healthBySlug={healthBySlug} client:load />
   )}
 </BaseLayout>
