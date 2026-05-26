@@ -1,11 +1,14 @@
 import { ChartBarIcon } from '@heroicons/react/24/outline';
+import HealthSignalRow from '../HealthSignalRow.jsx';
 import type { Lesson } from '../../lib/lessons';
+import type { HealthRecord } from '../../lib/githubHealth';
 import type { ReactNode } from 'react';
 
 type LessonPreviewCardProps = {
   lesson: Lesson;
   pathwayIcon?: ReactNode;
   compact?: boolean;
+  health?: HealthRecord | null;
 };
 
 function getLevelConfig(level: string | undefined) {
@@ -21,6 +24,7 @@ export default function LessonPreviewCard({
   lesson,
   pathwayIcon,
   compact = false,
+  health = null,
 }: LessonPreviewCardProps) {
   const href = `${import.meta.env.BASE_URL}lessons/${lesson.slug}`;
   const roles = (lesson.roles ?? []).slice(0, 2);
@@ -29,7 +33,9 @@ export default function LessonPreviewCard({
   const level = getLevelConfig(lesson.educationalLevel);
 
   return (
-    <a className={`home-lesson-card ${compactClass}`.trim()} href={href}>
+    <article className={`home-lesson-card ${compactClass}`.trim()}>
+      <a className="home-lesson-card__cover-link" href={href} aria-label={`Open ${lesson.name}`} />
+
       {/* ── Colored level band ── */}
       <div
         className="home-lesson-card__level-band"
@@ -58,7 +64,9 @@ export default function LessonPreviewCard({
         <p className="home-lesson-card__description">
           {lesson.description || lesson.abstract || 'No description available yet.'}
         </p>
+
+        <HealthSignalRow health={health} />
       </div>
-    </a>
+    </article>
   );
 }

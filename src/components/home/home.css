@@ -129,7 +129,7 @@
 
 .home-category-tab__trigger:focus-visible,
 .home-browse-panel__button:focus-visible,
-.home-lesson-card:focus-visible {
+.home-lesson-card:focus-within {
   outline: 3px solid var(--uc-gold);
   outline-offset: 3px;
 }
@@ -265,6 +265,7 @@
 }
 
 .home-lesson-card {
+  position: relative;
   display: flex;
   min-height: 18rem;
   flex-direction: column;
@@ -278,6 +279,13 @@
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
+.home-lesson-card__cover-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
 .home-lesson-card:hover {
   color: inherit;
   text-decoration: none;
@@ -289,8 +297,15 @@
   min-height: 17rem;
 }
 
+.home-lesson-card .lesson-card__health {
+  margin-top: auto;
+}
+
 /* ── Full-width colored level band at the top ── */
 .home-lesson-card__level-band {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -310,6 +325,9 @@
 
 /* ── Dark metadata strip below the band ── */
 .home-lesson-card__top {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
   padding: 0.6rem 1rem 0.7rem;
   background: var(--bg-subtle);
   border-bottom: 1px solid var(--border-light);
@@ -332,6 +350,9 @@
 
 /* ── Body: title + description ── */
 .home-lesson-card__body {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
   display: flex;
   flex: 1;
   flex-direction: column;
