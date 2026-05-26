@@ -1,5 +1,7 @@
 import { ChartBarIcon } from "@heroicons/react/24/outline";
 
+/** @typedef {import("../lib/githubHealth").HealthRecord} HealthRecord */
+
 const compactNumberFormatter = new Intl.NumberFormat("en", {
   notation: "compact",
   maximumFractionDigits: 1,
@@ -75,7 +77,7 @@ function HealthSignalRow({ health }) {
     : `${formatCompactNumber(health.contributorCount)}${health.contributorCountTruncated ? "+" : ""}`;
 
   return (
-    <div className="lesson-card__health" aria-label="GitHub repository health signals">
+    <div className="lesson-card__health" role="group" aria-label="GitHub repository health signals">
       {repoUrl ? (
         <a
           href={repoUrl}
@@ -136,6 +138,7 @@ function HealthSignalRow({ health }) {
         <span
           className="lesson-card__health-item"
           title="Has Code of Conduct"
+          role="img"
           aria-label="Has Code of Conduct"
         >
           <span aria-hidden="true">🤝</span>
@@ -145,6 +148,14 @@ function HealthSignalRow({ health }) {
   );
 }
 
+/**
+ * @param {{
+ *   lesson: import("../lib/lessons").Lesson;
+ *   lessonIndex?: Record<string, { name: string; url: string }>;
+ *   headingLevel?: number;
+ *   health?: HealthRecord | null;
+ * }} props
+ */
 export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3, health = null }) {
   if (!lesson) return null;
 

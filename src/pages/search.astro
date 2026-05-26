@@ -74,6 +74,15 @@ const pagefindCss = `${pagefindPath}pagefind-component-ui.css`;
   (async () => {
     const el = document.getElementById("search");
     if (!el) return;
+    const searchInputLabel =
+      "Search lessons, pathways, and resources in this catalog";
+
+    function ensureSearchInputAccessibleName() {
+      const input = el.querySelector(".pf-searchbox-input");
+      if (!input || input.getAttribute("aria-label")) return;
+      input.setAttribute("aria-label", searchInputLabel);
+    }
+
     try {
       // Load the Component UI — registers web components including
       // <pagefind-config> and <pagefind-searchbox>
@@ -87,6 +96,20 @@ const pagefindCss = `${pagefindPath}pagefind-component-ui.css`;
       el.innerHTML =
         `<pagefind-config bundle-path="${pagefindPath}" base-url="${base}"></pagefind-config>` +
         `<pagefind-searchbox autofocus></pagefind-searchbox>`;
+
+      // Pagefind's combobox input only sets a placeholder; Pa11y (and WCAG)
+      // expect an accessible name on the control.
+      try {
+        await customElements.whenDefined("pagefind-searchbox");
+      } catch {
+        // ignore — labelling still runs via MutationObserver below
+      }
+      ensureSearchInputAccessibleName();
+      const searchBox = el.querySelector("pagefind-searchbox");
+      if (searchBox) {
+        const observer = new MutationObserver(() => ensureSearchInputAccessibleName());
+        observer.observe(searchBox, { childList: true, subtree: true });
+      }
     } catch {
       el.innerHTML =
         '<p class="search-unavailable">Search index not found — run <code>npm run build</code> to generate it.</p>';
