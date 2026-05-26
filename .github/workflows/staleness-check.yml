@@ -1,0 +1,165 @@
+name: Lesson Staleness Check
+
+on:
+  schedule:
+    - cron: '0 9 1 */3 *'
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  check-staleness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for stale lessons and open issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            const STALE_MONTHS = 18;
+            const LESSONS_DIR = 'src/content/lessons';
+            const LESSON_SITE_BASE = 'https://ucospo.net/education/lessons';
+            const LABEL = 'stale-lesson';
+            const now = new Date();
+
+            function getLessonSlug(file, lesson) {
+              const fromLesson = typeof lesson.slug === 'string' ? lesson.slug.trim() : '';
+              return fromLesson || file.replace(/\.json$/, '');
+            }
+
+            function parseDate(dateStr) {
+              if (!dateStr || typeof dateStr !== 'string') return null;
+              const trimmed = dateStr.trim();
+              if (!trimmed) return null;
+
+              const isoMatch = /^\d{4}-\d{2}-\d{2}$/.test(trimmed);
+              const date = isoMatch
+                ? new Date(`${trimmed}T00:00:00Z`)
+                : new Date(trimmed);
+
+              return Number.isNaN(date.getTime()) ? null : date;
+            }
+
+            function monthsSince(date) {
+              return (
+                (now.getUTCFullYear() - date.getUTCFullYear()) * 12 +
+                (now.getUTCMonth() - date.getUTCMonth())
+              );
+            }
+
+            function isStale(date) {
+              const monthDiff = monthsSince(date);
+              return monthDiff > STALE_MONTHS ||
+                (monthDiff === STALE_MONTHS && now.getUTCDate() > date.getUTCDate());
+            }
+
+            try {
+              await github.rest.issues.getLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: LABEL,
+              });
+            } catch (error) {
+              if (error.status === 404) {
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: LABEL,
+                  color: 'fbca04',
+                  description: 'Automated review request for lessons with outdated metadata',
+                });
+              } else {
+                throw error;
+              }
+            }
+
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: LABEL,
+              state: 'open',
+              per_page: 100,
+            });
+
+            const openTitles = new Set(existing.data.map((issue) => issue.title));
+            const files = fs.readdirSync(LESSONS_DIR).filter((f) => f.endsWith('.json')).sort();
+
+            let checked = 0;
+            let staleFound = 0;
+            let opened = 0;
+            let skippedDuplicate = 0;
+
+            for (const file of files) {
+              const lesson = JSON.parse(fs.readFileSync(path.join(LESSONS_DIR, file), 'utf8'));
+              checked += 1;
+
+              if (lesson.keepStatus === 'drop') continue;
+              if (lesson.creativeWorkStatus === 'Archived') continue;
+
+              const dateStr = (lesson.dateModified || lesson.dateCreated || '').trim();
+              if (!dateStr) continue;
+
+              const lastModified = parseDate(dateStr);
+              if (!lastModified) continue;
+
+              if (!isStale(lastModified)) continue;
+
+              staleFound += 1;
+              const issueTitle = `Review needed: ${lesson.name}`;
+              if (openTitles.has(issueTitle)) {
+                skippedDuplicate += 1;
+                continue;
+              }
+
+              const slug = getLessonSlug(file, lesson);
+              const monthsOld = monthsSince(lastModified);
+              const owner = lesson.campusOwner
+                ? ` Campus owner: **${lesson.campusOwner}**.`
+                : '';
+
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: issueTitle,
+                labels: [LABEL],
+                body: [
+                  '## Lesson review requested',
+                  '',
+                  `**Lesson:** [${lesson.name}](${LESSON_SITE_BASE}/${slug})`,
+                  `**Last modified:** ${dateStr} (${monthsOld} months ago)`,
+                  `**External URL:** ${lesson.url || '—'}${owner}`,
+                  '',
+                  '### Checklist',
+                  '',
+                  '- [ ] External URL still resolves and content is current',
+                  '- [ ] Learning objectives still accurate',
+                  '- [ ] Metadata fields up to date (level, time, keywords)',
+                  '- [ ] `dateModified` updated in the lesson JSON after review',
+                  '- [ ] If lesson is no longer relevant, set `creativeWorkStatus: Archived`',
+                  '',
+                  '_This issue was opened automatically by the staleness detection workflow._',
+                ].join('\n'),
+              });
+
+              openTitles.add(issueTitle);
+              opened += 1;
+            }
+
+            const summary = [
+              `Lessons checked: ${checked}`,
+              `Stale lessons found: ${staleFound}`,
+              `Issues opened: ${opened}`,
+              `Skipped (duplicate open issue): ${skippedDuplicate}`,
+            ].join('\n');
+
+            core.summary.addHeading('Lesson staleness check');
+            core.summary.addRaw(summary);
+            await core.summary.write();
+
+            console.log(summary);
