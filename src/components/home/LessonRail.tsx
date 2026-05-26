@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Lesson } from '../../lib/lessons';
+import type { HealthRecord } from '../../lib/githubHealth';
 import type { ReactNode } from 'react';
 import LessonPreviewCard from './LessonPreviewCard';
 
@@ -9,6 +10,7 @@ type LessonRailProps = {
   pathwayIcon?: ReactNode;
   showProgress?: boolean;
   initialVisibleCount?: number;
+  healthBySlug?: Record<string, HealthRecord | null>;
 };
 
 export default function LessonRail({
@@ -17,6 +19,7 @@ export default function LessonRail({
   pathwayIcon,
   showProgress = false,
   initialVisibleCount = 3,
+  healthBySlug = {},
 }: LessonRailProps) {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const thumbRef = useRef<HTMLSpanElement | null>(null);
@@ -100,7 +103,12 @@ export default function LessonRail({
         <div className="home-lesson-rail__track" ref={trackRef}>
           {lessons.map((lesson) => (
             <div className="home-lesson-rail__item" key={lesson.slug}>
-              <LessonPreviewCard lesson={lesson} pathwayIcon={pathwayIcon} compact />
+              <LessonPreviewCard
+                lesson={lesson}
+                pathwayIcon={pathwayIcon}
+                compact
+                health={healthBySlug[lesson.slug] ?? null}
+              />
             </div>
           ))}
         </div>

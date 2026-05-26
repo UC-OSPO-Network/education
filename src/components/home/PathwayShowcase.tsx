@@ -2,16 +2,19 @@ import { useState } from 'react';
 import CategoryIcon from './CategoryIcon';
 import CategoryPanel from './CategoryPanel';
 import LessonRail from './LessonRail';
+import type { HealthRecord } from '../../lib/githubHealth';
 import type { HomepagePathwayItem } from './types';
 
 type PathwayShowcaseProps = {
   items: HomepagePathwayItem[];
   defaultActiveId?: string;
+  healthBySlug?: Record<string, HealthRecord | null>;
 };
 
 export default function PathwayShowcase({
   items,
   defaultActiveId,
+  healthBySlug = {},
 }: PathwayShowcaseProps) {
   const initialId =
     items.find((item) => item.id === defaultActiveId)?.id ?? items[0]?.id ?? '';
@@ -41,6 +44,7 @@ export default function PathwayShowcase({
                     pathwayIcon={<CategoryIcon name={item.iconName} size={18} decorative />}
                     showProgress={section.lessons.length > 3}
                     initialVisibleCount={3}
+                    healthBySlug={healthBySlug}
                   />
                 ))
               ) : (

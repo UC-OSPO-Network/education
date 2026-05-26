@@ -4,9 +4,15 @@ import WelcomeHeader from '../components/home/WelcomeHeader.astro';
 import BrowseAllLessonsPanel from '../components/home/BrowseAllLessonsPanel.astro';
 import PathwayShowcase from '../components/home/PathwayShowcase';
 import '../components/home/home.css';
+import '../components/lessons/lessons.css';
 import { getCollection } from 'astro:content';
 import { getActiveLessons, type Lesson } from '../lib/lessons';
+import githubHealthRaw from '../data/github-health.json';
+import type { HealthSnapshot } from '../lib/githubHealth';
 import type { CategoryIconName, HomepagePathwayItem, HomepagePathwaySection } from '../components/home/types';
+
+const healthData = githubHealthRaw as unknown as HealthSnapshot;
+const healthBySlug = healthData.lessons ?? {};
 
 const [activeLessons, pathways] = await Promise.all([
   getActiveLessons(),
@@ -65,7 +71,7 @@ const defaultHomepagePathwayId =
 
     <section class="home-showcase" aria-labelledby="pathways-heading">
       <h2 id="pathways-heading" class="sr-only">Learning pathways</h2>
-      <PathwayShowcase items={homepagePathways} defaultActiveId={defaultHomepagePathwayId} client:load />
+      <PathwayShowcase items={homepagePathways} defaultActiveId={defaultHomepagePathwayId} healthBySlug={healthBySlug} client:load />
       <BrowseAllLessonsPanel />
     </section>
   </div>

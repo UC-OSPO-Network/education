@@ -1,28 +1,36 @@
 {
-  "fetchedAt": "2026-05-24T22:47:10.444Z",
+  "fetchedAt": "2026-05-26T22:11:33.098Z",
   "lessons": {
-    "https://github.com/github/opensource.guide": {
-      "stars": 15456,
-      "forks": 15388,
-      "openIssues": 8,
+    "best-practices-for-maintainers": {
+      "repoUrl": "https://github.com/github/opensource.guide",
+      "stars": 15465,
+      "forks": 15393,
+      "openIssues": 9,
       "pushedAt": "2026-05-21",
-      "updatedAt": "2026-05-24",
+      "updatedAt": "2026-05-26",
       "contributorCount": 100,
       "contributorCountTruncated": true,
       "license": "CC-BY-4.0",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
       "citation": null
     },
-    "https://github.com/carpentries-incubator/better-research-software": {
+    "building-better-research-software": {
+      "repoUrl": "https://github.com/carpentries-incubator/better-research-software",
       "stars": 19,
       "forks": 20,
-      "openIssues": 34,
-      "pushedAt": "2026-05-19",
-      "updatedAt": "2026-05-05",
-      "contributorCount": 19,
+      "openIssues": 30,
+      "pushedAt": "2026-05-26",
+      "updatedAt": "2026-05-26",
+      "contributorCount": 20,
       "contributorCountTruncated": false,
       "license": "NOASSERTION",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
       "citation": {
         "source": "cff",
         "title": "Building Better Research Software",
@@ -82,7 +90,24 @@
         ]
       }
     },
-    "https://github.com/hsf-training/hsf-training-cicd": {
+    "building-community": {
+      "repoUrl": "https://github.com/github/opensource.guide",
+      "stars": 15465,
+      "forks": 15393,
+      "openIssues": 9,
+      "pushedAt": "2026-05-21",
+      "updatedAt": "2026-05-26",
+      "contributorCount": 100,
+      "contributorCountTruncated": true,
+      "license": "CC-BY-4.0",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
+      "citation": null
+    },
+    "cicd-for-research-software-with-gitlab-ci": {
+      "repoUrl": "https://github.com/hsf-training/hsf-training-cicd",
       "stars": 5,
       "forks": 7,
       "openIssues": 7,
@@ -92,18 +117,25 @@
       "contributorCountTruncated": true,
       "license": "NOASSERTION",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
       "citation": null
     },
-    "https://github.com/the-turing-way/the-turing-way": {
-      "stars": 2147,
+    "collaboration-in-open-research-projects": {
+      "repoUrl": "https://github.com/the-turing-way/the-turing-way",
+      "stars": 2148,
       "forks": 749,
       "openIssues": 607,
-      "pushedAt": "2026-05-20",
-      "updatedAt": "2026-05-24",
+      "pushedAt": "2026-05-25",
+      "updatedAt": "2026-05-26",
       "contributorCount": 100,
       "contributorCountTruncated": true,
       "license": "NOASSERTION",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
       "citation": {
         "source": "cff",
         "title": "The Turing Way handbook for reproducible, ethical and collaborative research",
@@ -118,16 +150,20 @@
         ]
       }
     },
-    "https://github.com/coderefinery/git-collaborative": {
+    "collaborative-git-for-teams": {
+      "repoUrl": "https://github.com/coderefinery/git-collaborative",
       "stars": 10,
       "forks": 44,
-      "openIssues": 13,
+      "openIssues": 14,
       "pushedAt": "2026-03-30",
       "updatedAt": "2026-05-18",
       "contributorCount": 17,
       "contributorCountTruncated": false,
       "license": "CC-BY-4.0",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
       "citation": {
         "source": "cff",
         "title": "Collaborative distributed version control",
@@ -208,40 +244,132 @@
         ]
       }
     },
-    "https://github.com/INTERSECT-training/CI-CD": {
+    "continuous-integration-and-delivery-with-github-actions": {
+      "repoUrl": "https://github.com/INTERSECT-training/CI-CD",
       "stars": 0,
       "forks": 1,
       "openIssues": 1,
-      "pushedAt": "2026-05-19",
+      "pushedAt": "2026-05-26",
       "updatedAt": "2025-09-18",
       "contributorCount": 3,
       "contributorCountTruncated": false,
       "license": "NOASSERTION",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
       "citation": null
     },
-    "https://github.com/INTERSECT-training/Code-Review": {
+    "coordinate-reference-systems": {
+      "repoUrl": "https://github.com/ucdavisdatalab/workshop_coordinate_reference_systems",
+      "stars": 0,
+      "forks": 0,
+      "openIssues": 1,
+      "pushedAt": "2023-09-21",
+      "updatedAt": "2023-09-21",
+      "contributorCount": 1,
+      "contributorCountTruncated": false,
+      "license": null,
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "developing-your-data-science-portfolio": {
+      "repoUrl": "https://github.com/ucdavisdatalab/workshop_portfolios",
+      "stars": 0,
+      "forks": 1,
+      "openIssues": 2,
+      "pushedAt": "2024-02-13",
+      "updatedAt": "2022-10-19",
+      "contributorCount": 2,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "effective-code-review": {
+      "repoUrl": "https://github.com/INTERSECT-training/Code-Review",
       "stars": 0,
       "forks": 7,
       "openIssues": 1,
-      "pushedAt": "2026-05-19",
+      "pushedAt": "2026-05-26",
       "updatedAt": "2025-09-17",
       "contributorCount": 5,
       "contributorCountTruncated": false,
       "license": "NOASSERTION",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
       "citation": null
     },
-    "https://github.com/carpentries-incubator/python-intermediate-development": {
+    "finding-users-for-your-project": {
+      "repoUrl": "https://github.com/github/opensource.guide",
+      "stars": 15465,
+      "forks": 15393,
+      "openIssues": 9,
+      "pushedAt": "2026-05-21",
+      "updatedAt": "2026-05-26",
+      "contributorCount": 100,
+      "contributorCountTruncated": true,
+      "license": "CC-BY-4.0",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
+      "citation": null
+    },
+    "geocoding": {
+      "repoUrl": "https://github.com/ucdavisdatalab/geocoding-workshop",
+      "stars": 5,
+      "forks": 2,
+      "openIssues": 1,
+      "pushedAt": "2021-02-16",
+      "updatedAt": "2024-02-27",
+      "contributorCount": 1,
+      "contributorCountTruncated": false,
+      "license": "GPL-3.0",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "how-to-contribute-to-open-source": {
+      "repoUrl": "https://github.com/github/opensource.guide",
+      "stars": 15465,
+      "forks": 15393,
+      "openIssues": 9,
+      "pushedAt": "2026-05-21",
+      "updatedAt": "2026-05-26",
+      "contributorCount": 100,
+      "contributorCountTruncated": true,
+      "license": "CC-BY-4.0",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
+      "citation": null
+    },
+    "intermediate-python-development": {
+      "repoUrl": "https://github.com/carpentries-incubator/python-intermediate-development",
       "stars": 61,
       "forks": 77,
-      "openIssues": 70,
-      "pushedAt": "2026-05-23",
-      "updatedAt": "2026-05-23",
-      "contributorCount": 40,
+      "openIssues": 68,
+      "pushedAt": "2026-05-26",
+      "updatedAt": "2026-05-26",
+      "contributorCount": 41,
       "contributorCountTruncated": false,
       "license": "NOASSERTION",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
       "citation": {
         "source": "cff",
         "title": "Intermediate Research Software Development Skills (Python)",
@@ -511,7 +639,387 @@
         ]
       }
     },
-    "https://github.com/hsf-training/hsf-training-docker": {
+    "intermediate-python-next-level-data-visualization": {
+      "repoUrl": "https://github.com/ucdavisdatalab/workshop_intermediate_python",
+      "stars": 2,
+      "forks": 2,
+      "openIssues": 2,
+      "pushedAt": "2025-03-18",
+      "updatedAt": "2025-03-05",
+      "contributorCount": 1,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "intermediate-python": {
+      "repoUrl": "https://github.com/ucdavisdatalab/workshop_intermediate_python",
+      "stars": 2,
+      "forks": 2,
+      "openIssues": 2,
+      "pushedAt": "2025-03-18",
+      "updatedAt": "2025-03-05",
+      "contributorCount": 1,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "intermediate-r-next-level-data-visualization": {
+      "repoUrl": "https://github.com/ucdavisdatalab/workshop_intermediate_r",
+      "stars": 3,
+      "forks": 5,
+      "openIssues": 3,
+      "pushedAt": "2026-04-30",
+      "updatedAt": "2026-04-30",
+      "contributorCount": 4,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "intermediate-r": {
+      "repoUrl": "https://github.com/ucdavisdatalab/workshop_intermediate_r",
+      "stars": 3,
+      "forks": 5,
+      "openIssues": 3,
+      "pushedAt": "2026-04-30",
+      "updatedAt": "2026-04-30",
+      "contributorCount": 4,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "intermediate-research-software-development-skills-python-lesson-material": {
+      "repoUrl": "https://github.com/carpentries-incubator/python-intermediate-development",
+      "stars": 61,
+      "forks": 77,
+      "openIssues": 68,
+      "pushedAt": "2026-05-26",
+      "updatedAt": "2026-05-26",
+      "contributorCount": 41,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
+      "citation": {
+        "source": "cff",
+        "title": "Intermediate Research Software Development Skills (Python)",
+        "doi": "10.5281/zenodo.6532056",
+        "version": "beta-May2026",
+        "dateReleased": "2026-05-23",
+        "license": "CC-BY-4.0",
+        "authors": [
+          {
+            "family": "Nenadic",
+            "given": "Aleksandra",
+            "orcid": "0000-0002-2269-3894",
+            "affiliation": null
+          },
+          {
+            "family": "Crouch",
+            "given": "Steve",
+            "orcid": "0000-0001-8985-6814",
+            "affiliation": null
+          },
+          {
+            "family": "Kiley",
+            "given": "Thomas",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Silva",
+            "given": "Raniere",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Michonneau",
+            "given": "François",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Belkin",
+            "given": "Maxim",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Graham",
+            "given": "James",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Wilson",
+            "given": "Greg",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Bluteau",
+            "given": "Matthew",
+            "orcid": "0000-0001-9498-8475",
+            "affiliation": null
+          },
+          {
+            "family": "Hodges",
+            "given": "Toby",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Kamvar",
+            "given": "Zhian",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Burg",
+            "given": "Sven",
+            "orcid": "0000-0003-1250-6968",
+            "affiliation": null
+          },
+          {
+            "family": "Cabunoc Mayes",
+            "given": "Abby",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Robinson",
+            "given": "Martin",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Mangham",
+            "given": "Sam",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Laird",
+            "given": "Jacalyn",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Stevens",
+            "given": "Sarah",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Leinweber",
+            "given": "Katrin",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Becker",
+            "given": "Erin",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Rodrigues",
+            "given": "João",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Lowe",
+            "given": "Douglas",
+            "orcid": "0000-0002-1248-3594",
+            "affiliation": null
+          },
+          {
+            "family": "Goel",
+            "given": "Aman",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Graham",
+            "given": "Matthew M.",
+            "orcid": "0000-0001-9104-7960",
+            "affiliation": null
+          },
+          {
+            "family": "Gopinathan",
+            "given": "Devaraj",
+            "orcid": "0000-0002-0490-3229",
+            "affiliation": null
+          },
+          {
+            "family": "Camphuijsen",
+            "given": "Jaro",
+            "orcid": "0000-0002-8928-7831",
+            "affiliation": null
+          },
+          {
+            "family": "Crocioni",
+            "given": "Giulia",
+            "orcid": "0000-0002-0823-0121",
+            "affiliation": null
+          },
+          {
+            "family": "Close",
+            "given": "William",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Löffler",
+            "given": "Frank",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Rijn",
+            "given": "Sander",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Saunders",
+            "given": "Harry",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Field",
+            "given": "Matthew",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Gadgil",
+            "given": "Sanket",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Zarębski",
+            "given": "Kristian",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Collie",
+            "given": "Kingsley",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Neep",
+            "given": "Tom",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Alves",
+            "given": "Renato",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Katz",
+            "given": "Daniel",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Reeve",
+            "given": "Jen",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Murphy",
+            "given": "G.K.",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Sverchkov",
+            "given": "Yuriy",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Hartley",
+            "given": "S.",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Konovalov",
+            "given": "Olexandr",
+            "orcid": null,
+            "affiliation": null
+          },
+          {
+            "family": "Guyer",
+            "given": "Jonathan",
+            "orcid": null,
+            "affiliation": null
+          }
+        ]
+      }
+    },
+    "introduction-to-basic-statistics-with-r": {
+      "repoUrl": "https://github.com/ucdavisdatalab/basic_stats_r_1",
+      "stars": 0,
+      "forks": 0,
+      "openIssues": 0,
+      "pushedAt": "2021-02-18",
+      "updatedAt": "2021-02-18",
+      "contributorCount": 1,
+      "contributorCountTruncated": false,
+      "license": "GPL-3.0",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "introduction-to-desktop-gis-with-qgis": {
+      "repoUrl": "https://github.com/ucdavisdatalab/Intro-to-Desktop-GIS-with-QGIS",
+      "stars": 129,
+      "forks": 35,
+      "openIssues": 4,
+      "pushedAt": "2024-05-14",
+      "updatedAt": "2026-05-12",
+      "contributorCount": 5,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "introduction-to-docker-for-research-note-this-is-now-called-introduction-to-docker-and-podman": {
+      "repoUrl": "https://github.com/hsf-training/hsf-training-docker",
       "stars": 3,
       "forks": 19,
       "openIssues": 11,
@@ -521,18 +1029,25 @@
       "contributorCountTruncated": false,
       "license": "NOASSERTION",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
       "citation": null
     },
-    "https://github.com/coderefinery/git-intro": {
+    "introduction-to-git": {
+      "repoUrl": "https://github.com/coderefinery/git-intro",
       "stars": 39,
       "forks": 76,
-      "openIssues": 39,
+      "openIssues": 40,
       "pushedAt": "2026-03-30",
       "updatedAt": "2026-05-18",
       "contributorCount": 24,
       "contributorCountTruncated": false,
       "license": "CC-BY-4.0",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
       "citation": {
         "source": "cff",
         "title": "Introduction to version control",
@@ -601,16 +1116,84 @@
         ]
       }
     },
-    "https://github.com/INTERSECT-training/Issue-Tracking": {
+    "introduction-to-remote-computing": {
+      "repoUrl": "https://github.com/ucdavisdatalab/workshop_intro_to_remote_computing",
+      "stars": 5,
+      "forks": 2,
+      "openIssues": 6,
+      "pushedAt": "2025-10-24",
+      "updatedAt": "2026-04-02",
+      "contributorCount": 4,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "introduction-to-sql-for-querying-databases": {
+      "repoUrl": "https://github.com/ucdavisdatalab/workshop_intro_to_sql",
+      "stars": 24,
+      "forks": 7,
+      "openIssues": 3,
+      "pushedAt": "2024-10-24",
+      "updatedAt": "2025-01-03",
+      "contributorCount": 6,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "introduction-to-unix-command-line": {
+      "repoUrl": "https://github.com/ucdavisdatalab/workshop_introduction_to_the_command_line",
+      "stars": 0,
+      "forks": 0,
+      "openIssues": 0,
+      "pushedAt": "2023-10-12",
+      "updatedAt": "2021-12-30",
+      "contributorCount": 3,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "introduction-to-version-control-with-git": {
+      "repoUrl": "https://github.com/ucdavisdatalab/workshop_introduction_to_version_control",
+      "stars": 6,
+      "forks": 3,
+      "openIssues": 1,
+      "pushedAt": "2025-06-09",
+      "updatedAt": "2025-06-09",
+      "contributorCount": 4,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": true,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "issue-tracking-with-github": {
+      "repoUrl": "https://github.com/INTERSECT-training/Issue-Tracking",
       "stars": 0,
       "forks": 1,
       "openIssues": 1,
-      "pushedAt": "2026-05-19",
+      "pushedAt": "2026-05-26",
       "updatedAt": "2025-09-18",
       "contributorCount": 3,
       "contributorCountTruncated": false,
       "license": "NOASSERTION",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
       "citation": {
         "source": "cff",
         "title": "INTERSECT: Issue Tracking",
@@ -628,16 +1211,52 @@
         ]
       }
     },
-    "https://github.com/INTERSECT-training/Making-Good-PRs": {
+    "julia-basics": {
+      "repoUrl": "https://github.com/ucjug/workshop_julia_basics",
+      "stars": 1,
+      "forks": 2,
+      "openIssues": 0,
+      "pushedAt": "2024-02-12",
+      "updatedAt": "2025-07-31",
+      "contributorCount": 3,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "leadership-and-governance": {
+      "repoUrl": "https://github.com/github/opensource.guide",
+      "stars": 15465,
+      "forks": 15393,
+      "openIssues": 9,
+      "pushedAt": "2026-05-21",
+      "updatedAt": "2026-05-26",
+      "contributorCount": 100,
+      "contributorCountTruncated": true,
+      "license": "CC-BY-4.0",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
+      "citation": null
+    },
+    "making-good-pull-requests": {
+      "repoUrl": "https://github.com/INTERSECT-training/Making-Good-PRs",
       "stars": 0,
       "forks": 1,
       "openIssues": 0,
-      "pushedAt": "2026-05-19",
+      "pushedAt": "2026-05-26",
       "updatedAt": "2025-09-18",
       "contributorCount": 3,
       "contributorCountTruncated": false,
       "license": "NOASSERTION",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
       "citation": {
         "source": "cff",
         "title": "INTERSECT: Making Good Pull Requests",
@@ -655,7 +1274,24 @@
         ]
       }
     },
-    "https://github.com/coderefinery/modular-type-along": {
+    "metrics": {
+      "repoUrl": "https://github.com/github/opensource.guide",
+      "stars": 15465,
+      "forks": 15393,
+      "openIssues": 9,
+      "pushedAt": "2026-05-21",
+      "updatedAt": "2026-05-26",
+      "contributorCount": 100,
+      "contributorCountTruncated": true,
+      "license": "CC-BY-4.0",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
+      "citation": null
+    },
+    "modular-programming-with-python": {
+      "repoUrl": "https://github.com/coderefinery/modular-type-along",
       "stars": 4,
       "forks": 9,
       "openIssues": 9,
@@ -665,6 +1301,9 @@
       "contributorCountTruncated": false,
       "license": "CC-BY-4.0",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
       "citation": {
         "source": "cff",
         "title": "Modular code development type-along",
@@ -721,7 +1360,57 @@
         ]
       }
     },
-    "https://github.com/MolSSI-Education/python-package-best-practices": {
+    "overview-of-databases-and-data-storage": {
+      "repoUrl": "https://github.com/ucdavisdatalab/workshop_intro_to_databases",
+      "stars": 0,
+      "forks": 0,
+      "openIssues": 3,
+      "pushedAt": "2025-08-14",
+      "updatedAt": "2025-08-14",
+      "contributorCount": 1,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "overview-of-remote-and-high-performance-computing-hpc": null,
+    "principles-of-data-visualization-from-perception-to-statistical-graphics": {
+      "repoUrl": "https://github.com/ucdavisdatalab/workshop_data_viz_principles",
+      "stars": 0,
+      "forks": 0,
+      "openIssues": 1,
+      "pushedAt": "2023-09-21",
+      "updatedAt": "2023-08-03",
+      "contributorCount": 3,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "python-basics": {
+      "repoUrl": "https://github.com/ucdavisdatalab/workshop_python_basics",
+      "stars": 7,
+      "forks": 4,
+      "openIssues": 4,
+      "pushedAt": "2025-06-11",
+      "updatedAt": "2025-12-01",
+      "contributorCount": 4,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "python-package-development-best-practices": {
+      "repoUrl": "https://github.com/MolSSI-Education/python-package-best-practices",
       "stars": 44,
       "forks": 34,
       "openIssues": 1,
@@ -731,6 +1420,9 @@
       "contributorCountTruncated": false,
       "license": "NOASSERTION",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
       "citation": {
         "source": "cff",
         "title": "Best Practices in Python Package Development (Version 2021.08.0)",
@@ -796,16 +1488,20 @@
         ]
       }
     },
-    "https://github.com/INTERSECT-training/packaging": {
+    "python-packaging-for-beginners": {
+      "repoUrl": "https://github.com/INTERSECT-training/packaging",
       "stars": 4,
       "forks": 4,
       "openIssues": 6,
-      "pushedAt": "2026-05-19",
+      "pushedAt": "2026-05-26",
       "updatedAt": "2025-10-01",
       "contributorCount": 9,
       "contributorCountTruncated": false,
       "license": "NOASSERTION",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
       "citation": {
         "source": "cff",
         "title": "INTERSECT: Packaging",
@@ -847,7 +1543,8 @@
         ]
       }
     },
-    "https://github.com/carpentries-incubator/python_packaging": {
+    "python-packaging": {
+      "repoUrl": "https://github.com/carpentries-incubator/python_packaging",
       "stars": 6,
       "forks": 6,
       "openIssues": 1,
@@ -857,18 +1554,41 @@
       "contributorCountTruncated": false,
       "license": "NOASSERTION",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
       "citation": null
     },
-    "https://github.com/carpentries-incubator/lesson-R-packaging": {
+    "r-basics": {
+      "repoUrl": "https://github.com/ucdavisdatalab/workshop_r_basics",
+      "stars": 1,
+      "forks": 2,
+      "openIssues": 6,
+      "pushedAt": "2026-03-17",
+      "updatedAt": "2026-03-17",
+      "contributorCount": 2,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "r-packaging": {
+      "repoUrl": "https://github.com/carpentries-incubator/lesson-R-packaging",
       "stars": 5,
       "forks": 10,
       "openIssues": 27,
-      "pushedAt": "2026-05-19",
+      "pushedAt": "2026-05-26",
       "updatedAt": "2025-09-17",
       "contributorCount": 8,
       "contributorCountTruncated": false,
       "license": "NOASSERTION",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
       "citation": {
         "source": "cff",
         "title": "lesson-R-packaging",
@@ -898,19 +1618,68 @@
         ]
       }
     },
-    "https://github.com/carpentries-incubator/docker-introduction": {
+    "reproducible-computational-environments-using-containers": {
+      "repoUrl": "https://github.com/carpentries-incubator/docker-introduction",
       "stars": 53,
-      "forks": 52,
+      "forks": 53,
       "openIssues": 47,
-      "pushedAt": "2026-05-19",
+      "pushedAt": "2026-05-26",
       "updatedAt": "2026-01-14",
       "contributorCount": 62,
       "contributorCountTruncated": false,
       "license": "NOASSERTION",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
       "citation": null
     },
-    "https://github.com/alan-turing-institute/rse-course": {
+    "reproducible-research-for-teams-with-github": {
+      "repoUrl": "https://github.com/ucdavisdatalab/workshop_git_for_teams",
+      "stars": 2,
+      "forks": 2,
+      "openIssues": 0,
+      "pushedAt": "2025-06-09",
+      "updatedAt": "2025-06-09",
+      "contributorCount": 5,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": true,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "reproducible-research": {
+      "repoUrl": "https://github.com/the-turing-way/the-turing-way",
+      "stars": 2148,
+      "forks": 749,
+      "openIssues": 607,
+      "pushedAt": "2026-05-25",
+      "updatedAt": "2026-05-26",
+      "contributorCount": 100,
+      "contributorCountTruncated": true,
+      "license": "NOASSERTION",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
+      "citation": {
+        "source": "cff",
+        "title": "The Turing Way handbook for reproducible, ethical and collaborative research",
+        "doi": "10.5281/zenodo.3233853",
+        "version": "1.2.3",
+        "dateReleased": "2025-04-14",
+        "license": "CC-BY-4.0",
+        "authors": [
+          {
+            "name": "The Turing Way Community"
+          }
+        ]
+      }
+    },
+    "research-software-engineering-with-python-course": {
+      "repoUrl": "https://github.com/alan-turing-institute/rse-course",
       "stars": 264,
       "forks": 122,
       "openIssues": 46,
@@ -920,9 +1689,29 @@
       "contributorCountTruncated": false,
       "license": "NOASSERTION",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
       "citation": null
     },
-    "https://github.com/coderefinery/social-coding": {
+    "responsible-data-science": {
+      "repoUrl": "https://github.com/ucdavisdatalab/responsible-data-science",
+      "stars": 0,
+      "forks": 0,
+      "openIssues": 0,
+      "pushedAt": "2023-02-16",
+      "updatedAt": "2023-02-15",
+      "contributorCount": 3,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "social-coding-and-open-source-collaboration": {
+      "repoUrl": "https://github.com/coderefinery/social-coding",
       "stars": 9,
       "forks": 16,
       "openIssues": 14,
@@ -932,6 +1721,9 @@
       "contributorCountTruncated": false,
       "license": "CC-BY-4.0",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
       "citation": {
         "source": "cff",
         "title": "Social coding and open software - What can you do to get credit for your code and allow reuse?",
@@ -1000,7 +1792,40 @@
         ]
       }
     },
-    "https://github.com/coderefinery/testing": {
+    "spatial-sql-with-spatialite": {
+      "repoUrl": "https://github.com/ucdavisdatalab/Spatial_SQL",
+      "stars": 35,
+      "forks": 16,
+      "openIssues": 3,
+      "pushedAt": "2026-04-24",
+      "updatedAt": "2026-04-24",
+      "contributorCount": 3,
+      "contributorCountTruncated": false,
+      "license": "NOASSERTION",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
+      "citation": null
+    },
+    "starting-an-open-source-project": {
+      "repoUrl": "https://github.com/github/opensource.guide",
+      "stars": 15465,
+      "forks": 15393,
+      "openIssues": 9,
+      "pushedAt": "2026-05-21",
+      "updatedAt": "2026-05-26",
+      "contributorCount": 100,
+      "contributorCountTruncated": true,
+      "license": "CC-BY-4.0",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
+      "citation": null
+    },
+    "testing-and-test-driven-development": {
+      "repoUrl": "https://github.com/coderefinery/testing",
       "stars": 12,
       "forks": 41,
       "openIssues": 16,
@@ -1010,6 +1835,9 @@
       "contributorCountTruncated": false,
       "license": "CC-BY-4.0",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": false,
       "citation": {
         "source": "cff",
         "title": "Automated testing",
@@ -1120,40 +1948,68 @@
         ]
       }
     },
-    "https://github.com/INTERSECT-training/software-licensing": {
+    "understanding-software-licensing": {
+      "repoUrl": "https://github.com/INTERSECT-training/software-licensing",
       "stars": 0,
       "forks": 4,
       "openIssues": 8,
-      "pushedAt": "2026-05-19",
+      "pushedAt": "2026-05-26",
       "updatedAt": "2025-09-17",
       "contributorCount": 4,
       "contributorCountTruncated": false,
       "license": "NOASSERTION",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
       "citation": null
     },
-    "https://github.com/INTERSECT-training/testing": {
+    "unit-testing-and-tdd-in-python": {
+      "repoUrl": "https://github.com/INTERSECT-training/testing",
       "stars": 0,
       "forks": 3,
       "openIssues": 1,
-      "pushedAt": "2026-05-19",
+      "pushedAt": "2026-05-26",
       "updatedAt": "2025-09-17",
       "contributorCount": 7,
       "contributorCountTruncated": false,
       "license": "NOASSERTION",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
       "citation": null
     },
-    "https://github.com/INTERSECT-training/Documentation": {
+    "what-is-open-source": {
+      "repoUrl": "https://github.com/github/opensource.guide",
+      "stars": 15465,
+      "forks": 15393,
+      "openIssues": 9,
+      "pushedAt": "2026-05-21",
+      "updatedAt": "2026-05-26",
+      "contributorCount": 100,
+      "contributorCountTruncated": true,
+      "license": "CC-BY-4.0",
+      "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
+      "citation": null
+    },
+    "writing-documentation-for-software-projects": {
+      "repoUrl": "https://github.com/INTERSECT-training/Documentation",
       "stars": 0,
       "forks": 2,
       "openIssues": 1,
-      "pushedAt": "2026-05-19",
+      "pushedAt": "2026-05-26",
       "updatedAt": "2025-09-18",
       "contributorCount": 3,
       "contributorCountTruncated": false,
       "license": "NOASSERTION",
       "archived": false,
+      "sponsorsUrl": null,
+      "hasFunding": false,
+      "hasCodeOfConduct": true,
       "citation": {
         "source": "cff",
         "title": "INTERSECT: Better Documentation",
@@ -1171,16 +2027,20 @@
         ]
       }
     },
-    "https://github.com/firstcontributions/first-contributions": {
-      "stars": 54126,
-      "forks": 103032,
-      "openIssues": 104,
-      "pushedAt": "2026-05-24",
-      "updatedAt": "2026-05-24",
+    "your-first-web-contribution": {
+      "repoUrl": "https://github.com/firstcontributions/first-contributions",
+      "stars": 54181,
+      "forks": 103145,
+      "openIssues": 79,
+      "pushedAt": "2026-05-26",
+      "updatedAt": "2026-05-26",
       "contributorCount": 100,
       "contributorCountTruncated": true,
       "license": "MIT",
       "archived": false,
+      "sponsorsUrl": "https://github.com/sponsors/firstcontributions",
+      "hasFunding": true,
+      "hasCodeOfConduct": true,
       "citation": null
     }
   }

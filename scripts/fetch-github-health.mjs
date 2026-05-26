@@ -1,7 +1,7 @@
 /**
  * Fetches GitHub repository health signals and CITATION.cff data for all
- * lessons that have a repoUrl. Writes a snapshot to src/data/github-health.json
- * for use at build time.
+ * lessons. Writes a slug-keyed snapshot to src/data/github-health.json for use
+ * at build time.
  *
  * Usage:
  *   GITHUB_TOKEN=your_token node scripts/fetch-github-health.mjs
@@ -19,20 +19,128 @@ const outputPath = join(__dirname, '../src/data/github-health.json');
 
 function parseGithubRepo(url) {
   if (!url || url === 'null') return null;
+
   try {
     const u = new URL(url);
-    if (u.hostname !== 'github.com') return null;
     const parts = u.pathname.split('/').filter(Boolean);
-    if (parts.length < 2) return null;
-    return { owner: parts[0], repo: parts[1] };
+
+    if (u.hostname === 'github.com') {
+      if (parts.length < 2) return null;
+      return {
+        owner: parts[0],
+        repo: parts[1].replace(/\.git$/, ''),
+      };
+    }
+
+    const pagesMatch = u.hostname.match(/^([a-z0-9-]+)\.github\.io$/i);
+    if (pagesMatch && parts.length >= 1) {
+      return {
+        owner: pagesMatch[1],
+        repo: parts[0],
+      };
+    }
   } catch {
     return null;
   }
+
+  return null;
+}
+
+function getLessonSlug(file, lesson) {
+  const fromLesson = typeof lesson.slug === 'string' ? lesson.slug.trim() : '';
+  return fromLesson || file.replace(/\.json$/, '');
+}
+
+function getLessonRepo(lesson) {
+  return parseGithubRepo(lesson.repoUrl?.trim()) ?? parseGithubRepo(lesson.url?.trim());
+}
+
+function repoKey({ owner, repo }) {
+  return `${owner.toLowerCase()}/${repo.toLowerCase()}`;
+}
+
+function repoUrl({ owner, repo }) {
+  return `https://github.com/${owner}/${repo}`;
 }
 
 function formatDate(isoString) {
   if (!isoString) return null;
   return isoString.slice(0, 10);
+}
+
+async function fetchJson(url, headers) {
+  const res = await fetch(url, { headers });
+  if (!res.ok) return { ok: false, status: res.status, data: null };
+  return { ok: true, status: res.status, data: await res.json() };
+}
+
+async function fetchContentPath(owner, repo, path, headers) {
+  const encodedPath = path.split('/').map(encodeURIComponent).join('/');
+  const url = `https://api.github.com/repos/${owner}/${repo}/contents/${encodedPath}`;
+  const res = await fetch(url, { headers });
+  if (!res.ok) return null;
+  return await res.json();
+}
+
+function decodeContent(content) {
+  if (!content?.content || content.encoding !== 'base64') return '';
+  return Buffer.from(content.content, 'base64').toString('utf8');
+}
+
+function normaliseFundingGithubValue(value) {
+  if (Array.isArray(value)) return value.find(Boolean) ?? null;
+  if (typeof value === 'string' && value.trim()) return value.trim();
+  return null;
+}
+
+async function fetchFunding(owner, repo, headers) {
+  const paths = ['.github/FUNDING.yml', 'FUNDING.yml'];
+
+  for (const path of paths) {
+    const file = await fetchContentPath(owner, repo, path, headers);
+    if (!file) continue;
+
+    let sponsorsUrl = `https://github.com/sponsors/${owner}`;
+    try {
+      const funding = yaml.load(decodeContent(file));
+      if (funding && typeof funding === 'object') {
+        const githubSponsor = normaliseFundingGithubValue(funding.github);
+        if (githubSponsor) {
+          sponsorsUrl = `https://github.com/sponsors/${githubSponsor}`;
+        }
+      }
+    } catch {
+      // Presence is enough to display the sustainable funding signal.
+    }
+
+    return { hasFunding: true, sponsorsUrl };
+  }
+
+  return { hasFunding: false, sponsorsUrl: null };
+}
+
+async function fetchCodeOfConduct(owner, repo, headers) {
+  const profile = await fetchJson(
+    `https://api.github.com/repos/${owner}/${repo}/community/profile`,
+    headers,
+  );
+
+  if (profile.ok && profile.data?.files?.code_of_conduct) {
+    return true;
+  }
+
+  const paths = [
+    'CODE_OF_CONDUCT.md',
+    'CODE_OF_CONDUCT',
+    '.github/CODE_OF_CONDUCT.md',
+    'docs/CODE_OF_CONDUCT.md',
+  ];
+
+  for (const path of paths) {
+    if (await fetchContentPath(owner, repo, path, headers)) return true;
+  }
+
+  return false;
 }
 
 /**
@@ -66,9 +174,7 @@ function coerceDate(value) {
     return isNaN(value.getTime()) ? null : value.toISOString().slice(0, 10);
   }
   if (typeof value === 'string') {
-    // Already ISO — return as-is
     if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
-    // Try parsing other formats
     const d = new Date(value);
     return isNaN(d.getTime()) ? null : d.toISOString().slice(0, 10);
   }
@@ -83,7 +189,7 @@ function isCffTemplate(cff) {
   if (cff.title === 'FIXME') return true;
   if (Array.isArray(cff.authors)) {
     const allFixme = cff.authors.every(
-      (a) => a['family-names'] === 'FIXME' || a['given-names'] === 'FIXME' || a.name === 'FIXME'
+      (a) => a['family-names'] === 'FIXME' || a['given-names'] === 'FIXME' || a.name === 'FIXME',
     );
     if (allFixme) return true;
   }
@@ -100,11 +206,10 @@ async function fetchCitation(owner, repo, defaultBranch, headers) {
 
   let res = await fetch(url, { headers });
 
-  // Some repos use 'master' when defaultBranch wasn't returned
   if (!res.ok && branch !== 'master') {
     res = await fetch(
       `https://raw.githubusercontent.com/${owner}/${repo}/master/CITATION.cff`,
-      { headers }
+      { headers },
     );
   }
 
@@ -122,7 +227,7 @@ async function fetchCitation(owner, repo, defaultBranch, headers) {
   if (!cff || typeof cff !== 'object') return null;
 
   if (isCffTemplate(cff)) {
-    console.warn(`    CITATION.cff is an unfilled template — skipping`);
+    console.warn('    CITATION.cff is an unfilled template — skipping');
     return null;
   }
 
@@ -130,18 +235,16 @@ async function fetchCitation(owner, repo, defaultBranch, headers) {
     ? cff.authors.map(normaliseCffAuthor).filter(Boolean)
     : [];
 
-  // DOI can be top-level (cff.doi) or buried in identifiers[].value as a doi.org URL
   let doi = cff.doi ?? null;
   if (!doi && Array.isArray(cff.identifiers)) {
     const doiEntry = cff.identifiers.find(
-      (id) => id.type === 'doi' || (id.type === 'url' && String(id.value ?? '').includes('doi.org'))
+      (id) => id.type === 'doi' || (id.type === 'url' && String(id.value ?? '').includes('doi.org')),
     );
     if (doiEntry) {
       doi = String(doiEntry.value).replace('https://doi.org/', '').replace('http://doi.org/', '');
     }
   }
 
-  // version can sometimes be a non-sensible date string — keep only sane values
   const rawVersion = cff.version != null ? String(cff.version) : null;
   const version = rawVersion && rawVersion.length < 40 && !/GMT|UTC/.test(rawVersion)
     ? rawVersion
@@ -174,7 +277,7 @@ async function fetchRepoHealth(owner, repo, headers) {
 
   const contribRes = await fetch(
     `https://api.github.com/repos/${owner}/${repo}/contributors?per_page=100&anon=false`,
-    { headers }
+    { headers },
   );
   let contributorCount = null;
   let contributorCountTruncated = false;
@@ -186,14 +289,22 @@ async function fetchRepoHealth(owner, repo, headers) {
     }
   }
 
-  const citation = await fetchCitation(owner, repo, data.default_branch, headers);
+  const [citation, funding, hasCodeOfConduct] = await Promise.all([
+    fetchCitation(owner, repo, data.default_branch, headers),
+    fetchFunding(owner, repo, headers),
+    fetchCodeOfConduct(owner, repo, headers),
+  ]);
+
   if (citation) {
-    console.log(`    CITATION.cff found — ${citation.authors.length} author(s)${citation.doi ? ', DOI: ' + citation.doi : ''}`);
+    console.log(
+      `    CITATION.cff found — ${citation.authors.length} author(s)${citation.doi ? ', DOI: ' + citation.doi : ''}`,
+    );
   } else {
-    console.log(`    No CITATION.cff`);
+    console.log('    No CITATION.cff');
   }
 
   return {
+    repoUrl: data.html_url ?? repoUrl({ owner, repo }),
     stars: data.stargazers_count ?? 0,
     forks: data.forks_count ?? 0,
     openIssues: data.open_issues_count ?? 0,
@@ -203,6 +314,9 @@ async function fetchRepoHealth(owner, repo, headers) {
     contributorCountTruncated,
     license: data.license?.spdx_id ?? null,
     archived: data.archived ?? false,
+    sponsorsUrl: funding.sponsorsUrl,
+    hasFunding: funding.hasFunding,
+    hasCodeOfConduct,
     citation,
   };
 }
@@ -218,47 +332,45 @@ async function main() {
     ...(token ? { Authorization: `Bearer ${token}` } : {}),
   };
 
-  const files = readdirSync(lessonsDir).filter((f) => f.endsWith('.json'));
-
-  // Collect unique repoUrls and which lessons map to them
-  const repoMap = new Map();
-  for (const file of files) {
+  const files = readdirSync(lessonsDir).filter((f) => f.endsWith('.json')).sort();
+  const lessons = files.map((file) => {
     const lesson = JSON.parse(readFileSync(join(lessonsDir, file), 'utf8'));
-    const repoUrl = lesson.repoUrl?.trim();
-    if (!repoUrl) continue;
-    const parsed = parseGithubRepo(repoUrl);
-    if (!parsed) {
-      console.log(`  Skip: ${lesson.name} (no valid GitHub repo URL: ${repoUrl})`);
-      continue;
-    }
-    if (!repoMap.has(repoUrl)) {
-      repoMap.set(repoUrl, { parsed, names: [] });
-    }
-    repoMap.get(repoUrl).names.push(lesson.name);
+    return { file, lesson, slug: getLessonSlug(file, lesson), parsed: getLessonRepo(lesson) };
+  });
+
+  const uniqueRepos = new Map();
+  for (const item of lessons) {
+    if (!item.parsed) continue;
+    const key = repoKey(item.parsed);
+    if (!uniqueRepos.has(key)) uniqueRepos.set(key, item.parsed);
   }
 
-  console.log(`\nFetching health + citations for ${repoMap.size} unique repos (${files.length} lessons)...\n`);
+  console.log(`\nFetching health + citations for ${uniqueRepos.size} unique repos (${files.length} lessons)...\n`);
 
-  const results = {};
+  const healthByRepo = new Map();
   let fetched = 0;
   let skipped = 0;
 
-  for (const [repoUrl, { parsed, names }] of repoMap) {
-    const label = `${parsed.owner}/${parsed.repo}`;
-    console.log(`  Fetch: ${label}  (${names.join(', ')})`);
-
+  for (const [key, parsed] of uniqueRepos) {
+    console.log(`  Fetch: ${parsed.owner}/${parsed.repo}`);
     const health = await fetchRepoHealth(parsed.owner, parsed.repo, headers);
+    healthByRepo.set(key, health);
+
     if (health) {
-      results[repoUrl] = health;
       fetched++;
       console.log(
-        `    stars=${health.stars} pushed=${health.pushedAt} contributors=${health.contributorCount}${health.contributorCountTruncated ? '+' : ''}`
+        `    stars=${health.stars} pushed=${health.pushedAt} contributors=${health.contributorCount}${health.contributorCountTruncated ? '+' : ''}`,
       );
     } else {
       skipped++;
     }
 
     await new Promise((r) => setTimeout(r, 250));
+  }
+
+  const results = {};
+  for (const item of lessons) {
+    results[item.slug] = item.parsed ? healthByRepo.get(repoKey(item.parsed)) ?? null : null;
   }
 
   const output = {

@@ -13,6 +13,7 @@ export type Citation = {
 };
 
 export type HealthRecord = {
+  repoUrl: string;
   stars: number;
   forks: number;
   openIssues: number;
@@ -22,10 +23,13 @@ export type HealthRecord = {
   contributorCountTruncated: boolean;
   license: string | null;
   archived: boolean;
+  sponsorsUrl: string | null;
+  hasFunding: boolean;
+  hasCodeOfConduct: boolean;
   citation: Citation | null;
 };
 
 export type HealthSnapshot = {
   fetchedAt: string | null;
-  lessons: Record<string, HealthRecord>;
+  lessons: Record<string, HealthRecord | null>;
 };

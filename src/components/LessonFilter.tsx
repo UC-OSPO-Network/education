@@ -2,12 +2,14 @@ import { useEffect, useMemo, useState } from "react";
 import Fuse from "fuse.js";
 import LessonCard from "./LessonCard.jsx";
 import type { Lesson } from "../lib/lessons";
+import type { HealthRecord } from "../lib/githubHealth";
 
 interface LessonFilterProps {
   lessons: Lesson[];
+  healthBySlug?: Record<string, HealthRecord | null>;
 }
 
-export default function LessonFilter({ lessons }: LessonFilterProps) {
+export default function LessonFilter({ lessons, healthBySlug = {} }: LessonFilterProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [filters, setFilters] = useState({
     role: "",
@@ -60,7 +62,7 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
         { name: "keywords", weight: 0.2 },
         { name: "subTopic", weight: 0.1 },
       ],
-      threshold: 0.4,
+      threshold: 0.3,
       ignoreLocation: true,
     });
   }, [lessons]);
@@ -198,6 +200,7 @@ export default function LessonFilter({ lessons }: LessonFilterProps) {
               key={lesson.slug}
               lesson={lesson}
               lessonIndex={lessonIndex}
+              health={healthBySlug[lesson.slug] ?? null}
             />
           ))
         )}

@@ -3,7 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getLessons, type Lesson } from "../../lib/lessons";
 import { getCollection } from "astro:content";
 import LessonCard from "../../components/LessonCard.jsx";
+import githubHealthRaw from "../../data/github-health.json";
+import type { HealthSnapshot } from "../../lib/githubHealth";
 import "../../components/lessons/lessons.css";
+
+const healthData = githubHealthRaw as unknown as HealthSnapshot;
 
 interface Props {
   id: string;
@@ -116,6 +120,7 @@ const groupedLessons = pathwayLessons.reduce<Record<string, Lesson[]>>((acc, les
               <LessonCard
                 lesson={lesson}
                 lessonIndex={lessonIndex}
+                health={healthData.lessons[lesson.slug] ?? null}
                 headingLevel={3}
                 client:load
               />

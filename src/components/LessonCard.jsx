@@ -1,4 +1,7 @@
 import { ChartBarIcon } from "@heroicons/react/24/outline";
+import HealthSignalRow from "./HealthSignalRow.jsx";
+
+/** @typedef {import("../lib/githubHealth").HealthRecord} HealthRecord */
 
 function formatUrlLabel(url) {
   try {
@@ -18,7 +21,15 @@ function getLevelConfig(level) {
   return { bg: "#6b7280", label: level };
 }
 
-export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3 }) {
+/**
+ * @param {{
+ *   lesson: import("../lib/lessons").Lesson;
+ *   lessonIndex?: Record<string, { name: string; url: string }>;
+ *   headingLevel?: number;
+ *   health?: HealthRecord | null;
+ * }} props
+ */
+export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3, health = null }) {
   if (!lesson) return null;
 
   const lessonName = lesson.name || "Untitled Lesson";
@@ -56,7 +67,9 @@ export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3 
   const TitleTag = `h${headingLevel}`;
 
   return (
-    <a className="lesson-card" href={lessonHref}>
+    <article className="lesson-card">
+      <a className="lesson-card__cover-link" href={lessonHref} aria-label="Open lesson page"></a>
+
       {/* Colored level band */}
       <div className="lesson-card__band" style={{ background: level.bg }}>
         <ChartBarIcon className="lesson-card__band-icon" />
@@ -112,7 +125,9 @@ export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3 
             ✨ Featured in multiple pathways
           </p>
         )}
+
+        <HealthSignalRow health={health} />
       </div>
-    </a>
+    </article>
   );
 }
