@@ -1,7 +1,7 @@
 {
     "name": "Intermediate Python Development",
     "slug": "intermediate-python-development",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "drop",
     "description": "This lesson covers intermediate Python development skills such as writing reusable code, using virtual environments, testing with pytest, and managing dependencies.",
     "url": "https://carpentries-incubator.github.io/python-intermediate-development/",
     "topic": "Python",
@@ -14,11 +14,11 @@
         "en"
     ],
     "keywords": [
-        "Python",
-        "software development",
+        "python",
         "testing",
         "virtual environments",
-        "packaging"
+        "packaging",
+        "software engineering"
     ],
     "sortingId": "29",
     "prerequisiteNotes": "python-basics",
@@ -31,7 +31,7 @@
     "about": "",
     "accessibilitySummary": "",
     "audience": "Python Developers, Researchers, Data Scientists",
-    "competencyRequired": "Basic Python programming skills",
+    "competencyRequired": "Git, Python",
     "contributor": "",
     "creativeWorkStatus": "Active",
     "datePublished": "2021-09-01",
@@ -41,7 +41,7 @@
     "notes": "",
     "mentions": "pytest, https://docs.pytest.org, A testing framework for Python",
     "recordedAt": "",
-    "teaches": "Intermediate skills in collaborative research software development, including version control, testing, packaging, documentation, and sustainable coding practices using Python.",
+    "teaches": "Develop reusable, tested, and well-packaged research software components using Python.",
     "version": "1.0.0",
     "workTranslation": "",
     "domain": "Research Software",

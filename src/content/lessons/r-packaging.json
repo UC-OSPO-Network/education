@@ -14,7 +14,10 @@
         "en"
     ],
     "keywords": [
-        "lesson-materials lessons-page best-practices r"
+        "r",
+        "packaging",
+        "r packages",
+        "software distribution"
     ],
     "sortingId": "12",
     "prerequisiteNotes": "intermediate-r | r-basics | introduction-to-git",
@@ -23,11 +26,11 @@
     "abstract": "This workshop will provide you with the basics for writing your own packages in R.",
     "dateCreated": "2021-02-19",
     "dateModified": "2025-12-23",
-    "timeRequired": "PT2M",
+    "timeRequired": "PT7H25M",
     "about": "",
     "accessibilitySummary": "",
     "audience": "Researchers, Graduate Students, Data Scientists",
-    "competencyRequired": "",
+    "competencyRequired": "Git, R",
     "contributor": "",
     "creativeWorkStatus": "Under development",
     "datePublished": "2025-12-23",
@@ -37,7 +40,7 @@
     "notes": "",
     "mentions": "",
     "recordedAt": "",
-    "teaches": "",
+    "teaches": "Create, structure, and document reusable software distribution modules using R.",
     "version": "",
     "workTranslation": "",
     "domain": "Data Science",

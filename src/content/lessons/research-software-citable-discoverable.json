@@ -1,0 +1,69 @@
+{
+    "name": "Sharing Research Software: Citable, Discoverable, and Reproducible",
+    "slug": "research-software-citable-discoverable",
+    "keepStatus": "keepCandidate",
+    "description": "Practical, low-barrier approaches to making research software citable, discoverable, and reusable — including CITATION.cff, licensing, metadata, and FAIR principles.",
+    "url": "https://ucospo.net/research-software-citable-discoverable/",
+    "topic": "Research Software",
+    "subTopic": "Reproducible Research",
+    "educationalLevel": "Beginner",
+    "learningResourceType": "tutorial",
+    "author": "UC OSPO Network",
+    "license": "",
+    "inLanguage": [
+        "en"
+    ],
+    "keywords": [
+        "CITATION.cff",
+        "FAIR software",
+        "research software",
+        "metadata",
+        "discoverability",
+        "citability",
+        "open source license"
+    ],
+    "sortingId": "56",
+    "prerequisiteNotes": "",
+    "learningObjectives": "After this lesson, the learner should be able to:\n- Explain why research software requires citation and attribution\n- Add and validate a CITATION.cff file in a repository\n- Select and implement an appropriate open source license\n- Enhance software visibility through documentation and metadata improvements\n- Connect these practices to FAIR principles for research software\n- Manage reproducible environments using lightweight tools such as pixi",
+    "ospoRelevance": "Core",
+    "abstract": "This lesson introduces researchers — including graduate students, research staff, and librarians — to high-impact, low-effort practices for making research software more citable and discoverable. Topics include CITATION.cff files, open source licensing, metadata improvement, reproducible environments with pixi, and connecting these practices to FAIR principles.",
+    "dateCreated": "2025-12-04",
+    "dateModified": "2026-05-26",
+    "timeRequired": "PT25M",
+    "about": "",
+    "accessibilitySummary": "",
+    "audience": "Researchers, Graduate Students, Research Software Engineers, Librarians",
+    "competencyRequired": "Git, Open source basics",
+    "contributor": "",
+    "creativeWorkStatus": "Active",
+    "datePublished": "2025-12-04",
+    "hasPart": "",
+    "identifier": "",
+    "isPartOf": "UC OSPO Network",
+    "notes": "Lesson is in pre-alpha/early development as of 2026-05-26. License field in repo is NOASSERTION — needs clarification.",
+    "mentions": "",
+    "recordedAt": "",
+    "teaches": "Make research software citable, discoverable, and reproducible using FAIR practices and lightweight tooling.",
+    "version": "",
+    "workTranslation": "",
+    "domain": "Research Software",
+    "repoUrl": "https://github.com/UC-OSPO-Network/research-software-citable-discoverable",
+    "roles": [
+        "Contributor",
+        "Maintainer"
+    ],
+    "pathways": [
+        "maintaining"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "introduction-to-git"
+        },
+        {
+            "type": "lesson",
+            "value": "understanding-software-licensing"
+        }
+    ],
+    "provider": "UC OSPO Network"
+}

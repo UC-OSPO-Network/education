@@ -14,10 +14,10 @@
         "en"
     ],
     "keywords": [
-        "Python",
-        "setuptools",
-        "PyPI",
-        "packaging"
+        "python",
+        "packaging",
+        "pypi",
+        "setuptools"
     ],
     "sortingId": "11",
     "prerequisiteNotes": "python-basics",
@@ -26,11 +26,11 @@
     "abstract": "This tutorial covers packaging Python projects for distribution. It introduces key tools such as setuptools and explains how to create packages and publish them on PyPI.",
     "dateCreated": "2023-01-04",
     "dateModified": "2023-08-04",
-    "timeRequired": "PT14M",
+    "timeRequired": "PT3H15M",
     "about": "http://edamontology.org/topic_3316",
     "accessibilitySummary": "",
     "audience": "Software Developers, PhD Students",
-    "competencyRequired": "Python, setuptools",
+    "competencyRequired": "Git, Python",
     "contributor": "",
     "creativeWorkStatus": "Active",
     "datePublished": "2023-08-04",
@@ -40,7 +40,7 @@
     "notes": "",
     "mentions": "PyPI, https://pypi.org, Python Packaging Index",
     "recordedAt": "",
-    "teaches": "The student will be able to package Python projects and upload them to PyPI.",
+    "teaches": "Configure standard setuptools configurations to package Python projects for distribution on PyPI.",
     "version": "1.0.0",
     "workTranslation": "",
     "domain": "Research Software",

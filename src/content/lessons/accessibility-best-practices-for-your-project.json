@@ -1,0 +1,62 @@
+{
+    "name": "Accessibility Best Practices for Your Project",
+    "slug": "accessibility-best-practices-for-your-project",
+    "keepStatus": "keepCandidate",
+    "description": "Practical, actionable steps to make your open source project usable by everyone, especially people with disabilities.",
+    "url": "https://opensource.guide/accessibility-best-practices-for-your-project/",
+    "topic": "Project Health",
+    "subTopic": "Inclusivity",
+    "educationalLevel": "Intermediate",
+    "learningResourceType": "handout",
+    "author": "GitHub",
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "inLanguage": [
+        "en"
+    ],
+    "keywords": [
+        "accessibility",
+        "WCAG",
+        "disability",
+        "inclusion",
+        "documentation"
+    ],
+    "sortingId": "50",
+    "prerequisiteNotes": "",
+    "learningObjectives": "After this lesson, the learner should be able to:\n- Partner with people with disabilities to improve project accessibility\n- Write an accessibility statement for a project\n- Apply accessible documentation and interface design practices\n- Build accessibility testing into contribution workflows",
+    "ospoRelevance": "High",
+    "abstract": "A practical guide for open source maintainers on making projects accessible to people with disabilities. Covers accessibility statements, accessible documentation, interface design, contribution workflows, and continuous testing.",
+    "dateCreated": "",
+    "dateModified": "",
+    "timeRequired": "PT15M",
+    "about": "",
+    "accessibilitySummary": "",
+    "audience": "Maintainers, Project Leads, Developers",
+    "competencyRequired": "GitHub, Open source basics",
+    "contributor": "",
+    "creativeWorkStatus": "Active",
+    "datePublished": "",
+    "hasPart": "",
+    "identifier": "",
+    "isPartOf": "Open Source Guides",
+    "notes": "",
+    "mentions": "",
+    "recordedAt": "",
+    "teaches": "Apply accessibility best practices to open source projects",
+    "version": "",
+    "workTranslation": "",
+    "domain": "General Open Source",
+    "repoUrl": "https://github.com/github/opensource.guide",
+    "roles": [
+        "Maintainer"
+    ],
+    "pathways": [
+        "maintaining"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "best-practices-for-maintainers"
+        }
+    ],
+    "provider": "GitHub / Open Source Guides"
+}

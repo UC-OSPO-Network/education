@@ -1,5 +1,5 @@
 {
-    "name": "Introduction to Docker for Research  NOTE THIS IS NOW CALLED Introduction to Docker and Podman",
+    "name": "Introduction to Docker and Podman",
     "slug": "introduction-to-docker-for-research-note-this-is-now-called-introduction-to-docker-and-podman",
     "keepStatus": "keepCandidate",
     "description": "This lesson covers the fundamentals of Docker, including creating containers, managing Docker images, and using Docker for software reproducibility and deployment.",
@@ -8,17 +8,17 @@
     "subTopic": "Reproducible Research",
     "educationalLevel": "Beginner",
     "learningResourceType": "tutorial",
-    "author": "HSF Training Team",
+    "author": "HSF Training Center",
     "license": "https://creativecommons.org/licenses/by/4.0/",
     "inLanguage": [
         "en"
     ],
     "keywords": [
-        "Docker",
+        "docker",
+        "podman",
         "containers",
         "reproducibility",
-        "software deployment",
-        "research"
+        "deployment"
     ],
     "sortingId": "27",
     "prerequisiteNotes": "for bonus episode | introduction-to-unix-command-line | introduction-to-version-control-with-git",
@@ -27,11 +27,11 @@
     "abstract": "This lesson introduces Docker, explaining how to create, manage, and share containerized applications. It covers the basics of Docker, its use in reproducible research, and how to create Docker images for software development.",
     "dateCreated": "2020-10-01",
     "dateModified": "2023-03-15",
-    "timeRequired": "PT6M",
+    "timeRequired": "PT3H15M",
     "about": "",
     "accessibilitySummary": "",
     "audience": "Researchers, Software Developers, HPC Engineers",
-    "competencyRequired": "Basic understanding of software development and command line usage",
+    "competencyRequired": "Command line",
     "contributor": "",
     "creativeWorkStatus": "Active",
     "datePublished": "2020-11-01",
@@ -41,7 +41,7 @@
     "notes": "",
     "mentions": "Docker Hub, https://hub.docker.com, A repository for sharing and managing Docker images",
     "recordedAt": "",
-    "teaches": "The student will be able to create, manage, and share Docker containers for software development and reproducible research.",
+    "teaches": "Build, manage, and share reproducible computational environments using Docker and Podman containers.",
     "version": "1.0.0",
     "workTranslation": "",
     "domain": "Research Software",

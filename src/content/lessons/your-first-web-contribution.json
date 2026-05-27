@@ -1,7 +1,7 @@
 {
     "name": "Your First Web Contribution",
     "slug": "your-first-web-contribution",
-    "keepStatus": "keep",
+    "keepStatus": "keepCandidate",
     "description": "Build confidence by making a real open source contribution using only your web browser. No technical setup or Git installation required!",
     "url": "https://github.com/firstcontributions/first-contributions",
     "domain": "General Open Source",
@@ -16,10 +16,10 @@
         "en"
     ],
     "keywords": [
-        "quick win",
-        "browser-based",
-        "contribution",
-        "first-timers"
+        "first contribution",
+        "github web interface",
+        "open source",
+        "quick win"
     ],
     "prerequisiteNotes": "A GitHub account is required.",
     "sortingId": "2",
@@ -42,5 +42,7 @@
             "value": "what-is-open-source"
         }
     ],
-    "provider": "GitHub / Open Source Guides"
+    "provider": "GitHub / Open Source Guides",
+    "teaches": "Execute a basic upstream open source code contribution entirely using browser-based GitHub interfaces.",
+    "competencyRequired": "Open source basics"
 }

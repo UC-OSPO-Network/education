@@ -14,7 +14,10 @@
         "en"
     ],
     "keywords": [
-        "english packaging pip python"
+        "python",
+        "packaging",
+        "pip",
+        "distribution"
     ],
     "sortingId": "10",
     "prerequisiteNotes": "introduction-to-git | python-basics",
@@ -23,11 +26,11 @@
     "abstract": "This lesson teaches how to create and publish packages in Python. We assume a basic understanding of Python, and assume learners are comfortable using simple commands in a Bash shell.",
     "dateCreated": "2023-07-04",
     "dateModified": "2024-05-14",
-    "timeRequired": "PT2M",
+    "timeRequired": "PT2H2M",
     "about": "",
     "accessibilitySummary": "",
     "audience": "Software Developers, Contributors",
-    "competencyRequired": "",
+    "competencyRequired": "Git, Python",
     "contributor": "",
     "creativeWorkStatus": "Under development",
     "datePublished": "2024-05-14",
@@ -37,7 +40,7 @@
     "notes": "Pre-alpha lesson. Uses Carpentries lesson template.",
     "mentions": "",
     "recordedAt": "",
-    "teaches": "",
+    "teaches": "Build and publish standard distribution packages for Python projects.",
     "version": "",
     "workTranslation": "",
     "domain": "General Open Source",

@@ -1,0 +1,62 @@
+{
+    "name": "Maintaining Balance for Open Source Maintainers",
+    "slug": "maintaining-balance-for-open-source-maintainers",
+    "keepStatus": "keepCandidate",
+    "description": "Tips for self-care and avoiding burnout as a maintainer.",
+    "url": "https://opensource.guide/maintaining-balance-for-open-source-maintainers/",
+    "topic": "Project Health",
+    "subTopic": "Sustainability",
+    "educationalLevel": "Intermediate",
+    "learningResourceType": "handout",
+    "author": "GitHub",
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "inLanguage": [
+        "en"
+    ],
+    "keywords": [
+        "burnout",
+        "self-care",
+        "sustainability",
+        "maintainer health",
+        "work-life balance"
+    ],
+    "sortingId": "52",
+    "prerequisiteNotes": "",
+    "learningObjectives": "After this lesson, the learner should be able to:\n- Identify personal motivations for open source work\n- Recognize early signs of burnout\n- Apply strategies for setting boundaries and sustainable contribution\n- Identify community structures that support maintainer wellbeing",
+    "ospoRelevance": "Moderate",
+    "abstract": "A guide drawing on interviews with 40 members of the Maintainer Community on recognizing and preventing burnout. Covers identifying motivations, stress triggers, signs of burnout, and strategies for long-term sustainability.",
+    "dateCreated": "",
+    "dateModified": "",
+    "timeRequired": "PT10M",
+    "about": "",
+    "accessibilitySummary": "",
+    "audience": "Maintainers, Project Leads",
+    "competencyRequired": "Open source basics, Maintainer experience",
+    "contributor": "",
+    "creativeWorkStatus": "Active",
+    "datePublished": "",
+    "hasPart": "",
+    "identifier": "",
+    "isPartOf": "Open Source Guides",
+    "notes": "",
+    "mentions": "",
+    "recordedAt": "",
+    "teaches": "Recognize and prevent maintainer burnout through sustainable practices",
+    "version": "",
+    "workTranslation": "",
+    "domain": "General Open Source",
+    "repoUrl": "https://github.com/github/opensource.guide",
+    "roles": [
+        "Maintainer"
+    ],
+    "pathways": [
+        "maintaining"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "best-practices-for-maintainers"
+        }
+    ],
+    "provider": "GitHub / Open Source Guides"
+}

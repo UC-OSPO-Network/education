@@ -14,11 +14,11 @@
         "en"
     ],
     "keywords": [
-        "Git",
-        "version control",
+        "git",
         "collaboration",
         "branching",
-        "merging"
+        "merging",
+        "version control"
     ],
     "sortingId": "8",
     "prerequisiteNotes": "introduction-to-git | how-to-contribute-to-open-source",
@@ -27,11 +27,11 @@
     "abstract": "This lesson covers collaborative Git usage, including branching, merging, resolving conflicts, and setting up Git workflows for team collaboration.",
     "dateCreated": "2021-06-10",
     "dateModified": "2023-03-01",
-    "timeRequired": "PT6M",
+    "timeRequired": "PT4H40M",
     "about": "",
     "accessibilitySummary": "",
     "audience": "Researchers, Software Developers, PhD Students",
-    "competencyRequired": "Git, version control",
+    "competencyRequired": "Git",
     "contributor": "",
     "creativeWorkStatus": "Active",
     "datePublished": "2021-07-01",
@@ -41,7 +41,7 @@
     "notes": "Keep Candidate for Git/Beg",
     "mentions": "GitHub, https://github.com, A popular platform for hosting Git repositories",
     "recordedAt": "",
-    "teaches": "The student will be able to use Git collaboratively, manage branches, resolve merge conflicts, and set up Git workflows for team projects.",
+    "teaches": "Manage team software development workflows using advanced Git branching, merging, and conflict resolution.",
     "version": "1.1.0",
     "workTranslation": "",
     "domain": "General Open Source",

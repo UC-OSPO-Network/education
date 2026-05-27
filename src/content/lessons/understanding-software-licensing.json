@@ -14,11 +14,10 @@
         "en"
     ],
     "keywords": [
-        "software licenses",
-        "open source",
-        "legal",
-        "GPL",
-        "MIT"
+        "software licensing",
+        "open source licenses",
+        "copyright",
+        "legal compliance"
     ],
     "sortingId": "3",
     "prerequisiteNotes": "No dependency",
@@ -27,11 +26,11 @@
     "abstract": "This tutorial introduces the basics of software licensing, focusing on open-source licenses. It explains the different types of licenses, their implications, and how to apply them to software projects.",
     "dateCreated": "2022-09-05",
     "dateModified": "2023-01-10",
-    "timeRequired": "PT5M",
+    "timeRequired": "PT3H6M",
     "about": "",
     "accessibilitySummary": "",
     "audience": "Developers, PhD Students, Open Source Contributors",
-    "competencyRequired": "Understanding of software development and open source concepts",
+    "competencyRequired": "Open source basics",
     "contributor": "",
     "creativeWorkStatus": "Active",
     "datePublished": "2023-01-15",
@@ -41,7 +40,7 @@
     "notes": "This is in Beta.  It has a lot of information. It's dense. I would like to reveiw final before allow external use.  It is a candidate but not approved for distribution.  This will need to be supplemented with UC Policies.",
     "mentions": "GNU General Public License, https://www.gnu.org/licenses/gpl-3.0.en.html, A popular open-source license.",
     "recordedAt": "",
-    "teaches": "The student will be able to identify different types of software licenses and apply the correct license to their project.",
+    "teaches": "Analyze common open source software licenses to correctly apply compliance terms to codebases.",
     "version": "1.0.1",
     "workTranslation": "",
     "domain": "Institutional Policy",
@@ -56,7 +55,7 @@
     "prerequisites": [
         {
             "type": "lesson",
-            "value": "your-first-web-contribution"
+            "value": "what-is-open-source"
         }
     ],
     "provider": "INTERSECT"

@@ -15,8 +15,8 @@
     ],
     "keywords": [
         "collaboration",
-        "Git",
-        "GitHub",
+        "git",
+        "github",
         "open science",
         "research"
     ],
@@ -31,7 +31,7 @@
     "about": "",
     "accessibilitySummary": "",
     "audience": "Researchers, Open Science Contributors, Software Developers",
-    "competencyRequired": "Basic understanding of Git, GitHub, and collaborative work in research",
+    "competencyRequired": "Git, GitHub",
     "contributor": "",
     "creativeWorkStatus": "Active",
     "datePublished": "2020-05-01",
@@ -41,7 +41,7 @@
     "notes": "",
     "mentions": "GitHub, https://github.com, A platform for hosting and sharing research code and projects",
     "recordedAt": "",
-    "teaches": "The student will be able to use Git and GitHub for collaborative research, manage contributions, and follow best practices for open science.",
+    "teaches": "Collaborate on open science and research projects using distributed version control workflows.",
     "version": "1.0.0",
     "workTranslation": "",
     "domain": "Research Software",

@@ -1,12 +1,12 @@
 {
-    "name": "Navigating GitHub and Project Documentation",
+    "name": "Best Practices for Maintainers",
     "slug": "best-practices-for-maintainers",
     "keepStatus": "keepCandidate",
-    "description": "Learn how to 'read the room' by interpreting project files like README.md, CONTRIBUTING.md, and CODE_OF_CONDUCT.md.",
+    "description": "Making your life easier as an open source maintainer, from documenting processes to leveraging your community.",
     "url": "https://opensource.guide/best-practices/",
     "author": "GitHub",
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "educationalLevel": "Beginner",
+    "educationalLevel": "Intermediate",
     "learningResourceType": "handout",
     "inLanguage": [
         "en",
@@ -48,11 +48,11 @@
     "audience": "Individuals, Companies",
     "isPartOf": "Open Source Guides",
     "mentions": "These guides are available in over 20 languages.",
-    "learningObjectives": "After this lesson, the learner should be able to:\n- Navigate standard open source repository structures.\n- Interpret README.md, CONTRIBUTING.md, and CODE_OF_CONDUCT.md files.\n- Locate community standards and setup instructions.",
+    "learningObjectives": "After this lesson, the learner should be able to:\n- Document processes to reduce repetitive overhead as a maintainer\n- Set and communicate expectations with contributors\n- Use tools and automation to make maintenance sustainable\n- Know when and how to say no to contributions or requests\n- Leverage the community to share the maintainer workload",
     "dateModified": "2025-12-26",
     "datePublished": "2025-12-26",
     "timeRequired": "PT14M",
-    "subTopic": "Open Source Literacy",
+    "subTopic": "Project Management",
     "dateCreated": "",
     "domain": "General Open Source",
     "repoUrl": "https://github.com/github/opensource.guide",
@@ -61,7 +61,7 @@
         "Community Manager"
     ],
     "pathways": [
-        "getting-started"
+        "maintaining"
     ],
     "prerequisites": [
         {
@@ -69,5 +69,7 @@
             "value": "introduction-to-git"
         }
     ],
-    "provider": "GitHub / Open Source Guides"
+    "provider": "GitHub / Open Source Guides",
+    "teaches": "Implement sustainable processes and community-led workflows to effectively manage an open source project.",
+    "competencyRequired": "Git"
 }

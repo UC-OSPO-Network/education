@@ -1,0 +1,59 @@
+{
+    "name": "Good Enough Practices in Scientific Computing",
+    "slug": "good-enough-practices-in-scientific-computing",
+    "keepStatus": "keepCandidate",
+    "description": "A set of practical computing habits every researcher can adopt — covering data management, code organization, collaboration, version control, and project structure.",
+    "url": "https://carpentries-lab.github.io/good-enough-practices/",
+    "topic": "Research Software",
+    "subTopic": "Reproducible Research",
+    "educationalLevel": "Beginner",
+    "learningResourceType": "tutorial",
+    "author": "The Carpentries Lab",
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "inLanguage": [
+        "en"
+    ],
+    "keywords": [
+        "scientific computing",
+        "data management",
+        "project organization",
+        "version control",
+        "reproducibility",
+        "collaboration"
+    ],
+    "sortingId": "57",
+    "prerequisiteNotes": "No specific prerequisites. Basic coding familiarity is helpful for the Code episode.",
+    "learningObjectives": "After this lesson, the learner should be able to:\n- Apply data management practices that support reproducibility and reuse\n- Organize code and software for clarity and maintainability\n- Structure research projects to support collaboration\n- Use version control to track changes across a project\n- Identify practical next steps for improving research computing workflows",
+    "ospoRelevance": "High",
+    "abstract": "A peer-reviewed Carpentries Lab lesson drawing on published sources and over a decade of workshop experience. Covers the core habits researchers need to work more efficiently and reproducibly: data management, code organization, project structure, collaboration, version control, and manuscript preparation.",
+    "dateCreated": "2021-03-08",
+    "dateModified": "2026-05-26",
+    "timeRequired": "PT3H39M",
+    "about": "",
+    "accessibilitySummary": "",
+    "audience": "Researchers, Graduate Students, Scientists, Research Staff",
+    "competencyRequired": "",
+    "contributor": "",
+    "creativeWorkStatus": "Active",
+    "datePublished": "2021-03-08",
+    "hasPart": "",
+    "identifier": "",
+    "isPartOf": "Carpentries Lab",
+    "notes": "Peer-reviewed and stable. Broad audience — suitable as an early entry point for researchers new to computational practices.",
+    "mentions": "",
+    "recordedAt": "",
+    "teaches": "Apply good enough computing practices to organize data, code, and projects for reproducible scientific research.",
+    "version": "",
+    "workTranslation": "",
+    "domain": "Research Software",
+    "repoUrl": "https://github.com/carpentries-lab/good-enough-practices",
+    "roles": [
+        "Contributor",
+        "Maintainer"
+    ],
+    "pathways": [
+        "maintaining"
+    ],
+    "prerequisites": [],
+    "provider": "The Carpentries Lab"
+}

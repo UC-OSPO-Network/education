@@ -14,11 +14,10 @@
         "en"
     ],
     "keywords": [
-        "research software",
-        "RSE",
-        "version control",
+        "research software engineering",
+        "python",
         "testing",
-        "project management"
+        "software design"
     ],
     "sortingId": "28",
     "prerequisiteNotes": "This is a python based course | python-packaging | python-packaging-for-beginners | cicd-for-research-software-with-gitlab-ci | unit-testing-and-tdd-in-python | python-package-development-best-practices | intermediate-python | collaboration-in-open-research-projects | introduction-to-git | responsible-data-science | introduction-to-version-control-with-git",
@@ -31,7 +30,7 @@
     "about": "",
     "accessibilitySummary": "",
     "audience": "Research Software Engineers, Researchers, Software Developers",
-    "competencyRequired": "Basic understanding of research software development",
+    "competencyRequired": "Git, Python",
     "contributor": "",
     "creativeWorkStatus": "Active",
     "datePublished": "2020-09-01",
@@ -41,7 +40,7 @@
     "notes": "",
     "mentions": "GitHub, https://github.com, A platform for hosting and sharing research code",
     "recordedAt": "",
-    "teaches": "The student will be able to apply software development best practices, use version control, write tests, and manage research software projects.",
+    "teaches": "Apply formal software engineering practices, testing architectures, and design principles to research software.",
     "version": "1.0.0",
     "workTranslation": "",
     "domain": "Research Software",

@@ -14,10 +14,10 @@
         "en"
     ],
     "keywords": [
-        "testing",
-        "unit tests",
-        "Python",
-        "TDD"
+        "unit testing",
+        "python",
+        "test-driven development",
+        "pytest"
     ],
     "sortingId": "17",
     "prerequisiteNotes": "intermediate-python",
@@ -26,11 +26,11 @@
     "abstract": "This tutorial introduces software testing, focusing on unit testing and test-driven development (TDD) in Python. It explains how to write tests, run them, and integrate them into the development process.",
     "dateCreated": "2023-02-18",
     "dateModified": "2023-05-25",
-    "timeRequired": "PT5M",
+    "timeRequired": "PT10H45M",
     "about": "",
     "accessibilitySummary": "",
     "audience": "Software Developers, PhD Students, Open Source Contributors",
-    "competencyRequired": "Python, basic understanding of software development",
+    "competencyRequired": "Git, Python",
     "contributor": "",
     "creativeWorkStatus": "Active",
     "datePublished": "2023-06-01",
@@ -40,7 +40,7 @@
     "notes": "",
     "mentions": "pytest, https://docs.pytest.org, A testing framework for Python",
     "recordedAt": "",
-    "teaches": "The student will be able to write and run unit tests in Python and understand the principles of test-driven development.",
+    "teaches": "Design and execute automated testing scripts in Python applying strict test-driven methodologies.",
     "version": "1.0.0",
     "workTranslation": "",
     "domain": "Research Software",

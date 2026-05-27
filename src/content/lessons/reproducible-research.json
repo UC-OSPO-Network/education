@@ -15,9 +15,9 @@
     ],
     "keywords": [
         "reproducible research",
-        "version control",
         "data management",
-        "open science"
+        "open science",
+        "version control"
     ],
     "sortingId": "25",
     "prerequisiteNotes": "No programming experience needed. It would be best for a student who has experience with research papers and research projects and wants to detailed understanding of terms and concepts, but that is not necessary No programming experience needed.  It would be best for a student who has experience with research papers and research projects and wants to detailed understanding of terms and concepts, but that is not necessary.",
@@ -30,7 +30,7 @@
     "about": "",
     "accessibilitySummary": "",
     "audience": "Researchers, Open Science Contributors, Software Developers",
-    "competencyRequired": "Basic understanding of research methodologies and tools for reproducibility",
+    "competencyRequired": "Git",
     "contributor": "",
     "creativeWorkStatus": "Active",
     "datePublished": "2020-04-01",
@@ -40,7 +40,7 @@
     "notes": "",
     "mentions": "Git, https://git-scm.com, A version control tool for ensuring reproducibility in research projects",
     "recordedAt": "",
-    "teaches": "The student will be able to apply best practices for reproducible research, including using Git for version control and managing research data.",
+    "teaches": "Integrate robust data management and version control systems to ensure reproducible research outcomes.",
     "version": "1.0.0",
     "workTranslation": "",
     "domain": "Research Software",

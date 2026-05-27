@@ -14,7 +14,10 @@
         "en"
     ],
     "keywords": [
-        "docker english containers hacktoberfest"
+        "docker",
+        "containers",
+        "reproducibility",
+        "open science"
     ],
     "sortingId": "32",
     "prerequisiteNotes": "reproducible-research",
@@ -23,11 +26,11 @@
     "abstract": "This session aims to introduce the use of Docker containers with the goal of using them to effect reproducible computational environments. Such environments are useful for ensuring reproducible research outputs, for example.",
     "dateCreated": "2025-04-22",
     "dateModified": "2025-12-23",
-    "timeRequired": "PT25M",
+    "timeRequired": "PT4H5M",
     "about": "",
     "accessibilitySummary": "",
     "audience": "Researchers, Graduate Students",
-    "competencyRequired": "",
+    "competencyRequired": "Command line, Docker",
     "contributor": "",
     "creativeWorkStatus": "Under development",
     "datePublished": "2025-12-23",
@@ -37,7 +40,7 @@
     "notes": "Keep - but it would also be nice to have something more general re: Codespaces, GitPod, VS Code devcontainers",
     "mentions": "",
     "recordedAt": "",
-    "teaches": "",
+    "teaches": "Deploy isolated container environments to guarantee computational reproducibility across research workloads.",
     "version": "",
     "workTranslation": "",
     "domain": "Research Software",

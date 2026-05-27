@@ -1,0 +1,62 @@
+{
+    "name": "Security Best Practices for Your Project",
+    "slug": "security-best-practices-for-your-project",
+    "keepStatus": "keepCandidate",
+    "description": "Strengthen your project's future by building trust through essential security practices \u2014 from MFA and code scanning to safe dependency management and private vulnerability reporting.",
+    "url": "https://opensource.guide/security-best-practices-for-your-project/",
+    "topic": "Project Health",
+    "subTopic": "Security",
+    "educationalLevel": "Intermediate",
+    "learningResourceType": "handout",
+    "author": "GitHub",
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "inLanguage": [
+        "en"
+    ],
+    "keywords": [
+        "security",
+        "MFA",
+        "code scanning",
+        "dependencies",
+        "vulnerability reporting"
+    ],
+    "sortingId": "51",
+    "prerequisiteNotes": "",
+    "learningObjectives": "After this lesson, the learner should be able to:\n- Enable MFA for all privileged contributors\n- Integrate code scanning into a development workflow\n- Manage open source dependencies safely\n- Set up a private vulnerability reporting process\n- Prepare a lightweight incident response plan",
+    "ospoRelevance": "High",
+    "abstract": "A practical guide for maintainers on implementing essential security measures in open source projects. Covers authentication, code scanning, dependency management, vulnerability reporting, and incident response.",
+    "dateCreated": "",
+    "dateModified": "",
+    "timeRequired": "PT9M",
+    "about": "",
+    "accessibilitySummary": "",
+    "audience": "Maintainers, Project Leads, Developers",
+    "competencyRequired": "GitHub, Open source basics",
+    "contributor": "",
+    "creativeWorkStatus": "Active",
+    "datePublished": "",
+    "hasPart": "",
+    "identifier": "",
+    "isPartOf": "Open Source Guides",
+    "notes": "",
+    "mentions": "",
+    "recordedAt": "",
+    "teaches": "Implement essential security practices for open source projects",
+    "version": "",
+    "workTranslation": "",
+    "domain": "General Open Source",
+    "repoUrl": "https://github.com/github/opensource.guide",
+    "roles": [
+        "Maintainer"
+    ],
+    "pathways": [
+        "maintaining"
+    ],
+    "prerequisites": [
+        {
+            "type": "lesson",
+            "value": "best-practices-for-maintainers"
+        }
+    ],
+    "provider": "GitHub / Open Source Guides"
+}

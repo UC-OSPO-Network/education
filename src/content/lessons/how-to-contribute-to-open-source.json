@@ -8,13 +8,16 @@
     "subTopic": "Open Source Literacy",
     "educationalLevel": "Beginner",
     "learningResourceType": "handout",
-    "author": "being users of software they contribute to",
+    "author": "Open Source Guides",
     "license": "",
     "inLanguage": [
         "en"
     ],
     "keywords": [
-        "Contributing"
+        "contributing",
+        "open source",
+        "first contribution",
+        "project discovery"
     ],
     "sortingId": "6",
     "prerequisiteNotes": "",
@@ -27,17 +30,17 @@
     "about": "",
     "accessibilitySummary": "",
     "audience": "Beginners, Software Developers",
-    "competencyRequired": "",
+    "competencyRequired": "Open source basics",
     "contributor": "",
     "creativeWorkStatus": "Active",
     "datePublished": "2025-12-26",
     "hasPart": "",
     "identifier": "",
-    "isPartOf": "",
+    "isPartOf": "Open Source Guides",
     "notes": "Maybe not relevant for researchers, but useful for students as a self-guided entry point",
     "mentions": "",
     "recordedAt": "",
-    "teaches": "",
+    "teaches": "Identify, evaluate, and select beginner-friendly open source projects and tasks for your first contribution.",
     "version": "",
     "workTranslation": "",
     "domain": "General Open Source",
@@ -51,7 +54,7 @@
     "prerequisites": [
         {
             "type": "lesson",
-            "value": "best-practices-for-maintainers"
+            "value": "what-is-open-source"
         }
     ],
     "provider": "GitHub / Open Source Guides"

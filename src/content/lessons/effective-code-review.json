@@ -14,8 +14,8 @@
     "keywords": [
         "code review",
         "software development",
-        "feedback",
-        "Git"
+        "peer review",
+        "collaboration"
     ],
     "topic": "Maintaining",
     "sortingId": "22",
@@ -23,7 +23,7 @@
     "ospoRelevance": "High",
     "abstract": "This tutorial covers the principles and practices of code review, focusing on collaborative software development. It explains how to conduct code reviews effectively, provide feedback, and integrate changes.",
     "audience": "Software Developers, PhD Students, Open Source Contributors",
-    "competencyRequired": "Git, collaborative coding",
+    "competencyRequired": "Git, GitHub, Contribution experience",
     "creativeWorkStatus": "Active",
     "dateCreated": "2023-04-12",
     "dateModified": "2023-06-20",
@@ -31,7 +31,7 @@
     "hasPart": "http://code-review-guide.io",
     "isPartOf": "Collaborative Development Series",
     "mentions": "GitHub Code Review, https://github.com/features/code-review, GitHub's code review feature",
-    "teaches": "The student will be able to conduct a code review, provide constructive feedback, and manage changes.",
+    "teaches": "Conduct constructive, high-quality code reviews to improve team software quality and collaboration.",
     "version": "1.1.0",
     "timeRequired": "PT5M",
     "prerequisiteNotes": "collaborative-git-for-teams",

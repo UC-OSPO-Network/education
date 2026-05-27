@@ -1,7 +1,7 @@
 {
     "name": "What is Open Source?",
     "slug": "what-is-open-source",
-    "keepStatus": "keep",
+    "keepStatus": "keepCandidate",
     "description": "An introduction to the four freedoms of software, the benefits of FOSS in education and industry, and the core principles of transparency and community.",
     "url": "https://opensource.guide/starting-a-project/#what-does-open-source-mean",
     "domain": "General Open Source",
@@ -16,10 +16,10 @@
         "en"
     ],
     "keywords": [
-        "FOSS",
-        "open source",
-        "transparency",
-        "community"
+        "open source basics",
+        "foss",
+        "software freedom",
+        "open collaboration"
     ],
     "prerequisiteNotes": "No prior experience needed.",
     "sortingId": "1",
@@ -38,5 +38,8 @@
         "getting-started"
     ],
     "prerequisites": [],
-    "provider": "GitHub / Open Source Guides"
+    "isPartOf": "Open Source Guides",
+    "provider": "GitHub / Open Source Guides",
+    "teaches": "Explain core software freedoms, open source principles, and institutional benefits of transparent collaboration.",
+    "competencyRequired": ""
 }

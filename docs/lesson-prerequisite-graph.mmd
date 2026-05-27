@@ -1,0 +1,111 @@
+flowchart LR
+
+    classDef gs fill:#c8e6c9,stroke:#388e3c,color:#1b1b1b
+    classDef ct fill:#bbdefb,stroke:#1565c0,color:#1b1b1b
+    classDef mn fill:#ffe0b2,stroke:#e65100,color:#1b1b1b
+    classDef bc fill:#e1bee7,stroke:#6a1b9a,color:#1b1b1b
+    classDef li fill:#ffcdd2,stroke:#b71c1c,color:#1b1b1b
+    classDef st fill:#cfd8dc,stroke:#37474f,color:#1b1b1b
+
+    subgraph getting_started["Getting Started"]
+        how_to_contribute_to_open_source["Finding and Evaluating Projects"]
+        introduction_to_git["Introduction to Git"]
+        making_good_pull_requests["Making Your First Pull Request"]
+        social_coding_and_open_source_collaboration["Social Coding & Inclusive Comms"]
+        understanding_software_licensing["Understanding Software Licensing"]
+        what_is_open_source["What is Open Source?"]
+        your_first_web_contribution["Your First Web Contribution"]
+    end
+
+    subgraph contributing["Contributing"]
+        collaboration_in_open_research_projects["Collaboration in Open Research"]
+        collaborative_git_for_teams["Collaborative Git for Teams"]
+        issue_tracking_with_github["Issue Tracking with GitHub"]
+        writing_documentation_for_software_projects["Writing Documentation"]
+    end
+
+    subgraph maintaining["Maintaining"]
+        accessibility_best_practices_for_your_project["Accessibility Best Practices"]
+        best_practices_for_maintainers["Best Practices for Maintainers"]
+        building_better_research_software["Building Better Research Software"]
+        cicd_for_research_software_with_gitlab_ci["CI/CD with GitLab CI"]
+        continuous_integration_and_delivery_with_github_actions["CI/CD with GitHub Actions"]
+        effective_code_review["Effective Code Review"]
+        finding_users_for_your_project["Finding Users for Your Project"]
+        intermediate_research_software_development_skills_python_lesson_material["Intermediate Research SW Dev"]
+        introduction_to_docker_for_research_note_this_is_now_called_introduction_to_docker_and_podman["Intro to Docker & Podman"]
+        maintaining_balance_for_open_source_maintainers["Maintaining Balance"]
+        metrics["Metrics"]
+        modular_programming_with_python["Modular Programming with Python"]
+        python_package_development_best_practices["Python Package Best Practices"]
+        python_packaging_for_beginners["Python Packaging for Beginners"]
+        python_packaging["Python Packaging"]
+        r_packaging["R Packaging"]
+        reproducible_computational_environments_using_containers["Reproducible Environments"]
+        reproducible_research["Reproducible Research"]
+        research_software_engineering_with_python_course["RSE with Python"]
+        security_best_practices_for_your_project["Security Best Practices"]
+        starting_an_open_source_project["Starting an Open Source Project"]
+        testing_and_test_driven_development["Testing and TDD"]
+        unit_testing_and_tdd_in_python["Unit Testing & TDD in Python"]
+    end
+
+    subgraph building_communities["Building Communities"]
+        building_community["Building Community"]
+        code_of_conduct["Your Code of Conduct"]
+        leadership_and_governance["Leadership and Governance"]
+    end
+
+    subgraph licensing["Licensing"]
+        the_legal_side_of_open_source["The Legal Side of Open Source"]
+    end
+
+    subgraph strategic["Strategic"]
+        getting_paid_for_open_source_work["Getting Paid for Open Source"]
+    end
+
+    %% Prerequisites
+    best_practices_for_maintainers --> accessibility_best_practices_for_your_project
+    introduction_to_git --> best_practices_for_maintainers
+    introduction_to_git --> building_better_research_software
+    social_coding_and_open_source_collaboration --> building_community
+    unit_testing_and_tdd_in_python --> cicd_for_research_software_with_gitlab_ci
+    building_community --> code_of_conduct
+    introduction_to_git --> collaboration_in_open_research_projects
+    introduction_to_git --> collaborative_git_for_teams
+    testing_and_test_driven_development --> continuous_integration_and_delivery_with_github_actions
+    collaborative_git_for_teams --> effective_code_review
+    best_practices_for_maintainers --> finding_users_for_your_project
+    starting_an_open_source_project --> getting_paid_for_open_source_work
+    what_is_open_source --> how_to_contribute_to_open_source
+    modular_programming_with_python --> intermediate_research_software_development_skills_python_lesson_material
+    what_is_open_source --> introduction_to_git
+    best_practices_for_maintainers --> issue_tracking_with_github
+    building_community --> leadership_and_governance
+    best_practices_for_maintainers --> maintaining_balance_for_open_source_maintainers
+    social_coding_and_open_source_collaboration --> making_good_pull_requests
+    building_community --> metrics
+    introduction_to_git --> modular_programming_with_python
+    python_packaging_for_beginners --> python_package_development_best_practices
+    collaborative_git_for_teams --> python_packaging
+    modular_programming_with_python --> python_packaging_for_beginners
+    introduction_to_git --> r_packaging
+    introduction_to_docker_for_research_note_this_is_now_called_introduction_to_docker_and_podman --> reproducible_computational_environments_using_containers
+    introduction_to_git --> reproducible_research
+    modular_programming_with_python --> research_software_engineering_with_python_course
+    best_practices_for_maintainers --> security_best_practices_for_your_project
+    how_to_contribute_to_open_source --> social_coding_and_open_source_collaboration
+    introduction_to_git --> starting_an_open_source_project
+    introduction_to_git --> testing_and_test_driven_development
+    understanding_software_licensing --> the_legal_side_of_open_source
+    what_is_open_source --> understanding_software_licensing
+    modular_programming_with_python --> unit_testing_and_tdd_in_python
+    best_practices_for_maintainers --> writing_documentation_for_software_projects
+    what_is_open_source --> your_first_web_contribution
+
+    class how_to_contribute_to_open_source,introduction_to_git,making_good_pull_requests,social_coding_and_open_source_collaboration,understanding_software_licensing,what_is_open_source,your_first_web_contribution gs
+    class collaboration_in_open_research_projects,collaborative_git_for_teams,issue_tracking_with_github,writing_documentation_for_software_projects ct
+    class accessibility_best_practices_for_your_project,best_practices_for_maintainers,building_better_research_software,cicd_for_research_software_with_gitlab_ci,continuous_integration_and_delivery_with_github_actions,effective_code_review,finding_users_for_your_project,intermediate_research_software_development_skills_python_lesson_material,introduction_to_docker_for_research_note_this_is_now_called_introduction_to_docker_and_podman,maintaining_balance_for_open_source_maintainers,metrics,modular_programming_with_python,python_package_development_best_practices,python_packaging_for_beginners,python_packaging,r_packaging,reproducible_computational_environments_using_containers,reproducible_research,research_software_engineering_with_python_course,security_best_practices_for_your_project,starting_an_open_source_project,testing_and_test_driven_development,unit_testing_and_tdd_in_python mn
+    class building_community,code_of_conduct,leadership_and_governance bc
+    class the_legal_side_of_open_source li
+    class getting_paid_for_open_source_work st
