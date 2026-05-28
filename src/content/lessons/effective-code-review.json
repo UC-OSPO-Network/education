@@ -33,7 +33,7 @@
     "mentions": "GitHub Code Review, https://github.com/features/code-review, GitHub's code review feature",
     "teaches": "Conduct constructive, high-quality code reviews to improve team software quality and collaboration.",
     "version": "1.1.0",
-    "timeRequired": "PT5M",
+    "timeRequired": "PT2H30M",
     "prerequisiteNotes": "collaborative-git-for-teams",
     "domain": "General Open Source",
     "subTopic": "Community Management",
