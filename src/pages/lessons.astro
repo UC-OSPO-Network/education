@@ -9,6 +9,7 @@ import "../components/lessons/lessons.css";
 const activeLessons = await getActiveLessons();
 const healthData = githubHealthRaw as unknown as HealthSnapshot;
 const healthBySlug = healthData.lessons ?? {};
+const pagefindPath = `${import.meta.env.BASE_URL}pagefind/`;
 ---
 
 <BaseLayout
@@ -34,6 +35,6 @@ const healthBySlug = healthData.lessons ?? {};
       </div>
     </div>
   ) : (
-    <LessonFilter lessons={activeLessons} healthBySlug={healthBySlug} client:load />
+    <LessonFilter lessons={activeLessons} healthBySlug={healthBySlug} pagefindPath={pagefindPath} client:load />
   )}
 </BaseLayout>

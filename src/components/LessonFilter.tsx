@@ -1,5 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
-import Fuse from "fuse.js";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import LessonCard from "./LessonCard.jsx";
 import type { Lesson } from "../lib/lessons";
 import type { HealthRecord } from "../lib/githubHealth";
@@ -7,10 +6,18 @@ import type { HealthRecord } from "../lib/githubHealth";
 interface LessonFilterProps {
   lessons: Lesson[];
   healthBySlug?: Record<string, HealthRecord | null>;
+  pagefindPath: string;
 }
 
-export default function LessonFilter({ lessons, healthBySlug = {} }: LessonFilterProps) {
+type PagefindResult = { data: () => Promise<{ url: string }> };
+type PagefindModule = {
+  search: (query: string) => Promise<{ results: PagefindResult[] }>;
+};
+
+export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath }: LessonFilterProps) {
   const [isLoading, setIsLoading] = useState(true);
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchSlugs, setSearchSlugs] = useState<Set<string> | null>(null);
   const [filters, setFilters] = useState({
     role: "",
     educationalLevel: "",
@@ -19,9 +26,67 @@ export default function LessonFilter({ lessons, healthBySlug = {} }: LessonFilte
     search: "",
   });
 
+  const pagefindRef = useRef<PagefindModule | null>(null);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   useEffect(() => {
     setIsLoading(false);
   }, []);
+
+  const loadPagefind = useCallback(async (): Promise<PagefindModule | null> => {
+    if (pagefindRef.current) return pagefindRef.current;
+    try {
+      // @vite-ignore: runtime path, not a static import
+      const pf = await import(/* @vite-ignore */ pagefindPath + "pagefind.js") as PagefindModule;
+      pagefindRef.current = pf;
+      return pf;
+    } catch {
+      return null;
+    }
+  }, [pagefindPath]);
+
+  const knownSlugs = useMemo(() => new Set(lessons.map((l) => l.slug)), [lessons]);
+
+  useEffect(() => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+
+    const query = filters.search.trim();
+    if (!query) {
+      setSearchSlugs(null);
+      setIsSearching(false);
+      return;
+    }
+
+    setIsSearching(true);
+
+    debounceRef.current = setTimeout(async () => {
+      const pf = await loadPagefind();
+      if (!pf) {
+        setSearchSlugs(null);
+        setIsSearching(false);
+        return;
+      }
+
+      try {
+        const response = await pf.search(query);
+        const pages = await Promise.all(response.results.map((r) => r.data()));
+        const slugs = new Set(
+          pages
+            .map((p) => p.url.split("/").filter(Boolean).pop() ?? "")
+            .filter((s) => knownSlugs.has(s)),
+        );
+        setSearchSlugs(slugs);
+      } catch {
+        setSearchSlugs(null);
+      }
+
+      setIsSearching(false);
+    }, 300);
+
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
+  }, [filters.search, loadPagefind, knownSlugs]);
 
   const filterOptions = useMemo(() => {
     const roles = new Set<string>();
@@ -53,25 +118,11 @@ export default function LessonFilter({ lessons, healthBySlug = {} }: LessonFilte
     return index;
   }, [lessons]);
 
-  const fuse = useMemo(() => {
-    if (!lessons.length) return null;
-    return new Fuse(lessons, {
-      keys: [
-        { name: "name", weight: 0.4 },
-        { name: "description", weight: 0.3 },
-        { name: "keywords", weight: 0.2 },
-        { name: "subTopic", weight: 0.1 },
-      ],
-      threshold: 0.3,
-      ignoreLocation: true,
-    });
-  }, [lessons]);
-
   const filteredLessons = useMemo(() => {
     let result = lessons;
 
-    if (filters.search && fuse) {
-      result = fuse.search(filters.search).map((entry) => entry.item);
+    if (searchSlugs !== null) {
+      result = result.filter((l) => searchSlugs.has(l.slug));
     }
 
     return result.filter((lesson) => {
@@ -81,7 +132,7 @@ export default function LessonFilter({ lessons, healthBySlug = {} }: LessonFilte
       if (filters.domain && lesson.domain !== filters.domain) return false;
       return true;
     });
-  }, [filters, fuse, lessons]);
+  }, [filters, searchSlugs, lessons]);
 
   function handleFilterChange(filterName: keyof typeof filters, value: string) {
     setFilters((prev) => ({ ...prev, [filterName]: value }));
@@ -178,7 +229,9 @@ export default function LessonFilter({ lessons, healthBySlug = {} }: LessonFilte
 
         <div className="lessons-filter__footer">
           <p className="lessons-filter__count">
-            Showing {filteredLessons.length} of {lessons.length} lessons
+            {isSearching
+              ? "Searching…"
+              : `Showing ${filteredLessons.length} of ${lessons.length} lessons`}
           </p>
           <button type="button" className="lessons-filter__clear" onClick={clearFilters}>
             Clear Filters
@@ -187,7 +240,11 @@ export default function LessonFilter({ lessons, healthBySlug = {} }: LessonFilte
       </div>
 
       <div className="lessons-grid">
-        {filteredLessons.length === 0 ? (
+        {isSearching ? (
+          <div className="lessons-loading">
+            <p>Searching…</p>
+          </div>
+        ) : filteredLessons.length === 0 ? (
           <div className="lessons-empty">
             <p className="lessons-empty__message">No lessons match your filters.</p>
             <button type="button" className="lessons-filter__clear" onClick={clearFilters}>
