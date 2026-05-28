@@ -194,6 +194,9 @@
 }
 
 .lesson-card__meta-type {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
   margin: 0;
   font-family: var(--font-sans);
   font-size: 0.68rem;
@@ -201,6 +204,12 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-secondary);
+}
+
+.lesson-card__meta-type-icon {
+  width: 0.85rem;
+  height: 0.85rem;
+  flex-shrink: 0;
 }
 
 .lesson-card__meta-role {

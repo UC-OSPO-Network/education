@@ -1,4 +1,10 @@
-import { ChartBarIcon } from "@heroicons/react/24/outline";
+import { AcademicCapIcon, BookOpenIcon, ChartBarIcon, UserGroupIcon } from "@heroicons/react/24/outline";
+
+const TYPE_ICONS = {
+  guide:    BookOpenIcon,
+  workshop: UserGroupIcon,
+  course:   AcademicCapIcon,
+};
 import HealthSignalRow from "./HealthSignalRow.jsx";
 
 /** @typedef {import("../lib/githubHealth").HealthRecord} HealthRecord */
@@ -43,6 +49,7 @@ export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3,
   const lessonName = lesson.name || "Untitled Lesson";
   const level = getLevelConfig(lesson.educationalLevel);
   const topMeta = lesson.learningResourceType || lesson.subTopic || "Lesson";
+  const TypeIcon = TYPE_ICONS[lesson.learningResourceType?.toLowerCase()] ?? null;
   const roleTags = (lesson.roles ?? []).slice(0, 2);
   const duration = formatDuration(lesson.timeRequired);
 
@@ -88,7 +95,10 @@ export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3,
 
       {/* Dark metadata strip */}
       <div className="lesson-card__meta-strip">
-        <p className="lesson-card__meta-type">{topMeta}</p>
+        <p className="lesson-card__meta-type">
+          {TypeIcon && <TypeIcon className="lesson-card__meta-type-icon" aria-hidden="true" />}
+          {topMeta}
+        </p>
         {roleTags.length > 0 && (
           <p className="lesson-card__meta-role">{roleTags.join(", ")}</p>
         )}
