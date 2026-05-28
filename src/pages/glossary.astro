@@ -1,0 +1,227 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Glossary";
+const description =
+  "Definitions of terms used across the UC OSPO Education catalog — resource types, skill levels, pathways, time estimates, and prerequisites explained in plain language.";
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="page-intro">
+    <div class="content-container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href={import.meta.env.BASE_URL}>Home</a></li>
+          <li class="breadcrumbs__separator" aria-hidden="true">/</li>
+          <li aria-current="page">Glossary</li>
+        </ol>
+      </nav>
+      <h1 class="page-intro__title">Glossary</h1>
+      <p class="page-intro__summary">
+        Terms you'll see throughout the catalog, explained in plain language.
+      </p>
+    </div>
+  </section>
+
+  <div class="content-container">
+    <div class="glossary-content page-section">
+
+      <section aria-labelledby="resource-types-heading">
+        <h2 id="resource-types-heading">Resource types</h2>
+        <p>
+          Each lesson is labeled with a resource type that describes its format and how much time it takes.
+        </p>
+
+        <dl>
+          <div class="term-block">
+            <dt>Workshop</dt>
+            <dd>
+              A structured, instructor-led session up to four hours long. Workshops have clear learning
+              objectives, hands-on exercises, and a defined start and end. Most lessons in this catalog
+              are workshops. You can work through them independently, but they are designed to be taught
+              in a classroom or live online setting.
+            </dd>
+          </div>
+
+          <div class="term-block">
+            <dt>Course</dt>
+            <dd>
+              A multi-session or multi-module sequence that takes more than four hours in total. Courses
+              may span a full day, multiple days, or several self-paced modules. They typically include
+              a syllabus and are meant to build skills progressively over time.
+            </dd>
+          </div>
+
+          <div class="term-block">
+            <dt>Guide</dt>
+            <dd>
+              A reference resource or curated handbook. Guides are meant for reading and reference, not
+              for delivery in a single session. They are organized around topics rather than a linear
+              lesson plan, so you can read the sections most relevant to you. Examples include handbook
+              chapters from <em>The Turing Way</em> and topical guides from the Open Source Guides collection.
+            </dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-labelledby="levels-heading">
+        <h2 id="levels-heading">Skill levels</h2>
+        <p>
+          Each lesson carries a skill level based on the prior knowledge it assumes — not on how difficult
+          the topic is in general.
+        </p>
+
+        <dl>
+          <div class="term-block">
+            <dt>Beginner</dt>
+            <dd>
+              No prior experience with the topic required. You may need basic comfort with a computer and
+              a web browser, but you do not need to know the subject area before starting. Check the
+              prerequisites for any specific tools or skills the lesson expects.
+            </dd>
+          </div>
+
+          <div class="term-block">
+            <dt>Intermediate</dt>
+            <dd>
+              Some familiarity with the topic is assumed. For example, an intermediate version control
+              lesson expects that you have already used Git and understand the concept of commits. You
+              have encountered the subject before and are ready to go deeper.
+            </dd>
+          </div>
+
+          <div class="term-block">
+            <dt>Advanced</dt>
+            <dd>
+              Substantial prior knowledge or hands-on experience is required. Advanced lessons are for
+              practitioners who are already working in the domain and want to extend their skills.
+            </dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-labelledby="pathways-heading">
+        <h2 id="pathways-heading">Pathways</h2>
+        <p>
+          Pathways are curated sequences of lessons organized around a goal or role. Each pathway brings
+          together workshops, courses, and guides in a suggested order so you can build skills
+          progressively rather than searching through the full catalog on your own.
+        </p>
+        <p>
+          A lesson can appear in more than one pathway when its content is relevant to multiple goals.
+          You do not have to follow a pathway from beginning to end — dip in wherever your current
+          knowledge and goals suggest.
+        </p>
+        <p>
+          Current pathways:
+        </p>
+        <ul>
+          <li><strong>Getting Started with Open Source</strong> — for learners new to open source and open collaboration</li>
+          <li><strong>Contributing to a Project</strong> — for those ready to write code, open issues, or create documentation</li>
+          <li><strong>Maintaining &amp; Sustaining Software</strong> — for maintainers, project leads, and tech stewards</li>
+          <li><strong>Building Inclusive Communities</strong> — for those organizing people, not just code</li>
+          <li><strong>Understanding Licensing &amp; Compliance</strong> — for anyone navigating open source legalities, especially in a UC context</li>
+          <li><strong>Strategic Practices &amp; Career Development</strong> — for project leaders, RSEs, and open science strategists</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="time-heading">
+        <h2 id="time-heading">Time estimates</h2>
+        <p>
+          Time estimates represent active learning time — exercises, readings, and hands-on work. They
+          do not include breaks or time spent setting up your environment.
+        </p>
+        <p>
+          How we calculate estimates varies by resource type:
+        </p>
+        <ul>
+          <li>
+            <strong>Workshops and courses</strong> — drawn from the instructor schedule on the lesson
+            site when one is published. These reflect how long an experienced instructor takes to deliver
+            the material, including exercises.
+          </li>
+          <li>
+            <strong>Guides</strong> — estimated from word count at roughly 200 words per minute for
+            technical content. A guide listing multiple chapters may show the time for a representative
+            chapter rather than the full handbook.
+          </li>
+        </ul>
+        <p>
+          Your actual time may vary. Working through exercises carefully often takes longer than the
+          published estimate.
+        </p>
+      </section>
+
+      <section aria-labelledby="prerequisites-heading">
+        <h2 id="prerequisites-heading">Prerequisites</h2>
+        <p>
+          Prerequisites are skills or lessons you should have completed before starting. They come in
+          two forms:
+        </p>
+        <ul>
+          <li>
+            <strong>Lesson links</strong> — a specific lesson in this catalog that covers the assumed
+            background. If you haven't completed it, follow the link and work through it first.
+          </li>
+          <li>
+            <strong>Skill descriptions</strong> — general competencies like "basic command line" or
+            "familiarity with Python". You may have picked these up anywhere, not necessarily from a
+            lesson in this catalog.
+          </li>
+        </ul>
+        <p>
+          Prerequisites are the minimum needed to follow along — not a guarantee you'll find the lesson
+          easy. If you are comfortable with the prerequisites but find the lesson difficult, the skill
+          level label (Beginner/Intermediate/Advanced) may help you find a better entry point.
+        </p>
+      </section>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .glossary-content {
+    max-width: 48rem;
+  }
+
+  .glossary-content h2 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.4rem;
+  }
+
+  .glossary-content p,
+  .glossary-content ul {
+    margin-bottom: 1rem;
+  }
+
+  .glossary-content ul {
+    padding-left: 1.5rem;
+  }
+
+  .glossary-content li {
+    margin-bottom: 0.4rem;
+  }
+
+  dl {
+    margin-bottom: 1.25rem;
+  }
+
+  .term-block {
+    margin-bottom: 1.25rem;
+  }
+
+  dt {
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+    color: var(--text-primary);
+  }
+
+  dd {
+    margin-left: 0;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+</style>

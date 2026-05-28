@@ -27,7 +27,9 @@ const lessons = defineCollection({
     learnerCategory: z.string().default(''),
 
     educationalLevel: z.enum(['Beginner', 'Intermediate', 'Advanced']).default('Beginner'),
-    learningResourceType: z.enum(['tutorial', 'presentation', 'handout', 'video lecture', 'e-Learning module', 'quiz', 'exercise', 'workshop']).default('tutorial'),
+    // Current active vocab: workshop | course | guide
+    // Legacy values (tutorial, handout, etc.) retained for back-compat with drop lessons
+    learningResourceType: z.enum(['workshop', 'course', 'guide', 'tutorial', 'presentation', 'handout', 'video lecture', 'e-Learning module', 'quiz', 'exercise']).default('workshop'),
 
     author: z.string().default(''),
     provider: z.string().default(''),
