@@ -4,9 +4,6 @@ on:
   schedule:
     - cron: '0 6 * * 1'
   workflow_dispatch:
-  push:
-    paths:
-      - 'src/content/lessons/**.json'
 
 jobs:
   refresh:
@@ -36,5 +33,5 @@ jobs:
           git diff --quiet src/data/github-health.json || (
             git add src/data/github-health.json &&
             git commit -m "chore(data): refresh GitHub health signals [skip ci]" &&
-            git push
+            git push || echo "Push blocked by branch protection — health data will update on next scheduled run"
           )
