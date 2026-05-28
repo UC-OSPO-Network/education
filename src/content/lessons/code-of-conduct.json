@@ -1,7 +1,7 @@
 {
     "name": "Your Code of Conduct",
     "slug": "code-of-conduct",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "Facilitate healthy and constructive community behavior by adopting and enforcing a code of conduct.",
     "url": "https://opensource.guide/code-of-conduct/",
     "topic": "Community",

@@ -1,7 +1,7 @@
 {
     "name": "Introduction to Docker and Podman",
     "slug": "introduction-to-docker-for-research-note-this-is-now-called-introduction-to-docker-and-podman",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "This lesson covers the fundamentals of Docker, including creating containers, managing Docker images, and using Docker for software reproducibility and deployment.",
     "url": "https://hsf-training.github.io/hsf-training-docker/index.html",
     "topic": "Research, DevOps",

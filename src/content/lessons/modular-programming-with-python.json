@@ -1,7 +1,7 @@
 {
     "name": "Modular Programming with Python",
     "slug": "modular-programming-with-python",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "This lesson covers modular programming in Python, explaining how to write reusable code in modules, organize codebases, and test them to improve collaboration and maintainability.",
     "url": "https://coderefinery.github.io/modular-type-along/",
     "topic": "Python",

@@ -1,7 +1,7 @@
 {
     "name": "The Legal Side of Open Source",
     "slug": "the-legal-side-of-open-source",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "Everything you've ever wondered about the legal side of open source, and a few things you didn't.",
     "url": "https://opensource.guide/legal/",
     "topic": "Legal",

@@ -1,7 +1,7 @@
 {
     "name": "Finding and Evaluating Projects",
     "slug": "how-to-contribute-to-open-source",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "Learn how to find your first project using discovery tools, understanding labels, and identifying beginner-friendly tasks.",
     "url": "https://opensource.guide/how-to-contribute/",
     "topic": "Contributing",

@@ -1,7 +1,7 @@
 {
     "name": "Building Community",
     "slug": "building-community",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "Building a healthy community helps your project thrive. Learn how to foster collaboration and inclusivity.",
     "url": "https://opensource.guide/building-community/",
     "topic": "Community",

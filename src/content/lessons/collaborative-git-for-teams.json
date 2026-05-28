@@ -1,7 +1,7 @@
 {
     "name": "Collaborative Git for Teams",
     "slug": "collaborative-git-for-teams",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "This lesson explains how to use Git for collaborative software development, focusing on advanced Git techniques such as branching, merging, and conflict resolution.",
     "url": "https://coderefinery.github.io/git-collaborative/",
     "topic": "Git/Beg. VCS, Contributing",

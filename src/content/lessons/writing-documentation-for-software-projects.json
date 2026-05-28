@@ -1,7 +1,7 @@
 {
     "name": "Writing Documentation for Software Projects",
     "slug": "writing-documentation-for-software-projects",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "This lesson teaches how to write effective software documentation, including API documentation, user guides, and installation instructions.",
     "url": "https://intersect-training.org/Documentation/",
     "topic": "Maintaining, Contributing",

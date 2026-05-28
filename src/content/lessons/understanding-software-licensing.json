@@ -1,7 +1,7 @@
 {
     "name": "Understanding Software Licensing",
     "slug": "understanding-software-licensing",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "This lesson provides an overview of common open-source software licenses, their conditions, and how to choose the right one for your project.",
     "url": "https://intersect-training.org/software-licensing/",
     "topic": "Licensing",

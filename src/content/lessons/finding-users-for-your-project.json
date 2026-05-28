@@ -1,7 +1,7 @@
 {
     "name": "Finding Users for Your Project",
     "slug": "finding-users-for-your-project",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "Launching a successful open source project involves more than just code. Start your journey here.",
     "url": "https://opensource.guide/finding-users/",
     "topic": "Maintaining",

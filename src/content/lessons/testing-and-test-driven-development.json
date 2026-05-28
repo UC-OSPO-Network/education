@@ -1,7 +1,7 @@
 {
     "name": "Testing and Test-Driven Development",
     "slug": "testing-and-test-driven-development",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "This lesson covers how to write tests for your code, understand test-driven development, and use testing frameworks like pytest in Python.",
     "url": "https://coderefinery.github.io/testing/",
     "topic": "Testing",

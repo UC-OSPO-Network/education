@@ -1,7 +1,7 @@
 {
     "name": "Metrics",
     "slug": "metrics",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "Tracking the success of your project helps you make informed decisions and communicate impact effectively.",
     "url": "https://opensource.guide/metrics/",
     "topic": "Maintaining",

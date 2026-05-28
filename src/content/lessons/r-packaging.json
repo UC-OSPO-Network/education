@@ -1,7 +1,7 @@
 {
     "name": "R Packaging",
     "slug": "r-packaging",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "This workshop will provide you with the basics for writing your own packages in R.",
     "url": "https://carpentries-incubator.github.io/lesson-R-packaging/",
     "topic": "Packaging, R",

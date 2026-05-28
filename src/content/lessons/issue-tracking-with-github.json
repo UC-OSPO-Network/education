@@ -1,7 +1,7 @@
 {
     "name": "Issue Tracking with GitHub",
     "slug": "issue-tracking-with-github",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "This lesson covers the basics of issue tracking for software projects, including how to create, manage, and close issues on GitHub.",
     "url": "https://intersect-training.org/Issue-Tracking/",
     "topic": "Git/Beg. VCS",

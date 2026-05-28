@@ -1,7 +1,7 @@
 {
     "name": "Your First Web Contribution",
     "slug": "your-first-web-contribution",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "Build confidence by making a real open source contribution using only your web browser. No technical setup or Git installation required!",
     "url": "https://github.com/firstcontributions/first-contributions",
     "domain": "General Open Source",

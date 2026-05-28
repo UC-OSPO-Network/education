@@ -1,7 +1,7 @@
 {
     "name": "Best Practices for Maintainers",
     "slug": "best-practices-for-maintainers",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "Making your life easier as an open source maintainer, from documenting processes to leveraging your community.",
     "url": "https://opensource.guide/best-practices/",
     "author": "GitHub",

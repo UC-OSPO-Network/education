@@ -1,7 +1,7 @@
 {
     "name": "Starting an Open Source Project",
     "slug": "starting-an-open-source-project",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "Launching a successful open source project involves more than just code. Start your journey here.",
     "url": "https://opensource.guide/starting-a-project/",
     "topic": "Maintaining",

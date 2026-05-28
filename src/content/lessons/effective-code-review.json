@@ -1,7 +1,7 @@
 {
     "name": "Effective Code Review",
     "slug": "effective-code-review",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "This lesson teaches best practices for conducting and participating in code reviews, emphasizing clear communication and collaborative problem solving.",
     "url": "https://intersect-training.org/Code-Review/",
     "author": "Intersect Team, intersect@training.org",

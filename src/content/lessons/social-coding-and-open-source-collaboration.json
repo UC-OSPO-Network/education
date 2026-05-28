@@ -1,7 +1,7 @@
 {
     "name": "Social Coding and Inclusive Communication",
     "slug": "social-coding-and-open-source-collaboration",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "Understand the 'human' side of open source, including respectful language, the 'release early, often' mindset, and the value of non-code contributions.",
     "url": "https://coderefinery.github.io/social-coding/",
     "topic": "Community, Git/Beg. VCS",

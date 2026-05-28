@@ -1,7 +1,7 @@
 {
     "name": "Maintaining Balance for Open Source Maintainers",
     "slug": "maintaining-balance-for-open-source-maintainers",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "Tips for self-care and avoiding burnout as a maintainer.",
     "url": "https://opensource.guide/maintaining-balance-for-open-source-maintainers/",
     "topic": "Project Health",

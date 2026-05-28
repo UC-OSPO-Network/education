@@ -1,7 +1,7 @@
 {
     "name": "Security Best Practices for Your Project",
     "slug": "security-best-practices-for-your-project",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "Strengthen your project's future by building trust through essential security practices \u2014 from MFA and code scanning to safe dependency management and private vulnerability reporting.",
     "url": "https://opensource.guide/security-best-practices-for-your-project/",
     "topic": "Project Health",

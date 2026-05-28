@@ -1,7 +1,7 @@
 {
     "name": "Making Your First Pull Request",
     "slug": "making-good-pull-requests",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "A step-by-step walkthrough covering forking, cloning, feature branches, and responding to code review feedback.",
     "url": "https://intersect-training.org/Making-Good-PRs/",
     "topic": "Git/Beg. VCS, Contributing",

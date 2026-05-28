@@ -1,7 +1,7 @@
 {
     "name": "Accessibility Best Practices for Your Project",
     "slug": "accessibility-best-practices-for-your-project",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "Practical, actionable steps to make your open source project usable by everyone, especially people with disabilities.",
     "url": "https://opensource.guide/accessibility-best-practices-for-your-project/",
     "topic": "Project Health",

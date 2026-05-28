@@ -1,7 +1,7 @@
 {
     "name": "Introduction to Git",
     "slug": "introduction-to-git",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "This lesson introduces Git, a distributed version control system, and teaches how to use it to track changes, collaborate on projects, and manage the history of a codebase.",
     "url": "https://coderefinery.github.io/git-intro/",
     "topic": "Git/Beg. VCS",

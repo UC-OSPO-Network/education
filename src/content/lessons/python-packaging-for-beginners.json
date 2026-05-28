@@ -1,7 +1,7 @@
 {
     "name": "Python Packaging for Beginners",
     "slug": "python-packaging-for-beginners",
-    "keepStatus": "keepCandidate",
+    "keepStatus": "keep",
     "description": "This lesson teaches the essential steps for packaging Python projects and publishing them on PyPI.",
     "url": "https://intersect-training.org/packaging/",
     "topic": "Packaging, Python",
