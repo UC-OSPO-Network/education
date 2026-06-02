@@ -1,0 +1,84 @@
+name: CLDT Cohort — Express Interest
+description: Join the Librarians as Open Source Stewards cohort or propose a new lesson for the UC OSPO Summer/Fall 2026 CLDT cohorts
+title: "[CLDT INTEREST]: "
+labels: ["cldt-cohort", "lesson-proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## UC OSPO Lesson Development Cohort — Summer/Fall 2026
+
+        The UC OSPO Network is running four [Carpentries CLDT](https://carpentries.github.io/lesson-development-training/) cohorts this summer/fall. The software licensing cohort is confirmed and full. Two ways to get involved:
+
+        * **Option 1** — Join the Librarians as Open Source Stewards cohort. The lesson is scoped; we need 2-4 people to develop and pilot it.
+        * **Option 2** — Propose a new lesson. One slot remains for a team with a lesson idea that fits the OSS and OSPO ecosystem.
+
+        **Cohort timing:** August-September 2026. Teams of 2-5 people per lesson. At least one team member needs to have completed Carpentries Instructor Training or [Learner-Centered Teaching](https://carpentries.org/learner-centered-teaching/).
+
+        ---
+
+  - type: dropdown
+    id: option
+    attributes:
+      label: Which option are you responding to?
+      options:
+        - Option 1 — Join the Librarians as Open Source Stewards cohort
+        - Option 2 — Propose a new lesson
+    validations:
+      required: true
+
+  - type: input
+    id: lesson-topic
+    attributes:
+      label: Lesson topic (Option 2 only)
+      description: Working title or topic area — doesn't need to be final. Skip if joining Option 1.
+      placeholder: e.g., "Open source governance for research software"
+
+  - type: textarea
+    id: lesson-description
+    attributes:
+      label: What would learners be able to do? (Option 2 only)
+      description: A rough sense of the audience and learning outcomes. 2-4 sentences is fine. Skip if joining Option 1.
+      placeholder: Who is this for, and what would they walk away knowing or able to do?
+
+  - type: textarea
+    id: team
+    attributes:
+      label: Potential team members
+      description: Who might work on this with you? Names and affiliations if known — "looking for collaborators" is a valid answer.
+      placeholder: |
+        1. Your name (Institution) — your role/expertise
+        2. Potential collaborator or "TBD"
+
+  - type: dropdown
+    id: team-status
+    attributes:
+      label: Team formation status
+      options:
+        - I have a team ready
+        - Partial team, open to more members
+        - Just me so far, looking for collaborators
+        - I have an idea but no team yet
+    validations:
+      required: true
+
+  - type: input
+    id: contact
+    attributes:
+      label: Your name and email
+      placeholder: Jane Doe (jane.doe@university.edu)
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else?
+      description: Related work, prior experience, constraints, questions — optional.
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+        **What happens next:** Tim Dennis (tdennis@library.ucla.edu) will follow up within a week to talk through fit and next steps. Questions? Reach out directly or comment on this issue.
