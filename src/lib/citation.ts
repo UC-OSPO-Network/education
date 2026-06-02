@@ -19,7 +19,7 @@ export function normalizeCitation(params: {
   lessonUrl?: string;
   repoUrl?: string;
   cffCitation?: Citation | null;
-  catalogCitation?: NormalizedCitation | null;
+  provider?: { name: string; url: string } | null;
   publisher?: string;
 }): NormalizedCitation {
   const publisher = params.publisher ?? 'UC OSPO Network';
@@ -39,18 +39,36 @@ export function normalizeCitation(params: {
     };
   }
 
-  if (params.catalogCitation) {
+  if (params.lessonAuthor) {
     return {
-      ...params.catalogCitation,
+      source: 'metadata',
       title: params.lessonName,
-      url: params.lessonUrl?.trim() || params.repoUrl?.trim() || params.catalogCitation.url,
+      authors: [{ name: params.lessonAuthor }],
+      year: String(new Date().getFullYear()),
+      version: null,
+      doi: null,
+      url: params.lessonUrl?.trim() || params.repoUrl?.trim() || '',
+      publisher,
+    };
+  }
+
+  if (params.provider) {
+    return {
+      source: 'metadata',
+      title: params.lessonName,
+      authors: [{ name: params.provider.name }],
+      year: String(new Date().getFullYear()),
+      version: null,
+      doi: null,
+      url: params.lessonUrl?.trim() || params.repoUrl?.trim() || params.provider.url,
+      publisher: params.provider.name,
     };
   }
 
   return {
     source: 'metadata',
     title: params.lessonName,
-    authors: params.lessonAuthor ? [{ name: params.lessonAuthor }] : [],
+    authors: [],
     year: String(new Date().getFullYear()),
     version: null,
     doi: null,

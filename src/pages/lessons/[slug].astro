@@ -5,7 +5,6 @@ import Citation from "../../components/Citation.astro";
 import { getLessons, getRelatedLessons, type Lesson, formatDuration } from "../../lib/lessons";
 import { lookupProvider } from "../../lib/providers";
 import { normalizeCitation } from "../../lib/citation";
-import { getCatalogCitation } from "../../lib/catalogCitation";
 import { getCollection } from "astro:content";
 import githubHealthRaw from "../../data/github-health.json";
 import type { HealthSnapshot } from "../../lib/githubHealth";
@@ -53,14 +52,15 @@ const externalHref = lesson.url?.trim() ?? "";
 const repoHealth = healthData.lessons[lesson.slug] ?? null;
 const repoLastUpdated = repoHealth?.pushedAt ?? null;
 
-const catalogCitation = getCatalogCitation();
+const provider = lesson.provider ? lookupProvider(lesson.provider) : null;
+
 const normalizedCitation = normalizeCitation({
   lessonName: lesson.name,
   lessonAuthor: lesson.author,
   lessonUrl: lesson.url,
   repoUrl: lesson.repoUrl,
   cffCitation: repoHealth?.citation ?? null,
-  catalogCitation,
+  provider: provider,
 });
 
 // URL prerequisites to display alongside internal lesson links
@@ -95,7 +95,6 @@ function formatMonth(dateStr: string | null): string {
 }
 
 const licenseShort = shortLicense(lesson.license);
-const provider = lesson.provider ? lookupProvider(lesson.provider) : null;
 const hasPrereqs =
   prereqLessons.length > 0 ||
   prereqUrls.length > 0 ||

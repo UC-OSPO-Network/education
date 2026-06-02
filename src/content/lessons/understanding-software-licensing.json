@@ -1,5 +1,5 @@
 {
-    "name": "Understanding Software Licensing",
+    "name": "Software Licensing",
     "slug": "understanding-software-licensing",
     "keepStatus": "keep",
     "description": "This lesson provides an overview of common open-source software licenses, their conditions, and how to choose the right one for your project.",
@@ -8,7 +8,7 @@
     "subTopic": "Open Source Literacy",
     "educationalLevel": "Beginner",
     "learningResourceType": "workshop",
-    "author": "Intersect Team, intersect@training.org",
+    "author": "David E. Bernholdt, Lauren E. Milechin, Dave Rumph, Michael A. Heroux, James Willenbring",
     "license": "https://creativecommons.org/licenses/by/4.0/",
     "inLanguage": [
         "en"
