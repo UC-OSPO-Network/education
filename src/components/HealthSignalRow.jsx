@@ -59,36 +59,29 @@ export default function HealthSignalRow({ health }) {
 
   return (
     <div className="lesson-card__health" role="group" aria-label="GitHub repository health signals">
-      {repoUrl ? (
-        <a
-          href={repoUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+      {/* Stars, forks, contributors, license, funding, CoC temporarily hidden — data still in github-health.json */}
+      {/* Restore by uncommenting the blocks below */}
+      {/* {repoUrl ? (
+        <a href={repoUrl} target="_blank" rel="noopener noreferrer"
           title="Star this lesson on GitHub"
           aria-label={`${stars} stars — Star this lesson on GitHub (opens in new tab)`}
-          className="lesson-card__health-link"
-          onClick={stopCardNavigation}
-        >
+          className="lesson-card__health-link" onClick={stopCardNavigation}>
           <span aria-hidden="true">⭐</span> {formatCompactNumber(stars)}
         </a>
       ) : (
         <span className="lesson-card__health-item" title={`${stars} stars`}>
           <span aria-hidden="true">⭐</span> {formatCompactNumber(stars)}
         </span>
-      )}
-
-      <span className="lesson-card__health-item" title={`${health.forks ?? 0} forks`}>
+      )} */}
+      {/* <span className="lesson-card__health-item" title={`${health.forks ?? 0} forks`}>
         <span aria-hidden="true">🍴</span> {formatCompactNumber(health.forks ?? 0)}
-      </span>
-
-      {contributorLabel && (
-        <span
-          className="lesson-card__health-item"
-          title={`${health.contributorCount}${health.contributorCountTruncated ? "+" : ""} contributors`}
-        >
+      </span> */}
+      {/* {contributorLabel && (
+        <span className="lesson-card__health-item"
+          title={`${health.contributorCount}${health.contributorCountTruncated ? "+" : ""} contributors`}>
           <span aria-hidden="true">👥</span> {contributorLabel}
         </span>
-      )}
+      )} */}
 
       {relativePushedAt && (
         <span className={`lesson-card__health-item${stale ? " lesson-card__health-item--stale" : ""}`}>
@@ -96,35 +89,25 @@ export default function HealthSignalRow({ health }) {
         </span>
       )}
 
-      {health.license && (
+      {/* {health.license && (
         <span className="lesson-card__health-item" title={`License: ${health.license}`}>
           {health.license}
         </span>
-      )}
-
-      {health.hasFunding && health.sponsorsUrl && (
-        <a
-          href={health.sponsorsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+      )} */}
+      {/* {health.hasFunding && health.sponsorsUrl && (
+        <a href={health.sponsorsUrl} target="_blank" rel="noopener noreferrer"
           className="lesson-card__health-link lesson-card__health-link--sponsor"
           aria-label="Sponsor this lesson's maintainers on GitHub (opens in new tab)"
-          onClick={stopCardNavigation}
-        >
+          onClick={stopCardNavigation}>
           <span aria-hidden="true">💚</span> Sponsorable
         </a>
-      )}
-
-      {health.hasCodeOfConduct && (
-        <span
-          className="lesson-card__health-item"
-          title="Has Code of Conduct"
-          role="img"
-          aria-label="Has Code of Conduct"
-        >
+      )} */}
+      {/* {health.hasCodeOfConduct && (
+        <span className="lesson-card__health-item" title="Has Code of Conduct"
+          role="img" aria-label="Has Code of Conduct">
           <span aria-hidden="true">🤝</span>
         </span>
-      )}
+      )} */}
     </div>
   );
 }
