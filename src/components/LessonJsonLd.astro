@@ -20,8 +20,8 @@ function nonEmpty(value: unknown): boolean {
 }
 
 const data: Record<string, unknown> = {
-  "@context": "https://schema.org",
-  "@type": "LearningResource",
+  "@context": ["https://schema.org", "https://bioschemas.org"],
+  "@type": "TrainingMaterial",
 };
 
 if (nonEmpty(lesson.name)) data.name = lesson.name;
