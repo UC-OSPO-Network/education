@@ -1,10 +1,15 @@
 /**
  * HOW TO RUN:
- * Ensure you are using Node 18 or higher.
+ * Ensure you are using Node 20 or higher.
  * Run from the root of your project:
- * node scripts/check-lesson-urls.mjs
+ *   node scripts/check-lesson-urls.mjs
  *
- * Output: Generates a `url-report.md` file to scripts/output/.
+ * To compare against a previous run (delta reporting):
+ *   node scripts/check-lesson-urls.mjs --previous-results=scripts/output/url-check-results.json
+ *
+ * Outputs:
+ *   scripts/output/url-report.md       — human-readable markdown report
+ *   scripts/output/url-check-results.json — machine-readable results for delta comparison
  */
 
 import fs from 'node:fs/promises';
@@ -14,11 +19,27 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const CONTENT_DIR = path.join(__dirname, '../src/content/lessons');
-const REPORT_FILE = path.join(__dirname, '../scripts/output/url-report.md');
+const OUTPUT_DIR = path.join(__dirname, '../scripts/output');
+const REPORT_FILE = path.join(OUTPUT_DIR, 'url-report.md');
+const RESULTS_FILE = path.join(OUTPUT_DIR, 'url-check-results.json');
 
 const TIMEOUT_MS = 8000;
 const MAX_RETRIES = 2;
 const CONCURRENCY = 4;
+
+function parseArgs(argv) {
+  const args = {};
+  for (const token of argv) {
+    if (!token.startsWith('--')) continue;
+    const [key, value] = token.slice(2).split('=');
+    args[key] = value ?? true;
+  }
+  return args;
+}
+
+function getDomain(url) {
+  try { return new URL(url).hostname; } catch { return 'unknown'; }
+}
 
 async function fetchWithTimeout(url, method, timeoutMs) {
   const controller = new AbortController();
@@ -28,9 +49,7 @@ async function fetchWithTimeout(url, method, timeoutMs) {
       method,
       redirect: 'follow',
       signal: controller.signal,
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; uc-ospo-url-checker/1.0)',
-      },
+      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; uc-ospo-url-checker/1.0)' },
     });
     clearTimeout(timeoutId);
     return { ok: true, status: response.status };
@@ -82,6 +101,20 @@ async function runWithConcurrency(items, concurrency, mapper) {
 }
 
 async function runAudit() {
+  const args = parseArgs(process.argv.slice(2));
+
+  // Load previous results for delta comparison
+  let previousResults = null;
+  if (args['previous-results']) {
+    try {
+      const raw = await fs.readFile(path.resolve(process.cwd(), args['previous-results']), 'utf-8');
+      previousResults = JSON.parse(raw);
+      console.log(`📂 Loaded previous results from ${args['previous-results']} (${previousResults.generatedAt})`);
+    } catch {
+      console.log('📂 No previous results found — skipping delta comparison');
+    }
+  }
+
   console.log('🔍 Starting Lesson URL Audit...');
 
   const files = await fs.readdir(CONTENT_DIR);
@@ -134,12 +167,33 @@ async function runAudit() {
   const failures = reachabilityResults.filter(r => r.status.includes('❌'));
   const ok = reachabilityResults.filter(r => r.status.includes('✅'));
 
+  // Delta computation
+  let delta = null;
+  if (previousResults) {
+    const prevFailureUrls = new Set(previousResults.failures.map(r => r.url));
+    const currFailureUrls = new Set(failures.map(r => r.url));
+    delta = {
+      newFailures: failures.filter(r => !prevFailureUrls.has(r.url)),
+      fixed: previousResults.failures.filter(r => !currFailureUrls.has(r.url)),
+      recurring: failures.filter(r => prevFailureUrls.has(r.url)),
+    };
+  }
+
+  // Domain grouping for failures
+  const failuresByDomain = failures.reduce((acc, r) => {
+    const domain = getDomain(r.url);
+    if (!acc[domain]) acc[domain] = [];
+    acc[domain].push(r);
+    return acc;
+  }, {});
+
   console.log('\n📝 Generating report...');
 
   const now = new Date().toUTCString();
   let md = `# Lesson URL Audit Report\n\n`;
   md += `*Generated: ${now}*\n\n`;
 
+  // Summary
   md += `## Summary\n\n`;
   md += `| | Count |\n| :--- | ---: |\n`;
   md += `| Total lessons | ${jsonFiles.length} |\n`;
@@ -147,11 +201,41 @@ async function runAudit() {
   md += `| Structural gaps | ${structuralGaps.length} |\n`;
   md += `| URLs checked | ${candidates.length} |\n`;
   md += `| ✅ OK | ${ok.length} |\n`;
-  md += `| ❌ Dead / Error | ${failures.length} |\n\n`;
+  md += `| ❌ Dead / Error | ${failures.length} |\n`;
+  if (delta) {
+    md += `| 🆕 New failures | ${delta.newFailures.length} |\n`;
+    md += `| ✔️ Fixed since last run | ${delta.fixed.length} |\n`;
+    md += `| 🔁 Recurring | ${delta.recurring.length} |\n`;
+  }
+  md += '\n';
 
+  // Delta section
+  if (delta && (delta.newFailures.length > 0 || delta.fixed.length > 0)) {
+    md += `## Changes Since Last Run\n\n`;
+
+    if (delta.newFailures.length > 0) {
+      md += `### 🆕 New Failures (${delta.newFailures.length})\n\n`;
+      md += `| Lesson | URL | Status |\n| :--- | :--- | :--- |\n`;
+      delta.newFailures.forEach(r => {
+        md += `| **${r.lesson}** | [Link](${r.url}) | ${r.status} ${r.code} |\n`;
+      });
+      md += '\n';
+    }
+
+    if (delta.fixed.length > 0) {
+      md += `### ✔️ Fixed (${delta.fixed.length})\n\n`;
+      md += `| Lesson | URL |\n| :--- | :--- |\n`;
+      delta.fixed.forEach(r => {
+        md += `| **${r.lesson}** | [Link](${r.url}) |\n`;
+      });
+      md += '\n';
+    }
+  }
+
+  // Structural gaps
   if (structuralGaps.length > 0) {
     md += `## Structural Gaps\n\n`;
-    md += `Lessons missing a \`url\` field or with invalid JSON. Fix these in the lesson content files.\n\n`;
+    md += `Lessons missing a \`url\` field or with invalid JSON.\n\n`;
     md += `| Lesson (File) | Issue |\n| :--- | :--- |\n`;
     structuralGaps.forEach(r => {
       md += `| **${r.lesson}**<br>(\`${r.file}\`) | ${r.details} |\n`;
@@ -159,31 +243,57 @@ async function runAudit() {
     md += '\n';
   }
 
+  // Failures grouped by domain
   if (failures.length > 0) {
     md += `## Reachability Failures\n\n`;
-    md += `These lesson URLs returned errors. Verify each link and update or remove as appropriate.\n\n`;
-    md += `| Status | Code | Lesson (File) | URL | Details |\n`;
-    md += `| :--- | :--- | :--- | :--- | :--- |\n`;
-    failures.forEach(r => {
-      md += `| ${r.status} | ${r.code} | **${r.lesson}**<br>(\`${r.file}\`) | [Link](${r.url}) | ${r.details || ''} |\n`;
-    });
-    md += '\n';
+    md += `Verify each link and update or remove the lesson URL as appropriate.\n\n`;
+
+    for (const [domain, domainFailures] of Object.entries(failuresByDomain)) {
+      md += `### ${domain} (${domainFailures.length})\n\n`;
+      md += `| Status | Code | Lesson | URL | Details |\n`;
+      md += `| :--- | :--- | :--- | :--- | :--- |\n`;
+      domainFailures.forEach(r => {
+        md += `| ${r.status} | ${r.code} | **${r.lesson}**<br>(\`${r.file}\`) | [Link](${r.url}) | ${r.details || ''} |\n`;
+      });
+      md += '\n';
+    }
   }
 
-  md += `## All Results\n\n`;
-  md += `| Status | Code | Lesson (File) | URL |\n`;
+  // Collapsible full results
+  md += `<details>\n<summary>All results (${ok.length} ✅ OK, ${failures.length} ❌ Failed)</summary>\n\n`;
+  md += `| Status | Code | Lesson | URL |\n`;
   md += `| :--- | :--- | :--- | :--- |\n`;
   [...failures, ...ok].forEach(r => {
     md += `| ${r.status} | ${r.code} | **${r.lesson}**<br>(\`${r.file}\`) | [Link](${r.url}) |\n`;
   });
+  md += `\n</details>\n`;
 
   await fs.writeFile(REPORT_FILE, md, 'utf-8');
+
+  // Write machine-readable results for next run's delta comparison
+  const resultsJson = {
+    generatedAt: new Date().toISOString(),
+    summary: {
+      total: jsonFiles.length,
+      dropped: dropCount,
+      structuralGaps: structuralGaps.length,
+      checked: candidates.length,
+      ok: ok.length,
+      failures: failures.length,
+    },
+    failures: failures.map(r => ({ lesson: r.lesson, file: r.file, url: r.url, status: r.status, code: r.code, details: r.details || null })),
+    ok: ok.map(r => ({ lesson: r.lesson, file: r.file, url: r.url })),
+  };
+  await fs.writeFile(RESULTS_FILE, JSON.stringify(resultsJson, null, 2) + '\n', 'utf-8');
 
   console.log('='.repeat(50));
   console.log(`✅ Audit complete! Checked ${checkedCount} URLs.`);
   if (failures.length > 0) console.log(`❌ ${failures.length} dead/error link(s) found.`);
   if (structuralGaps.length > 0) console.log(`⚠️  ${structuralGaps.length} structural gap(s).`);
-  console.log(`📄 Report: ${REPORT_FILE}`);
+  if (delta?.newFailures.length > 0) console.log(`🆕 ${delta.newFailures.length} new failure(s) since last run.`);
+  if (delta?.fixed.length > 0) console.log(`✔️  ${delta.fixed.length} link(s) fixed since last run.`);
+  console.log(`📄 Report:  ${REPORT_FILE}`);
+  console.log(`📄 Results: ${RESULTS_FILE}`);
   console.log('='.repeat(50));
 }
 
