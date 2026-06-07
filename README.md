@@ -2,7 +2,7 @@
 
 Work regarding the education subgroup. This repository hosts the Astro-based website for the UC OSPO Education Lesson & Pathways.
 
-- [Lesson inventory spreadsheet](https://docs.google.com/spreadsheets/d/1Xl27XUuV_n5zG9_8Xq_87wTzN-P_A2W_Zz4k5_W-Q4/edit) - review hub for lesson metadata updates and migration support.
+- [GitHub Issues](https://github.com/UC-OSPO-Network/education/issues) - active task tracking and contribution opportunities.
 - [Process we are following](https://docs.google.com/document/d/1D4tCqMkB6-QTdvCSR2N-6VZSSUUOQZ87Kl4UEsuHeRs/edit?tab=t.0#heading=h.yyzjiyx43ln0) - these are converted to issues in the GH project.
 - [Meeting notes](https://docs.google.com/document/d/1-CJxDt05f9YoYfGB8-NC0zvQZbEJzHT1P7keRciMlrY/edit?tab=t.0#heading=h.vs4sjkl9adbl)
 
@@ -111,15 +111,13 @@ Visit the live site to explore the lesson library:
 
 ### Updating Content
 
-### Updating Content
-
 **1. Keystatic (Primary Source)**
 - This project uses [Keystatic](https://keystatic.com/) for managing rich markdown content like lessons and pathways.
 - **Local Access**: When running the dev server (`npm run dev`), visit `http://localhost:4321/keystatic` to access the Admin UI.
 - **GitHub Integration**: In production, content is managed directly via GitHub PRs, but you can use the local UI to generate the commits.
 
 **2. Google Sheets (Legacy/Migration)**
-- The [lesson inventory spreadsheet](https://docs.google.com/spreadsheets/d/1Xl27XUuV_n5zG9_8Xq_87wTzN-P_A2W_Zz4k5_W-Q4/edit) is used as a metadata review hub and migration support surface.
+- The lesson inventory spreadsheet is used as a metadata review hub and migration support surface. Contact a maintainer for access.
 - **Note**: This sheet is **NOT** automatically synced during the build and is not the canonical source of site content.
 - **Preferred review/update workflow**: generate the review CSV with:
   ```bash
@@ -134,11 +132,15 @@ Visit the live site to explore the lesson library:
   npm run migrate:lessons
   ```
 
-## 🗺️ Roadmap (Optional)
+## 🗺️ Roadmap
 
-[TODO: Outline the future plans for this project. What's in the backlog, what's next? Refer to the Roadmap section in the README Guide.]
-- Research user needs for new product features
-- Develop initial product requirements document
+Active work is tracked in [GitHub Issues](https://github.com/UC-OSPO-Network/education/issues) and organized by label:
+
+* **[Student-ready](https://github.com/UC-OSPO-Network/education/issues?q=is%3Aopen+label%3A%22student-ready%22)** — good entry points for new contributors
+* **[Priority: high](https://github.com/UC-OSPO-Network/education/issues?q=is%3Aopen+label%3A%22priority%3A+high%22)** — near-term focus areas
+* **[Type: feature](https://github.com/UC-OSPO-Network/education/issues?q=is%3Aopen+label%3A%22type%3A+feature%22)** — planned enhancements
+
+Near-term priorities include lesson health signals (#118), curriculum plan builder (#117), and pathway visualization (#30).
 
 ## Community & Contributing
 
@@ -152,16 +154,16 @@ We welcome contributions! Please see our guides below:
 *   **[License Guide](docs/LICENSE_GUIDE.md)**: A guide for understanding and choosing a license.
 *   **[README Guide](docs/README_GUIDE.md)**: A guide for writing a great README.
 
-## ❓ FAQ (Optional)
-
-[TODO: Add frequently asked questions and their answers here.]
-
 ## 📞 Contact
 
 Have questions or suggestions? Reach out through:
 - **GitHub Issues**: [https://github.com/UC-OSPO-Network/education/issues](https://github.com/UC-OSPO-Network/education/issues)
 - **GitHub Discussions**: For general questions and community discussion
 - **Meeting Notes**: Check our [meeting notes](https://docs.google.com/document/d/1-CJxDt05f9YoYfGB8-NC0zvQZbEJzHT1P7keRciMlrY/edit?tab=t.0#heading=h.vs4sjkl9adbl) for information about joining education subgroup meetings
+
+## 📄 License
+
+This project is licensed under the BSD 3-Clause License. See the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Attribution
 

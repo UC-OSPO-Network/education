@@ -22,7 +22,7 @@ If anything doesn't make sense, or doesn't work when you run it, please open a b
 ## Table of Contents
 
 * [Ways to Contribute](#ways-to-contribute)
-* [Come to Community Calls](#come-to-community-calls)
+* [Come to Education Subgroup Meetings](#come-to-education-subgroup-meetings)
 * [Finding an Issue](#finding-an-issue)
 * [Setting Up a Dev Environment](#setting-up-a-dev-environment)
 * [Running Tests](#running-tests)
@@ -46,7 +46,7 @@ We welcome many different types of contributions, including:
 * **Accessibility**: Improve accessibility features and compliance
 * **Issue Triage**: Help organize and prioritize GitHub issues
 
-Not everything happens through a GitHub pull request. Please come to our [education subgroup meetings](https://docs.google.com/document/d/1-CJxDt05f9YoYfGB8-NC0zvQZbEJzHT1P7keRciMlrY/edit?tab=t.0#heading=h.vs4sjkl9adbl) or open a [GitHub Discussion](https://github.com/UC-OSPO-Network/education/discussions) and let's discuss how we can work together.
+Not everything happens through a GitHub pull request. Please come to our [education subgroup meetings](https://docs.google.com/document/d/1-CJxDt05f9YoYfGB8-NC0zvQZbEJzHT1P7keRciMlrY/edit?tab=t.0#heading=h.vs4sjkl9adbl) or open a [GitHub Issue](https://github.com/UC-OSPO-Network/education/issues) and let's discuss how we can work together.
 
 ## Come to Education Subgroup Meetings
 
@@ -65,7 +65,7 @@ We have good first issues for new contributors and help wanted issues suitable f
 
 Sometimes there won't be any issues with these labels. That's ok! There is likely still something for you to work on. If you want to contribute but you don't know where to start or can't find a suitable issue, you can:
 
-* Open a [GitHub Discussion](https://github.com/UC-OSPO-Network/education/discussions) asking where help is needed
+* Open a [GitHub Issue](https://github.com/UC-OSPO-Network/education/issues/new) asking where help is needed
 * Comment on an existing issue asking if it's available to work on
 * Join our [education subgroup meetings](https://docs.google.com/document/d/1-CJxDt05f9YoYfGB8-NC0zvQZbEJzHT1P7keRciMlrY/edit?tab=t.0#heading=h.vs4sjkl9adbl) and ask there
 
@@ -127,7 +127,12 @@ Before submitting your pull request, run these validation checks locally:
 
 5. **Check for broken links:**
    ```shell
-   node .github/scripts/check-links.mjs
+   npm run check:links
+   ```
+
+6. **Run accessibility checks:**
+   ```shell
+   npm run check-a11y
    ```
 
 These checks run automatically on pull requests via GitHub Actions. Make sure they all pass locally to avoid failed PR checks.
@@ -137,7 +142,7 @@ These checks run automatically on pull requests via GitHub Actions. Make sure th
 The best way to reach us with a question when contributing is to ask on:
 
 * **The original GitHub issue** - Comment on the issue you're working on
-* **[GitHub Discussions](https://github.com/UC-OSPO-Network/education/discussions)** - For general questions
+* **[GitHub Issues](https://github.com/UC-OSPO-Network/education/issues)** - For general questions
 * **[Education subgroup meetings](https://docs.google.com/document/d/1-CJxDt05f9YoYfGB8-NC0zvQZbEJzHT1P7keRciMlrY/edit?tab=t.0#heading=h.vs4sjkl9adbl)** - Join us at our regular meetings
 
 ## Norms for Commits
@@ -212,7 +217,7 @@ If your PR appears stalled:
 
 1. First, check if all feedback has been addressed
 2. After 1 week of no activity, add a polite comment requesting status
-3. If still no response after another week, reach out via [preferred communication channel]
+3. If still no response after another week, reach out via [GitHub Issues](https://github.com/UC-OSPO-Network/education/issues)
 
 #### Abandoned Pull Requests
 

@@ -106,8 +106,8 @@ Use the questions below as an exercise to uncover the unwritten rules and norms 
 
 ## Code of Conduct
 
-All OSS projects need a Code of Conduct (COC) to establish expectations of behavior for all members of the community, and here you can either link to the template (after you've edited to match your project!) or create a new one ([check out our Code of Conduct Guide](code-of-conduct-guide.md))
+All OSS projects need a Code of Conduct (COC) to establish expectations of behavior for all members of the community, and here you can either link to the template (after you've edited to match your project!) or create a new one ([check out our Code of Conduct Guide](CODE_OF_CONDUCT_GUIDE.md))
 
 ## Attribution
 
-We're grateful to the team at CNCF for creating an [excellent guide](https://contribute.cncf.io/maintainers/templates/contributing/) we've referred to _extensively_ in writing this one!
+We're grateful to the team at CNCF for creating an excellent guide we've referred to _extensively_ in writing this one!

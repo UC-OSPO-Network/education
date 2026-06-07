@@ -159,13 +159,13 @@ Both users of and potential contributors to your project are likely to have idea
 
 If you'd appreciate contributions to your project, you might say something like:
 
-Contributions are always welcome! Please see [CONTRIBUTING.md](./contributing-guide.md) for tips to get started.
+Contributions are always welcome! Please see [CONTRIBUTING.md](./CONTRIBUTING_GUIDE.md) for tips to get started.
 
 ### Code of Conduct
 
 If you'll be accepting contributions to your project, you'll need to consider how you'll ensure a good experience for you and your contributors.
 
-Please read check out the [Code of Conduct for more detail!](./code-of-conduct-guide.md)
+Please read check out the [Code of Conduct for more detail!](./CODE_OF_CONDUCT_GUIDE.md)
 
 ## FAQ (optional)
 
@@ -183,7 +183,7 @@ Answer 2
 
 Your license file should be in the root of your project's repo, and you can link to it directly like this:
 
-Distributed under the [insert your license name]. See [LICENSE.txt](./license-guide.md) for more information.
+Distributed under the [insert your license name]. See [LICENSE.txt](./LICENSE_GUIDE.md) for more information.
 
 ## Contact (optional)
 
