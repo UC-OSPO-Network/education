@@ -1,0 +1,14 @@
+{
+  "timeout": "20s",
+  "retryOn429": true,
+  "retryCount": 2,
+  "aliveStatusCodes": [200, 206],
+  "ignorePatterns": [
+    { "pattern": "^https://docs.google.com" },
+    { "pattern": "^https://drive.google.com" },
+    { "pattern": "^https://mail.google.com" },
+    { "pattern": "^http://localhost" },
+    { "pattern": "^http://127.0.0.1" },
+    { "pattern": "^http://0.0.0.0" }
+  ]
+}

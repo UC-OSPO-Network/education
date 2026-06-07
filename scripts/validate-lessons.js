@@ -370,8 +370,10 @@ async function validate() {
   function addRuleViolation(rule, lesson, message, options = {}) {
     const scopePaths = options.scopePaths || [lesson.path];
     const issue = buildIssue(rule, lesson.path, lesson.fileSlug, message, options.extra);
-    if (options.warningOnly) {
-      warnings.push({ ...issue, scope: 'n/a' });
+    const isDropped = String(lesson.data.keepStatus || '').trim() === 'drop';
+    if (options.warningOnly || isDropped) {
+      const scope = isDropped ? 'drop-lesson' : 'n/a';
+      warnings.push({ ...issue, scope });
       return;
     }
 
@@ -434,6 +436,10 @@ async function validate() {
 
     if (typeof data.url === 'string' && data.url.trim() !== '' && !isHttpUrl(data.url.trim())) {
       addRuleViolation('invalid-url-format', lesson, `invalid URL format "${data.url}"`);
+    }
+
+    if (typeof data.repoUrl === 'string' && data.repoUrl.trim() !== '' && !isHttpUrl(data.repoUrl.trim())) {
+      addRuleViolation('invalid-repo-url-format', lesson, `invalid repoUrl format "${data.repoUrl}"`, { warningOnly: true });
     }
 
     const level = String(data.educationalLevel || '').trim();
@@ -501,9 +507,38 @@ async function validate() {
         addRuleViolation('unresolved-dependency-slug', lesson, `unresolved lesson slug dependency ("${value}")`);
       }
     }
+
+    if ('prerequisites' in data && !Array.isArray(data.prerequisites)) {
+      addRuleViolation('invalid-prerequisites-type', lesson, 'prerequisites must be an array');
+      continue;
+    }
+
+    for (const item of (data.prerequisites ?? [])) {
+      dependencyRefCount += 1;
+
+      if (typeof item !== 'object' || item === null || Array.isArray(item)) {
+        addRuleViolation('invalid-prerequisite-item', lesson, 'each prerequisite must be an object with type and value fields');
+        continue;
+      }
+
+      const { type, value } = item;
+
+      if (typeof value !== 'string' || value.trim() === '') {
+        addRuleViolation('invalid-prerequisite-value', lesson, 'prerequisite value must be a non-empty string');
+        continue;
+      }
+
+      if (type === 'lesson') {
+        if (!knownSlugs.has(value.trim())) {
+          addRuleViolation('unresolved-prerequisite-slug', lesson, `unresolved prerequisite lesson slug ("${value}")`);
+        }
+      }
+    }
   }
 
-  const lessonsForUrlCheck = lessons.filter((lesson) => scopedLessonPaths.has(lesson.path));
+  const lessonsForUrlCheck = lessons.filter(
+    (lesson) => scopedLessonPaths.has(lesson.path) && String(lesson.data.keepStatus || '').trim() !== 'drop'
+  );
   const urlCandidates = lessonsForUrlCheck
     .map((lesson) => ({
       lesson,
