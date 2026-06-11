@@ -92,11 +92,12 @@ const nav: ChromeNavItem[] = [
     label: "Education",
     href: "/",
     currentSite: true,
-    matchPrefixes: ["/", "/lessons", "/pathways", "/develop-a-lesson", "/for-educators"],
+    matchPrefixes: ["/", "/lessons", "/pathways", "/develop-a-lesson", "/for-educators", "/glossary"],
     children: [
       { label: "All Pathways", href: "/" },
       { label: "All Lessons", href: "/lessons" },
       { label: "Browse Pathways", href: "/pathways" },
+      { label: "Glossary", href: "/glossary" },
       { label: "Develop a Lesson", href: "/develop-a-lesson" },
       { label: "For Educators", href: "/for-educators" },
     ],
