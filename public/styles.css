@@ -1440,7 +1440,16 @@ a.lesson-badge--provider:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
   margin-bottom: 0.5rem;
+}
+
+.lesson-cite-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.45rem;
 }
 
 .lesson-cite-label {
@@ -1462,8 +1471,22 @@ a.lesson-badge--provider:hover {
   cursor: pointer;
 }
 
-.lesson-cite-copy:hover {
+.lesson-cite-copy:hover,
+.lesson-cite-download:hover {
   border-color: var(--uc-blue);
+}
+
+.lesson-cite-download {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.2rem 0.65rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--uc-blue);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .lesson-cite-text {
@@ -1475,6 +1498,8 @@ a.lesson-badge--provider:hover {
   color: var(--text-primary);
   font-size: 0.92rem;
   line-height: 1.6;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .lesson-cite-pre {
@@ -1487,6 +1512,7 @@ a.lesson-badge--provider:hover {
   font-family: var(--font-mono);
   font-size: 0.82rem;
   line-height: 1.6;
+  overflow-x: auto;
   white-space: pre-wrap;
-  word-break: break-word;
+  overflow-wrap: anywhere;
 }

@@ -220,6 +220,8 @@ const hasPrereqs =
             )}
           </section>
         )}
+
+        <Citation lessonSlug={lesson.slug} citation={normalizedCitation} />
       </div>
 
       <aside class="lesson-sidebar" aria-label="Lesson details" data-pagefind-ignore>
@@ -342,7 +344,6 @@ const hasPrereqs =
           </div>
         )}
 
-        <Citation lessonSlug={lesson.slug} citation={normalizedCitation} />
       </aside>
 
     </div>
