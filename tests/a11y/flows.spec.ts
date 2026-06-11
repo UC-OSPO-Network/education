@@ -81,6 +81,46 @@ test("lesson filters are keyboard accessible and keep focus usable", async ({ pa
   await expectNoAxeViolations(page);
 });
 
+test("lesson metadata links resolve to internal filtered views", async ({ page }) => {
+  await gotoEducation(page, "./lessons/introduction-to-git/");
+
+  await expect(page.locator(".lesson-badges").getByRole("link")).toHaveCount(0);
+  await page.getByRole("link", { name: "git", exact: true }).click();
+
+  await expect(page).toHaveURL(/\/education\/lessons\/\?topic=git$/);
+  await expect(page.getByLabel("Topic")).toHaveValue("git");
+  await expect(page.locator(".lessons-filter__count")).toContainText(/showing \d+ of \d+ lessons/i);
+
+  await gotoEducation(page, "./lessons/introduction-to-git/");
+  await page.getByRole("link", { name: "Beginners" }).click();
+  await expect(page).toHaveURL(/\/education\/lessons\/\?audience=Beginners$/);
+  await expect(page.getByLabel("Audience")).toHaveValue("Beginners");
+
+  await gotoEducation(page, "./lessons/introduction-to-git/");
+  await page.getByRole("link", { name: "Contributor" }).click();
+  await expect(page).toHaveURL(/\/education\/lessons\/\?role=Contributor$/);
+  await expect(page.getByLabel("OSS Role")).toHaveValue("Contributor");
+
+  await gotoEducation(page, "./lessons/introduction-to-git/");
+  await page.getByRole("link", { name: "course" }).click();
+  await expect(page).toHaveURL(/\/education\/lessons\/\?type=course$/);
+  await expect(page.getByLabel("Learning Type")).toHaveValue("course");
+});
+
+test("lesson filter query params initialize controls and clear from the URL", async ({ page }) => {
+  await gotoEducation(page, "./lessons/?topic=git");
+
+  const count = page.locator(".lessons-filter__count");
+  await expect(page.getByLabel("Topic")).toHaveValue("git");
+  await expect(count).toContainText(/showing \d+ of \d+ lessons/i);
+  const filteredCount = await count.textContent();
+
+  await page.getByRole("button", { name: /clear filters/i }).first().click();
+  await expect(page.getByLabel("Topic")).toHaveValue("");
+  await expect(page).toHaveURL(/\/education\/lessons\/$/);
+  await expect(count).not.toHaveText(filteredCount || "");
+});
+
 test("mobile navigation opens, closes, and passes axe in expanded state", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await gotoEducation(page);

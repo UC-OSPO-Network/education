@@ -14,17 +14,44 @@ type PagefindModule = {
   search: (query: string) => Promise<{ results: PagefindResult[] }>;
 };
 
+const FILTER_QUERY_PARAMS = ["q", "role", "level", "pathway", "domain", "type", "audience", "topic"];
+
+const emptyFilters = {
+  role: "",
+  educationalLevel: "",
+  pathway: "",
+  domain: "",
+  learningResourceType: "",
+  audience: "",
+  topic: "",
+  search: "",
+};
+
+function getInitialFilters() {
+  if (typeof window === "undefined") return emptyFilters;
+
+  const params = new URLSearchParams(window.location.search);
+  return {
+    role: params.get("role") ?? "",
+    educationalLevel: params.get("level") ?? "",
+    pathway: params.get("pathway") ?? "",
+    domain: params.get("domain") ?? "",
+    learningResourceType: params.get("type") ?? "",
+    audience: params.get("audience") ?? "",
+    topic: params.get("topic") ?? "",
+    search: params.get("q") ?? "",
+  };
+}
+
+function splitAudience(audience: string) {
+  return audience.split(",").map((item) => item.trim()).filter(Boolean);
+}
+
 export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath }: LessonFilterProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
   const [searchSlugs, setSearchSlugs] = useState<Set<string> | null>(null);
-  const [filters, setFilters] = useState({
-    role: "",
-    educationalLevel: "",
-    pathway: "",
-    domain: "",
-    search: "",
-  });
+  const [filters, setFilters] = useState(getInitialFilters);
 
   const pagefindRef = useRef<PagefindModule | null>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -88,17 +115,41 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath 
     };
   }, [filters.search, loadPagefind, knownSlugs]);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const url = new URL(window.location.href);
+    FILTER_QUERY_PARAMS.forEach((param) => url.searchParams.delete(param));
+
+    if (filters.search.trim()) url.searchParams.set("q", filters.search.trim());
+    if (filters.role) url.searchParams.set("role", filters.role);
+    if (filters.educationalLevel) url.searchParams.set("level", filters.educationalLevel);
+    if (filters.pathway) url.searchParams.set("pathway", filters.pathway);
+    if (filters.domain) url.searchParams.set("domain", filters.domain);
+    if (filters.learningResourceType) url.searchParams.set("type", filters.learningResourceType);
+    if (filters.audience) url.searchParams.set("audience", filters.audience);
+    if (filters.topic) url.searchParams.set("topic", filters.topic);
+
+    window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+  }, [filters]);
+
   const filterOptions = useMemo(() => {
     const roles = new Set<string>();
     const levels = new Set<string>();
     const pathways = new Set<string>();
     const domains = new Set<string>();
+    const types = new Set<string>();
+    const audiences = new Set<string>();
+    const topics = new Set<string>();
 
     lessons.forEach((lesson) => {
       lesson.roles.forEach((r) => roles.add(r));
       if (lesson.educationalLevel) levels.add(lesson.educationalLevel);
       lesson.pathways.forEach((p) => pathways.add(p));
       if (lesson.domain) domains.add(lesson.domain);
+      if (lesson.learningResourceType) types.add(lesson.learningResourceType);
+      splitAudience(lesson.audience).forEach((audience) => audiences.add(audience));
+      lesson.keywords.forEach((keyword) => topics.add(keyword));
     });
 
     return {
@@ -106,6 +157,9 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath 
       levels: Array.from(levels).sort(),
       pathways: Array.from(pathways).sort(),
       domains: Array.from(domains).sort(),
+      types: Array.from(types).sort(),
+      audiences: Array.from(audiences).sort(),
+      topics: Array.from(topics).sort(),
     };
   }, [lessons]);
 
@@ -130,6 +184,9 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath 
       if (filters.educationalLevel && lesson.educationalLevel !== filters.educationalLevel) return false;
       if (filters.pathway && !lesson.pathways.includes(filters.pathway)) return false;
       if (filters.domain && lesson.domain !== filters.domain) return false;
+      if (filters.learningResourceType && lesson.learningResourceType !== filters.learningResourceType) return false;
+      if (filters.audience && !splitAudience(lesson.audience).includes(filters.audience)) return false;
+      if (filters.topic && !lesson.keywords.includes(filters.topic)) return false;
       return true;
     });
   }, [filters, searchSlugs, lessons]);
@@ -139,7 +196,7 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath 
   }
 
   function clearFilters() {
-    setFilters({ role: "", educationalLevel: "", pathway: "", domain: "", search: "" });
+    setFilters(emptyFilters);
   }
 
   if (isLoading) {
@@ -222,6 +279,51 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath 
               <option value="">All Domains</option>
               {filterOptions.domains.map((d) => (
                 <option key={d} value={d}>{d}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="lessons-filter__field">
+            <label htmlFor="lesson-type" className="lessons-filter__label">Learning Type</label>
+            <select
+              id="lesson-type"
+              className="lessons-filter__select"
+              value={filters.learningResourceType}
+              onChange={(e) => handleFilterChange("learningResourceType", e.target.value)}
+            >
+              <option value="">All Types</option>
+              {filterOptions.types.map((type) => (
+                <option key={type} value={type}>{type}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="lessons-filter__field">
+            <label htmlFor="lesson-audience" className="lessons-filter__label">Audience</label>
+            <select
+              id="lesson-audience"
+              className="lessons-filter__select"
+              value={filters.audience}
+              onChange={(e) => handleFilterChange("audience", e.target.value)}
+            >
+              <option value="">All Audiences</option>
+              {filterOptions.audiences.map((audience) => (
+                <option key={audience} value={audience}>{audience}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="lessons-filter__field">
+            <label htmlFor="lesson-topic" className="lessons-filter__label">Topic</label>
+            <select
+              id="lesson-topic"
+              className="lessons-filter__select"
+              value={filters.topic}
+              onChange={(e) => handleFilterChange("topic", e.target.value)}
+            >
+              <option value="">All Topics</option>
+              {filterOptions.topics.map((topic) => (
+                <option key={topic} value={topic}>{topic}</option>
               ))}
             </select>
           </div>

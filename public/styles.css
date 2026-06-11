@@ -1295,6 +1295,28 @@ a.lesson-badge--provider:hover {
   font-size: 0.95rem;
 }
 
+.lesson-filter-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.6rem;
+}
+
+.lesson-filter-links a {
+  color: var(--uc-blue);
+  text-decoration: none;
+}
+
+.lesson-filter-links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+.lesson-filter-links a:focus-visible,
+.lesson-tag:focus-visible {
+  outline: 2px solid var(--uc-gold);
+  outline-offset: 2px;
+}
+
 .lesson-tags {
   display: flex;
   flex-wrap: wrap;
@@ -1309,6 +1331,13 @@ a.lesson-badge--provider:hover {
   border-radius: var(--radius-pill);
   color: var(--text-secondary);
   font-size: 0.78rem;
+  text-decoration: none;
+}
+
+.lesson-tag:hover {
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+  text-decoration: none;
 }
 
 .lesson-related {
