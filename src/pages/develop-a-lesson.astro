@@ -175,6 +175,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     margin-right: 1rem;
   }
 
+  .timeline-quarter--current {
+    color: var(--uc-white);
+  }
+
   .timeline-description {
     color: var(--uc-white);
     line-height: 1.5;
@@ -373,37 +377,38 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </div>
 
-    <h2 class="section-title">Program Timeline</h2>
+    <h2 class="section-title">2026 Program Status</h2>
 
     <div class="timeline">
       <div class="timeline-item">
-        <span class="timeline-quarter">Q1 2026</span>
+        <span class="timeline-quarter">Completed</span>
         <span class="timeline-description">
-          <strong>Proposals submitted and reviewed.</strong> UC OSPO selected 4 lessons based on impact, need, and team readiness.
+          <strong>Proposals reviewed.</strong> UC OSPO selected 4 lessons based on impact,
+          community need, and team readiness.
         </span>
       </div>
 
       <div class="timeline-item">
-        <span class="timeline-quarter">Q2 2026</span>
+        <span class="timeline-quarter timeline-quarter--current">Current</span>
         <span class="timeline-description">
-          <strong>Carpentries training underway.</strong> Selected teams are participating in online
-          collaborative lesson development training led by certified Carpentries instructors.
+          <strong>Training and onboarding.</strong> Selected teams are participating in online
+          collaborative lesson development training with Carpentries instructors and UC OSPO mentors.
         </span>
       </div>
 
       <div class="timeline-item">
-        <span class="timeline-quarter">Q3-Q4 2026</span>
+        <span class="timeline-quarter">Next</span>
         <span class="timeline-description">
-          <strong>Lesson development.</strong> Teams develop lessons collaboratively with UC OSPO
+          <strong>Lesson development.</strong> Teams will develop lessons collaboratively with UC OSPO
           mentorship, student developer support, and peer feedback.
         </span>
       </div>
 
       <div class="timeline-item">
-        <span class="timeline-quarter">End 2026</span>
+        <span class="timeline-quarter">Late 2026</span>
         <span class="timeline-description">
-          <strong>Publication and launch.</strong> Completed lessons published on UC OSPO Education
-          site, promoted to the community, and submitted to Carpentries Incubator where appropriate.
+          <strong>Publication and launch.</strong> Completed lessons will be published on the UC OSPO
+          Education site, promoted to the community, and submitted to Carpentries Incubator where appropriate.
         </span>
       </div>
     </div>
@@ -431,8 +436,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="faq-item">
         <div class="faq-question">How much time commitment is required?</div>
         <div class="faq-answer">
-          Expect to commit approximately 5-10 hours per week during training (Q2 2026) and 3-8 hours
-          per week during development (Q3-Q4 2026). The workload is distributed across your team.
+          Expect to commit approximately 5-10 hours per week during training and onboarding, then
+          3-8 hours per week during lesson development. The workload is distributed across your team.
         </div>
       </div>
 
