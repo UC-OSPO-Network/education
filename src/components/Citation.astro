@@ -14,7 +14,7 @@ const bibtexFile = `${lessonSlug}-citation.bib`;
 const bibtexDownloadHref = `data:text/plain;charset=utf-8,${encodeURIComponent(bibtexCitation)}`;
 ---
 
-<div class="page-section" aria-labelledby="cite-heading">
+<div class="page-section" aria-labelledby="cite-heading" data-pagefind-ignore>
   <h2 class="section-heading" id="cite-heading">Cite this lesson</h2>
   {citation.source === 'cff' && (
     <p class="lesson-cite-note">

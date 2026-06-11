@@ -345,7 +345,6 @@
 .home-lesson-card__meta--muted {
   margin-top: 0.25rem;
   color: var(--text-secondary);
-  opacity: 0.82;
 }
 
 /* ── Body: title + description ── */

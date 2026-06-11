@@ -94,6 +94,17 @@ function formatMonth(dateStr: string | null): string {
   return `${names[month - 1]} ${year}`;
 }
 
+function filterHref(param: string, value: string): string {
+  const params = new URLSearchParams();
+  params.set(param, value);
+  return `${import.meta.env.BASE_URL}lessons/?${params.toString()}`;
+}
+
+function splitList(value: string): string[] {
+  return value.split(",").map((item) => item.trim()).filter(Boolean);
+}
+
+const audienceLinks = splitList(lesson.audience);
 const licenseShort = shortLicense(lesson.license);
 const hasPrereqs =
   prereqLessons.length > 0 ||
@@ -109,6 +120,9 @@ const hasPrereqs =
     {lesson.roles.map((role) => <span data-pagefind-filter="role">{role}</span>)}
     {lesson.pathways.map((p) => <span data-pagefind-filter="pathway">{p}</span>)}
     {lesson.provider && <span data-pagefind-filter="provider">{lesson.provider}</span>}
+    {lesson.learningResourceType && <span data-pagefind-filter="type">{lesson.learningResourceType}</span>}
+    {audienceLinks.map((audience) => <span data-pagefind-filter="audience">{audience}</span>)}
+    {lesson.keywords.map((topic) => <span data-pagefind-filter="topic">{topic}</span>)}
     <span data-pagefind-meta="type">lesson</span>
   </div>
   <Fragment slot="head">
@@ -140,20 +154,6 @@ const hasPrereqs =
         )}
         {duration && (
           <span class="lesson-badge lesson-badge--time">{duration}</span>
-        )}
-        {lesson.provider && (
-          provider ? (
-            <a
-              class="lesson-badge lesson-badge--provider"
-              href={provider.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {provider.name} ↗
-            </a>
-          ) : (
-            <span class="lesson-badge lesson-badge--provider">{lesson.provider}</span>
-          )
         )}
       </div>
 
@@ -220,9 +220,11 @@ const hasPrereqs =
             )}
           </section>
         )}
+
+        <Citation lessonSlug={lesson.slug} citation={normalizedCitation} />
       </div>
 
-      <aside class="lesson-sidebar" aria-label="Lesson details">
+      <aside class="lesson-sidebar" aria-label="Lesson details" data-pagefind-ignore>
         <div class="page-section">
           <h2 class="section-heading">Details</h2>
 
@@ -245,10 +247,14 @@ const hasPrereqs =
             </div>
           )}
 
-          {lesson.audience?.trim() && (
+          {audienceLinks.length > 0 && (
             <div class="lesson-detail-row">
               <span class="lesson-detail-label">Suitable for</span>
-              <span class="lesson-detail-value">{lesson.audience}</span>
+              <span class="lesson-detail-value lesson-filter-links">
+                {audienceLinks.map((audience) => (
+                  <a href={filterHref("audience", audience)}>{audience}</a>
+                ))}
+              </span>
             </div>
           )}
 
@@ -283,7 +289,20 @@ const hasPrereqs =
           {lesson.roles.length > 0 && (
             <div class="lesson-detail-row">
               <span class="lesson-detail-label">OSS role</span>
-              <span class="lesson-detail-value">{lesson.roles.join(", ")}</span>
+              <span class="lesson-detail-value lesson-filter-links">
+                {lesson.roles.map((role) => (
+                  <a href={filterHref("role", role)}>{role}</a>
+                ))}
+              </span>
+            </div>
+          )}
+
+          {lesson.learningResourceType?.trim() && (
+            <div class="lesson-detail-row">
+              <span class="lesson-detail-label">Learning type</span>
+              <span class="lesson-detail-value lesson-filter-links">
+                <a href={filterHref("type", lesson.learningResourceType)}>{lesson.learningResourceType}</a>
+              </span>
             </div>
           )}
 
@@ -292,7 +311,7 @@ const hasPrereqs =
               <span class="lesson-detail-label">Topics</span>
               <div class="lesson-tags">
                 {lesson.keywords.map((tag) => (
-                  <span class="lesson-tag">{tag}</span>
+                  <a class="lesson-tag" href={filterHref("topic", tag)}>{tag}</a>
                 ))}
               </div>
             </div>
@@ -325,7 +344,6 @@ const hasPrereqs =
           </div>
         )}
 
-        <Citation lessonSlug={lesson.slug} citation={normalizedCitation} />
       </aside>
 
     </div>

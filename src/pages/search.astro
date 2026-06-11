@@ -1,118 +1,20 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-
-const base = import.meta.env.BASE_URL;
-const pagefindPath = `${base}pagefind/`;
-const pagefindCss = `${pagefindPath}pagefind-component-ui.css`;
+const homeHref = import.meta.env.BASE_URL;
 ---
 
-<BaseLayout
-  title="Search"
-  description="Search all lessons and resources in the UC OSPO Education catalog."
->
-  <Fragment slot="head">
-    <link rel="stylesheet" href={pagefindCss} />
-  </Fragment>
-
-  <section class="page-intro">
-    <div class="content-container">
-      <nav class="breadcrumbs" aria-label="Breadcrumb">
-        <ol>
-          <li><a href={base}>Home</a></li>
-          <li class="breadcrumbs__separator" aria-hidden="true">/</li>
-          <li aria-current="page">Search</li>
-        </ol>
-      </nav>
-      <h1 class="page-intro__title">Search</h1>
-      <p class="page-intro__summary">
-        Find lessons, pathways, and resources across the UC OSPO Education catalog.
-      </p>
-    </div>
-  </section>
-
-  <div class="content-container">
-    <div class="search-page page-section" data-pagefind-ignore="all">
-      <div id="search">
-        <noscript>JavaScript is required for site search.</noscript>
-      </div>
-    </div>
-  </div>
-</BaseLayout>
-
-<style>
-  .search-page {
-    padding-block: 1.5rem;
-    max-width: 52rem;
-  }
-
-  #search pagefind-searchbox {
-    --pagefind-ui-scale: 1;
-    --pagefind-ui-primary: var(--uc-blue);
-    --pagefind-ui-text: var(--text-primary);
-    --pagefind-ui-background: var(--bg-primary);
-    --pagefind-ui-border: var(--border-light);
-    --pagefind-ui-tag: var(--bg-surface-strong);
-    --pagefind-ui-border-width: 1px;
-    --pagefind-ui-border-radius: var(--radius-md);
-    --pagefind-ui-font: var(--font-sans);
-  }
-
-  .search-unavailable {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-  }
-
-  .search-unavailable code {
-    font-family: var(--font-mono);
-    background: var(--bg-surface-strong);
-    padding: 0.1em 0.35em;
-    border-radius: var(--radius-sm);
-  }
-</style>
-
-<script define:vars={{ pagefindPath, base }}>
-  (async () => {
-    const el = document.getElementById("search");
-    if (!el) return;
-    const searchInputLabel =
-      "Search lessons, pathways, and resources in this catalog";
-
-    function ensureSearchInputAccessibleName() {
-      const input = el.querySelector(".pf-searchbox-input");
-      if (!input || input.getAttribute("aria-label")) return;
-      input.setAttribute("aria-label", searchInputLabel);
-    }
-
-    try {
-      // Load the Component UI — registers web components including
-      // <pagefind-config> and <pagefind-searchbox>
-      await import(pagefindPath + "pagefind-component-ui.js");
-
-      // <pagefind-config> must be inserted before <pagefind-searchbox> so it
-      // can set bundle-path and base-url on the shared pagefind instance
-      // before the searchbox tries to load the index. Dynamic import leaves
-      // document.currentScript null, so detectBundlePath() falls back to
-      // /pagefind/ — pagefind-config overrides that explicitly.
-      el.innerHTML =
-        `<pagefind-config bundle-path="${pagefindPath}" base-url="${base}"></pagefind-config>` +
-        `<pagefind-searchbox autofocus></pagefind-searchbox>`;
-
-      // Pagefind's combobox input only sets a placeholder; Pa11y (and WCAG)
-      // expect an accessible name on the control.
-      try {
-        await customElements.whenDefined("pagefind-searchbox");
-      } catch {
-        // ignore — labelling still runs via MutationObserver below
-      }
-      ensureSearchInputAccessibleName();
-      const searchBox = el.querySelector("pagefind-searchbox");
-      if (searchBox) {
-        const observer = new MutationObserver(() => ensureSearchInputAccessibleName());
-        observer.observe(searchBox, { childList: true, subtree: true });
-      }
-    } catch {
-      el.innerHTML =
-        '<p class="search-unavailable">Search index not found — run <code>npm run build</code> to generate it.</p>';
-    }
-  })();
-</script>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content={`0; url=${homeHref}`} />
+    <link rel="canonical" href={homeHref} />
+    <title>Redirecting | UC OSPO Education</title>
+  </head>
+  <body data-pagefind-ignore>
+    <p>Search is now available from the site header. Redirecting to <a href={homeHref}>UC OSPO Education</a>.</p>
+    <script define:vars={{ homeHref }}>
+      window.location.replace(homeHref);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+---
+const base = import.meta.env.BASE_URL;
+const pagefindPath = `${base}pagefind/`;
+---
+
+<div class="site-search" data-pagefind-ignore>
+  <div id="site-search" class="site-search__mount">
+    <form class="site-search__fallback" action={`${base}lessons/`} method="get">
+      <label class="sr-only" for="site-search-fallback-input">Search lessons, pathways, and resources</label>
+      <input
+        id="site-search-fallback-input"
+        class="site-search__fallback-input"
+        type="search"
+        name="q"
+        placeholder="Search"
+        autocomplete="off"
+      />
+    </form>
+    <noscript>JavaScript is required for site search.</noscript>
+  </div>
+</div>
+
+<script define:vars={{ pagefindPath, base }}>
+  (async () => {
+    const el = document.getElementById("site-search");
+    if (!el) return;
+
+    const searchInputLabel = "Search lessons, pathways, and resources";
+
+    function ensureSearchInputAccessibleName() {
+      const input = el.querySelector(".pf-searchbox-input");
+      if (!input) return;
+      input.setAttribute("aria-label", searchInputLabel);
+    }
+
+    try {
+      await import(pagefindPath + "pagefind-component-ui.js");
+
+      el.innerHTML =
+        `<pagefind-config bundle-path="${pagefindPath}" base-url="${base}"></pagefind-config>` +
+        `<pagefind-searchbox placeholder="Search" max-results="6" hide-keyboard-hints></pagefind-searchbox>`;
+
+      try {
+        await customElements.whenDefined("pagefind-searchbox");
+      } catch {
+        // The MutationObserver below still handles labelling if definition timing changes.
+      }
+
+      ensureSearchInputAccessibleName();
+      const searchBox = el.querySelector("pagefind-searchbox");
+      if (searchBox) {
+        const observer = new MutationObserver(() => ensureSearchInputAccessibleName());
+        observer.observe(searchBox, { childList: true, subtree: true });
+      }
+    } catch {
+      el.dataset.searchUnavailable = "true";
+    }
+  })();
+</script>
