@@ -13,6 +13,12 @@ async function expectNoAxeViolations(page: Page) {
   expect(results.violations).toEqual([]);
 }
 
+function headerSearch(page: Page) {
+  return page.locator(".site-search").getByRole("combobox", {
+    name: /search lessons, pathways, and resources/i,
+  });
+}
+
 test.describe("accessibility page structure", () => {
   const pages = [
     { path: "./", heading: /open source learning pathways/i },
@@ -29,6 +35,7 @@ test.describe("accessibility page structure", () => {
       await expect(page.getByRole("main")).toHaveCount(1);
       await expect(page.getByRole("navigation", { name: /primary/i })).toBeVisible();
       await expect(page.getByRole("heading", { name: pageCase.heading, level: 1 })).toBeVisible();
+      await expect(headerSearch(page)).toHaveCount(1);
       await expectNoAxeViolations(page);
     });
   }
@@ -47,7 +54,9 @@ test("keyboard users can skip to main content and operate the desktop nav", asyn
   await educationTrigger.focus();
   await page.keyboard.press("Enter");
   await expect(educationTrigger).toHaveAttribute("aria-expanded", "true");
-  await expect(page.getByRole("navigation", { name: /primary/i }).getByRole("link", { name: "All Lessons" })).toBeVisible();
+  const primaryNav = page.getByRole("navigation", { name: /primary/i });
+  await expect(primaryNav.getByRole("link", { name: "All Lessons" })).toBeVisible();
+  await expect(primaryNav.getByRole("link", { name: "Search", exact: true })).toHaveCount(0);
   await page.waitForTimeout(250);
   await expectNoAxeViolations(page);
 
@@ -68,7 +77,7 @@ test("lesson filters are keyboard accessible and keep focus usable", async ({ pa
   await expect(count).toContainText(/showing \d+ of \d+ lessons/i);
   const initialCount = await count.textContent();
 
-  const search = page.getByLabel("Search");
+  const search = page.locator(".lessons-filter").getByLabel("Search");
   await search.focus();
   await expect(search).toBeFocused();
   await search.fill("git");
@@ -79,6 +88,21 @@ test("lesson filters are keyboard accessible and keep focus usable", async ({ pa
   await page.getByRole("button", { name: /clear filters/i }).first().click();
   await expect(count).toHaveText(initialCount || "");
   await expectNoAxeViolations(page);
+});
+
+test("header search opens dropdown results and navigates to a result", async ({ page }) => {
+  await gotoEducation(page);
+
+  const search = headerSearch(page);
+  const startingUrl = page.url();
+  await search.fill("git");
+
+  await expect(page).toHaveURL(startingUrl);
+  const firstResult = page.locator(".site-search .pf-searchbox-result").first();
+  await expect(firstResult).toBeVisible();
+  await firstResult.click();
+  await expect(page).not.toHaveURL(startingUrl);
+  await expect(page).toHaveURL(/\/education\//);
 });
 
 test("lesson metadata links resolve to internal filtered views", async ({ page }) => {
@@ -135,7 +159,10 @@ test("mobile navigation opens, closes, and passes axe in expanded state", async 
   await educationTrigger.focus();
   await page.keyboard.press("Enter");
   await expect(educationTrigger).toHaveAttribute("aria-expanded", "true");
-  await expect(page.getByRole("link", { name: /browse pathways/i })).toBeVisible();
+  await expect(headerSearch(page)).toBeVisible();
+  const primaryNav = page.getByRole("navigation", { name: /primary/i });
+  await expect(primaryNav.getByRole("link", { name: /browse pathways/i })).toBeVisible();
+  await expect(primaryNav.getByRole("link", { name: "Search", exact: true })).toHaveCount(0);
   await page.waitForTimeout(250);
   await expectNoAxeViolations(page);
 

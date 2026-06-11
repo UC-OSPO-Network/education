@@ -338,7 +338,7 @@ summary:focus-visible {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 1rem;
   padding: 0.95rem 0;
 }
 
@@ -398,9 +398,72 @@ summary:focus-visible {
   border-color: var(--border-strong);
 }
 
+.site-search {
+  flex: 1 1 18rem;
+  max-width: 28rem;
+  min-width: 14rem;
+}
+
+.site-search__mount {
+  min-height: 2.45rem;
+}
+
+.site-search__fallback {
+  margin: 0;
+}
+
+.site-search__fallback-input {
+  width: 100%;
+  min-height: 2.45rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.site-search__fallback-input:focus {
+  outline: 2px solid var(--uc-gold);
+  outline-offset: 2px;
+  border-color: var(--border-strong);
+}
+
+.site-search pagefind-searchbox {
+  --pf-text: var(--text-primary);
+  --pf-text-secondary: var(--text-secondary);
+  --pf-background: var(--bg-primary);
+  --pf-border: var(--border-light);
+  --pf-border-focus: var(--border-strong);
+  --pf-hover: var(--bg-subtle);
+  --pf-outline-focus: var(--uc-gold);
+  --pf-font: var(--font-sans);
+  --pf-input-height: 2.45rem;
+  --pf-input-font-size: 0.95rem;
+  --pf-border-radius: var(--radius-md);
+  --pf-searchbox-max-width: 100%;
+  --pf-searchbox-dropdown-max-height: 22rem;
+  --pf-dropdown-z-index: 80;
+}
+
+.site-search .pf-searchbox {
+  max-width: none;
+}
+
+.site-search .pf-searchbox-input {
+  font-weight: 600;
+}
+
+.site-search .pf-searchbox-dropdown {
+  min-width: min(28rem, calc(100vw - 2rem));
+}
+
 .site-nav {
   display: flex;
   align-items: center;
+  flex: 0 0 auto;
 }
 
 .site-nav__list {
@@ -1091,6 +1154,21 @@ summary:focus-visible {
 
   .site-nav__item.is-open .site-nav__menu {
     display: block;
+  }
+
+  .site-header__inner {
+    flex-wrap: wrap;
+  }
+
+  .site-search {
+    order: 3;
+    flex-basis: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .site-search .pf-searchbox-dropdown {
+    min-width: 0;
   }
 }
 
