@@ -2,7 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import LessonJsonLd from "../../components/LessonJsonLd.astro";
 import Citation from "../../components/Citation.astro";
-import { getLessons, getRelatedLessons, type Lesson, formatDuration } from "../../lib/lessons";
+import { getLessons, getRelatedLessons, type Lesson, formatDuration, isCreatedByUs } from "../../lib/lessons";
 import { lookupProvider } from "../../lib/providers";
 import { normalizeCitation } from "../../lib/citation";
 import { getCollection } from "astro:content";
@@ -142,6 +142,15 @@ const hasPrereqs =
       </nav>
 
       <div class="lesson-badges">
+        {isCreatedByUs(lesson) ? (
+          <span class="lesson-badge lesson-badge--created" title="Created by the UC OSPO Network">
+            Created by us
+          </span>
+        ) : (
+          <span class="lesson-badge lesson-badge--curated" title="An external resource curated by the UC OSPO Network">
+            Curated · external resource
+          </span>
+        )}
         {pathwayName && (
           <span class="lesson-badge lesson-badge--pathway">
             {pathwayName}

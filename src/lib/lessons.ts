@@ -49,6 +49,10 @@ export function formatDuration(duration: string | undefined | null): string {
   return [match[1] ? `${match[1]}h` : '', match[2] ? `${match[2]}m` : ''].filter(Boolean).join(' ');
 }
 
+// Curated-vs-created lives in lib/provenance.ts (dependency-free so client
+// components can import it). Re-exported here for server-side convenience.
+export { CREATOR_ORG, isCreatedByUs } from './provenance';
+
 export async function getLessons(): Promise<Lesson[]> {
   const entries = await getCollection('lessons');
   return entries.map((entry) => {
