@@ -27,7 +27,7 @@
     "abstract": "This lesson introduces Docker, explaining how to create, manage, and share containerized applications. It covers the basics of Docker, its use in reproducible research, and how to create Docker images for software development.",
     "dateCreated": "2020-10-01",
     "dateModified": "2023-03-15",
-    "timeRequired": "PT3H15M",
+    "timeRequired": "PT5H",
     "about": "",
     "accessibilitySummary": "",
     "audience": "Researchers, Software Developers, HPC Engineers",

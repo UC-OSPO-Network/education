@@ -26,7 +26,7 @@
     "abstract": "This tutorial introduces software testing, focusing on unit testing and test-driven development (TDD) in Python. It explains how to write tests, run them, and integrate them into the development process.",
     "dateCreated": "2023-02-18",
     "dateModified": "2023-05-25",
-    "timeRequired": "PT10H45M",
+    "timeRequired": "PT4H45M",
     "about": "",
     "accessibilitySummary": "",
     "audience": "Software Developers, PhD Students, Open Source Contributors",
