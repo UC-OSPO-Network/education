@@ -7,6 +7,19 @@ interface LessonFilterProps {
   lessons: Lesson[];
   healthBySlug?: Record<string, HealthRecord | null>;
   pagefindPath: string;
+  pathwayNames?: Record<string, string>;
+}
+
+// learningResourceType is free text in schema.org, so we define our own values.
+// Surfaced via the (i) help toggle on the Learning Type filter.
+const TYPE_DEFINITIONS: Record<string, string> = {
+  guide: "Self-study reading or reference, worked through at your own pace.",
+  workshop: "Hands-on and designed to be taught, with active exercises.",
+  course: "A structured, multi-part curriculum, often taught over several sessions.",
+};
+
+function titleCase(value: string): string {
+  return value.replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 type PagefindResult = { data: () => Promise<{ url: string }> };
@@ -47,11 +60,12 @@ function splitAudience(audience: string) {
   return audience.split(",").map((item) => item.trim()).filter(Boolean);
 }
 
-export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath }: LessonFilterProps) {
+export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath, pathwayNames = {} }: LessonFilterProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
   const [searchSlugs, setSearchSlugs] = useState<Set<string> | null>(null);
   const [filters, setFilters] = useState(getInitialFilters);
+  const [showTypeHelp, setShowTypeHelp] = useState(false);
 
   const pagefindRef = useRef<PagefindModule | null>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -263,7 +277,7 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath 
             >
               <option value="">All Pathways</option>
               {filterOptions.pathways.map((p) => (
-                <option key={p} value={p}>{p}</option>
+                <option key={p} value={p}>{pathwayNames[p] ?? titleCase(p.replace(/-/g, " "))}</option>
               ))}
             </select>
           </div>
@@ -284,7 +298,29 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath 
           </div>
 
           <div className="lessons-filter__field">
-            <label htmlFor="lesson-type" className="lessons-filter__label">Learning Type</label>
+            <span className="lessons-filter__label-row">
+              <label htmlFor="lesson-type" className="lessons-filter__label">Learning Type</label>
+              <button
+                type="button"
+                className="lessons-filter__help-toggle"
+                aria-expanded={showTypeHelp}
+                aria-controls="lesson-type-help"
+                aria-label="What do the learning types mean?"
+                onClick={() => setShowTypeHelp((v) => !v)}
+              >
+                <span aria-hidden="true">ⓘ</span>
+              </button>
+            </span>
+            {showTypeHelp && (
+              <dl id="lesson-type-help" className="lessons-filter__help">
+                {Object.entries(TYPE_DEFINITIONS).map(([term, def]) => (
+                  <div key={term} className="lessons-filter__help-item">
+                    <dt>{titleCase(term)}</dt>
+                    <dd>{def}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
             <select
               id="lesson-type"
               className="lessons-filter__select"
@@ -293,7 +329,7 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath 
             >
               <option value="">All Types</option>
               {filterOptions.types.map((type) => (
-                <option key={type} value={type}>{type}</option>
+                <option key={type} value={type}>{titleCase(type)}</option>
               ))}
             </select>
           </div>
