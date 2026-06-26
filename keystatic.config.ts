@@ -130,7 +130,13 @@ export default config({
           label: 'Lesson URL',
           validation: { isRequired: true },
         }),
-        author: fields.text({ label: 'Author' }),
+        author: fields.text({
+          label: 'Author',
+          description:
+            'Use one of two forms: an organization or team name (e.g. "CodeRefinery Team"), ' +
+            'or a person as "Full Name <email@example.com>". For multiple people, separate with commas. ' +
+            'Do not append an email to an organization name.',
+        }),
         provider: fields.text({
           label: 'Provider (organization)',
           description: 'Organization that produced this lesson (e.g. UC Davis DataLab, CodeRefinery). Follows Bioschemas TrainingMaterial provider field.',
