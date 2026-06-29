@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import LessonFilter from "../components/LessonFilter.tsx";
 import { getActiveLessons } from "../lib/lessons";
+import { getCollection } from "astro:content";
 import githubHealthRaw from "../data/github-health.json";
 import type { HealthSnapshot } from "../lib/githubHealth";
 import "../components/lessons/lessons.css";
@@ -10,6 +11,11 @@ const activeLessons = await getActiveLessons();
 const healthData = githubHealthRaw as unknown as HealthSnapshot;
 const healthBySlug = healthData.lessons ?? {};
 const pagefindPath = `${import.meta.env.BASE_URL}pagefind/`;
+
+// Map pathway slug -> display name so the filter shows "Building Inclusive
+// Communities" rather than the raw "building-communities" slug.
+const pathways = await getCollection("pathways");
+const pathwayNames = Object.fromEntries(pathways.map((p) => [p.id, p.data.name]));
 ---
 
 <BaseLayout
@@ -35,6 +41,6 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/`;
       </div>
     </div>
   ) : (
-    <LessonFilter lessons={activeLessons} healthBySlug={healthBySlug} pagefindPath={pagefindPath} client:load />
+    <LessonFilter lessons={activeLessons} healthBySlug={healthBySlug} pagefindPath={pagefindPath} pathwayNames={pathwayNames} client:load />
   )}
 </BaseLayout>
