@@ -49,6 +49,16 @@ export function formatDuration(duration: string | undefined | null): string {
   return [match[1] ? `${match[1]}h` : '', match[2] ? `${match[2]}m` : ''].filter(Boolean).join(' ');
 }
 
+// Self-study material (guides, references) is read at the learner's own pace,
+// so a "time to teach" badge isn't meaningful — only show it for taught formats.
+const SELF_STUDY_TYPES = new Set(['guide', 'reference', 'article']);
+
+export function teachingTime(lesson: { timeRequired?: string | null; learningResourceType?: string | null }): string {
+  const type = (lesson.learningResourceType ?? '').toLowerCase().trim();
+  if (SELF_STUDY_TYPES.has(type)) return '';
+  return formatDuration(lesson.timeRequired);
+}
+
 // Curated-vs-created lives in lib/provenance.ts (dependency-free so client
 // components can import it). Re-exported here for server-side convenience.
 export { CREATOR_ORG, isCreatedByUs } from './provenance';

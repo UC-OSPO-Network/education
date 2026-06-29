@@ -26,7 +26,7 @@
     "abstract": "This tutorial introduces continuous integration (CI) and continuous delivery (CD) practices in software development. It covers how to automate testing, building, and deployment using tools like GitHub Actions.",
     "dateCreated": "2023-01-25",
     "dateModified": "2023-03-20",
-    "timeRequired": "PT2H40M",
+    "timeRequired": "PT2H52M",
     "about": "",
     "accessibilitySummary": "",
     "audience": "Software Developers, PhD Students, DevOps Engineers",

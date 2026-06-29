@@ -2,7 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import LessonJsonLd from "../../components/LessonJsonLd.astro";
 import Citation from "../../components/Citation.astro";
-import { getLessons, getRelatedLessons, type Lesson, formatDuration, isCreatedByUs } from "../../lib/lessons";
+import { getLessons, getRelatedLessons, type Lesson, teachingTime, isCreatedByUs } from "../../lib/lessons";
 import { lookupProvider } from "../../lib/providers";
 import { normalizeCitation } from "../../lib/citation";
 import { getCollection } from "astro:content";
@@ -74,7 +74,7 @@ const outcomeLines = (lesson.learningObjectives ?? "")
   .filter((l) => l.startsWith("- ") || l.startsWith("* "))
   .map((l) => l.replace(/^[-*]\s+/, ""));
 
-const duration = formatDuration(lesson.timeRequired);
+const duration = teachingTime(lesson);
 
 function shortLicense(url: string | undefined): string {
   if (!url) return "";

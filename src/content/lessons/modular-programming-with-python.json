@@ -26,7 +26,7 @@
     "abstract": "This lesson introduces the concept of modular programming in Python. It covers how to structure code into reusable modules and how to organize and test these modules for better maintainability and collaboration.",
     "dateCreated": "2020-05-15",
     "dateModified": "2023-02-10",
-    "timeRequired": "PT2H25M",
+    "timeRequired": "",
     "about": "",
     "accessibilitySummary": "",
     "audience": "Researchers, Software Developers, Data Scientists",

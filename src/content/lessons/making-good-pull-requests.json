@@ -26,7 +26,7 @@
     "abstract": "This tutorial explains how to create good pull requests (PRs) in collaborative software development. It covers best practices for writing clear PR descriptions, committing changes, and communicating with project maintainers.",
     "dateCreated": "2023-05-15",
     "dateModified": "2023-07-20",
-    "timeRequired": "PT3H",
+    "timeRequired": "PT1H",
     "about": "",
     "accessibilitySummary": "",
     "audience": "Developers, PhD Students, Open Source Contributors",

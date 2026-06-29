@@ -52,7 +52,11 @@ export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3,
   const topMeta = lesson.learningResourceType || lesson.subTopic || "Lesson";
   const TypeIcon = TYPE_ICONS[lesson.learningResourceType?.toLowerCase()] ?? null;
   const roleTags = (lesson.roles ?? []).slice(0, 2);
-  const duration = formatDuration(lesson.timeRequired);
+  // Self-study formats (guide/reference) have no meaningful "time to teach".
+  const isSelfStudy = ["guide", "reference", "article"].includes(
+    lesson.learningResourceType?.toLowerCase(),
+  );
+  const duration = isSelfStudy ? null : formatDuration(lesson.timeRequired);
   const createdByUs = isCreatedByUs(lesson);
 
   const prerequisiteLinks = (lesson.prerequisites ?? [])

@@ -27,7 +27,7 @@
     "abstract": "This lesson introduces best practices for developing Python packages, covering topics like structuring packages, writing tests, and managing dependencies for scientific software.",
     "dateCreated": "2020-10-01",
     "dateModified": "2023-03-10",
-    "timeRequired": "PT11M",
+    "timeRequired": "",
     "about": "",
     "accessibilitySummary": "",
     "audience": "Python Developers, Researchers, Software Engineers",
