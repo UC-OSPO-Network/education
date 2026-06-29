@@ -272,12 +272,6 @@
   border-color: rgba(0, 85, 129, 0.3);
 }
 
-.lesson-card__provenance--curated {
-  background: var(--bg-surface-strong);
-  color: var(--text-secondary);
-  border-color: var(--border-light);
-}
-
 .lesson-card__meta-type-icon {
   width: 0.85rem;
   height: 0.85rem;
