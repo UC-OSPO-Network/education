@@ -38,6 +38,56 @@
   color: var(--text-secondary);
 }
 
+.lessons-filter__label-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.lessons-filter__help-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1rem;
+  height: 1.1rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lessons-filter__help-toggle:hover {
+  color: var(--uc-blue);
+}
+
+.lessons-filter__help {
+  margin: 0 0 0.2rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.lessons-filter__help-item + .lessons-filter__help-item {
+  margin-top: 0.4rem;
+}
+
+.lessons-filter__help dt {
+  font-weight: 600;
+  color: var(--uc-blue);
+}
+
+.lessons-filter__help dd {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
 .lessons-filter__input,
 .lessons-filter__select {
   width: 100%;
@@ -204,6 +254,28 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-secondary);
+}
+
+.lesson-card__provenance {
+  margin-left: auto;
+  padding: 0.1rem 0.5rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: 1px solid transparent;
+}
+
+.lesson-card__provenance--created {
+  background: rgba(0, 85, 129, 0.1);
+  color: var(--uc-dark-blue);
+  border-color: rgba(0, 85, 129, 0.3);
+}
+
+.lesson-card__provenance--curated {
+  background: var(--bg-surface-strong);
+  color: var(--text-secondary);
+  border-color: var(--border-light);
 }
 
 .lesson-card__meta-type-icon {

@@ -6,6 +6,7 @@ const TYPE_ICONS = {
   course:   AcademicCapIcon,
 };
 import HealthSignalRow from "./HealthSignalRow.jsx";
+import { isCreatedByUs } from "../lib/provenance";
 
 /** @typedef {import("../lib/githubHealth").HealthRecord} HealthRecord */
 
@@ -56,6 +57,7 @@ export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3,
     lesson.learningResourceType?.toLowerCase(),
   );
   const duration = isSelfStudy ? null : formatDuration(lesson.timeRequired);
+  const createdByUs = isCreatedByUs(lesson);
 
   const prerequisiteLinks = (lesson.prerequisites ?? [])
     .map((prereq) => {
@@ -102,6 +104,12 @@ export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3,
         <p className="lesson-card__meta-type">
           {TypeIcon && <TypeIcon className="lesson-card__meta-type-icon" aria-hidden="true" />}
           {topMeta}
+          <span
+            className={`lesson-card__provenance lesson-card__provenance--${createdByUs ? "created" : "curated"}`}
+            title={createdByUs ? "Created by the UC OSPO Network" : "An external resource curated by the UC OSPO Network"}
+          >
+            {createdByUs ? "Created" : "Curated"}
+          </span>
         </p>
         {roleTags.length > 0 && (
           <p className="lesson-card__meta-role">{roleTags.join(", ")}</p>

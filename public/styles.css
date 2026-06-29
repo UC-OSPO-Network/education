@@ -1274,6 +1274,18 @@ a.lesson-badge--provider:hover {
   border-color: rgba(0, 129, 85, 0.4);
 }
 
+.lesson-badge--created {
+  background: rgba(0, 85, 129, 0.1);
+  color: var(--uc-dark-blue);
+  border-color: rgba(0, 85, 129, 0.3);
+}
+
+.lesson-badge--curated {
+  background: var(--bg-surface-strong);
+  color: var(--text-secondary);
+  border-color: var(--border-light);
+}
+
 .lesson-detail-row--provider {
   align-items: flex-start;
 }

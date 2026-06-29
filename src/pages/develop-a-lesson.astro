@@ -100,90 +100,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     margin: 0;
   }
 
-  .gaps-list {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-light);
-    padding: 2rem;
-    border-radius: var(--radius-sm);
-    margin: 2rem 0;
-  }
-
-  .gap-item {
-    border-left: 3px solid var(--uc-blue);
-    padding: 1rem 0 1rem 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .gap-item:last-child {
-    margin-bottom: 0;
-  }
-
-  .gap-item h4 {
-    color: var(--uc-blue);
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-  }
-
-  .gap-item p {
-    color: var(--text-primary);
-    line-height: 1.6;
-    margin: 0 0 0.5rem 0;
-  }
-
-  .gap-meta {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    font-style: italic;
-  }
-
-  .timeline {
-    background: linear-gradient(135deg, var(--uc-dark-blue), var(--uc-blue));
-    padding: 2rem;
-    border-radius: var(--radius-sm);
-    margin: 2rem 0;
-  }
-
-  .timeline-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 1.5rem;
-    padding-left: 2.5rem;
-    position: relative;
-  }
-
-  .timeline-item:last-child {
-    margin-bottom: 0;
-  }
-
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.5rem;
-    width: 12px;
-    height: 12px;
-    border-radius: var(--radius-pill);
-    background: var(--uc-gold);
-    border: 3px solid var(--uc-white);
-  }
-
-  .timeline-quarter {
-    font-weight: 700;
-    color: var(--uc-light-gold);
-    min-width: 80px;
-    margin-right: 1rem;
-  }
-
-  .timeline-quarter--current {
-    color: var(--uc-white);
-  }
-
-  .timeline-description {
-    color: var(--uc-white);
-    line-height: 1.5;
-  }
-
   .faq {
     margin: 3rem 0;
   }
@@ -234,14 +150,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   @media (max-width: 768px) {
     .program-details {
       grid-template-columns: 1fr;
-    }
-
-    .timeline-item {
-      flex-direction: column;
-    }
-
-    .timeline-quarter {
-      margin-bottom: 0.5rem;
     }
   }
 </style>
@@ -334,83 +242,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </div>
 
-    <h2 class="section-title">Identified Lesson Gaps</h2>
+    <h2 class="section-title">Current Openings</h2>
     <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">
-      We've identified these high-priority topics, but we welcome creative proposals that address other critical needs.
+      We recruit in cohorts, so the open slots, focus topics, and application deadline change each round.
+      The latest announcement always has the current details — including which lessons we're looking for
+      and how to express interest.
     </p>
 
-    <div class="gaps-list">
-      <div class="gap-item">
-        <h4>Understanding Open Source Licensing and Compliance</h4>
-        <p>Learn OSS license types, obligations, compatibility, and UC-specific policy guidance.</p>
-        <div class="gap-meta">Audience: Faculty, researchers, students, tech transfer, legal staff | Level: Beginner-Intermediate</div>
-      </div>
-
-      <div class="gap-item">
-        <h4>Introduction to Open Source (WTF is Open Source?)</h4>
-        <p>Foundational resource for people new to open source - what it is, why it matters, and how to get started.</p>
-        <div class="gap-meta">Audience: General public, students, anyone new to OSS | Level: Beginner</div>
-      </div>
-
-      <div class="gap-item">
-        <h4>Evaluating OSS for Security and Institutional Use</h4>
-        <p>How to vet open source tools for compliance, security, and alignment with institutional policies.</p>
-        <div class="gap-meta">Audience: IT staff, compliance officers, researchers with sensitive data | Level: Intermediate</div>
-      </div>
-
-      <div class="gap-item">
-        <h4>Governance and Sustainability in OSS Communities</h4>
-        <p>Explore inclusive governance structures, sustainability models, and decision-making processes.</p>
-        <div class="gap-meta">Audience: Community managers, PIs, project leads | Level: Intermediate</div>
-      </div>
-
-      <div class="gap-item">
-        <h4>Software Engineering Best Practices for Open Source</h4>
-        <p>Reproducibility principles, coding best practices, and sustainable software engineering.</p>
-        <div class="gap-meta">Audience: Developers, researchers, contributors | Level: Intermediate</div>
-      </div>
-
-      <div class="gap-item">
-        <h4>Community Development and Building</h4>
-        <p>Strategies for building, growing, and sustaining healthy open source communities.</p>
-        <div class="gap-meta">Audience: Community managers, maintainers, project leads | Level: Intermediate</div>
-      </div>
-    </div>
-
-    <h2 class="section-title">2026 Program Status</h2>
-
-    <div class="timeline">
-      <div class="timeline-item">
-        <span class="timeline-quarter">Completed</span>
-        <span class="timeline-description">
-          <strong>Proposals reviewed.</strong> UC OSPO selected 4 lessons based on impact,
-          community need, and team readiness.
-        </span>
-      </div>
-
-      <div class="timeline-item">
-        <span class="timeline-quarter timeline-quarter--current">Current</span>
-        <span class="timeline-description">
-          <strong>Training and onboarding.</strong> Selected teams are participating in online
-          collaborative lesson development training with Carpentries instructors and UC OSPO mentors.
-        </span>
-      </div>
-
-      <div class="timeline-item">
-        <span class="timeline-quarter">Next</span>
-        <span class="timeline-description">
-          <strong>Lesson development.</strong> Teams will develop lessons collaboratively with UC OSPO
-          mentorship, student developer support, and peer feedback.
-        </span>
-      </div>
-
-      <div class="timeline-item">
-        <span class="timeline-quarter">Late 2026</span>
-        <span class="timeline-description">
-          <strong>Publication and launch.</strong> Completed lessons will be published on the UC OSPO
-          Education site, promoted to the community, and submitted to Carpentries Incubator where appropriate.
-        </span>
-      </div>
+    <div class="page-intro__actions" style="justify-content: center; margin-bottom: 1rem;">
+      <a href="https://ucospo.net/posts/develop-open-source-lesson-cldt/" class="button-primary">
+        See the current cohort &amp; how to apply →
+      </a>
     </div>
 
     <h2 class="section-title">Frequently Asked Questions</h2>
@@ -425,11 +267,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
 
       <div class="faq-item">
-        <div class="faq-question">What if my topic idea isn't on the identified gaps list?</div>
+        <div class="faq-question">Do I have to pick from a set list of topics?</div>
         <div class="faq-answer">
-          We welcome creative proposals! The gaps list represents known needs, but we're open to
-          proposals that address other critical areas in open source education. Make a strong case
-          for why your topic matters in your proposal.
+          No. Each cohort highlights a few priority topics (see the current announcement), but we
+          welcome creative proposals that address other critical areas in open source education.
+          Make a strong case for why your topic matters in your proposal.
         </div>
       </div>
 
@@ -486,12 +328,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <div class="content-section">
     <div class="cta-section">
       <h2>Interested in the Next Cohort?</h2>
-      <p>Express interest in contributing to the next round of lesson development.</p>
-      <a href="https://github.com/UC-OSPO-Network/education/issues/new?template=lesson-contributor.yml" class="button-primary">
-        Express Interest as Contributor
+      <p>Check the current announcement for open slots and the application deadline.</p>
+      <a href="https://ucospo.net/posts/develop-open-source-lesson-cldt/" class="button-primary">
+        See the current cohort &amp; how to apply →
       </a>
       <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--uc-white);">
-        Questions? <a href="https://github.com/UC-OSPO-Network/education/discussions" target="_blank" rel="noopener noreferrer" style="color: var(--uc-light-gold);">Open a discussion on GitHub</a> or contact the UC OSPO team.
+        Questions? <a href="https://github.com/UC-OSPO-Network/education/discussions" target="_blank" rel="noopener noreferrer" style="color: var(--uc-light-gold);">Open a discussion on GitHub</a> or email <a href="mailto:tdennis@library.ucla.edu" style="color: var(--uc-light-gold);">tdennis@library.ucla.edu</a>.
       </p>
     </div>
   </div>

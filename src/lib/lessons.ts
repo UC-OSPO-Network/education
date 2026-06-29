@@ -59,6 +59,10 @@ export function teachingTime(lesson: { timeRequired?: string | null; learningRes
   return formatDuration(lesson.timeRequired);
 }
 
+// Curated-vs-created lives in lib/provenance.ts (dependency-free so client
+// components can import it). Re-exported here for server-side convenience.
+export { CREATOR_ORG, isCreatedByUs } from './provenance';
+
 export async function getLessons(): Promise<Lesson[]> {
   const entries = await getCollection('lessons');
   return entries.map((entry) => {
