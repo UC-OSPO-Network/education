@@ -1,5 +1,6 @@
 ---
 import type { Lesson } from "../lib/lessons";
+import { isCreatedByUs, CREATOR_ORG } from "../lib/provenance";
 import { getCollection } from "astro:content";
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 }
 
 const { lesson, canonicalUrl } = Astro.props as Props;
+const createdByUs = isCreatedByUs(lesson);
 
 const pathways = await getCollection("pathways");
 const pathwayMap = Object.fromEntries(pathways.map((p) => [p.id, p.data.name]));
@@ -37,11 +39,32 @@ if (nonEmpty(lesson.license)) data.license = lesson.license;
 if (nonEmpty(lesson.author)) data.author = { "@type": "Person", name: lesson.author };
 if (nonEmpty(lesson.learningObjectives)) data.teaches = lesson.learningObjectives;
 
+// Provenance: we always publish the structured data (sdPublisher). For curated
+// external resources, point sameAs at the canonical source and credit the
+// source provider as publisher; for resources we created, we are the publisher.
+data.sdPublisher = { "@type": "Organization", name: CREATOR_ORG };
+if (createdByUs) {
+  data.publisher = { "@type": "Organization", name: CREATOR_ORG };
+} else {
+  if (nonEmpty(lesson.url)) data.sameAs = lesson.url;
+  if (nonEmpty(lesson.provider)) data.publisher = { "@type": "Organization", name: lesson.provider };
+}
+
+// Intended educational role (schema.org): guides are for self-study (student);
+// taught formats serve both learners and instructors.
+const taught = ["workshop", "course"].includes((lesson.learningResourceType ?? "").toLowerCase());
+const educationalAudience = [
+  { "@type": "EducationalAudience", educationalRole: "student" },
+  ...(taught ? [{ "@type": "EducationalAudience", educationalRole: "teacher" }] : []),
+];
+
 if (lesson.roles.length > 0) {
-  data.audience = lesson.roles.map((role) => ({
-    "@type": "Audience",
-    audienceType: role,
-  }));
+  data.audience = [
+    ...educationalAudience,
+    ...lesson.roles.map((role) => ({ "@type": "Audience", audienceType: role })),
+  ];
+} else {
+  data.audience = educationalAudience;
 }
 
 if (lesson.pathways.length > 0) {

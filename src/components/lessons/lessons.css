@@ -206,6 +206,28 @@
   color: var(--text-secondary);
 }
 
+.lesson-card__provenance {
+  margin-left: auto;
+  padding: 0.1rem 0.5rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: 1px solid transparent;
+}
+
+.lesson-card__provenance--created {
+  background: rgba(0, 85, 129, 0.1);
+  color: var(--uc-dark-blue);
+  border-color: rgba(0, 85, 129, 0.3);
+}
+
+.lesson-card__provenance--curated {
+  background: var(--bg-surface-strong);
+  color: var(--text-secondary);
+  border-color: var(--border-light);
+}
+
 .lesson-card__meta-type-icon {
   width: 0.85rem;
   height: 0.85rem;
