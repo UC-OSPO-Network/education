@@ -104,12 +104,16 @@ export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3,
         <p className="lesson-card__meta-type">
           {TypeIcon && <TypeIcon className="lesson-card__meta-type-icon" aria-hidden="true" />}
           {topMeta}
-          <span
-            className={`lesson-card__provenance lesson-card__provenance--${createdByUs ? "created" : "curated"}`}
-            title={createdByUs ? "Created by the UC OSPO Network" : "An external resource curated by the UC OSPO Network"}
-          >
-            {createdByUs ? "Created" : "Curated"}
-          </span>
+          {/* Curation is the site-wide norm (stated on the lessons index), so we
+              only flag the exception here: lessons the OSPO Network authored. */}
+          {createdByUs && (
+            <span
+              className="lesson-card__provenance lesson-card__provenance--created"
+              title="Created by the UC OSPO Network"
+            >
+              Created
+            </span>
+          )}
         </p>
         {roleTags.length > 0 && (
           <p className="lesson-card__meta-role">{roleTags.join(", ")}</p>

@@ -710,6 +710,19 @@ summary:focus-visible {
   margin-right: auto;
 }
 
+.page-intro__note {
+  margin: 0.75rem 0 0;
+  max-width: 44rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.page-intro__note strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
 .page-intro__actions {
   display: flex;
   flex-wrap: wrap;
