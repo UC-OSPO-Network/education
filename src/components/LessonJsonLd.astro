@@ -2,6 +2,7 @@
 import type { Lesson } from "../lib/lessons";
 import { isCreatedByUs, CREATOR_ORG } from "../lib/provenance";
 import { getCollection } from "astro:content";
+import { topicByName, termId, termSetId } from "../data/topics";
 
 interface Props {
   lesson: Lesson;
@@ -33,6 +34,21 @@ if (nonEmpty(canonicalUrl)) data.url = canonicalUrl;
 if (nonEmpty(lesson.educationalLevel)) data.educationalLevel = lesson.educationalLevel;
 if (nonEmpty(lesson.learningResourceType)) data.learningResourceType = lesson.learningResourceType;
 if (nonEmpty(lesson.keywords)) data.keywords = lesson.keywords;
+
+// Controlled topics go in `about` as DefinedTerms referencing the published
+// term set; raw free-text stays in `keywords`. Each term @id resolves to its
+// landing page, where the external crosswalk (skos:closeMatch) is published.
+const aboutTerms = lesson.topics
+  .map((name) => topicByName(name))
+  .filter((t): t is NonNullable<typeof t> => t !== undefined)
+  .map((t) => ({
+    "@type": "DefinedTerm",
+    "@id": termId(Astro.site, t.termCode),
+    name: t.name,
+    termCode: t.termCode,
+    inDefinedTermSet: termSetId(Astro.site),
+  }));
+if (aboutTerms.length > 0) data.about = aboutTerms;
 if (nonEmpty(lesson.timeRequired)) data.timeRequired = lesson.timeRequired;
 if (nonEmpty(lesson.inLanguage)) data.inLanguage = lesson.inLanguage;
 if (nonEmpty(lesson.license)) data.license = lesson.license;

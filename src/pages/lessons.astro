@@ -16,12 +16,33 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/`;
 // Communities" rather than the raw "building-communities" slug.
 const pathways = await getCollection("pathways");
 const pathwayNames = Object.fromEntries(pathways.map((p) => [p.id, p.data.name]));
+
+const base = import.meta.env.BASE_URL;
+const canonicalUrl = new URL("/lessons", Astro.site ?? "https://ucospo.net").href;
 ---
 
 <BaseLayout
   title="All Lessons"
   description="Browse the full library of curated open source education lessons from the UC OSPO Network."
 >
+  <Fragment slot="head">
+    <link rel="canonical" href={canonicalUrl} />
+    {/* Filtered states (?topic=…&role=…) are crawl noise; the topic landing
+        pages are the indexable entry points. Base /lessons stays indexable. */}
+    <script is:inline>
+      (function () {
+        var p = new URLSearchParams(location.search);
+        var keys = ["q", "role", "level", "pathway", "domain", "type", "audience", "topic"];
+        if (keys.some(function (k) { return p.has(k); })) {
+          var m = document.createElement("meta");
+          m.name = "robots";
+          m.content = "noindex,follow";
+          document.head.appendChild(m);
+        }
+      })();
+    </script>
+  </Fragment>
+
   <section class="page-intro">
     <div class="content-container">
       <p class="page-intro__eyebrow">Education</p>
@@ -33,6 +54,9 @@ const pathwayNames = Object.fromEntries(pathways.map((p) => [p.id, p.data.name])
       <p class="page-intro__note">
         Except where marked <strong>Created</strong>, these are external resources curated by the
         UC OSPO Network: selected and organized by us, but authored by others.
+      </p>
+      <p class="page-intro__note">
+        Prefer to browse by subject? See <a href={`${base}lessons/topic`}>all lesson topics</a>.
       </p>
     </div>
   </section>
