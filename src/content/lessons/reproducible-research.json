@@ -1,62 +1,71 @@
 {
-    "name": "Reproducible Research",
-    "slug": "reproducible-research",
-    "keepStatus": "keep",
-    "description": "A comprehensive reference guide covering all aspects of reproducible research — version control, testing, data management, CI/CD, open research, licensing, and more. Part of The Turing Way open handbook.",
-    "url": "https://book.the-turing-way.org/reproducible-research/reproducible-research",
-    "topic": "Research",
-    "subTopic": "Reproducible Research",
-    "educationalLevel": "Intermediate",
-    "learningResourceType": "guide",
-    "author": "The Turing Way Team",
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "inLanguage": [
-        "en"
-    ],
-    "keywords": [
-        "reproducible research",
-        "data management",
-        "open science",
-        "version control"
-    ],
-    "sortingId": "25",
-    "prerequisiteNotes": "No programming experience needed. It would be best for a student who has experience with research papers and research projects and wants to detailed understanding of terms and concepts, but that is not necessary No programming experience needed.  It would be best for a student who has experience with research papers and research projects and wants to detailed understanding of terms and concepts, but that is not necessary.",
-    "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the principles and importance of reproducible research\n- Apply best practices for data management and version control in research\n- Demonstrate how to use Git and other tools to ensure research reproducibility\n- Identify strategies for documenting research workflows and methodologies\n- Recognize ethical considerations in reproducible research practices",
-    "ospoRelevance": "High",
-    "abstract": "This lesson introduces the concept of reproducible research, explaining best practices and tools to ensure that scientific results can be replicated by others.",
-    "dateCreated": "2020-03-01",
-    "dateModified": "2023-06-20",
-    "timeRequired": "PT1H",
-    "about": "",
-    "accessibilitySummary": "",
-    "audience": "Researchers, Open Science Contributors, Software Developers",
-    "competencyRequired": "Git",
-    "contributor": "",
-    "creativeWorkStatus": "Active",
-    "datePublished": "2020-04-01",
-    "hasPart": "",
-    "identifier": "https://book.the-turing-way.org/reproducible-research/reproducible-research",
-    "isPartOf": "The Turing Way",
-    "notes": "Multi-chapter reference handbook. Linked URL is the guide landing page; individual sub-chapters cover version control (~58 min), testing (~45 min), open research (~71 min), data management, CI/CD, licensing, and more. Use as supplementary reading alongside dedicated workshop lessons. timeRequired reflects one representative sub-chapter.",
-    "mentions": "Git, https://git-scm.com, A version control tool for ensuring reproducibility in research projects",
-    "recordedAt": "",
-    "teaches": "Integrate robust data management and version control systems to ensure reproducible research outcomes.",
-    "version": "1.0.0",
-    "workTranslation": "",
-    "domain": "Research Software",
-    "repoUrl": "https://github.com/the-turing-way/the-turing-way",
-    "roles": [
-        "Contributor",
-        "Maintainer"
-    ],
-    "pathways": [
-        "maintaining"
-    ],
-    "prerequisites": [
-        {
-            "type": "lesson",
-            "value": "introduction-to-git"
-        }
-    ],
-    "provider": "The Turing Way"
+  "name": "Reproducible Research",
+  "slug": "reproducible-research",
+  "keepStatus": "keep",
+  "description": "A comprehensive reference guide covering all aspects of reproducible research — version control, testing, data management, CI/CD, open research, licensing, and more. Part of The Turing Way open handbook.",
+  "url": "https://book.the-turing-way.org/reproducible-research/reproducible-research",
+  "topic": "Research",
+  "subTopic": "Reproducible Research",
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "guide",
+  "author": "The Turing Way Team",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "inLanguage": [
+    "en"
+  ],
+  "keywords": [
+    "reproducible research",
+    "data management",
+    "open science",
+    "version control"
+  ],
+  "sortingId": "25",
+  "prerequisiteNotes": "No programming experience needed. It would be best for a student who has experience with research papers and research projects and wants to detailed understanding of terms and concepts, but that is not necessary No programming experience needed.  It would be best for a student who has experience with research papers and research projects and wants to detailed understanding of terms and concepts, but that is not necessary.",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the principles and importance of reproducible research\n- Apply best practices for data management and version control in research\n- Demonstrate how to use Git and other tools to ensure research reproducibility\n- Identify strategies for documenting research workflows and methodologies\n- Recognize ethical considerations in reproducible research practices",
+  "ospoRelevance": "High",
+  "abstract": "This lesson introduces the concept of reproducible research, explaining best practices and tools to ensure that scientific results can be replicated by others.",
+  "dateCreated": "2020-03-01",
+  "dateModified": "2023-06-20",
+  "timeRequired": "PT1H",
+  "about": "",
+  "accessibilitySummary": "",
+  "audience": "Researchers, Open Science Contributors, Software Developers",
+  "competencyRequired": "Git",
+  "contributor": "",
+  "creativeWorkStatus": "Active",
+  "datePublished": "2020-04-01",
+  "hasPart": "",
+  "identifier": "https://book.the-turing-way.org/reproducible-research/reproducible-research",
+  "isPartOf": "The Turing Way",
+  "notes": "Multi-chapter reference handbook. Linked URL is the guide landing page; individual sub-chapters cover version control (~58 min), testing (~45 min), open research (~71 min), data management, CI/CD, licensing, and more. Use as supplementary reading alongside dedicated workshop lessons. timeRequired reflects one representative sub-chapter.",
+  "mentions": "Git, https://git-scm.com, A version control tool for ensuring reproducibility in research projects",
+  "recordedAt": "",
+  "teaches": "Integrate robust data management and version control systems to ensure reproducible research outcomes.",
+  "version": "1.0.0",
+  "workTranslation": "",
+  "domain": "Research Software",
+  "repoUrl": "https://github.com/the-turing-way/the-turing-way",
+  "roles": [
+    "Contributor",
+    "Maintainer"
+  ],
+  "pathways": [
+    "maintaining"
+  ],
+  "prerequisites": [
+    {
+      "type": "lesson",
+      "value": "introduction-to-git"
+    }
+  ],
+  "provider": "The Turing Way",
+  "topics": [
+    "Open Science, FAIR & Research Software Metadata",
+    "Reproducibility, Environments & Workflows",
+    "Version Control & Collaborative Development"
+  ],
+  "audiences": [
+    "Research Software Engineer / Developer",
+    "Researcher"
+  ]
 }

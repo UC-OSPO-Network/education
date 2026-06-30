@@ -18,6 +18,14 @@ const TYPE_DEFINITIONS: Record<string, string> = {
   course: "A structured, multi-part curriculum, often taught over several sessions.",
 };
 
+// "Designed for" (audience) and "OSS Role" (competency outcome) answer different
+// questions — the background a learner brings vs. the role the lesson builds
+// toward — so each gets its own explanatory tooltip.
+const AUDIENCE_HELP =
+  "Who the lesson was designed for — the background or role a learner already brings. Pick the persona closest to you.";
+const ROLE_HELP =
+  "The open-source role this lesson builds competency in. Take or teach it to grow more effective in that role — for example, as a contributor or a maintainer.";
+
 function titleCase(value: string): string {
   return value.replace(/\b\w/g, (c) => c.toUpperCase());
 }
@@ -56,16 +64,14 @@ function getInitialFilters() {
   };
 }
 
-function splitAudience(audience: string) {
-  return audience.split(",").map((item) => item.trim()).filter(Boolean);
-}
-
 export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath, pathwayNames = {} }: LessonFilterProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
   const [searchSlugs, setSearchSlugs] = useState<Set<string> | null>(null);
   const [filters, setFilters] = useState(getInitialFilters);
   const [showTypeHelp, setShowTypeHelp] = useState(false);
+  const [showRoleHelp, setShowRoleHelp] = useState(false);
+  const [showAudienceHelp, setShowAudienceHelp] = useState(false);
 
   const pagefindRef = useRef<PagefindModule | null>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -162,8 +168,8 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
       lesson.pathways.forEach((p) => pathways.add(p));
       if (lesson.domain) domains.add(lesson.domain);
       if (lesson.learningResourceType) types.add(lesson.learningResourceType);
-      splitAudience(lesson.audience).forEach((audience) => audiences.add(audience));
-      lesson.keywords.forEach((keyword) => topics.add(keyword));
+      lesson.audiences.forEach((audience) => audiences.add(audience));
+      lesson.topics.forEach((topic) => topics.add(topic));
     });
 
     return {
@@ -199,8 +205,8 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
       if (filters.pathway && !lesson.pathways.includes(filters.pathway)) return false;
       if (filters.domain && lesson.domain !== filters.domain) return false;
       if (filters.learningResourceType && lesson.learningResourceType !== filters.learningResourceType) return false;
-      if (filters.audience && !splitAudience(lesson.audience).includes(filters.audience)) return false;
-      if (filters.topic && !lesson.keywords.includes(filters.topic)) return false;
+      if (filters.audience && !lesson.audiences.includes(filters.audience)) return false;
+      if (filters.topic && !lesson.topics.includes(filters.topic)) return false;
       return true;
     });
   }, [filters, searchSlugs, lessons]);
@@ -238,7 +244,22 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
           </div>
 
           <div className="lessons-filter__field">
-            <label htmlFor="lesson-role" className="lessons-filter__label">OSS Role</label>
+            <span className="lessons-filter__label-row">
+              <label htmlFor="lesson-role" className="lessons-filter__label">OSS Role</label>
+              <button
+                type="button"
+                className="lessons-filter__help-toggle"
+                aria-expanded={showRoleHelp}
+                aria-controls="lesson-role-help"
+                aria-label="What does OSS Role mean?"
+                onClick={() => setShowRoleHelp((v) => !v)}
+              >
+                <span aria-hidden="true">ⓘ</span>
+              </button>
+            </span>
+            {showRoleHelp && (
+              <p id="lesson-role-help" className="lessons-filter__help">{ROLE_HELP}</p>
+            )}
             <select
               id="lesson-role"
               className="lessons-filter__select"
@@ -335,7 +356,22 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
           </div>
 
           <div className="lessons-filter__field">
-            <label htmlFor="lesson-audience" className="lessons-filter__label">Audience</label>
+            <span className="lessons-filter__label-row">
+              <label htmlFor="lesson-audience" className="lessons-filter__label">Designed for</label>
+              <button
+                type="button"
+                className="lessons-filter__help-toggle"
+                aria-expanded={showAudienceHelp}
+                aria-controls="lesson-audience-help"
+                aria-label="What does Designed for mean?"
+                onClick={() => setShowAudienceHelp((v) => !v)}
+              >
+                <span aria-hidden="true">ⓘ</span>
+              </button>
+            </span>
+            {showAudienceHelp && (
+              <p id="lesson-audience-help" className="lessons-filter__help">{AUDIENCE_HELP}</p>
+            )}
             <select
               id="lesson-audience"
               className="lessons-filter__select"

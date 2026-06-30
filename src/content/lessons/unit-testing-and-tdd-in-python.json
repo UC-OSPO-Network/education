@@ -1,62 +1,70 @@
 {
-    "name": "Unit Testing and TDD in Python",
-    "slug": "unit-testing-and-tdd-in-python",
-    "keepStatus": "keep",
-    "description": "This lesson covers how to write and run unit tests in Python, including an introduction to test-driven development (TDD) and its benefits.",
-    "url": "https://intersect-training.org/testing/instructor/",
-    "topic": "Etc., Software Development Best Practices",
-    "subTopic": "Testing",
-    "educationalLevel": "Intermediate",
-    "learningResourceType": "course",
-    "author": "INTERSECT Team",
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "inLanguage": [
-        "en"
-    ],
-    "keywords": [
-        "unit testing",
-        "python",
-        "test-driven development",
-        "pytest"
-    ],
-    "sortingId": "17",
-    "prerequisiteNotes": "intermediate-python",
-    "learningObjectives": "After this lesson, the learner should be able to:\n- Identify the purpose and benefits of testing in software development\n- Describe different types of tests (unit tests, integration tests, functional tests)\n- Apply testing frameworks like pytest to write and run tests\n- Demonstrate test-driven development (TDD) practices in Python\n- Implement testing strategies that integrate with continuous integration workflows",
-    "ospoRelevance": "Moderate",
-    "abstract": "This tutorial introduces software testing, focusing on unit testing and test-driven development (TDD) in Python. It explains how to write tests, run them, and integrate them into the development process.",
-    "dateCreated": "2023-02-18",
-    "dateModified": "2023-05-25",
-    "timeRequired": "PT4H45M",
-    "about": "",
-    "accessibilitySummary": "",
-    "audience": "Software Developers, PhD Students, Open Source Contributors",
-    "competencyRequired": "Git, Python",
-    "contributor": "",
-    "creativeWorkStatus": "Active",
-    "datePublished": "2023-06-01",
-    "hasPart": "http://testing-guide.io",
-    "identifier": "",
-    "isPartOf": "Software Quality Assurance Series",
-    "notes": "",
-    "mentions": "pytest, https://docs.pytest.org, A testing framework for Python",
-    "recordedAt": "",
-    "teaches": "Design and execute automated testing scripts in Python applying strict test-driven methodologies.",
-    "version": "1.0.0",
-    "workTranslation": "",
-    "domain": "Research Software",
-    "repoUrl": "https://github.com/INTERSECT-training/testing",
-    "roles": [
-        "Maintainer",
-        "Contributor"
-    ],
-    "pathways": [
-        "maintaining"
-    ],
-    "prerequisites": [
-        {
-            "type": "lesson",
-            "value": "modular-programming-with-python"
-        }
-    ],
-    "provider": "INTERSECT"
+  "name": "Unit Testing and TDD in Python",
+  "slug": "unit-testing-and-tdd-in-python",
+  "keepStatus": "keep",
+  "description": "This lesson covers how to write and run unit tests in Python, including an introduction to test-driven development (TDD) and its benefits.",
+  "url": "https://intersect-training.org/testing/instructor/",
+  "topic": "Etc., Software Development Best Practices",
+  "subTopic": "Testing",
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "course",
+  "author": "INTERSECT Team",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "inLanguage": [
+    "en"
+  ],
+  "keywords": [
+    "unit testing",
+    "python",
+    "test-driven development",
+    "pytest"
+  ],
+  "sortingId": "17",
+  "prerequisiteNotes": "intermediate-python",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Identify the purpose and benefits of testing in software development\n- Describe different types of tests (unit tests, integration tests, functional tests)\n- Apply testing frameworks like pytest to write and run tests\n- Demonstrate test-driven development (TDD) practices in Python\n- Implement testing strategies that integrate with continuous integration workflows",
+  "ospoRelevance": "Moderate",
+  "abstract": "This tutorial introduces software testing, focusing on unit testing and test-driven development (TDD) in Python. It explains how to write tests, run them, and integrate them into the development process.",
+  "dateCreated": "2023-02-18",
+  "dateModified": "2023-05-25",
+  "timeRequired": "PT4H45M",
+  "about": "",
+  "accessibilitySummary": "",
+  "audience": "Software Developers, PhD Students, Open Source Contributors",
+  "competencyRequired": "Git, Python",
+  "contributor": "",
+  "creativeWorkStatus": "Active",
+  "datePublished": "2023-06-01",
+  "hasPart": "http://testing-guide.io",
+  "identifier": "",
+  "isPartOf": "Software Quality Assurance Series",
+  "notes": "",
+  "mentions": "pytest, https://docs.pytest.org, A testing framework for Python",
+  "recordedAt": "",
+  "teaches": "Design and execute automated testing scripts in Python applying strict test-driven methodologies.",
+  "version": "1.0.0",
+  "workTranslation": "",
+  "domain": "Research Software",
+  "repoUrl": "https://github.com/INTERSECT-training/testing",
+  "roles": [
+    "Contributor",
+    "Maintainer"
+  ],
+  "pathways": [
+    "maintaining"
+  ],
+  "prerequisites": [
+    {
+      "type": "lesson",
+      "value": "modular-programming-with-python"
+    }
+  ],
+  "provider": "INTERSECT",
+  "topics": [
+    "Quality, Testing, Review & Automation"
+  ],
+  "audiences": [
+    "Open Source Contributor",
+    "Research Software Engineer / Developer",
+    "Researcher"
+  ]
 }

@@ -1,62 +1,69 @@
 {
-    "name": "Introduction to Git",
-    "slug": "introduction-to-git",
-    "keepStatus": "keep",
-    "description": "This lesson introduces Git, a distributed version control system, and teaches how to use it to track changes, collaborate on projects, and manage the history of a codebase.",
-    "url": "https://coderefinery.github.io/git-intro/",
-    "topic": "Git/Beg. VCS",
-    "subTopic": "Version Control Basics",
-    "educationalLevel": "Beginner",
-    "learningResourceType": "course",
-    "author": "CodeRefinery Team",
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "inLanguage": [
-        "en"
-    ],
-    "keywords": [
-        "git",
-        "version control",
-        "repositories",
-        "source control"
-    ],
-    "sortingId": "4",
-    "prerequisiteNotes": "",
-    "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the concept of version control and its importance in software development\n- Demonstrate how to initialize and manage Git repositories\n- Apply basic Git commands to track changes and manage project history\n- Identify the benefits of distributed version control systems\n- Use Git to collaborate on projects and maintain code history",
-    "ospoRelevance": "Moderate",
-    "abstract": "This lesson introduces the basics of Git for version control, focusing on how to track changes, work with repositories, and manage a project‚Äôs history using Git.",
-    "dateCreated": "2021-04-10",
-    "dateModified": "2023-03-10",
-    "timeRequired": "PT8H",
-    "about": "",
-    "accessibilitySummary": "",
-    "audience": "Beginners, Researchers, Software Developers",
-    "competencyRequired": "Command line",
-    "contributor": "",
-    "creativeWorkStatus": "Active",
-    "datePublished": "2021-05-01",
-    "hasPart": "",
-    "identifier": "https://coderefinery.github.io/git-intro/",
-    "isPartOf": "CodeRefinery Git Training Series",
-    "notes": "",
-    "mentions": "GitHub, https://github.com, A platform for hosting Git repositories",
-    "recordedAt": "",
-    "teaches": "Track file historical changes and manage baseline source code repositories using Git.",
-    "version": "1.0.0",
-    "workTranslation": "",
-    "domain": "General Open Source",
-    "repoUrl": "https://github.com/coderefinery/git-intro",
-    "roles": [
-        "Contributor",
-        "Maintainer"
-    ],
-    "pathways": [
-        "getting-started"
-    ],
-    "prerequisites": [
-        {
-            "type": "lesson",
-            "value": "what-is-open-source"
-        }
-    ],
-    "provider": "CodeRefinery"
+  "name": "Introduction to Git",
+  "slug": "introduction-to-git",
+  "keepStatus": "keep",
+  "description": "This lesson introduces Git, a distributed version control system, and teaches how to use it to track changes, collaborate on projects, and manage the history of a codebase.",
+  "url": "https://coderefinery.github.io/git-intro/",
+  "topic": "Git/Beg. VCS",
+  "subTopic": "Version Control Basics",
+  "educationalLevel": "Beginner",
+  "learningResourceType": "course",
+  "author": "CodeRefinery Team",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "inLanguage": [
+    "en"
+  ],
+  "keywords": [
+    "git",
+    "version control",
+    "repositories",
+    "source control"
+  ],
+  "sortingId": "4",
+  "prerequisiteNotes": "",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the concept of version control and its importance in software development\n- Demonstrate how to initialize and manage Git repositories\n- Apply basic Git commands to track changes and manage project history\n- Identify the benefits of distributed version control systems\n- Use Git to collaborate on projects and maintain code history",
+  "ospoRelevance": "Moderate",
+  "abstract": "This lesson introduces the basics of Git for version control, focusing on how to track changes, work with repositories, and manage a project‚Äôs history using Git.",
+  "dateCreated": "2021-04-10",
+  "dateModified": "2023-03-10",
+  "timeRequired": "PT8H",
+  "about": "",
+  "accessibilitySummary": "",
+  "audience": "Beginners, Researchers, Software Developers",
+  "competencyRequired": "Command line",
+  "contributor": "",
+  "creativeWorkStatus": "Active",
+  "datePublished": "2021-05-01",
+  "hasPart": "",
+  "identifier": "https://coderefinery.github.io/git-intro/",
+  "isPartOf": "CodeRefinery Git Training Series",
+  "notes": "",
+  "mentions": "GitHub, https://github.com, A platform for hosting Git repositories",
+  "recordedAt": "",
+  "teaches": "Track file historical changes and manage baseline source code repositories using Git.",
+  "version": "1.0.0",
+  "workTranslation": "",
+  "domain": "General Open Source",
+  "repoUrl": "https://github.com/coderefinery/git-intro",
+  "roles": [
+    "Contributor",
+    "Maintainer"
+  ],
+  "pathways": [
+    "getting-started"
+  ],
+  "prerequisites": [
+    {
+      "type": "lesson",
+      "value": "what-is-open-source"
+    }
+  ],
+  "provider": "CodeRefinery",
+  "topics": [
+    "Version Control & Collaborative Development"
+  ],
+  "audiences": [
+    "Research Software Engineer / Developer",
+    "Researcher"
+  ]
 }

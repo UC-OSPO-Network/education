@@ -1,62 +1,69 @@
 {
-    "name": "Continuous Integration and Delivery with GitHub Actions",
-    "slug": "continuous-integration-and-delivery-with-github-actions",
-    "keepStatus": "keep",
-    "description": "This lesson covers how to set up continuous integration and continuous delivery pipelines for automated testing and deployment in software projects.",
-    "url": "https://intersect-training.org/CI-CD/",
-    "topic": "DevOps",
-    "subTopic": "Testing",
-    "educationalLevel": "Intermediate",
-    "learningResourceType": "workshop",
-    "author": "INTERSECT Team",
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "inLanguage": [
-        "en"
-    ],
-    "keywords": [
-        "ci/cd",
-        "github actions",
-        "automation",
-        "continuous integration"
-    ],
-    "sortingId": "15",
-    "prerequisiteNotes": "introduction-to-git | python-packaging",
-    "learningObjectives": "After this lesson, the learner should be able to:\n- Distinguish between Continuous Integration (CI), Continuous Delivery, and Continuous Deployment\n- Identify types of breaking changes in different development contexts\n- Configure a basic CI pipeline using GitHub Actions for code testing and packaging\n- Apply CI/CD principles to automate workflows beyond code testing\n- Demonstrate how to use matrix strategies to test across multiple environments\n- Automate building and publishing artifacts using GitHub Actions",
-    "ospoRelevance": "High",
-    "abstract": "This tutorial introduces continuous integration (CI) and continuous delivery (CD) practices in software development. It covers how to automate testing, building, and deployment using tools like GitHub Actions.",
-    "dateCreated": "2023-01-25",
-    "dateModified": "2023-03-20",
-    "timeRequired": "PT2H52M",
-    "about": "",
-    "accessibilitySummary": "",
-    "audience": "Software Developers, PhD Students, DevOps Engineers",
-    "competencyRequired": "Git, GitHub, CI/CD",
-    "contributor": "",
-    "creativeWorkStatus": "Active",
-    "datePublished": "2023-04-01",
-    "hasPart": "http://ci-cd-guide.io",
-    "identifier": "",
-    "isPartOf": "DevOps Essentials Series",
-    "notes": "",
-    "mentions": "GitHub Actions, https://github.com/features/actions, Automation for CI/CD on GitHub",
-    "recordedAt": "",
-    "teaches": "Automate software testing, builds, and deployments by building custom CI/CD pipelines with GitHub Actions.",
-    "version": "1.2.0",
-    "workTranslation": "",
-    "domain": "General Open Source",
-    "repoUrl": "https://github.com/INTERSECT-training/CI-CD",
-    "roles": [
-        "Maintainer",
-        "Contributor"
-    ],
-    "pathways": [
-        "maintaining"
-    ],
-    "prerequisites": [
-        {
-            "type": "lesson",
-            "value": "testing-and-test-driven-development"
-        }
-    ],
-    "provider": "INTERSECT"
+  "name": "Continuous Integration and Delivery with GitHub Actions",
+  "slug": "continuous-integration-and-delivery-with-github-actions",
+  "keepStatus": "keep",
+  "description": "This lesson covers how to set up continuous integration and continuous delivery pipelines for automated testing and deployment in software projects.",
+  "url": "https://intersect-training.org/CI-CD/",
+  "topic": "DevOps",
+  "subTopic": "Testing",
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "workshop",
+  "author": "INTERSECT Team",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "inLanguage": [
+    "en"
+  ],
+  "keywords": [
+    "ci/cd",
+    "github actions",
+    "automation",
+    "continuous integration"
+  ],
+  "sortingId": "15",
+  "prerequisiteNotes": "introduction-to-git | python-packaging",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Distinguish between Continuous Integration (CI), Continuous Delivery, and Continuous Deployment\n- Identify types of breaking changes in different development contexts\n- Configure a basic CI pipeline using GitHub Actions for code testing and packaging\n- Apply CI/CD principles to automate workflows beyond code testing\n- Demonstrate how to use matrix strategies to test across multiple environments\n- Automate building and publishing artifacts using GitHub Actions",
+  "ospoRelevance": "High",
+  "abstract": "This tutorial introduces continuous integration (CI) and continuous delivery (CD) practices in software development. It covers how to automate testing, building, and deployment using tools like GitHub Actions.",
+  "dateCreated": "2023-01-25",
+  "dateModified": "2023-03-20",
+  "timeRequired": "PT2H52M",
+  "about": "",
+  "accessibilitySummary": "",
+  "audience": "Software Developers, PhD Students, DevOps Engineers",
+  "competencyRequired": "Git, GitHub, CI/CD",
+  "contributor": "",
+  "creativeWorkStatus": "Active",
+  "datePublished": "2023-04-01",
+  "hasPart": "http://ci-cd-guide.io",
+  "identifier": "",
+  "isPartOf": "DevOps Essentials Series",
+  "notes": "",
+  "mentions": "GitHub Actions, https://github.com/features/actions, Automation for CI/CD on GitHub",
+  "recordedAt": "",
+  "teaches": "Automate software testing, builds, and deployments by building custom CI/CD pipelines with GitHub Actions.",
+  "version": "1.2.0",
+  "workTranslation": "",
+  "domain": "General Open Source",
+  "repoUrl": "https://github.com/INTERSECT-training/CI-CD",
+  "roles": [
+    "Contributor",
+    "Maintainer"
+  ],
+  "pathways": [
+    "maintaining"
+  ],
+  "prerequisites": [
+    {
+      "type": "lesson",
+      "value": "testing-and-test-driven-development"
+    }
+  ],
+  "provider": "INTERSECT",
+  "topics": [
+    "Quality, Testing, Review & Automation"
+  ],
+  "audiences": [
+    "Research Software Engineer / Developer",
+    "Researcher"
+  ]
 }

@@ -1,63 +1,71 @@
 {
-    "name": "Collaboration in Open Research Projects",
-    "slug": "collaboration-in-open-research-projects",
-    "keepStatus": "keep",
-    "description": "A comprehensive reference guide covering collaboration practices in open research — community setup, GitHub workflows, code review, meetings and events, leadership, and research infrastructure roles. Part of The Turing Way open handbook.",
-    "url": "https://book.the-turing-way.org/collaboration/collaboration",
-    "topic": "Git/Beg. VCS, Community, Research",
-    "subTopic": "Community Management",
-    "educationalLevel": "Intermediate",
-    "learningResourceType": "guide",
-    "author": "The Turing Way Team",
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "inLanguage": [
-        "en"
-    ],
-    "keywords": [
-        "collaboration",
-        "git",
-        "github",
-        "open science",
-        "research"
-    ],
-    "sortingId": "9",
-    "prerequisiteNotes": "",
-    "learningObjectives": "After this lesson, the learner should be able to:\n- Apply Git and GitHub for collaborative research and code sharing\n- Demonstrate best practices for managing contributions in open science projects\n- Identify strategies for fostering transparency and reproducibility in research outputs\n- Implement collaborative workflows that support open science principles\n- Recognize the importance of version control in research reproducibility",
-    "ospoRelevance": "Core",
-    "abstract": "This lesson focuses on collaboration in open science and research projects, introducing best practices for working in teams, sharing code, and managing contributions using Git and GitHub.",
-    "dateCreated": "2020-04-01",
-    "dateModified": "2023-05-20",
-    "timeRequired": "PT1H",
-    "about": "",
-    "accessibilitySummary": "",
-    "audience": "Researchers, Open Science Contributors, Software Developers",
-    "competencyRequired": "Git, GitHub",
-    "contributor": "",
-    "creativeWorkStatus": "Active",
-    "datePublished": "2020-05-01",
-    "hasPart": "",
-    "identifier": "https://book.the-turing-way.org/collaboration/collaboration",
-    "isPartOf": "The Turing Way",
-    "notes": "Multi-chapter reference handbook. Linked URL is the guide landing page; sub-chapters cover community setup (~17 min), maintain-and-review (~10 min), meetings/events, leadership, and research infrastructure roles. Broad overlap with dedicated lessons in contributing and maintaining pathways — use as supplementary reading. timeRequired reflects one representative sub-chapter.",
-    "mentions": "GitHub, https://github.com, A platform for hosting and sharing research code and projects",
-    "recordedAt": "",
-    "teaches": "Collaborate on open science and research projects using distributed version control workflows.",
-    "version": "1.0.0",
-    "workTranslation": "",
-    "domain": "Research Software",
-    "repoUrl": "https://github.com/the-turing-way/the-turing-way",
-    "roles": [
-        "Maintainer",
-        "Community Manager"
-    ],
-    "pathways": [
-        "contributing"
-    ],
-    "prerequisites": [
-        {
-            "type": "lesson",
-            "value": "introduction-to-git"
-        }
-    ],
-    "provider": "The Turing Way"
+  "name": "Collaboration in Open Research Projects",
+  "slug": "collaboration-in-open-research-projects",
+  "keepStatus": "keep",
+  "description": "A comprehensive reference guide covering collaboration practices in open research — community setup, GitHub workflows, code review, meetings and events, leadership, and research infrastructure roles. Part of The Turing Way open handbook.",
+  "url": "https://book.the-turing-way.org/collaboration/collaboration",
+  "topic": "Git/Beg. VCS, Community, Research",
+  "subTopic": "Community Management",
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "guide",
+  "author": "The Turing Way Team",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "inLanguage": [
+    "en"
+  ],
+  "keywords": [
+    "collaboration",
+    "git",
+    "github",
+    "open science",
+    "research"
+  ],
+  "sortingId": "9",
+  "prerequisiteNotes": "",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Apply Git and GitHub for collaborative research and code sharing\n- Demonstrate best practices for managing contributions in open science projects\n- Identify strategies for fostering transparency and reproducibility in research outputs\n- Implement collaborative workflows that support open science principles\n- Recognize the importance of version control in research reproducibility",
+  "ospoRelevance": "Core",
+  "abstract": "This lesson focuses on collaboration in open science and research projects, introducing best practices for working in teams, sharing code, and managing contributions using Git and GitHub.",
+  "dateCreated": "2020-04-01",
+  "dateModified": "2023-05-20",
+  "timeRequired": "PT1H",
+  "about": "",
+  "accessibilitySummary": "",
+  "audience": "Researchers, Open Science Contributors, Software Developers",
+  "competencyRequired": "Git, GitHub",
+  "contributor": "",
+  "creativeWorkStatus": "Active",
+  "datePublished": "2020-05-01",
+  "hasPart": "",
+  "identifier": "https://book.the-turing-way.org/collaboration/collaboration",
+  "isPartOf": "The Turing Way",
+  "notes": "Multi-chapter reference handbook. Linked URL is the guide landing page; sub-chapters cover community setup (~17 min), maintain-and-review (~10 min), meetings/events, leadership, and research infrastructure roles. Broad overlap with dedicated lessons in contributing and maintaining pathways — use as supplementary reading. timeRequired reflects one representative sub-chapter.",
+  "mentions": "GitHub, https://github.com, A platform for hosting and sharing research code and projects",
+  "recordedAt": "",
+  "teaches": "Collaborate on open science and research projects using distributed version control workflows.",
+  "version": "1.0.0",
+  "workTranslation": "",
+  "domain": "Research Software",
+  "repoUrl": "https://github.com/the-turing-way/the-turing-way",
+  "roles": [
+    "Community Manager",
+    "Maintainer"
+  ],
+  "pathways": [
+    "contributing"
+  ],
+  "prerequisites": [
+    {
+      "type": "lesson",
+      "value": "introduction-to-git"
+    }
+  ],
+  "provider": "The Turing Way",
+  "topics": [
+    "Open Science, FAIR & Research Software Metadata",
+    "Version Control & Collaborative Development"
+  ],
+  "audiences": [
+    "Research Software Engineer / Developer",
+    "Researcher"
+  ]
 }

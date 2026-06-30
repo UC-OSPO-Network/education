@@ -1,75 +1,79 @@
 {
-    "name": "Best Practices for Maintainers",
-    "slug": "best-practices-for-maintainers",
-    "keepStatus": "keep",
-    "description": "Making your life easier as an open source maintainer, from documenting processes to leveraging your community.",
-    "url": "https://opensource.guide/best-practices/",
-    "author": "GitHub",
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "educationalLevel": "Intermediate",
-    "learningResourceType": "guide",
-    "inLanguage": [
-        "en",
-        "bg",
-        "bn",
-        "de",
-        "el",
-        "es",
-        "id",
-        "hu",
-        "hi",
-        "fr",
-        "fa",
-        "it",
-        "zh-TW",
-        "ko",
-        "zh-CN",
-        "ja",
-        "pt",
-        "ru",
-        "sw",
-        "ta",
-        "tr",
-        "ro",
-        "pl",
-        "pcm",
-        "nl",
-        "ms"
-    ],
-    "keywords": [
-        "best practices",
-        "maintainers",
-        "community"
-    ],
-    "topic": "Maintaining",
-    "sortingId": "5",
-    "ospoRelevance": "Core",
-    "abstract": "This guide provides essential practices for open source project maintainers to ensure sustainability, manage contributions effectively, and foster a welcoming project environment. Topics include documentation, issue tracking, and communication strategies.",
-    "audience": "Individuals, Companies",
-    "isPartOf": "Open Source Guides",
-    "mentions": "These guides are available in over 20 languages.",
-    "learningObjectives": "After this lesson, the learner should be able to:\n- Document processes to reduce repetitive overhead as a maintainer\n- Set and communicate expectations with contributors\n- Use tools and automation to make maintenance sustainable\n- Know when and how to say no to contributions or requests\n- Leverage the community to share the maintainer workload",
-    "dateModified": "2025-12-26",
-    "datePublished": "2025-12-26",
-    "timeRequired": "PT14M",
-    "subTopic": "Project Management",
-    "dateCreated": "",
-    "domain": "General Open Source",
-    "repoUrl": "https://github.com/github/opensource.guide",
-    "roles": [
-        "Maintainer",
-        "Community Manager"
-    ],
-    "pathways": [
-        "maintaining"
-    ],
-    "prerequisites": [
-        {
-            "type": "lesson",
-            "value": "introduction-to-git"
-        }
-    ],
-    "provider": "GitHub / Open Source Guides",
-    "teaches": "Implement sustainable processes and community-led workflows to effectively manage an open source project.",
-    "competencyRequired": "Git"
+  "name": "Best Practices for Maintainers",
+  "slug": "best-practices-for-maintainers",
+  "keepStatus": "keep",
+  "description": "Making your life easier as an open source maintainer, from documenting processes to leveraging your community.",
+  "url": "https://opensource.guide/best-practices/",
+  "author": "GitHub",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "guide",
+  "inLanguage": [
+    "en",
+    "bg",
+    "bn",
+    "de",
+    "el",
+    "es",
+    "id",
+    "hu",
+    "hi",
+    "fr",
+    "fa",
+    "it",
+    "zh-TW",
+    "ko",
+    "zh-CN",
+    "ja",
+    "pt",
+    "ru",
+    "sw",
+    "ta",
+    "tr",
+    "ro",
+    "pl",
+    "pcm",
+    "nl",
+    "ms"
+  ],
+  "keywords": [
+    "best practices",
+    "maintainers",
+    "community"
+  ],
+  "topic": "Maintaining",
+  "sortingId": "5",
+  "ospoRelevance": "Core",
+  "abstract": "This guide provides essential practices for open source project maintainers to ensure sustainability, manage contributions effectively, and foster a welcoming project environment. Topics include documentation, issue tracking, and communication strategies.",
+  "audience": "Individuals, Companies",
+  "isPartOf": "Open Source Guides",
+  "mentions": "These guides are available in over 20 languages.",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Document processes to reduce repetitive overhead as a maintainer\n- Set and communicate expectations with contributors\n- Use tools and automation to make maintenance sustainable\n- Know when and how to say no to contributions or requests\n- Leverage the community to share the maintainer workload",
+  "dateModified": "2025-12-26",
+  "datePublished": "2025-12-26",
+  "timeRequired": "PT14M",
+  "subTopic": "Project Management",
+  "dateCreated": "",
+  "domain": "General Open Source",
+  "repoUrl": "https://github.com/github/opensource.guide",
+  "roles": [
+    "Community Manager",
+    "Maintainer"
+  ],
+  "pathways": [
+    "maintaining"
+  ],
+  "prerequisites": [
+    {
+      "type": "lesson",
+      "value": "introduction-to-git"
+    }
+  ],
+  "provider": "GitHub / Open Source Guides",
+  "teaches": "Implement sustainable processes and community-led workflows to effectively manage an open source project.",
+  "competencyRequired": "Git",
+  "topics": [
+    "Community, Governance & Conduct",
+    "Project Planning, Maintenance & Sustainability"
+  ]
 }

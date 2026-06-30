@@ -1,55 +1,65 @@
 {
-    "name": "Effective Code Review",
-    "slug": "effective-code-review",
-    "keepStatus": "keep",
-    "description": "This lesson teaches best practices for conducting and participating in code reviews, emphasizing clear communication and collaborative problem solving.",
-    "url": "https://intersect-training.org/Code-Review/",
-    "author": "INTERSECT Team",
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "educationalLevel": "Intermediate",
-    "learningResourceType": "workshop",
-    "inLanguage": [
-        "en"
-    ],
-    "keywords": [
-        "code review",
-        "software development",
-        "peer review",
-        "collaboration"
-    ],
-    "topic": "Maintaining",
-    "sortingId": "22",
-    "learningObjectives": "After this lesson, the learner should be able to:\n- Identify the purpose and benefits of code review in collaborative software development\n- Describe the typical workflow for conducting effective code reviews\n- Apply best practices for giving constructive, actionable feedback\n- Demonstrate how to prepare code for review to facilitate efficient feedback\n- Recognize how code review maintains project standards and improves code quality",
-    "ospoRelevance": "High",
-    "abstract": "This tutorial covers the principles and practices of code review, focusing on collaborative software development. It explains how to conduct code reviews effectively, provide feedback, and integrate changes.",
-    "audience": "Software Developers, PhD Students, Open Source Contributors",
-    "competencyRequired": "Git, GitHub, Contribution experience",
-    "creativeWorkStatus": "Active",
-    "dateCreated": "2023-04-12",
-    "dateModified": "2023-06-20",
-    "datePublished": "2023-06-20",
-    "hasPart": "http://code-review-guide.io",
-    "isPartOf": "Collaborative Development Series",
-    "mentions": "GitHub Code Review, https://github.com/features/code-review, GitHub's code review feature",
-    "teaches": "Conduct constructive, high-quality code reviews to improve team software quality and collaboration.",
-    "version": "1.1.0",
-    "timeRequired": "",
-    "prerequisiteNotes": "collaborative-git-for-teams",
-    "domain": "General Open Source",
-    "subTopic": "Community Management",
-    "repoUrl": "https://github.com/INTERSECT-training/Code-Review",
-    "roles": [
-        "Maintainer",
-        "Contributor"
-    ],
-    "pathways": [
-        "maintaining"
-    ],
-    "prerequisites": [
-        {
-            "type": "lesson",
-            "value": "collaborative-git-for-teams"
-        }
-    ],
-    "provider": "INTERSECT"
+  "name": "Effective Code Review",
+  "slug": "effective-code-review",
+  "keepStatus": "keep",
+  "description": "This lesson teaches best practices for conducting and participating in code reviews, emphasizing clear communication and collaborative problem solving.",
+  "url": "https://intersect-training.org/Code-Review/",
+  "author": "INTERSECT Team",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "workshop",
+  "inLanguage": [
+    "en"
+  ],
+  "keywords": [
+    "code review",
+    "software development",
+    "peer review",
+    "collaboration"
+  ],
+  "topic": "Maintaining",
+  "sortingId": "22",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Identify the purpose and benefits of code review in collaborative software development\n- Describe the typical workflow for conducting effective code reviews\n- Apply best practices for giving constructive, actionable feedback\n- Demonstrate how to prepare code for review to facilitate efficient feedback\n- Recognize how code review maintains project standards and improves code quality",
+  "ospoRelevance": "High",
+  "abstract": "This tutorial covers the principles and practices of code review, focusing on collaborative software development. It explains how to conduct code reviews effectively, provide feedback, and integrate changes.",
+  "audience": "Software Developers, PhD Students, Open Source Contributors",
+  "competencyRequired": "Git, GitHub, Contribution experience",
+  "creativeWorkStatus": "Active",
+  "dateCreated": "2023-04-12",
+  "dateModified": "2023-06-20",
+  "datePublished": "2023-06-20",
+  "hasPart": "http://code-review-guide.io",
+  "isPartOf": "Collaborative Development Series",
+  "mentions": "GitHub Code Review, https://github.com/features/code-review, GitHub's code review feature",
+  "teaches": "Conduct constructive, high-quality code reviews to improve team software quality and collaboration.",
+  "version": "1.1.0",
+  "timeRequired": "",
+  "prerequisiteNotes": "collaborative-git-for-teams",
+  "domain": "General Open Source",
+  "subTopic": "Community Management",
+  "repoUrl": "https://github.com/INTERSECT-training/Code-Review",
+  "roles": [
+    "Contributor",
+    "Maintainer"
+  ],
+  "pathways": [
+    "maintaining"
+  ],
+  "prerequisites": [
+    {
+      "type": "lesson",
+      "value": "collaborative-git-for-teams"
+    }
+  ],
+  "provider": "INTERSECT",
+  "topics": [
+    "Quality, Testing, Review & Automation",
+    "Software Design & Engineering Practices",
+    "Version Control & Collaborative Development"
+  ],
+  "audiences": [
+    "Open Source Contributor",
+    "Research Software Engineer / Developer",
+    "Researcher"
+  ]
 }

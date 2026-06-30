@@ -1,58 +1,66 @@
 {
-    "name": "Introduction to Docker and Podman",
-    "slug": "introduction-to-docker-for-research-note-this-is-now-called-introduction-to-docker-and-podman",
-    "keepStatus": "keep",
-    "description": "This lesson covers the fundamentals of Docker, including creating containers, managing Docker images, and using Docker for software reproducibility and deployment.",
-    "url": "https://hsf-training.github.io/hsf-training-docker/index.html",
-    "topic": "Research, DevOps",
-    "subTopic": "Reproducible Research",
-    "educationalLevel": "Beginner",
-    "learningResourceType": "workshop",
-    "author": "HSF Training Team",
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "inLanguage": [
-        "en"
-    ],
-    "keywords": [
-        "docker",
-        "podman",
-        "containers",
-        "reproducibility",
-        "deployment"
-    ],
-    "sortingId": "27",
-    "prerequisiteNotes": "for bonus episode | introduction-to-unix-command-line | introduction-to-version-control-with-git",
-    "learningObjectives": "After this lesson, the learner should be able to:\n- Explain what containers are and how they differ from virtual machines\n- Demonstrate how to create and manage Docker containers\n- Apply Docker to ensure reproducibility in research software\n- Identify use cases for containerization in scientific computing\n- Create Docker images for software development and deployment",
-    "ospoRelevance": "Moderate",
-    "abstract": "This lesson introduces Docker, explaining how to create, manage, and share containerized applications. It covers the basics of Docker, its use in reproducible research, and how to create Docker images for software development.",
-    "dateCreated": "2020-10-01",
-    "dateModified": "2023-03-15",
-    "timeRequired": "PT5H",
-    "about": "",
-    "accessibilitySummary": "",
-    "audience": "Researchers, Software Developers, HPC Engineers",
-    "competencyRequired": "Command line",
-    "contributor": "",
-    "creativeWorkStatus": "Active",
-    "datePublished": "2020-11-01",
-    "hasPart": "",
-    "identifier": "https://hsf-training.github.io/hsf-training-docker/index.html",
-    "isPartOf": "HSF Training Series",
-    "notes": "",
-    "mentions": "Docker Hub, https://hub.docker.com, A repository for sharing and managing Docker images",
-    "recordedAt": "",
-    "teaches": "Build, manage, and share reproducible computational environments using Docker and Podman containers.",
-    "version": "1.0.0",
-    "workTranslation": "",
-    "domain": "Research Software",
-    "repoUrl": "https://github.com/hsf-training/hsf-training-docker",
-    "roles": [
-        "Contributor",
-        "Maintainer"
-    ],
-    "pathways": [
-        "maintaining"
-    ],
-    "prerequisites": [],
-    "provider": "HSF Training"
+  "name": "Introduction to Docker and Podman",
+  "slug": "introduction-to-docker-for-research-note-this-is-now-called-introduction-to-docker-and-podman",
+  "keepStatus": "keep",
+  "description": "This lesson covers the fundamentals of Docker, including creating containers, managing Docker images, and using Docker for software reproducibility and deployment.",
+  "url": "https://hsf-training.github.io/hsf-training-docker/index.html",
+  "topic": "Research, DevOps",
+  "subTopic": "Reproducible Research",
+  "educationalLevel": "Beginner",
+  "learningResourceType": "workshop",
+  "author": "HSF Training Team",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "inLanguage": [
+    "en"
+  ],
+  "keywords": [
+    "docker",
+    "podman",
+    "containers",
+    "reproducibility",
+    "deployment"
+  ],
+  "sortingId": "27",
+  "prerequisiteNotes": "for bonus episode | introduction-to-unix-command-line | introduction-to-version-control-with-git",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Explain what containers are and how they differ from virtual machines\n- Demonstrate how to create and manage Docker containers\n- Apply Docker to ensure reproducibility in research software\n- Identify use cases for containerization in scientific computing\n- Create Docker images for software development and deployment",
+  "ospoRelevance": "Moderate",
+  "abstract": "This lesson introduces Docker, explaining how to create, manage, and share containerized applications. It covers the basics of Docker, its use in reproducible research, and how to create Docker images for software development.",
+  "dateCreated": "2020-10-01",
+  "dateModified": "2023-03-15",
+  "timeRequired": "PT5H",
+  "about": "",
+  "accessibilitySummary": "",
+  "audience": "Researchers, Software Developers, HPC Engineers",
+  "competencyRequired": "Command line",
+  "contributor": "",
+  "creativeWorkStatus": "Active",
+  "datePublished": "2020-11-01",
+  "hasPart": "",
+  "identifier": "https://hsf-training.github.io/hsf-training-docker/index.html",
+  "isPartOf": "HSF Training Series",
+  "notes": "",
+  "mentions": "Docker Hub, https://hub.docker.com, A repository for sharing and managing Docker images",
+  "recordedAt": "",
+  "teaches": "Build, manage, and share reproducible computational environments using Docker and Podman containers.",
+  "version": "1.0.0",
+  "workTranslation": "",
+  "domain": "Research Software",
+  "repoUrl": "https://github.com/hsf-training/hsf-training-docker",
+  "roles": [
+    "Contributor",
+    "Maintainer"
+  ],
+  "pathways": [
+    "maintaining"
+  ],
+  "prerequisites": [],
+  "provider": "HSF Training",
+  "topics": [
+    "Packaging, Release & Distribution",
+    "Reproducibility, Environments & Workflows"
+  ],
+  "audiences": [
+    "Research Software Engineer / Developer",
+    "Researcher"
+  ]
 }

@@ -1,61 +1,67 @@
 {
-    "name": "Finding and Evaluating Projects",
-    "slug": "how-to-contribute-to-open-source",
-    "keepStatus": "keep",
-    "description": "Learn how to find your first project using discovery tools, understanding labels, and identifying beginner-friendly tasks.",
-    "url": "https://opensource.guide/how-to-contribute/",
-    "topic": "Contributing",
-    "subTopic": "Open Source Literacy",
-    "educationalLevel": "Beginner",
-    "learningResourceType": "guide",
-    "author": "Open Source Guides",
-    "license": "",
-    "inLanguage": [
-        "en"
-    ],
-    "keywords": [
-        "contributing",
-        "open source",
-        "first contribution",
-        "project discovery"
-    ],
-    "sortingId": "6",
-    "prerequisiteNotes": "",
-    "learningObjectives": "After this lesson, the learner should be able to:\n- Use discovery tools to find beginner-friendly open source projects.\n- Interpret standard GitHub labels like 'good first issue'.\n- Evaluate a project's health and welcoming nature for new contributors.",
-    "ospoRelevance": "Moderate",
-    "abstract": "This resource gives a broad overview of terms and processes important to understand as a new contributor. It also includes suggestions on how to find a project to contribute to.",
-    "dateCreated": "",
-    "dateModified": "2025-12-26",
-    "timeRequired": "PT24M",
-    "about": "",
-    "accessibilitySummary": "",
-    "audience": "Beginners, Software Developers",
-    "competencyRequired": "Open source basics",
-    "contributor": "",
-    "creativeWorkStatus": "Active",
-    "datePublished": "2025-12-26",
-    "hasPart": "",
-    "identifier": "",
-    "isPartOf": "Open Source Guides",
-    "notes": "Maybe not relevant for researchers, but useful for students as a self-guided entry point",
-    "mentions": "",
-    "recordedAt": "",
-    "teaches": "Identify, evaluate, and select beginner-friendly open source projects and tasks for your first contribution.",
-    "version": "",
-    "workTranslation": "",
-    "domain": "General Open Source",
-    "repoUrl": "https://github.com/github/opensource.guide",
-    "roles": [
-        "Contributor"
-    ],
-    "pathways": [
-        "getting-started"
-    ],
-    "prerequisites": [
-        {
-            "type": "lesson",
-            "value": "what-is-open-source"
-        }
-    ],
-    "provider": "GitHub / Open Source Guides"
+  "name": "Finding and Evaluating Projects",
+  "slug": "how-to-contribute-to-open-source",
+  "keepStatus": "keep",
+  "description": "Learn how to find your first project using discovery tools, understanding labels, and identifying beginner-friendly tasks.",
+  "url": "https://opensource.guide/how-to-contribute/",
+  "topic": "Contributing",
+  "subTopic": "Open Source Literacy",
+  "educationalLevel": "Beginner",
+  "learningResourceType": "guide",
+  "author": "Open Source Guides",
+  "license": "",
+  "inLanguage": [
+    "en"
+  ],
+  "keywords": [
+    "contributing",
+    "open source",
+    "first contribution",
+    "project discovery"
+  ],
+  "sortingId": "6",
+  "prerequisiteNotes": "",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Use discovery tools to find beginner-friendly open source projects.\n- Interpret standard GitHub labels like 'good first issue'.\n- Evaluate a project's health and welcoming nature for new contributors.",
+  "ospoRelevance": "Moderate",
+  "abstract": "This resource gives a broad overview of terms and processes important to understand as a new contributor. It also includes suggestions on how to find a project to contribute to.",
+  "dateCreated": "",
+  "dateModified": "2025-12-26",
+  "timeRequired": "PT24M",
+  "about": "",
+  "accessibilitySummary": "",
+  "audience": "Beginners, Software Developers",
+  "competencyRequired": "Open source basics",
+  "contributor": "",
+  "creativeWorkStatus": "Active",
+  "datePublished": "2025-12-26",
+  "hasPart": "",
+  "identifier": "",
+  "isPartOf": "Open Source Guides",
+  "notes": "Maybe not relevant for researchers, but useful for students as a self-guided entry point",
+  "mentions": "",
+  "recordedAt": "",
+  "teaches": "Identify, evaluate, and select beginner-friendly open source projects and tasks for your first contribution.",
+  "version": "",
+  "workTranslation": "",
+  "domain": "General Open Source",
+  "repoUrl": "https://github.com/github/opensource.guide",
+  "roles": [
+    "Contributor"
+  ],
+  "pathways": [
+    "getting-started"
+  ],
+  "prerequisites": [
+    {
+      "type": "lesson",
+      "value": "what-is-open-source"
+    }
+  ],
+  "provider": "GitHub / Open Source Guides",
+  "topics": [
+    "Project Health, Metrics & Assessment"
+  ],
+  "audiences": [
+    "Research Software Engineer / Developer"
+  ]
 }

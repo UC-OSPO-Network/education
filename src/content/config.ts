@@ -22,6 +22,25 @@ const lessons = defineCollection({
     topic: z.string().default(''),
     subTopic: z.string().default(''),
 
+    // Curated 11-term facet vocabulary derived from `keywords` via
+    // scripts/normalize-topics.mjs (see docs/ia-taxonomy-proposal.md).
+    // `keywords` stays for full-text search; `topics` drives the Topic filter.
+    topics: z.array(z.enum([
+      'Version Control & Collaborative Development',
+      'Documentation & Technical Writing',
+      'Licensing, Copyright & Reuse',
+      'Community, Governance & Conduct',
+      'Project Planning, Maintenance & Sustainability',
+      'Quality, Testing, Review & Automation',
+      'Software Design & Engineering Practices',
+      'Packaging, Release & Distribution',
+      'Reproducibility, Environments & Workflows',
+      'Open Science, FAIR & Research Software Metadata',
+      'Project Health, Metrics & Assessment',
+      'Security & Supply Chain',
+      'Accessibility & Inclusive Design',
+    ])).default([]),
+
     // Canonical field. learnerCategory kept for back-compat with existing JSON files.
     pathways: z.array(z.string()).default([]),
     learnerCategory: z.string().default(''),
@@ -58,7 +77,20 @@ const lessons = defineCollection({
     creativeWorkStatus: z.enum(['Active', 'Under development', 'Archived']).default('Active'),
 
     // Optional bioschemas / schema.org fields
+    // `audience` = raw "designed for" text (kept for search). `audiences` =
+    // canonical 7-term persona vocab derived via scripts/normalize-audience.mjs;
+    // drives the "Designed for" filter. Distinct from `roles` (OSS-role
+    // competency the lesson builds toward).
     audience: z.string().default(''),
+    audiences: z.array(z.enum([
+      'Researcher',
+      'Research Software Engineer / Developer',
+      'Open Source Contributor',
+      'Open Source Maintainer',
+      'Project / Program Lead',
+      'Community Manager',
+      'Librarian / Information Professional',
+    ])).default([]),
     competencyRequired: z.string().default(''),
     contributor: z.string().default(''),
     teaches: z.string().default(''),
