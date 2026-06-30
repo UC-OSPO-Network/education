@@ -45,7 +45,7 @@
   "sortingId": "5",
   "ospoRelevance": "Core",
   "abstract": "This guide provides essential practices for open source project maintainers to ensure sustainability, manage contributions effectively, and foster a welcoming project environment. Topics include documentation, issue tracking, and communication strategies.",
-  "audience": "Individuals, Companies",
+  "audience": "Open source maintainers",
   "isPartOf": "Open Source Guides",
   "mentions": "These guides are available in over 20 languages.",
   "learningObjectives": "After this lesson, the learner should be able to:\n- Document processes to reduce repetitive overhead as a maintainer\n- Set and communicate expectations with contributors\n- Use tools and automation to make maintenance sustainable\n- Know when and how to say no to contributions or requests\n- Leverage the community to share the maintainer workload",
@@ -75,5 +75,8 @@
   "topics": [
     "Community, Governance & Conduct",
     "Project Planning, Maintenance & Sustainability"
+  ],
+  "audiences": [
+    "Open Source Maintainer"
   ]
 }
