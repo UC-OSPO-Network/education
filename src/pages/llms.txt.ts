@@ -19,6 +19,7 @@ export const GET: APIRoute = async (context) => {
     `Lessons: ${base}/education/lessons`,
     `Pathways: ${base}/education/pathways`,
     `RSS: ${base}/education/rss.xml`,
+    `API (JSON): ${base}/education/api/lessons.json`,
     '',
     '## Pathways',
   ];

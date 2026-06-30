@@ -126,12 +126,21 @@ export function topicByCode(code: string): TopicTerm | undefined {
   return BY_CODE.get(code);
 }
 
-/** Absolute @id for a term, e.g. https://ucospo.net/lessons/topic/<code>. */
+// Build a deployed absolute URL, honoring the site's base path (`/education/`
+// in production) and Astro's trailing-slash output, so these @ids match the
+// pages' own canonical URLs exactly.
+function absoluteUrl(site: URL | undefined, path: string): string {
+  const base = import.meta.env.BASE_URL; // "/education/" in prod, "/" in dev
+  const joined = `${base.replace(/\/$/, "")}/${path.replace(/^\//, "")}`.replace(/\/?$/, "/");
+  return new URL(joined, site ?? "https://ucospo.net").href;
+}
+
+/** Absolute @id for a term, e.g. https://ucospo.net/education/lessons/topic/<code>/. */
 export function termId(site: URL | undefined, termCode: string): string {
-  return new URL(`${TERM_SET_PATH}/${termCode}`, site ?? "https://ucospo.net").href;
+  return absoluteUrl(site, `lessons/topic/${termCode}`);
 }
 
 /** Absolute @id for the DefinedTermSet itself. */
 export function termSetId(site: URL | undefined): string {
-  return new URL(TERM_SET_PATH, site ?? "https://ucospo.net").href;
+  return absoluteUrl(site, "lessons/topic");
 }
