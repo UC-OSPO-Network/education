@@ -2,7 +2,7 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import LessonCard from "../../../components/LessonCard.jsx";
 import { getActiveLessons, type Lesson } from "../../../lib/lessons";
-import { TOPIC_TERMS, topicByCode, termId, termSetId, TERM_SET_PATH, type TopicTerm } from "../../../data/topics";
+import { TOPIC_TERMS, termId, termSetId, type TopicTerm } from "../../../data/topics";
 import githubHealthRaw from "../../../data/github-health.json";
 import type { HealthSnapshot } from "../../../lib/githubHealth";
 import "../../../components/lessons/lessons.css";
@@ -31,7 +31,7 @@ const lessonIndex = Object.fromEntries(
 );
 
 const base = import.meta.env.BASE_URL;
-const canonicalUrl = new URL(`${TERM_SET_PATH}/${term.termCode}`, Astro.site ?? "https://ucospo.net").href;
+const canonicalUrl = termId(Astro.site, term.termCode);
 
 // DefinedTerm with a SKOS closeMatch to the external authority. Mixing
 // schema.org and SKOS needs a context object; this is the formal crosswalk.

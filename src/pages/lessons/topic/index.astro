@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { getActiveLessons } from "../../../lib/lessons";
-import { TOPIC_TERMS, termId, termSetId, TERM_SET_PATH } from "../../../data/topics";
+import { TOPIC_TERMS, termId, termSetId } from "../../../data/topics";
 
 const lessons = await getActiveLessons();
 
@@ -11,7 +11,7 @@ for (const lesson of lessons) {
 }
 
 const base = import.meta.env.BASE_URL;
-const canonicalUrl = new URL(TERM_SET_PATH, Astro.site ?? "https://ucospo.net").href;
+const canonicalUrl = termSetId(Astro.site);
 
 // The published DefinedTermSet: each term carries its external crosswalk as a
 // SKOS closeMatch so the set is a small, formally grounded RDF layer.
