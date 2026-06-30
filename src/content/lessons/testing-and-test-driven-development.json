@@ -1,62 +1,69 @@
 {
-    "name": "Testing and Test-Driven Development",
-    "slug": "testing-and-test-driven-development",
-    "keepStatus": "keep",
-    "description": "This lesson covers how to write tests for your code, understand test-driven development, and use testing frameworks like pytest in Python.",
-    "url": "https://coderefinery.github.io/testing/",
-    "topic": "Testing",
-    "subTopic": "Testing",
-    "educationalLevel": "Intermediate",
-    "learningResourceType": "workshop",
-    "author": "CodeRefinery Team",
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "inLanguage": [
-        "en"
-    ],
-    "keywords": [
-        "testing",
-        "test-driven development",
-        "pytest",
-        "python"
-    ],
-    "sortingId": "31",
-    "prerequisiteNotes": "python-basics",
-    "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the principles and benefits of test-driven development (TDD)\n- Demonstrate how to write unit tests using pytest\n- Apply TDD practices to improve code quality and design\n- Implement automated testing strategies for software projects\n- Recognize the role of testing in continuous integration workflows",
-    "ospoRelevance": "Core",
-    "abstract": "This lesson introduces software testing, including automated testing, test-driven development, and unit testing, with a focus on Python.",
-    "dateCreated": "2020-09-15",
-    "dateModified": "2023-01-10",
-    "timeRequired": "PT2H",
-    "about": "",
-    "accessibilitySummary": "",
-    "audience": "Researchers, Software Developers, PhD Students",
-    "competencyRequired": "Git, Python",
-    "contributor": "",
-    "creativeWorkStatus": "Active",
-    "datePublished": "2020-10-01",
-    "hasPart": "https://docs.pytest.org, pytest documentation",
-    "identifier": "https://coderefinery.github.io/testing/",
-    "isPartOf": "CodeRefinery Software Development Series",
-    "notes": "",
-    "mentions": "pytest, https://docs.pytest.org, Testing framework for Python",
-    "recordedAt": "",
-    "teaches": "Write isolated unit verification profiles and execute automated testing flows using pytest.",
-    "version": "2.0.0",
-    "workTranslation": "",
-    "domain": "General Open Source",
-    "repoUrl": "https://github.com/coderefinery/testing",
-    "roles": [
-        "Maintainer",
-        "Contributor"
-    ],
-    "pathways": [
-        "maintaining"
-    ],
-    "prerequisites": [
-        {
-            "type": "lesson",
-            "value": "introduction-to-git"
-        }
-    ],
-    "provider": "CodeRefinery"
+  "name": "Testing and Test-Driven Development",
+  "slug": "testing-and-test-driven-development",
+  "keepStatus": "keep",
+  "description": "This lesson covers how to write tests for your code, understand test-driven development, and use testing frameworks like pytest in Python.",
+  "url": "https://coderefinery.github.io/testing/",
+  "topic": "Testing",
+  "subTopic": "Testing",
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "workshop",
+  "author": "CodeRefinery Team",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "inLanguage": [
+    "en"
+  ],
+  "keywords": [
+    "testing",
+    "test-driven development",
+    "pytest",
+    "python"
+  ],
+  "sortingId": "31",
+  "prerequisiteNotes": "python-basics",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the principles and benefits of test-driven development (TDD)\n- Demonstrate how to write unit tests using pytest\n- Apply TDD practices to improve code quality and design\n- Implement automated testing strategies for software projects\n- Recognize the role of testing in continuous integration workflows",
+  "ospoRelevance": "Core",
+  "abstract": "This lesson introduces software testing, including automated testing, test-driven development, and unit testing, with a focus on Python.",
+  "dateCreated": "2020-09-15",
+  "dateModified": "2023-01-10",
+  "timeRequired": "PT2H",
+  "about": "",
+  "accessibilitySummary": "",
+  "audience": "Researchers, Software Developers, PhD Students",
+  "competencyRequired": "Git, Python",
+  "contributor": "",
+  "creativeWorkStatus": "Active",
+  "datePublished": "2020-10-01",
+  "hasPart": "https://docs.pytest.org, pytest documentation",
+  "identifier": "https://coderefinery.github.io/testing/",
+  "isPartOf": "CodeRefinery Software Development Series",
+  "notes": "",
+  "mentions": "pytest, https://docs.pytest.org, Testing framework for Python",
+  "recordedAt": "",
+  "teaches": "Write isolated unit verification profiles and execute automated testing flows using pytest.",
+  "version": "2.0.0",
+  "workTranslation": "",
+  "domain": "General Open Source",
+  "repoUrl": "https://github.com/coderefinery/testing",
+  "roles": [
+    "Contributor",
+    "Maintainer"
+  ],
+  "pathways": [
+    "maintaining"
+  ],
+  "prerequisites": [
+    {
+      "type": "lesson",
+      "value": "introduction-to-git"
+    }
+  ],
+  "provider": "CodeRefinery",
+  "topics": [
+    "Quality, Testing, Review & Automation"
+  ],
+  "audiences": [
+    "Research Software Engineer / Developer",
+    "Researcher"
+  ]
 }

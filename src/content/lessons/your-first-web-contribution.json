@@ -1,48 +1,54 @@
 {
-    "name": "Your First Web Contribution",
-    "slug": "your-first-web-contribution",
-    "keepStatus": "keep",
-    "description": "Build confidence by making a real open source contribution using only your web browser. No technical setup or Git installation required!",
-    "url": "https://github.com/firstcontributions/first-contributions",
-    "domain": "General Open Source",
-    "topic": "Contributing",
-    "subTopic": "Open Source Literacy",
-    "educationalLevel": "Beginner",
-    "learningResourceType": "workshop",
-    "author": "First Contributions Team",
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "timeRequired": "",
-    "inLanguage": [
-        "en"
-    ],
-    "keywords": [
-        "first contribution",
-        "github web interface",
-        "open source",
-        "quick win"
-    ],
-    "prerequisiteNotes": "A GitHub account is required.",
-    "sortingId": "2",
-    "learningObjectives": "After this lesson, the learner should be able to:\n- Navigate the GitHub web interface to edit a file.\n- Understand the high-level concept of a 'Fork' and a 'Pull Request'.\n- Successfully submit a browser-based contribution to a public repository.\n- Experience the immediate 'dopamine hit' of a successful collaborative edit.",
-    "ospoRelevance": "High",
-    "abstract": "This hands-on tutorial walks absolute beginners through making their very first open source contribution using the GitHub web editor. It bypasses technical Git setup to focus on the social and procedural mechanics of a Pull Request.",
-    "dateCreated": "2026-04-05",
-    "creativeWorkStatus": "Active",
-    "audience": "Beginners, Software Developers",
-    "repoUrl": "https://github.com/firstcontributions/first-contributions",
-    "roles": [
-        "Contributor"
-    ],
-    "pathways": [
-        "getting-started"
-    ],
-    "prerequisites": [
-        {
-            "type": "lesson",
-            "value": "what-is-open-source"
-        }
-    ],
-    "provider": "GitHub / Open Source Guides",
-    "teaches": "Execute a basic upstream open source code contribution entirely using browser-based GitHub interfaces.",
-    "competencyRequired": "Open source basics"
+  "name": "Your First Web Contribution",
+  "slug": "your-first-web-contribution",
+  "keepStatus": "keep",
+  "description": "Build confidence by making a real open source contribution using only your web browser. No technical setup or Git installation required!",
+  "url": "https://github.com/firstcontributions/first-contributions",
+  "domain": "General Open Source",
+  "topic": "Contributing",
+  "subTopic": "Open Source Literacy",
+  "educationalLevel": "Beginner",
+  "learningResourceType": "workshop",
+  "author": "First Contributions Team",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "timeRequired": "",
+  "inLanguage": [
+    "en"
+  ],
+  "keywords": [
+    "first contribution",
+    "github web interface",
+    "open source",
+    "quick win"
+  ],
+  "prerequisiteNotes": "A GitHub account is required.",
+  "sortingId": "2",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Navigate the GitHub web interface to edit a file.\n- Understand the high-level concept of a 'Fork' and a 'Pull Request'.\n- Successfully submit a browser-based contribution to a public repository.\n- Experience the immediate 'dopamine hit' of a successful collaborative edit.",
+  "ospoRelevance": "High",
+  "abstract": "This hands-on tutorial walks absolute beginners through making their very first open source contribution using the GitHub web editor. It bypasses technical Git setup to focus on the social and procedural mechanics of a Pull Request.",
+  "dateCreated": "2026-04-05",
+  "creativeWorkStatus": "Active",
+  "audience": "Beginners, Software Developers",
+  "repoUrl": "https://github.com/firstcontributions/first-contributions",
+  "roles": [
+    "Contributor"
+  ],
+  "pathways": [
+    "getting-started"
+  ],
+  "prerequisites": [
+    {
+      "type": "lesson",
+      "value": "what-is-open-source"
+    }
+  ],
+  "provider": "GitHub / Open Source Guides",
+  "teaches": "Execute a basic upstream open source code contribution entirely using browser-based GitHub interfaces.",
+  "competencyRequired": "Open source basics",
+  "topics": [
+    "Version Control & Collaborative Development"
+  ],
+  "audiences": [
+    "Research Software Engineer / Developer"
+  ]
 }

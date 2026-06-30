@@ -16,6 +16,7 @@ export type Lesson = {
   domain: string;
   topic: string;
   subTopic: string;
+  topics: string[];
   pathways: string[];
   educationalLevel: string;
   learningResourceType: string;
@@ -23,6 +24,7 @@ export type Lesson = {
   provider: string;
   license: string;
   roles: string[];
+  audiences: string[];
   timeRequired: string;
   inLanguage: string[];
   keywords: string[];
@@ -107,6 +109,7 @@ export async function getLessons(): Promise<Lesson[]> {
       domain: String(d.domain ?? 'General Open Source'),
       topic: String(d.topic ?? ''),
       subTopic: String(d.subTopic ?? ''),
+      topics: Array.isArray(d.topics) ? (d.topics as string[]) : [],
       pathways,
       educationalLevel: String(d.educationalLevel ?? 'Beginner'),
       learningResourceType: String(d.learningResourceType ?? 'tutorial'),
@@ -127,6 +130,7 @@ export async function getLessons(): Promise<Lesson[]> {
       datePublished: String(d.datePublished ?? ''),
       creativeWorkStatus: String(d.creativeWorkStatus ?? 'Active'),
       audience: String(d.audience ?? ''),
+      audiences: Array.isArray(d.audiences) ? (d.audiences as string[]) : [],
       competencyRequired: String(d.competencyRequired ?? ''),
       contributor: String(d.contributor ?? ''),
       teaches: String(d.teaches ?? ''),

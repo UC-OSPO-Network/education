@@ -114,6 +114,112 @@
   opacity: 0.7;
 }
 
+.lessons-filter__field--search {
+  margin-bottom: 1rem;
+}
+
+/* ── Multi-select facets ── */
+.lessons-filter__facet {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background: var(--bg-primary);
+}
+
+.lessons-filter__facet[open] {
+  border-color: var(--border-strong);
+}
+
+.lessons-filter__facet-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.75rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.lessons-filter__facet-summary::-webkit-details-marker {
+  display: none;
+}
+
+.lessons-filter__facet-summary::after {
+  content: "▾";
+  margin-left: auto;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  transition: transform 0.2s ease;
+}
+
+.lessons-filter__facet[open] .lessons-filter__facet-summary::after {
+  transform: rotate(180deg);
+}
+
+.lessons-filter__facet-summary:focus-visible {
+  outline: 2px solid var(--uc-blue);
+  outline-offset: -2px;
+}
+
+.lessons-filter__facet-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 0.35rem;
+  border-radius: var(--radius-pill);
+  background: var(--uc-blue);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.lessons-filter__facet-body {
+  padding: 0 0.75rem 0.6rem;
+}
+
+.lessons-filter__options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 12rem;
+  overflow-y: auto;
+}
+
+.lessons-filter__option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.lessons-filter__option input {
+  margin: 0;
+  flex: none;
+  accent-color: var(--uc-blue);
+}
+
+.lessons-filter__option.is-disabled {
+  color: var(--text-secondary);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.lessons-filter__option-label {
+  flex: 1 1 auto;
+}
+
+.lessons-filter__option-count {
+  flex: none;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
 .lessons-filter__footer {
   display: flex;
   justify-content: space-between;

@@ -1,62 +1,69 @@
 {
-    "name": "Python Packaging",
-    "slug": "python-packaging",
-    "keepStatus": "keep",
-    "description": "This lesson teaches how to create and publish packages in Python. We assume a basic understanding of Python, and assume learners are comfortable using simple commands in a Bash shell.",
-    "url": "https://carpentries-incubator.github.io/python_packaging",
-    "topic": "Packaging, Python",
-    "subTopic": "Packaging",
-    "educationalLevel": "Intermediate",
-    "learningResourceType": "workshop",
-    "author": "The Carpentries Incubator",
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "inLanguage": [
-        "en"
-    ],
-    "keywords": [
-        "python",
-        "packaging",
-        "pip",
-        "distribution"
-    ],
-    "sortingId": "10",
-    "prerequisiteNotes": "introduction-to-git | python-basics",
-    "learningObjectives": "Identify the purpose and benefits of packaging Python code.\nDescribe the basic structure of a Python package (e.g., __init__.py, setup.py, pyproject.toml).\nRecognize the role of metadata in package distribution.\nList common tools used for packaging (e.g., setuptools, pip, build, twine).\nDescribe how to write and organize code for packaging.\nIdentify best practices for versioning and dependency management.\nRecognize how to build and distribute a package to the Python Package Index (PyPI).",
-    "ospoRelevance": "Moderate",
-    "abstract": "This lesson teaches how to create and publish packages in Python. We assume a basic understanding of Python, and assume learners are comfortable using simple commands in a Bash shell.",
-    "dateCreated": "2023-07-04",
-    "dateModified": "2024-05-14",
-    "timeRequired": "PT2H2M",
-    "about": "",
-    "accessibilitySummary": "",
-    "audience": "Software Developers, Contributors",
-    "competencyRequired": "Git, Python",
-    "contributor": "",
-    "creativeWorkStatus": "Under development",
-    "datePublished": "2024-05-14",
-    "hasPart": "",
-    "identifier": "https://github.com/carpentries-incubator/python_packaging",
-    "isPartOf": "",
-    "notes": "Pre-alpha lesson. Uses Carpentries lesson template.",
-    "mentions": "",
-    "recordedAt": "",
-    "teaches": "Build and publish standard distribution packages for Python projects.",
-    "version": "",
-    "workTranslation": "",
-    "domain": "General Open Source",
-    "repoUrl": "https://github.com/carpentries-incubator/python_packaging",
-    "roles": [
-        "Contributor",
-        "Maintainer"
-    ],
-    "pathways": [
-        "maintaining"
-    ],
-    "prerequisites": [
-        {
-            "type": "lesson",
-            "value": "collaborative-git-for-teams"
-        }
-    ],
-    "provider": "The Carpentries Incubator"
+  "name": "Python Packaging",
+  "slug": "python-packaging",
+  "keepStatus": "keep",
+  "description": "This lesson teaches how to create and publish packages in Python. We assume a basic understanding of Python, and assume learners are comfortable using simple commands in a Bash shell.",
+  "url": "https://carpentries-incubator.github.io/python_packaging",
+  "topic": "Packaging, Python",
+  "subTopic": "Packaging",
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "workshop",
+  "author": "The Carpentries Incubator",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "inLanguage": [
+    "en"
+  ],
+  "keywords": [
+    "python",
+    "packaging",
+    "pip",
+    "distribution"
+  ],
+  "sortingId": "10",
+  "prerequisiteNotes": "introduction-to-git | python-basics",
+  "learningObjectives": "Identify the purpose and benefits of packaging Python code.\nDescribe the basic structure of a Python package (e.g., __init__.py, setup.py, pyproject.toml).\nRecognize the role of metadata in package distribution.\nList common tools used for packaging (e.g., setuptools, pip, build, twine).\nDescribe how to write and organize code for packaging.\nIdentify best practices for versioning and dependency management.\nRecognize how to build and distribute a package to the Python Package Index (PyPI).",
+  "ospoRelevance": "Moderate",
+  "abstract": "This lesson teaches how to create and publish packages in Python. We assume a basic understanding of Python, and assume learners are comfortable using simple commands in a Bash shell.",
+  "dateCreated": "2023-07-04",
+  "dateModified": "2024-05-14",
+  "timeRequired": "PT2H2M",
+  "about": "",
+  "accessibilitySummary": "",
+  "audience": "Software Developers, Contributors",
+  "competencyRequired": "Git, Python",
+  "contributor": "",
+  "creativeWorkStatus": "Under development",
+  "datePublished": "2024-05-14",
+  "hasPart": "",
+  "identifier": "https://github.com/carpentries-incubator/python_packaging",
+  "isPartOf": "",
+  "notes": "Pre-alpha lesson. Uses Carpentries lesson template.",
+  "mentions": "",
+  "recordedAt": "",
+  "teaches": "Build and publish standard distribution packages for Python projects.",
+  "version": "",
+  "workTranslation": "",
+  "domain": "General Open Source",
+  "repoUrl": "https://github.com/carpentries-incubator/python_packaging",
+  "roles": [
+    "Contributor",
+    "Maintainer"
+  ],
+  "pathways": [
+    "maintaining"
+  ],
+  "prerequisites": [
+    {
+      "type": "lesson",
+      "value": "collaborative-git-for-teams"
+    }
+  ],
+  "provider": "The Carpentries Incubator",
+  "topics": [
+    "Packaging, Release & Distribution"
+  ],
+  "audiences": [
+    "Open Source Contributor",
+    "Research Software Engineer / Developer"
+  ]
 }

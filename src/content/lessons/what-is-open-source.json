@@ -1,45 +1,51 @@
 {
-    "name": "What is Open Source?",
-    "slug": "what-is-open-source",
-    "keepStatus": "keep",
-    "description": "An introduction to the four freedoms of software, the benefits of FOSS in education and industry, and the core principles of transparency and community.",
-    "url": "https://opensource.guide/starting-a-project/#what-does-open-source-mean",
-    "domain": "General Open Source",
-    "topic": "Open Source Literacy",
-    "subTopic": "Open Source Literacy",
-    "educationalLevel": "Beginner",
-    "learningResourceType": "guide",
-    "author": "Open Source Guides",
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "timeRequired": "",
-    "inLanguage": [
-        "en"
-    ],
-    "keywords": [
-        "open source basics",
-        "foss",
-        "software freedom",
-        "open collaboration"
-    ],
-    "prerequisiteNotes": "No prior experience needed.",
-    "sortingId": "1",
-    "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the four freedoms of free software.\n- Differentiate between FOSS and proprietary models.\n- Identify the benefits of open source in education and industry.\n- Describe the core principles of transparency, meritocracy, and community.",
-    "ospoRelevance": "Core",
-    "abstract": "This lesson addresses the foundational concepts of open source. It covers the four freedoms of software, the benefits of FOSS in education and industry, and the core principles of transparency and community.",
-    "dateCreated": "2026-04-05",
-    "dateModified": "2026-04-05",
-    "creativeWorkStatus": "Active",
-    "audience": "Beginners, Researchers, Library Staff",
-    "repoUrl": "https://github.com/github/opensource.guide",
-    "roles": [
-        "User/Consumer"
-    ],
-    "pathways": [
-        "getting-started"
-    ],
-    "prerequisites": [],
-    "isPartOf": "Open Source Guides",
-    "provider": "GitHub / Open Source Guides",
-    "teaches": "Explain core software freedoms, open source principles, and institutional benefits of transparent collaboration.",
-    "competencyRequired": ""
+  "name": "What is Open Source?",
+  "slug": "what-is-open-source",
+  "keepStatus": "keep",
+  "description": "An introduction to the four freedoms of software, the benefits of FOSS in education and industry, and the core principles of transparency and community.",
+  "url": "https://opensource.guide/starting-a-project/#what-does-open-source-mean",
+  "domain": "General Open Source",
+  "topic": "Open Source Literacy",
+  "subTopic": "Open Source Literacy",
+  "educationalLevel": "Beginner",
+  "learningResourceType": "guide",
+  "author": "Open Source Guides",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "timeRequired": "",
+  "inLanguage": [
+    "en"
+  ],
+  "keywords": [
+    "open source basics",
+    "foss",
+    "software freedom",
+    "open collaboration"
+  ],
+  "prerequisiteNotes": "No prior experience needed.",
+  "sortingId": "1",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Explain the four freedoms of free software.\n- Differentiate between FOSS and proprietary models.\n- Identify the benefits of open source in education and industry.\n- Describe the core principles of transparency, meritocracy, and community.",
+  "ospoRelevance": "Core",
+  "abstract": "This lesson addresses the foundational concepts of open source. It covers the four freedoms of software, the benefits of FOSS in education and industry, and the core principles of transparency and community.",
+  "dateCreated": "2026-04-05",
+  "dateModified": "2026-04-05",
+  "creativeWorkStatus": "Active",
+  "audience": "Beginners, Researchers, Library Staff",
+  "repoUrl": "https://github.com/github/opensource.guide",
+  "roles": [],
+  "pathways": [
+    "getting-started"
+  ],
+  "prerequisites": [],
+  "isPartOf": "Open Source Guides",
+  "provider": "GitHub / Open Source Guides",
+  "teaches": "Explain core software freedoms, open source principles, and institutional benefits of transparent collaboration.",
+  "competencyRequired": "",
+  "topics": [
+    "Licensing, Copyright & Reuse",
+    "Version Control & Collaborative Development"
+  ],
+  "audiences": [
+    "Librarian / Information Professional",
+    "Researcher"
+  ]
 }

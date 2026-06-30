@@ -11,12 +11,20 @@ interface LessonFilterProps {
 }
 
 // learningResourceType is free text in schema.org, so we define our own values.
-// Surfaced via the (i) help toggle on the Learning Type filter.
+// Surfaced via the help text on the Learning Type facet.
 const TYPE_DEFINITIONS: Record<string, string> = {
   guide: "Self-study reading or reference, worked through at your own pace.",
   workshop: "Hands-on and designed to be taught, with active exercises.",
   course: "A structured, multi-part curriculum, often taught over several sessions.",
 };
+
+// "Designed for" (audience) and "OSS Role" (competency outcome) answer different
+// questions — the background a learner brings vs. the role the lesson builds
+// toward — so each gets its own explanatory note.
+const AUDIENCE_HELP =
+  "Who the lesson was designed for — the background or role a learner already brings. Pick the persona closest to you.";
+const ROLE_HELP =
+  "The open-source role this lesson builds competency in. Take or teach it to grow more effective in that role — for example, as a contributor or a maintainer.";
 
 function titleCase(value: string): string {
   return value.replace(/\b\w/g, (c) => c.toUpperCase());
@@ -27,45 +35,90 @@ type PagefindModule = {
   search: (query: string) => Promise<{ results: PagefindResult[] }>;
 };
 
-const FILTER_QUERY_PARAMS = ["q", "role", "level", "pathway", "domain", "type", "audience", "topic"];
+// Facet axes, in display order. Each maps to a URL param and a set of lesson values.
+type FacetKey =
+  | "role"
+  | "educationalLevel"
+  | "pathway"
+  | "domain"
+  | "learningResourceType"
+  | "audience"
+  | "topic";
 
-const emptyFilters = {
-  role: "",
-  educationalLevel: "",
-  pathway: "",
-  domain: "",
-  learningResourceType: "",
-  audience: "",
-  topic: "",
+const FACETS: { key: FacetKey; label: string; param: string }[] = [
+  { key: "role", label: "OSS Role", param: "role" },
+  { key: "educationalLevel", label: "Skill Level", param: "level" },
+  { key: "pathway", label: "Pathway", param: "pathway" },
+  { key: "domain", label: "Domain", param: "domain" },
+  { key: "learningResourceType", label: "Learning Type", param: "type" },
+  { key: "audience", label: "Designed for", param: "audience" },
+  { key: "topic", label: "Topic", param: "topic" },
+];
+
+const FACET_KEYS = FACETS.map((f) => f.key);
+const FILTER_QUERY_PARAMS = ["q", ...FACETS.map((f) => f.param)];
+
+// The values a lesson carries on a given facet. Array facets contribute all of
+// their values; scalar facets contribute zero or one.
+function lessonValues(lesson: Lesson, key: FacetKey): string[] {
+  switch (key) {
+    case "role":
+      return lesson.roles;
+    case "educationalLevel":
+      return lesson.educationalLevel ? [lesson.educationalLevel] : [];
+    case "pathway":
+      return lesson.pathways;
+    case "domain":
+      return lesson.domain ? [lesson.domain] : [];
+    case "learningResourceType":
+      return lesson.learningResourceType ? [lesson.learningResourceType] : [];
+    case "audience":
+      return lesson.audiences;
+    case "topic":
+      return lesson.topics;
+  }
+}
+
+// any-within-a-facet: a lesson passes if no values are selected, or it carries
+// at least one of the selected values. (all-across-facets is enforced by the
+// caller AND-ing every facet together.)
+function matchesFacet(lesson: Lesson, key: FacetKey, selected: string[]): boolean {
+  if (selected.length === 0) return true;
+  return lessonValues(lesson, key).some((v) => selected.includes(v));
+}
+
+type Filters = Record<FacetKey, string[]> & { search: string };
+
+const emptyFilters: Filters = {
+  role: [],
+  educationalLevel: [],
+  pathway: [],
+  domain: [],
+  learningResourceType: [],
+  audience: [],
+  topic: [],
   search: "",
 };
 
-function getInitialFilters() {
+function getInitialFilters(): Filters {
   if (typeof window === "undefined") return emptyFilters;
 
   const params = new URLSearchParams(window.location.search);
-  return {
-    role: params.get("role") ?? "",
-    educationalLevel: params.get("level") ?? "",
-    pathway: params.get("pathway") ?? "",
-    domain: params.get("domain") ?? "",
-    learningResourceType: params.get("type") ?? "",
-    audience: params.get("audience") ?? "",
-    topic: params.get("topic") ?? "",
-    search: params.get("q") ?? "",
-  };
-}
-
-function splitAudience(audience: string) {
-  return audience.split(",").map((item) => item.trim()).filter(Boolean);
+  const next: Filters = { ...emptyFilters, search: params.get("q") ?? "" };
+  FACETS.forEach(({ key, param }) => {
+    next[key] = (params.get(param) ?? "").split(",").map((v) => v.trim()).filter(Boolean);
+  });
+  return next;
 }
 
 export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath, pathwayNames = {} }: LessonFilterProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
   const [searchSlugs, setSearchSlugs] = useState<Set<string> | null>(null);
-  const [filters, setFilters] = useState(getInitialFilters);
-  const [showTypeHelp, setShowTypeHelp] = useState(false);
+  const [filters, setFilters] = useState<Filters>(getInitialFilters);
+  const [openFacets, setOpenFacets] = useState<Set<FacetKey>>(
+    () => new Set(FACET_KEYS.filter((k) => getInitialFilters()[k].length > 0)),
+  );
 
   const pagefindRef = useRef<PagefindModule | null>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -136,45 +189,33 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
     FILTER_QUERY_PARAMS.forEach((param) => url.searchParams.delete(param));
 
     if (filters.search.trim()) url.searchParams.set("q", filters.search.trim());
-    if (filters.role) url.searchParams.set("role", filters.role);
-    if (filters.educationalLevel) url.searchParams.set("level", filters.educationalLevel);
-    if (filters.pathway) url.searchParams.set("pathway", filters.pathway);
-    if (filters.domain) url.searchParams.set("domain", filters.domain);
-    if (filters.learningResourceType) url.searchParams.set("type", filters.learningResourceType);
-    if (filters.audience) url.searchParams.set("audience", filters.audience);
-    if (filters.topic) url.searchParams.set("topic", filters.topic);
+    FACETS.forEach(({ key, param }) => {
+      if (filters[key].length) url.searchParams.set(param, filters[key].join(","));
+    });
 
     window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
   }, [filters]);
 
   const filterOptions = useMemo(() => {
-    const roles = new Set<string>();
-    const levels = new Set<string>();
-    const pathways = new Set<string>();
-    const domains = new Set<string>();
-    const types = new Set<string>();
-    const audiences = new Set<string>();
-    const topics = new Set<string>();
-
-    lessons.forEach((lesson) => {
-      lesson.roles.forEach((r) => roles.add(r));
-      if (lesson.educationalLevel) levels.add(lesson.educationalLevel);
-      lesson.pathways.forEach((p) => pathways.add(p));
-      if (lesson.domain) domains.add(lesson.domain);
-      if (lesson.learningResourceType) types.add(lesson.learningResourceType);
-      splitAudience(lesson.audience).forEach((audience) => audiences.add(audience));
-      lesson.keywords.forEach((keyword) => topics.add(keyword));
-    });
-
-    return {
-      roles: Array.from(roles).sort(),
-      levels: Array.from(levels).sort(),
-      pathways: Array.from(pathways).sort(),
-      domains: Array.from(domains).sort(),
-      types: Array.from(types).sort(),
-      audiences: Array.from(audiences).sort(),
-      topics: Array.from(topics).sort(),
+    const sets: Record<FacetKey, Set<string>> = {
+      role: new Set(),
+      educationalLevel: new Set(),
+      pathway: new Set(),
+      domain: new Set(),
+      learningResourceType: new Set(),
+      audience: new Set(),
+      topic: new Set(),
     };
+    lessons.forEach((lesson) => {
+      FACET_KEYS.forEach((key) => {
+        lessonValues(lesson, key).forEach((v) => sets[key].add(v));
+      });
+    });
+    const options = {} as Record<FacetKey, string[]>;
+    FACET_KEYS.forEach((key) => {
+      options[key] = Array.from(sets[key]).sort();
+    });
+    return options;
   }, [lessons]);
 
   const lessonIndex = useMemo(() => {
@@ -186,32 +227,88 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
     return index;
   }, [lessons]);
 
-  const filteredLessons = useMemo(() => {
-    let result = lessons;
+  // Lessons passing the full-text search, before facet filtering. The base set
+  // for live facet counts.
+  const searchedLessons = useMemo(
+    () => (searchSlugs === null ? lessons : lessons.filter((l) => searchSlugs.has(l.slug))),
+    [lessons, searchSlugs],
+  );
 
-    if (searchSlugs !== null) {
-      result = result.filter((l) => searchSlugs.has(l.slug));
-    }
+  const filteredLessons = useMemo(
+    () => searchedLessons.filter((l) => FACET_KEYS.every((k) => matchesFacet(l, k, filters[k]))),
+    [searchedLessons, filters],
+  );
 
-    return result.filter((lesson) => {
-      if (filters.role && !lesson.roles.includes(filters.role)) return false;
-      if (filters.educationalLevel && lesson.educationalLevel !== filters.educationalLevel) return false;
-      if (filters.pathway && !lesson.pathways.includes(filters.pathway)) return false;
-      if (filters.domain && lesson.domain !== filters.domain) return false;
-      if (filters.learningResourceType && lesson.learningResourceType !== filters.learningResourceType) return false;
-      if (filters.audience && !splitAudience(lesson.audience).includes(filters.audience)) return false;
-      if (filters.topic && !lesson.keywords.includes(filters.topic)) return false;
-      return true;
+  // For each facet, how many lessons each value would yield given the *other*
+  // active facets (and the search). Drill-down preview counts.
+  const facetCounts = useMemo(() => {
+    const counts = {} as Record<FacetKey, Map<string, number>>;
+    FACET_KEYS.forEach((key) => {
+      const subset = searchedLessons.filter((l) =>
+        FACET_KEYS.every((k) => k === key || matchesFacet(l, k, filters[k])),
+      );
+      const m = new Map<string, number>();
+      subset.forEach((l) => {
+        lessonValues(l, key).forEach((v) => m.set(v, (m.get(v) ?? 0) + 1));
+      });
+      counts[key] = m;
     });
-  }, [filters, searchSlugs, lessons]);
+    return counts;
+  }, [searchedLessons, filters]);
 
-  function handleFilterChange(filterName: keyof typeof filters, value: string) {
-    setFilters((prev) => ({ ...prev, [filterName]: value }));
+  function toggleValue(key: FacetKey, value: string) {
+    setFilters((prev) => {
+      const current = prev[key];
+      const next = current.includes(value)
+        ? current.filter((v) => v !== value)
+        : [...current, value];
+      return { ...prev, [key]: next };
+    });
+  }
+
+  function setSearch(value: string) {
+    setFilters((prev) => ({ ...prev, search: value }));
   }
 
   function clearFilters() {
     setFilters(emptyFilters);
   }
+
+  function onFacetToggle(key: FacetKey, open: boolean) {
+    setOpenFacets((prev) => {
+      const next = new Set(prev);
+      if (open) next.add(key);
+      else next.delete(key);
+      return next;
+    });
+  }
+
+  function displayValue(key: FacetKey, value: string): string {
+    if (key === "pathway") return pathwayNames[value] ?? titleCase(value.replace(/-/g, " "));
+    if (key === "learningResourceType") return titleCase(value);
+    return value;
+  }
+
+  function renderHelp(key: FacetKey) {
+    if (key === "role") return <p className="lessons-filter__help">{ROLE_HELP}</p>;
+    if (key === "audience") return <p className="lessons-filter__help">{AUDIENCE_HELP}</p>;
+    if (key === "learningResourceType") {
+      return (
+        <dl className="lessons-filter__help">
+          {Object.entries(TYPE_DEFINITIONS).map(([term, def]) => (
+            <div key={term} className="lessons-filter__help-item">
+              <dt>{titleCase(term)}</dt>
+              <dd>{def}</dd>
+            </div>
+          ))}
+        </dl>
+      );
+    }
+    return null;
+  }
+
+  const activeFilterCount =
+    FACET_KEYS.reduce((sum, k) => sum + filters[k].length, 0) + (filters.search.trim() ? 1 : 0);
 
   if (isLoading) {
     return (
@@ -224,145 +321,68 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
   return (
     <div className="lessons-page">
       <div className="lessons-filter">
+        <div className="lessons-filter__field lessons-filter__field--search">
+          <label htmlFor="lesson-search" className="lessons-filter__label">Search</label>
+          <input
+            id="lesson-search"
+            type="text"
+            className="lessons-filter__input"
+            value={filters.search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search lessons…"
+          />
+        </div>
+
         <div className="lessons-filter__grid">
-          <div className="lessons-filter__field">
-            <label htmlFor="lesson-search" className="lessons-filter__label">Search</label>
-            <input
-              id="lesson-search"
-              type="text"
-              className="lessons-filter__input"
-              value={filters.search}
-              onChange={(e) => handleFilterChange("search", e.target.value)}
-              placeholder="Search lessons…"
-            />
-          </div>
-
-          <div className="lessons-filter__field">
-            <label htmlFor="lesson-role" className="lessons-filter__label">OSS Role</label>
-            <select
-              id="lesson-role"
-              className="lessons-filter__select"
-              value={filters.role}
-              onChange={(e) => handleFilterChange("role", e.target.value)}
-            >
-              <option value="">All Roles</option>
-              {filterOptions.roles.map((role) => (
-                <option key={role} value={role}>{role}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="lessons-filter__field">
-            <label htmlFor="lesson-level" className="lessons-filter__label">Skill Level</label>
-            <select
-              id="lesson-level"
-              className="lessons-filter__select"
-              value={filters.educationalLevel}
-              onChange={(e) => handleFilterChange("educationalLevel", e.target.value)}
-            >
-              <option value="">All Levels</option>
-              {filterOptions.levels.map((level) => (
-                <option key={level} value={level}>{level}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="lessons-filter__field">
-            <label htmlFor="lesson-pathway" className="lessons-filter__label">Pathway</label>
-            <select
-              id="lesson-pathway"
-              className="lessons-filter__select"
-              value={filters.pathway}
-              onChange={(e) => handleFilterChange("pathway", e.target.value)}
-            >
-              <option value="">All Pathways</option>
-              {filterOptions.pathways.map((p) => (
-                <option key={p} value={p}>{pathwayNames[p] ?? titleCase(p.replace(/-/g, " "))}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="lessons-filter__field">
-            <label htmlFor="lesson-domain" className="lessons-filter__label">Domain</label>
-            <select
-              id="lesson-domain"
-              className="lessons-filter__select"
-              value={filters.domain}
-              onChange={(e) => handleFilterChange("domain", e.target.value)}
-            >
-              <option value="">All Domains</option>
-              {filterOptions.domains.map((d) => (
-                <option key={d} value={d}>{d}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="lessons-filter__field">
-            <span className="lessons-filter__label-row">
-              <label htmlFor="lesson-type" className="lessons-filter__label">Learning Type</label>
-              <button
-                type="button"
-                className="lessons-filter__help-toggle"
-                aria-expanded={showTypeHelp}
-                aria-controls="lesson-type-help"
-                aria-label="What do the learning types mean?"
-                onClick={() => setShowTypeHelp((v) => !v)}
+          {FACETS.map(({ key, label }) => {
+            const options = filterOptions[key];
+            if (options.length === 0) return null;
+            const selected = filters[key];
+            const counts = facetCounts[key];
+            return (
+              <details
+                key={key}
+                className="lessons-filter__facet"
+                open={openFacets.has(key)}
+                onToggle={(e) => onFacetToggle(key, e.currentTarget.open)}
               >
-                <span aria-hidden="true">ⓘ</span>
-              </button>
-            </span>
-            {showTypeHelp && (
-              <dl id="lesson-type-help" className="lessons-filter__help">
-                {Object.entries(TYPE_DEFINITIONS).map(([term, def]) => (
-                  <div key={term} className="lessons-filter__help-item">
-                    <dt>{titleCase(term)}</dt>
-                    <dd>{def}</dd>
-                  </div>
-                ))}
-              </dl>
-            )}
-            <select
-              id="lesson-type"
-              className="lessons-filter__select"
-              value={filters.learningResourceType}
-              onChange={(e) => handleFilterChange("learningResourceType", e.target.value)}
-            >
-              <option value="">All Types</option>
-              {filterOptions.types.map((type) => (
-                <option key={type} value={type}>{titleCase(type)}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="lessons-filter__field">
-            <label htmlFor="lesson-audience" className="lessons-filter__label">Audience</label>
-            <select
-              id="lesson-audience"
-              className="lessons-filter__select"
-              value={filters.audience}
-              onChange={(e) => handleFilterChange("audience", e.target.value)}
-            >
-              <option value="">All Audiences</option>
-              {filterOptions.audiences.map((audience) => (
-                <option key={audience} value={audience}>{audience}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="lessons-filter__field">
-            <label htmlFor="lesson-topic" className="lessons-filter__label">Topic</label>
-            <select
-              id="lesson-topic"
-              className="lessons-filter__select"
-              value={filters.topic}
-              onChange={(e) => handleFilterChange("topic", e.target.value)}
-            >
-              <option value="">All Topics</option>
-              {filterOptions.topics.map((topic) => (
-                <option key={topic} value={topic}>{topic}</option>
-              ))}
-            </select>
-          </div>
+                <summary className="lessons-filter__facet-summary">
+                  <span className="lessons-filter__label">{label}</span>
+                  {selected.length > 0 && (
+                    <span className="lessons-filter__facet-badge">{selected.length}</span>
+                  )}
+                </summary>
+                <div className="lessons-filter__facet-body">
+                  {renderHelp(key)}
+                  <ul className="lessons-filter__options">
+                    {options.map((value) => {
+                      const count = counts.get(value) ?? 0;
+                      const checked = selected.includes(value);
+                      const disabled = count === 0 && !checked;
+                      return (
+                        <li key={value}>
+                          <label
+                            className={`lessons-filter__option${disabled ? " is-disabled" : ""}`}
+                          >
+                            <input
+                              type="checkbox"
+                              checked={checked}
+                              disabled={disabled}
+                              onChange={() => toggleValue(key, value)}
+                            />
+                            <span className="lessons-filter__option-label">
+                              {displayValue(key, value)}
+                            </span>
+                            <span className="lessons-filter__option-count">{count}</span>
+                          </label>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </details>
+            );
+          })}
         </div>
 
         <div className="lessons-filter__footer">
@@ -371,9 +391,11 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
               ? "Searching…"
               : `Showing ${filteredLessons.length} of ${lessons.length} lessons`}
           </p>
-          <button type="button" className="lessons-filter__clear" onClick={clearFilters}>
-            Clear Filters
-          </button>
+          {activeFilterCount > 0 && (
+            <button type="button" className="lessons-filter__clear" onClick={clearFilters}>
+              Clear Filters
+            </button>
+          )}
         </div>
       </div>
 

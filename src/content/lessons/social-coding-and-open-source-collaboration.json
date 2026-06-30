@@ -1,62 +1,71 @@
 {
-    "name": "Social Coding and Inclusive Communication",
-    "slug": "social-coding-and-open-source-collaboration",
-    "keepStatus": "keep",
-    "description": "Understand the 'human' side of open source, including respectful language, the 'release early, often' mindset, and the value of non-code contributions.",
-    "url": "https://coderefinery.github.io/social-coding/",
-    "topic": "Community, Git/Beg. VCS",
-    "subTopic": "Open Source Literacy",
-    "educationalLevel": "Beginner",
-    "learningResourceType": "workshop",
-    "author": "CodeRefinery Team",
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "inLanguage": [
-        "en"
-    ],
-    "keywords": [
-        "social coding",
-        "collaboration",
-        "inclusive communication",
-        "community standards"
-    ],
-    "sortingId": "7",
-    "prerequisiteNotes": "Readers should already be familiar with OSS as a concept",
-    "learningObjectives": "After this lesson, the learner should be able to:\n- Communicate effectively and inclusively with open source maintainers.\n- Understand the 'release early, often' development mindset.\n- Identify and perform valuable non-code contributions (e.g., documentation, testing).",
-    "ospoRelevance": "Core",
-    "abstract": "This lesson introduces the concept of social coding, covering how to collaborate effectively on open-source projects using GitHub, and how to engage with the developer community.",
-    "dateCreated": "2021-07-10",
-    "dateModified": "2023-04-15",
-    "timeRequired": "",
-    "about": "",
-    "accessibilitySummary": "",
-    "audience": "Researchers, Open Source Contributors, Software Developers",
-    "competencyRequired": "Git, GitHub, Open source basics",
-    "contributor": "",
-    "creativeWorkStatus": "Active",
-    "datePublished": "2021-08-01",
-    "hasPart": "",
-    "identifier": "https://coderefinery.github.io/social-coding/",
-    "isPartOf": "CodeRefinery Open Source Collaboration Series",
-    "notes": "",
-    "mentions": "GitHub, https://github.com, A platform for open source collaboration",
-    "recordedAt": "",
-    "teaches": "Engage constructively with decentralized development teams using open source communication norms.",
-    "version": "1.0.0",
-    "workTranslation": "",
-    "domain": "General Open Source",
-    "repoUrl": "https://github.com/coderefinery/social-coding",
-    "roles": [
-        "Community Manager",
-        "Maintainer"
-    ],
-    "pathways": [
-        "getting-started"
-    ],
-    "prerequisites": [
-        {
-            "type": "lesson",
-            "value": "how-to-contribute-to-open-source"
-        }
-    ],
-    "provider": "CodeRefinery"
+  "name": "Social Coding and Inclusive Communication",
+  "slug": "social-coding-and-open-source-collaboration",
+  "keepStatus": "keep",
+  "description": "Understand the 'human' side of open source, including respectful language, the 'release early, often' mindset, and the value of non-code contributions.",
+  "url": "https://coderefinery.github.io/social-coding/",
+  "topic": "Community, Git/Beg. VCS",
+  "subTopic": "Open Source Literacy",
+  "educationalLevel": "Beginner",
+  "learningResourceType": "workshop",
+  "author": "CodeRefinery Team",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "inLanguage": [
+    "en"
+  ],
+  "keywords": [
+    "social coding",
+    "collaboration",
+    "inclusive communication",
+    "community standards"
+  ],
+  "sortingId": "7",
+  "prerequisiteNotes": "Readers should already be familiar with OSS as a concept",
+  "learningObjectives": "After this lesson, the learner should be able to:\n- Communicate effectively and inclusively with open source maintainers.\n- Understand the 'release early, often' development mindset.\n- Identify and perform valuable non-code contributions (e.g., documentation, testing).",
+  "ospoRelevance": "Core",
+  "abstract": "This lesson introduces the concept of social coding, covering how to collaborate effectively on open-source projects using GitHub, and how to engage with the developer community.",
+  "dateCreated": "2021-07-10",
+  "dateModified": "2023-04-15",
+  "timeRequired": "",
+  "about": "",
+  "accessibilitySummary": "",
+  "audience": "Researchers, Open Source Contributors, Software Developers",
+  "competencyRequired": "Git, GitHub, Open source basics",
+  "contributor": "",
+  "creativeWorkStatus": "Active",
+  "datePublished": "2021-08-01",
+  "hasPart": "",
+  "identifier": "https://coderefinery.github.io/social-coding/",
+  "isPartOf": "CodeRefinery Open Source Collaboration Series",
+  "notes": "",
+  "mentions": "GitHub, https://github.com, A platform for open source collaboration",
+  "recordedAt": "",
+  "teaches": "Engage constructively with decentralized development teams using open source communication norms.",
+  "version": "1.0.0",
+  "workTranslation": "",
+  "domain": "General Open Source",
+  "repoUrl": "https://github.com/coderefinery/social-coding",
+  "roles": [
+    "Community Manager",
+    "Maintainer"
+  ],
+  "pathways": [
+    "getting-started"
+  ],
+  "prerequisites": [
+    {
+      "type": "lesson",
+      "value": "how-to-contribute-to-open-source"
+    }
+  ],
+  "provider": "CodeRefinery",
+  "topics": [
+    "Community, Governance & Conduct",
+    "Version Control & Collaborative Development"
+  ],
+  "audiences": [
+    "Open Source Contributor",
+    "Research Software Engineer / Developer",
+    "Researcher"
+  ]
 }

@@ -1,63 +1,72 @@
 {
-    "name": "Building Better Research Software",
-    "slug": "building-better-research-software",
-    "keepStatus": "keep",
-    "description": "This short course is teaching tools and practices for producing and sharing quality, sustainable and FAIR (Findable, Accessible, Interoperable and Reusable) research software to support open and reproducible research. The course can be delivered over 2 full or 4 half days.",
-    "url": "https://carpentries-incubator.github.io/better-research-software/",
-    "topic": "Research",
-    "subTopic": "Packaging",
-    "educationalLevel": "Intermediate",
-    "learningResourceType": "course",
-    "author": "The Carpentries Incubator",
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "inLanguage": [
-        "en"
-    ],
-    "keywords": [
-        "FAIR software",
-        "research software",
-        "reproducibility",
-        "software engineering",
-        "open science"
-    ],
-    "sortingId": "24",
-    "prerequisiteNotes": "This is a python based course | pre-requisites | Course lists like version control in git and command line, but the course does cover the information with exercises for the student | python-packaging | python-packaging-for-beginners | python-package-development-best-practices | python-basics | collaboration-in-open-research-projects | introduction-to-git | introduction-to-unix-command-line | introduction-to-version-control-with-git",
-    "learningObjectives": "After attending this training, you will be able to:\n- Explain key principles of open and reproducible research and their implications for research software development.\n- Analyse software for maintainability, reproducibility and reuse, identifying risks and opportunities for improvement.\n- Apply professional software development workflows for version control, reproducible environment management and collaboration.\n- Design modular and extensible software to support reuse and scalable development.\n- Design and implement testing, documentation and quality assurance practices to support correct and reusable research software.\n- Evaluate software projects for openness, sustainability, reusability and collaborative practices.\n- Select appropriate tools and practices to support collaborative and open research software development.",
-    "ospoRelevance": "Core",
-    "abstract": "This short course is teaching tools and practices for producing and sharing quality, sustainable and FAIR (Findable, Accessible, Interoperable and Reusable) research software to support open and reproducible research. The course can be delivered over 2 full or 4 half days.",
-    "dateCreated": "2023-10-03",
-    "dateModified": "2025-12-23",
-    "timeRequired": "PT10H5M",
-    "about": "",
-    "accessibilitySummary": "",
-    "audience": "Researchers, Research Software Engineers",
-    "competencyRequired": "Git",
-    "contributor": "Todd",
-    "creativeWorkStatus": "Under development",
-    "datePublished": "2025-12-23",
-    "hasPart": "",
-    "identifier": "https://carpentries-incubator.github.io/better-research-software",
-    "isPartOf": "",
-    "notes": "",
-    "mentions": "",
-    "recordedAt": "",
-    "teaches": "Apply sustainable and FAIR engineering workflows to produce reusable and maintainable research software.",
-    "version": "",
-    "workTranslation": "",
-    "domain": "Research Software",
-    "repoUrl": "https://github.com/carpentries-incubator/better-research-software",
-    "roles": [
-        "Contributor",
-        "Maintainer"
-    ],
-    "pathways": [
-        "maintaining"
-    ],
-    "prerequisites": [
-        {
-            "type": "lesson",
-            "value": "introduction-to-git"
-        }
-    ],
-    "provider": "The Carpentries Incubator"
+  "name": "Building Better Research Software",
+  "slug": "building-better-research-software",
+  "keepStatus": "keep",
+  "description": "This short course is teaching tools and practices for producing and sharing quality, sustainable and FAIR (Findable, Accessible, Interoperable and Reusable) research software to support open and reproducible research. The course can be delivered over 2 full or 4 half days.",
+  "url": "https://carpentries-incubator.github.io/better-research-software/",
+  "topic": "Research",
+  "subTopic": "Packaging",
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "course",
+  "author": "The Carpentries Incubator",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "inLanguage": [
+    "en"
+  ],
+  "keywords": [
+    "FAIR software",
+    "research software",
+    "reproducibility",
+    "software engineering",
+    "open science"
+  ],
+  "sortingId": "24",
+  "prerequisiteNotes": "This is a python based course | pre-requisites | Course lists like version control in git and command line, but the course does cover the information with exercises for the student | python-packaging | python-packaging-for-beginners | python-package-development-best-practices | python-basics | collaboration-in-open-research-projects | introduction-to-git | introduction-to-unix-command-line | introduction-to-version-control-with-git",
+  "learningObjectives": "After attending this training, you will be able to:\n- Explain key principles of open and reproducible research and their implications for research software development.\n- Analyse software for maintainability, reproducibility and reuse, identifying risks and opportunities for improvement.\n- Apply professional software development workflows for version control, reproducible environment management and collaboration.\n- Design modular and extensible software to support reuse and scalable development.\n- Design and implement testing, documentation and quality assurance practices to support correct and reusable research software.\n- Evaluate software projects for openness, sustainability, reusability and collaborative practices.\n- Select appropriate tools and practices to support collaborative and open research software development.",
+  "ospoRelevance": "Core",
+  "abstract": "This short course is teaching tools and practices for producing and sharing quality, sustainable and FAIR (Findable, Accessible, Interoperable and Reusable) research software to support open and reproducible research. The course can be delivered over 2 full or 4 half days.",
+  "dateCreated": "2023-10-03",
+  "dateModified": "2025-12-23",
+  "timeRequired": "PT10H5M",
+  "about": "",
+  "accessibilitySummary": "",
+  "audience": "Researchers, Research Software Engineers",
+  "competencyRequired": "Git",
+  "contributor": "Todd",
+  "creativeWorkStatus": "Under development",
+  "datePublished": "2025-12-23",
+  "hasPart": "",
+  "identifier": "https://carpentries-incubator.github.io/better-research-software",
+  "isPartOf": "",
+  "notes": "",
+  "mentions": "",
+  "recordedAt": "",
+  "teaches": "Apply sustainable and FAIR engineering workflows to produce reusable and maintainable research software.",
+  "version": "",
+  "workTranslation": "",
+  "domain": "Research Software",
+  "repoUrl": "https://github.com/carpentries-incubator/better-research-software",
+  "roles": [
+    "Contributor",
+    "Maintainer"
+  ],
+  "pathways": [
+    "maintaining"
+  ],
+  "prerequisites": [
+    {
+      "type": "lesson",
+      "value": "introduction-to-git"
+    }
+  ],
+  "provider": "The Carpentries Incubator",
+  "topics": [
+    "Open Science, FAIR & Research Software Metadata",
+    "Reproducibility, Environments & Workflows",
+    "Software Design & Engineering Practices"
+  ],
+  "audiences": [
+    "Research Software Engineer / Developer",
+    "Researcher"
+  ]
 }
