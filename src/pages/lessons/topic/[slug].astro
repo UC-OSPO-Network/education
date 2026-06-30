@@ -1,0 +1,102 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonCard from "../../../components/LessonCard.jsx";
+import { getActiveLessons, type Lesson } from "../../../lib/lessons";
+import { TOPIC_TERMS, topicByCode, termId, termSetId, TERM_SET_PATH, type TopicTerm } from "../../../data/topics";
+import githubHealthRaw from "../../../data/github-health.json";
+import type { HealthSnapshot } from "../../../lib/githubHealth";
+import "../../../components/lessons/lessons.css";
+
+interface Props {
+  term: TopicTerm;
+  lessons: Lesson[];
+}
+
+export async function getStaticPaths() {
+  const lessons = await getActiveLessons();
+  return TOPIC_TERMS.map((term) => ({
+    params: { slug: term.termCode },
+    props: {
+      term,
+      lessons: lessons.filter((l) => l.topics.includes(term.name)),
+    } satisfies Props,
+  }));
+}
+
+const { term, lessons } = Astro.props as Props;
+const healthData = githubHealthRaw as unknown as HealthSnapshot;
+
+const lessonIndex = Object.fromEntries(
+  lessons.filter((l) => l.slug && l.url).map((l) => [l.slug, { name: l.name || l.slug, url: l.url }]),
+);
+
+const base = import.meta.env.BASE_URL;
+const canonicalUrl = new URL(`${TERM_SET_PATH}/${term.termCode}`, Astro.site ?? "https://ucospo.net").href;
+
+// DefinedTerm with a SKOS closeMatch to the external authority. Mixing
+// schema.org and SKOS needs a context object; this is the formal crosswalk.
+const termJsonLd = {
+  "@context": { schema: "https://schema.org/", skos: "http://www.w3.org/2004/02/skos/core#" },
+  "@id": termId(Astro.site, term.termCode),
+  "@type": "schema:DefinedTerm",
+  "schema:name": term.name,
+  "schema:termCode": term.termCode,
+  "schema:description": term.description,
+  "schema:inDefinedTermSet": termSetId(Astro.site),
+  "skos:closeMatch": { "@id": term.crosswalk.uri },
+};
+---
+
+<BaseLayout title={term.name} description={term.description}>
+  <Fragment slot="head">
+    <link rel="canonical" href={canonicalUrl} />
+    <script type="application/ld+json" set:html={JSON.stringify(termJsonLd)} />
+  </Fragment>
+
+  <section class="page-intro">
+    <div class="content-container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href={base}>Home</a></li>
+          <li class="breadcrumbs__separator" aria-hidden="true">/</li>
+          <li><a href={`${base}lessons`}>Lessons</a></li>
+          <li class="breadcrumbs__separator" aria-hidden="true">/</li>
+          <li><a href={`${base}lessons/topic`}>Topics</a></li>
+          <li class="breadcrumbs__separator" aria-hidden="true">/</li>
+          <li aria-current="page">{term.name}</li>
+        </ol>
+      </nav>
+      <p class="page-intro__eyebrow">Topic</p>
+      <h1 class="page-intro__title">{term.name}</h1>
+      <p class="page-intro__summary">{term.description}</p>
+      <p class="page-intro__note">
+        Related standard:{" "}
+        <a href={term.crosswalk.uri} rel="external nofollow noopener" target="_blank">{term.crosswalk.label}</a>
+      </p>
+      <div class="page-intro__actions">
+        <a class="button-secondary" href={`${base}lessons/topic`}>All topics</a>
+        <a class="button-link" href={`${base}lessons?topic=${encodeURIComponent(term.name)}`}>Filter all lessons</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="content-container" style="padding-bottom: 2rem;">
+    {lessons.length === 0 ? (
+      <section class="page-section empty-state">
+        <p>No lessons are tagged with this topic yet.</p>
+      </section>
+    ) : (
+      <div class="lessons-grid">
+        {lessons.map((lesson) => (
+          <LessonCard
+            lesson={lesson}
+            lessonIndex={lessonIndex}
+            health={healthData.lessons[lesson.slug] ?? null}
+            headingLevel={2}
+            client:load
+          />
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>

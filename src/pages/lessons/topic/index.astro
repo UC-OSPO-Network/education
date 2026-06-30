@@ -1,0 +1,124 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getActiveLessons } from "../../../lib/lessons";
+import { TOPIC_TERMS, termId, termSetId, TERM_SET_PATH } from "../../../data/topics";
+
+const lessons = await getActiveLessons();
+
+const countByName: Record<string, number> = {};
+for (const lesson of lessons) {
+  for (const topic of lesson.topics) countByName[topic] = (countByName[topic] ?? 0) + 1;
+}
+
+const base = import.meta.env.BASE_URL;
+const canonicalUrl = new URL(TERM_SET_PATH, Astro.site ?? "https://ucospo.net").href;
+
+// The published DefinedTermSet: each term carries its external crosswalk as a
+// SKOS closeMatch so the set is a small, formally grounded RDF layer.
+const termSetJsonLd = {
+  "@context": { schema: "https://schema.org/", skos: "http://www.w3.org/2004/02/skos/core#" },
+  "@id": termSetId(Astro.site),
+  "@type": "schema:DefinedTermSet",
+  "schema:name": "UC OSPO Education: Lesson Topics",
+  "schema:description":
+    "Controlled vocabulary of open source and research software topics used to classify UC OSPO Network lessons.",
+  "schema:hasDefinedTerm": TOPIC_TERMS.map((term) => ({
+    "@id": termId(Astro.site, term.termCode),
+    "@type": "schema:DefinedTerm",
+    "schema:name": term.name,
+    "schema:termCode": term.termCode,
+    "skos:closeMatch": { "@id": term.crosswalk.uri },
+  })),
+};
+
+const sorted = [...TOPIC_TERMS].sort(
+  (a, b) => (countByName[b.name] ?? 0) - (countByName[a.name] ?? 0) || a.name.localeCompare(b.name),
+);
+---
+
+<BaseLayout
+  title="Lesson Topics"
+  description="Browse UC OSPO Network lessons by topic, a controlled vocabulary grounded in external standards."
+>
+  <Fragment slot="head">
+    <link rel="canonical" href={canonicalUrl} />
+    <script type="application/ld+json" set:html={JSON.stringify(termSetJsonLd)} />
+  </Fragment>
+
+  <section class="page-intro">
+    <div class="content-container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href={base}>Home</a></li>
+          <li class="breadcrumbs__separator" aria-hidden="true">/</li>
+          <li><a href={`${base}lessons`}>Lessons</a></li>
+          <li class="breadcrumbs__separator" aria-hidden="true">/</li>
+          <li aria-current="page">Topics</li>
+        </ol>
+      </nav>
+      <p class="page-intro__eyebrow">Education</p>
+      <h1 class="page-intro__title">Lesson Topics</h1>
+      <p class="page-intro__summary">
+        Browse lessons by subject. Each topic is part of a controlled vocabulary grounded in an
+        external standard (ACM, CHAOSS, FAIR4RS, OpenSSF, WCAG, and others).
+      </p>
+    </div>
+  </section>
+
+  <div class="content-container" style="padding-bottom: 2rem;">
+    <ul class="topic-term-list">
+      {sorted.map((term) => (
+        <li class="topic-term">
+          <a class="topic-term__link" href={`${base}lessons/topic/${term.termCode}`}>
+            <span class="topic-term__name">{term.name}</span>
+            <span class="topic-term__count">{countByName[term.name] ?? 0}</span>
+          </a>
+          <p class="topic-term__desc">{term.description}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>
+
+<style>
+  .topic-term-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: 1.25rem;
+  }
+  .topic-term {
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-2xl);
+    background: var(--bg-surface);
+    padding: 1.1rem 1.25rem;
+  }
+  .topic-term__link {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 1.02rem;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+  .topic-term__link:hover .topic-term__name {
+    text-decoration: underline;
+  }
+  .topic-term__count {
+    flex: none;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+  }
+  .topic-term__desc {
+    margin: 0.5rem 0 0;
+    font-size: 0.85rem;
+    line-height: 1.45;
+    color: var(--text-secondary);
+  }
+</style>
