@@ -4,8 +4,6 @@ export type CategoryIconName =
   | 'getting-started'
   | 'contributing'
   | 'maintaining'
-  | 'building-communities'
-  | 'licensing'
   | 'strategic';
 
 export interface HomepagePathwaySection {

@@ -3,8 +3,6 @@ import {
   PuzzlePieceIcon,
   UserGroupIcon,
   WrenchScrewdriverIcon,
-  SparklesIcon,
-  ScaleIcon,
   PresentationChartLineIcon,
 } from '@heroicons/react/24/outline';
 import type { CategoryIconName } from './types';
@@ -29,8 +27,6 @@ export default function CategoryIcon({
     'getting-started': <PuzzlePieceIcon style={style} />,
     contributing:      <UserGroupIcon style={style} />,
     maintaining:       <WrenchScrewdriverIcon style={style} />,
-    'building-communities': <SparklesIcon style={style} />,
-    licensing:         <ScaleIcon style={style} />,
     strategic:         <PresentationChartLineIcon style={style} />,
   };
 
