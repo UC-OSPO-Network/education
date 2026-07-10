@@ -4,8 +4,6 @@ const pathwayOptions = [
   { label: 'Getting Started with Open Source', value: 'getting-started' },
   { label: 'Contributing to a Project', value: 'contributing' },
   { label: 'Maintaining & Sustaining Software', value: 'maintaining' },
-  { label: 'Building Inclusive Communities', value: 'building-communities' },
-  { label: 'Understanding Licensing & Compliance', value: 'licensing' },
   { label: 'Strategic Practices & Career Development', value: 'strategic' },
 ] as const;
 

@@ -92,8 +92,6 @@ Which learning pathways this lesson belongs to. Must match pathway slugs exactly
 * `getting-started` — Getting Started with Open Source
 * `contributing` — Contributing to a Project
 * `maintaining` — Maintaining & Sustaining Software
-* `building-communities` — Building Inclusive Communities
-* `licensing` — Understanding Licensing & Compliance
 * `strategic` — Strategic Practices & Career Development
 
 A lesson may appear in more than one pathway. Most lessons belong to one.

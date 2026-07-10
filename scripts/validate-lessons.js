@@ -17,8 +17,6 @@ const FALLBACK_LEARNER_CATEGORIES = new Set([
   'Getting Started with Open Source',
   'Contributing to a Project',
   'Maintaining & Sustaining Software',
-  'Building Community',
-  'Understanding Licensing & Compliance',
   'Strategic Practices & Career Development',
 ]);
 
