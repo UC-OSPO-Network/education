@@ -2,7 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import LessonJsonLd from "../../components/LessonJsonLd.astro";
 import Citation from "../../components/Citation.astro";
-import { getLessons, getRelatedLessons, type Lesson, teachingTime, isCreatedByUs } from "../../lib/lessons";
+import { getLessons, getActiveLessons, getRelatedLessons, type Lesson, teachingTime, isCreatedByUs } from "../../lib/lessons";
 import { lookupProvider } from "../../lib/providers";
 import { normalizeCitation } from "../../lib/citation";
 import { getCollection } from "astro:content";
@@ -20,15 +20,15 @@ type Props = {
 };
 
 export async function getStaticPaths() {
-  const [lessons, pathways] = await Promise.all([getLessons(), getCollection("pathways")]);
+  const [lessons, activeLessons, pathways] = await Promise.all([
+    getLessons(),
+    getActiveLessons(),
+    getCollection("pathways"),
+  ]);
   const pathwayMap = Object.fromEntries(pathways.map((p) => [p.id, p.data.name]));
   const slugToName = Object.fromEntries(lessons.map((l) => [l.slug, l.name]));
 
-  const candidates = lessons.filter(
-    (lesson) => typeof lesson.slug === "string" && lesson.slug.trim().length > 0,
-  );
-
-  return candidates.map((lesson) => {
+  return activeLessons.map((lesson) => {
     const pathwayId = lesson.pathways[0] ?? "";
     const pathwayName = pathwayMap[pathwayId] ?? "";
     const relatedLessons = getRelatedLessons(lesson, lessons);

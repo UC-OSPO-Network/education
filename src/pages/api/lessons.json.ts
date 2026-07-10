@@ -2,12 +2,12 @@ import type { APIRoute } from 'astro';
 import { getLessons } from '../../lib/lessons';
 import type { HealthSnapshot } from '../../lib/githubHealth';
 import githubHealthRaw from '../../data/github-health.json';
+import { absoluteUrl } from '../../lib/urls';
 
 const healthData = githubHealthRaw as unknown as HealthSnapshot;
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async (context) => {
   const lessons = await getLessons();
-  const siteUrl = 'https://ucospo.net/education';
   const healthLessons = healthData.lessons ?? {};
 
   const catalog = lessons
@@ -18,7 +18,7 @@ export const GET: APIRoute = async () => {
       return {
         name: l.name,
         slug: l.slug,
-        url: `${siteUrl}/lessons/${l.slug}`,
+        url: absoluteUrl(context.site, `lessons/${l.slug}`),
         externalUrl: l.url || null,
         repoUrl: l.repoUrl || null,
         description: l.description || null,

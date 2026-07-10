@@ -9,6 +9,8 @@
 // The term set lives at /lessons/topic; each term at /lessons/topic/<termCode>,
 // which doubles as the human browse page (#5) and the DefinedTerm @id (#2).
 
+import { absoluteUrl } from "../lib/urls";
+
 export interface TopicCrosswalk {
   /** Human label for the external authority. */
   label: string;
@@ -124,15 +126,6 @@ export function topicByName(name: string): TopicTerm | undefined {
 
 export function topicByCode(code: string): TopicTerm | undefined {
   return BY_CODE.get(code);
-}
-
-// Build a deployed absolute URL, honoring the site's base path (`/education/`
-// in production) and Astro's trailing-slash output, so these @ids match the
-// pages' own canonical URLs exactly.
-function absoluteUrl(site: URL | undefined, path: string): string {
-  const base = import.meta.env.BASE_URL; // "/education/" in prod, "/" in dev
-  const joined = `${base.replace(/\/$/, "")}/${path.replace(/^\//, "")}`.replace(/\/?$/, "/");
-  return new URL(joined, site ?? "https://ucospo.net").href;
 }
 
 /** Absolute @id for a term, e.g. https://ucospo.net/education/lessons/topic/<code>/. */
