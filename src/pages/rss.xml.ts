@@ -1,6 +1,7 @@
 import rss from '@astrojs/rss';
 import type { APIRoute } from 'astro';
 import { getActiveLessons } from '../lib/lessons';
+import { absoluteUrl } from '../lib/urls';
 
 export const GET: APIRoute = async (context) => {
   const lessons = await getActiveLessons();
@@ -17,7 +18,7 @@ export const GET: APIRoute = async (context) => {
       return {
         title: lesson.name,
         description: lesson.description || lesson.abstract || '',
-        link: `${context.site}lessons/${lesson.slug}`,
+        link: absoluteUrl(context.site, `lessons/${lesson.slug}`),
         pubDate: pubDate ? new Date(pubDate) : undefined,
         categories: lesson.keywords,
       };
@@ -26,7 +27,7 @@ export const GET: APIRoute = async (context) => {
   return rss({
     title: 'UC OSPO Education — New & Updated Lessons',
     description: 'Curated open source education lessons from the UC OSPO Network.',
-    site: context.site!,
+    site: absoluteUrl(context.site, '/'),
     items,
     customData: '<language>en-us</language>',
   });

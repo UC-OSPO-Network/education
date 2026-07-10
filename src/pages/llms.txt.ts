@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getActiveLessons } from '../lib/lessons';
 import { getCollection } from 'astro:content';
+import { absoluteUrl, absoluteFileUrl } from '../lib/urls';
 
 export const GET: APIRoute = async (context) => {
   const [lessons, pathways] = await Promise.all([
@@ -9,23 +10,22 @@ export const GET: APIRoute = async (context) => {
   ]);
 
   const sortedPathways = pathways.sort((a, b) => a.data.order - b.data.order);
-  const base = context.site?.toString().replace(/\/$/, '') ?? '';
 
   const lines: string[] = [
     '# UC OSPO Education',
     '> Curated open source education lessons from the UC OSPO Network.',
     '',
-    `Site: ${base}/education/`,
-    `Lessons: ${base}/education/lessons`,
-    `Pathways: ${base}/education/pathways`,
-    `RSS: ${base}/education/rss.xml`,
-    `API (JSON): ${base}/education/api/lessons.json`,
+    `Site: ${absoluteUrl(context.site, '/')}`,
+    `Lessons: ${absoluteUrl(context.site, 'lessons')}`,
+    `Pathways: ${absoluteUrl(context.site, 'pathways')}`,
+    `RSS: ${absoluteFileUrl(context.site, 'rss.xml')}`,
+    `API (JSON): ${absoluteFileUrl(context.site, 'api/lessons.json')}`,
     '',
     '## Pathways',
   ];
 
   for (const pathway of sortedPathways) {
-    lines.push(`- ${pathway.data.name}: ${base}/education/pathways/${pathway.id}`);
+    lines.push(`- ${pathway.data.name}: ${absoluteUrl(context.site, `pathways/${pathway.id}`)}`);
     lines.push(`  ${pathway.data.description}`);
   }
 
@@ -37,7 +37,7 @@ export const GET: APIRoute = async (context) => {
       .map((id) => sortedPathways.find((p) => p.id === id)?.data.name)
       .filter(Boolean)
       .join(', ');
-    lines.push(`- [${lesson.name}](${base}/education/lessons/${slug})`);
+    lines.push(`- [${lesson.name}](${absoluteUrl(context.site, `lessons/${slug}`)})`);
     if (lesson.description) lines.push(`  ${lesson.description}`);
     if (pathwayNames) lines.push(`  Pathways: ${pathwayNames}`);
     if (lesson.educationalLevel) lines.push(`  Level: ${lesson.educationalLevel}`);
