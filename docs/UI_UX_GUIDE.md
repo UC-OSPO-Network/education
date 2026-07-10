@@ -131,7 +131,7 @@ File: `src/components/home/CategoryIcon.tsx`
 Supported icon names are defined in `src/components/home/types.ts`:
 
 ```ts
-'getting-started' | 'contributing' | 'maintaining' | 'building-communities' | 'licensing' | 'strategic'
+'getting-started' | 'contributing' | 'maintaining' | 'strategic'
 ```
 
 Props:
