@@ -3,6 +3,7 @@ import type { Lesson } from "../lib/lessons";
 import { isCreatedByUs, CREATOR_ORG } from "../lib/provenance";
 import { getCollection } from "astro:content";
 import { topicByName, termId, termSetId } from "../data/topics";
+import { absoluteUrl } from "../lib/urls";
 
 interface Props {
   lesson: Lesson;
@@ -86,6 +87,7 @@ if (lesson.roles.length > 0) {
 if (lesson.pathways.length > 0) {
   data.isPartOf = lesson.pathways.map((id) => ({
     "@type": "Course",
+    "@id": absoluteUrl(Astro.site, `pathways/${id}`),
     name: pathwayMap[id] ?? id,
   }));
 }

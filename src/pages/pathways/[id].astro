@@ -6,6 +6,9 @@ import LessonCard from "../../components/LessonCard.jsx";
 import githubHealthRaw from "../../data/github-health.json";
 import type { HealthSnapshot } from "../../lib/githubHealth";
 import "../../components/lessons/lessons.css";
+import { absoluteUrl } from "../../lib/urls";
+import { topicByName, termId, termSetId } from "../../data/topics";
+import { CREATOR_ORG } from "../../lib/provenance";
 
 const healthData = githubHealthRaw as unknown as HealthSnapshot;
 
@@ -76,6 +79,37 @@ const sortedGroups = Object.entries(groupedLessons).sort(([keyA, aLessons], [key
   const minB = Math.min(...bLessons.map((l) => parseInt(l.sortingId) || 999));
   return minA - minB;
 });
+
+const canonicalUrl = absoluteUrl(Astro.site, `pathways/${id}`);
+
+// Subject terms this pathway covers, derived from its lessons' own controlled
+// topic vocabulary (same DefinedTerm set the lesson pages reference), not a
+// separate free-text list that could drift.
+const aboutTerms = Array.from(new Set(pathwayLessons.flatMap((lesson) => lesson.topics)))
+  .map((topicName) => topicByName(topicName))
+  .filter((t): t is NonNullable<typeof t> => t !== undefined)
+  .map((t) => ({
+    "@type": "DefinedTerm",
+    "@id": termId(Astro.site, t.termCode),
+    name: t.name,
+    termCode: t.termCode,
+    inDefinedTermSet: termSetId(Astro.site),
+  }));
+
+// A pathway is a curated, self-paced sequence rather than formal instruction,
+// but lesson pages already declare `isPartOf` a Course with this pathway's
+// name (see LessonJsonLd.astro) — Course keeps that reference resolvable
+// via a matching @id instead of leaving it a dangling, unreferenced node.
+const pathwayJsonLd: Record<string, unknown> = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "@id": canonicalUrl,
+  name,
+  description,
+  url: canonicalUrl,
+  provider: { "@type": "Organization", name: CREATOR_ORG },
+};
+if (aboutTerms.length > 0) pathwayJsonLd.about = aboutTerms;
 ---
 
 <style>
@@ -105,6 +139,11 @@ const sortedGroups = Object.entries(groupedLessons).sort(([keyA, aLessons], [key
 </style>
 
 <BaseLayout title={name} description={description}>
+  <Fragment slot="head">
+    <link rel="canonical" href={canonicalUrl} />
+    <script type="application/ld+json" set:html={JSON.stringify(pathwayJsonLd)} />
+  </Fragment>
+
   <section class="page-intro">
     <div class="content-container">
       <nav class="breadcrumbs" aria-label="Breadcrumb">
