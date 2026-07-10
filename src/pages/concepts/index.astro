@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const concepts = (await getCollection("concepts")).sort((a, b) => a.data.name.localeCompare(b.data.name));
+---
+
+<style>
+  .concepts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+  }
+  .concept-card {
+    display: block;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    text-decoration: none;
+    color: inherit;
+  }
+  .concept-card:hover {
+    border-color: var(--uc-blue);
+  }
+  .concept-card h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+  }
+  .concept-card p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+  }
+</style>
+
+<BaseLayout
+  title="Concepts"
+  description="Plain-language definitions of the terms and ideas behind the UC OSPO Education catalog."
+>
+  <section class="page-intro">
+    <div class="content-container">
+      <p class="page-intro__eyebrow">Education</p>
+      <h1 class="page-intro__title">Concepts</h1>
+      <p class="page-intro__summary">
+        Definitions and explanations for the terms behind this catalog — starting points for people
+        new to open source program offices and open source practice.
+      </p>
+    </div>
+  </section>
+
+  <div class="content-container">
+    <div class="concepts-grid">
+      {concepts.map((concept) => (
+        <a class="concept-card" href={`${import.meta.env.BASE_URL}concepts/${concept.data.slug}`}>
+          <h2>{concept.data.name}</h2>
+          <p>{concept.data.quotableDefinition}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

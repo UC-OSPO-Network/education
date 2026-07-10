@@ -108,4 +108,20 @@ const pathways = defineCollection({
   }),
 });
 
-export const collections = { lessons, pathways };
+const concepts = defineCollection({
+  type: 'data',
+  schema: z.object({
+    slug: z.string(),
+    name: z.string(),
+    // 1-2 sentence standalone definition — the AI-answer-engine payload.
+    quotableDefinition: z.string(),
+    body: z.string(),
+    faq: z.array(z.object({ question: z.string(), answer: z.string() })).default([]),
+    relatedLessonSlugs: z.array(z.string()).default([]),
+    relatedTopicCodes: z.array(z.string()).default([]),
+    relatedConceptSlugs: z.array(z.string()).default([]),
+    dateModified: z.string().default(''),
+  }),
+});
+
+export const collections = { lessons, pathways, concepts };

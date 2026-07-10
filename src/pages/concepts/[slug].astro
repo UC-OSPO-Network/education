@@ -1,0 +1,241 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LessonCard from "../../components/LessonCard.jsx";
+import { getCollection } from "astro:content";
+import { getLessons, type Lesson } from "../../lib/lessons";
+import { absoluteUrl } from "../../lib/urls";
+import { topicByCode, termId, termSetId } from "../../data/topics";
+import githubHealthRaw from "../../data/github-health.json";
+import type { HealthSnapshot } from "../../lib/githubHealth";
+
+const healthData = githubHealthRaw as unknown as HealthSnapshot;
+
+interface ConceptData {
+  slug: string;
+  name: string;
+  quotableDefinition: string;
+  body: string;
+  faq: { question: string; answer: string }[];
+  relatedLessonSlugs: string[];
+  relatedTopicCodes: string[];
+  relatedConceptSlugs: string[];
+  dateModified: string;
+}
+
+interface Props {
+  concept: ConceptData;
+  relatedLessons: Lesson[];
+  relatedConcepts: { slug: string; name: string }[];
+}
+
+export async function getStaticPaths() {
+  const [concepts, allLessons] = await Promise.all([getCollection("concepts"), getLessons()]);
+  const conceptIndex = Object.fromEntries(concepts.map((c) => [c.data.slug, c.data.name]));
+
+  return concepts.map((entry) => {
+    const concept = entry.data as ConceptData;
+    const relatedLessons = concept.relatedLessonSlugs
+      .map((slug) => allLessons.find((l) => l.slug === slug))
+      .filter((l): l is Lesson => l !== undefined);
+    const relatedConcepts = concept.relatedConceptSlugs
+      .filter((slug) => conceptIndex[slug])
+      .map((slug) => ({ slug, name: conceptIndex[slug] }));
+
+    return {
+      params: { slug: concept.slug },
+      props: { concept, relatedLessons, relatedConcepts } satisfies Props,
+    };
+  });
+}
+
+const { concept, relatedLessons, relatedConcepts } = Astro.props as Props;
+
+const canonicalUrl = absoluteUrl(Astro.site, `concepts/${concept.slug}`);
+
+const lessonIndex = Object.fromEntries(
+  relatedLessons.filter((l) => l.slug && l.url).map((l) => [l.slug, { name: l.name || l.slug, url: l.url }]),
+);
+
+const relatedTopics = concept.relatedTopicCodes
+  .map((code) => topicByCode(code))
+  .filter((t): t is NonNullable<typeof t> => t !== undefined);
+
+const bodyParagraphs = concept.body.split("\n\n").filter((p) => p.trim());
+
+const conceptJsonLd: Record<string, unknown> = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": canonicalUrl,
+  name: concept.name,
+  description: concept.quotableDefinition,
+  articleBody: concept.body,
+  url: canonicalUrl,
+};
+if (concept.dateModified) conceptJsonLd.dateModified = concept.dateModified;
+if (relatedTopics.length > 0) {
+  conceptJsonLd.about = relatedTopics.map((t) => ({
+    "@type": "DefinedTerm",
+    "@id": termId(Astro.site, t.termCode),
+    name: t.name,
+    termCode: t.termCode,
+    inDefinedTermSet: termSetId(Astro.site),
+  }));
+}
+
+const faqJsonLd =
+  concept.faq.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: concept.faq.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: { "@type": "Answer", text: item.answer },
+        })),
+      }
+    : null;
+---
+
+<style>
+  .concept-definition {
+    background: var(--bg-surface-strong);
+    border-left: 3px solid var(--uc-blue);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 1rem 1.25rem;
+    font-size: 1.05rem;
+    margin: 0 0 2rem;
+  }
+
+  .concept-body p {
+    margin: 0 0 1rem;
+  }
+  .concept-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .concept-faq dt {
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+  }
+  .concept-faq dd {
+    margin: 0 0 1.25rem;
+    color: var(--text-secondary);
+  }
+  .concept-faq dd:last-child {
+    margin-bottom: 0;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18.5rem, 1fr));
+    gap: 1.5rem;
+  }
+
+  .related-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .topic-chip {
+    display: inline-block;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-pill);
+    padding: 0.3rem 0.85rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+  .topic-chip:hover {
+    border-color: var(--uc-blue);
+    color: var(--uc-blue);
+  }
+</style>
+
+<BaseLayout title={concept.name} description={concept.quotableDefinition}>
+  <Fragment slot="head">
+    <link rel="canonical" href={canonicalUrl} />
+    <script type="application/ld+json" set:html={JSON.stringify(conceptJsonLd)} />
+    {faqJsonLd && <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}
+  </Fragment>
+
+  <section class="page-intro">
+    <div class="content-container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href={import.meta.env.BASE_URL}>Home</a></li>
+          <li class="breadcrumbs__separator" aria-hidden="true">/</li>
+          <li><a href={`${import.meta.env.BASE_URL}concepts`}>Concepts</a></li>
+          <li class="breadcrumbs__separator" aria-hidden="true">/</li>
+          <li aria-current="page">{concept.name}</li>
+        </ol>
+      </nav>
+      <p class="page-intro__eyebrow">Concept</p>
+      <h1 class="page-intro__title">{concept.name}</h1>
+    </div>
+  </section>
+
+  <div class="content-container">
+    <p class="concept-definition">{concept.quotableDefinition}</p>
+
+    <div class="concept-body">
+      {bodyParagraphs.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+    </div>
+
+    {concept.faq.length > 0 && (
+      <section class="page-section concept-faq" aria-labelledby="faq-heading">
+        <h2 class="section-heading" id="faq-heading">Frequently asked questions</h2>
+        <dl>
+          {concept.faq.map((item) => (
+            <>
+              <dt>{item.question}</dt>
+              <dd>{item.answer}</dd>
+            </>
+          ))}
+        </dl>
+      </section>
+    )}
+
+    {relatedLessons.length > 0 && (
+      <section class="page-section" aria-labelledby="related-lessons-heading">
+        <h2 class="section-heading" id="related-lessons-heading">Related lessons</h2>
+        <div class="related-grid">
+          {relatedLessons.map((lesson) => (
+            <LessonCard
+              lesson={lesson}
+              lessonIndex={lessonIndex}
+              health={healthData.lessons[lesson.slug] ?? null}
+              headingLevel={3}
+              client:load
+            />
+          ))}
+        </div>
+      </section>
+    )}
+
+    {relatedTopics.length > 0 && (
+      <section class="page-section" aria-labelledby="related-topics-heading">
+        <h2 class="section-heading" id="related-topics-heading">Related topics</h2>
+        <div class="related-topics">
+          {relatedTopics.map((topic) => (
+            <a class="topic-chip" href={`${import.meta.env.BASE_URL}lessons/topic/${topic.termCode}`}>
+              {topic.name}
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {relatedConcepts.length > 0 && (
+      <section class="page-section" aria-labelledby="related-concepts-heading">
+        <h2 class="section-heading" id="related-concepts-heading">Related concepts</h2>
+        <ul>
+          {relatedConcepts.map((c) => (
+            <li><a href={`${import.meta.env.BASE_URL}concepts/${c.slug}`}>{c.name}</a></li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </div>
+</BaseLayout>
