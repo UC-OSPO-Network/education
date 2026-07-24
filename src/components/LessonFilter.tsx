@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import LessonCard from "./LessonCard.jsx";
 import type { Lesson } from "../lib/lessons";
 import type { HealthRecord } from "../lib/githubHealth";
+import { buildPlanMarkdown, downloadPlan } from "../lib/exportPlan";
 
 interface LessonFilterProps {
   lessons: Lesson[];
@@ -120,6 +121,14 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
     () => new Set(FACET_KEYS.filter((k) => getInitialFilters()[k].length > 0)),
   );
 
+  // Workshop Planning Worksheet selection — independent of the active filters, so a
+  // selection made under one facet state survives narrowing/widening the visible grid.
+  const [selectedSlugs, setSelectedSlugs] = useState<string[]>([]);
+  const [workshopTitle, setWorkshopTitle] = useState("");
+  const [trayAnnouncement, setTrayAnnouncement] = useState("");
+  const reorderButtonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const pendingFocusKeyRef = useRef<string | null>(null);
+
   const pagefindRef = useRef<PagefindModule | null>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -227,6 +236,69 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
     return index;
   }, [lessons]);
 
+  // Built from the full lesson set, not filteredLessons — a selection made under one
+  // facet state must not disappear from the tray when a different facet narrows the grid.
+  const lessonsBySlug = useMemo(() => {
+    const map: Record<string, Lesson> = {};
+    lessons.forEach((lesson) => {
+      map[lesson.slug] = lesson;
+    });
+    return map;
+  }, [lessons]);
+
+  const selectedLessons = useMemo(
+    () => selectedSlugs.map((slug) => lessonsBySlug[slug]).filter((l): l is Lesson => Boolean(l)),
+    [selectedSlugs, lessonsBySlug],
+  );
+
+  function toggleSelected(slug: string) {
+    setSelectedSlugs((prev) => {
+      const isAdding = !prev.includes(slug);
+      const name = lessonsBySlug[slug]?.name ?? slug;
+      const nextCount = isAdding ? prev.length + 1 : prev.length - 1;
+      setTrayAnnouncement(`${isAdding ? "Added" : "Removed"} "${name}". ${nextCount} selected.`);
+      return isAdding ? [...prev, slug] : prev.filter((s) => s !== slug);
+    });
+  }
+
+  function moveSelected(slug: string, direction: -1 | 1) {
+    setSelectedSlugs((prev) => {
+      const i = prev.indexOf(slug);
+      const j = i + direction;
+      if (i < 0 || j < 0 || j >= prev.length) return prev;
+      const next = [...prev];
+      [next[i], next[j]] = [next[j], next[i]];
+      // If the moved item now sits at the boundary in the direction it just moved, its
+      // "move further" button will be disabled next render — queue a focus shift to the
+      // sibling button that stays enabled, instead of letting focus drop to <body>.
+      const atBoundary = direction === -1 ? j === 0 : j === next.length - 1;
+      pendingFocusKeyRef.current = atBoundary ? `${slug}-${direction === -1 ? "down" : "up"}` : null;
+      return next;
+    });
+  }
+
+  useEffect(() => {
+    if (!pendingFocusKeyRef.current) return;
+    reorderButtonRefs.current[pendingFocusKeyRef.current]?.focus();
+    pendingFocusKeyRef.current = null;
+  }, [selectedSlugs]);
+
+  function clearSelection() {
+    setSelectedSlugs([]);
+    setTrayAnnouncement("Cleared workshop plan selection.");
+  }
+
+  function handleDownload() {
+    const sourceUrl =
+      typeof window !== "undefined"
+        ? `${window.location.origin}${import.meta.env.BASE_URL}lessons`
+        : "";
+    const markdown = buildPlanMarkdown(selectedLessons, pathwayNames, { workshopTitle, sourceUrl });
+    const dateStr = new Date().toISOString().slice(0, 10);
+    downloadPlan(`workshop-planning-worksheet-${dateStr}.md`, markdown);
+    setTrayAnnouncement(`Downloaded worksheet with ${selectedLessons.length} lessons.`);
+  }
+
   // Lessons passing the full-text search, before facet filtering. The base set
   // for live facet counts.
   const searchedLessons = useMemo(
@@ -307,6 +379,42 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
     return null;
   }
 
+  // Audience and pathway are promoted out of the collapsed-facet grid into always-visible
+  // button rows — same filters/toggleValue/facetCounts state as every other facet, just a
+  // different rendering. See docs/validation-prompt-instructor-context-2026-07-14.md-adjacent
+  // ia-review artifact for why these two specifically: at 43 lessons, "who is this for" and
+  // "what stage" are the two questions visitors actually ask first.
+  function renderPromotedFacet(key: FacetKey, legend: string) {
+    const options = filterOptions[key];
+    if (options.length === 0) return null;
+    const selected = filters[key];
+    const counts = facetCounts[key];
+    return (
+      <fieldset className="lessons-promoted-facet">
+        <legend className="lessons-promoted-facet__legend">{legend}</legend>
+        <div className="lessons-promoted-facet__options">
+          {options.map((value) => {
+            const count = counts.get(value) ?? 0;
+            const isSelected = selected.includes(value);
+            const disabled = count === 0 && !isSelected;
+            return (
+              <button
+                key={value}
+                type="button"
+                className="lessons-promoted-facet__button"
+                aria-pressed={isSelected}
+                disabled={disabled}
+                onClick={() => toggleValue(key, value)}
+              >
+                {displayValue(key, value)} <span className="lessons-promoted-facet__count">{count}</span>
+              </button>
+            );
+          })}
+        </div>
+      </fieldset>
+    );
+  }
+
   const activeFilterCount =
     FACET_KEYS.reduce((sum, k) => sum + filters[k].length, 0) + (filters.search.trim() ? 1 : 0);
 
@@ -319,7 +427,7 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
   }
 
   return (
-    <div className="lessons-page">
+    <div className={`lessons-page${selectedSlugs.length > 0 ? " lessons-page--tray-open" : ""}`}>
       <div className="lessons-filter">
         <div className="lessons-filter__field lessons-filter__field--search">
           <label htmlFor="lesson-search" className="lessons-filter__label">Search</label>
@@ -333,8 +441,11 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
           />
         </div>
 
+        {renderPromotedFacet("audience", "Who are the learners?")}
+        {renderPromotedFacet("pathway", "What do they need?")}
+
         <div className="lessons-filter__grid">
-          {FACETS.map(({ key, label }) => {
+          {FACETS.filter(({ key }) => key !== "audience" && key !== "pathway").map(({ key, label }) => {
             const options = filterOptions[key];
             if (options.length === 0) return null;
             const selected = filters[key];
@@ -399,6 +510,73 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
         </div>
       </div>
 
+      <div aria-live="polite" aria-atomic="true" className="sr-only">
+        {trayAnnouncement}
+      </div>
+
+      {selectedSlugs.length > 0 && (
+        <section className="workshop-tray" aria-labelledby="workshop-tray-heading">
+          <h2 id="workshop-tray-heading" className="sr-only">Workshop plan selection</h2>
+          <div className="workshop-tray__summary">
+            <span className="workshop-tray__count">
+              {selectedSlugs.length} lesson{selectedSlugs.length === 1 ? "" : "s"} selected
+            </span>
+            <label className="workshop-tray__title-field">
+              <span className="sr-only">Workshop or course title</span>
+              <input
+                type="text"
+                placeholder="Workshop or course title (optional)"
+                value={workshopTitle}
+                onChange={(e) => setWorkshopTitle(e.target.value)}
+              />
+            </label>
+            <div className="workshop-tray__actions">
+              <button type="button" className="lessons-filter__clear" onClick={clearSelection}>
+                Clear
+              </button>
+              <button type="button" className="workshop-tray__download" onClick={handleDownload}>
+                Download Worksheet
+              </button>
+            </div>
+          </div>
+
+          <ol className="workshop-tray__list">
+            {selectedLessons.map((lesson, i) => (
+              <li key={lesson.slug} className="workshop-tray__item">
+                <span className="workshop-tray__item-name">{lesson.name || lesson.slug}</span>
+                <div className="workshop-tray__item-controls">
+                  <button
+                    type="button"
+                    ref={(el) => { reorderButtonRefs.current[`${lesson.slug}-up`] = el; }}
+                    disabled={i === 0}
+                    onClick={() => moveSelected(lesson.slug, -1)}
+                    aria-label={`Move "${lesson.name}" earlier in the plan`}
+                  >
+                    ↑
+                  </button>
+                  <button
+                    type="button"
+                    ref={(el) => { reorderButtonRefs.current[`${lesson.slug}-down`] = el; }}
+                    disabled={i === selectedLessons.length - 1}
+                    onClick={() => moveSelected(lesson.slug, 1)}
+                    aria-label={`Move "${lesson.name}" later in the plan`}
+                  >
+                    ↓
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => toggleSelected(lesson.slug)}
+                    aria-label={`Remove "${lesson.name}" from the plan`}
+                  >
+                    ✕
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
       <div className="lessons-grid">
         {isSearching ? (
           <div className="lessons-loading">
@@ -418,6 +596,8 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
               lesson={lesson}
               lessonIndex={lessonIndex}
               health={healthBySlug[lesson.slug] ?? null}
+              isSelected={selectedSlugs.includes(lesson.slug)}
+              onToggle={toggleSelected}
             />
           ))
         )}

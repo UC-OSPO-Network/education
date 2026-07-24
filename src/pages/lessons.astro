@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import LessonFilter from "../components/LessonFilter.tsx";
+import EducatorToolkit from "../components/EducatorToolkit.astro";
 import { getActiveLessons } from "../lib/lessons";
 import { getCollection } from "astro:content";
 import githubHealthRaw from "../data/github-health.json";
@@ -16,6 +17,8 @@ const pagefindPath = `${import.meta.env.BASE_URL}pagefind/`;
 // Project" rather than the raw "contributing" slug.
 const pathways = await getCollection("pathways");
 const pathwayNames = Object.fromEntries(pathways.map((p) => [p.id, p.data.name]));
+
+const gettingStartedCount = activeLessons.filter((l) => l.pathways.includes("getting-started")).length;
 
 const site = Astro.site ?? new URL("https://ucospo.net");
 const base = import.meta.env.BASE_URL;
@@ -87,6 +90,29 @@ const datasetJsonLd = {
       </p>
     </div>
   </section>
+
+  {gettingStartedCount > 0 && (
+    <div class="content-container">
+      <a class="lessons-start-here" href={`${base}pathways/getting-started`}>
+        <p class="lessons-start-here__eyebrow">New to open source?</p>
+        <h2 class="lessons-start-here__title">Getting Started with Open Source</h2>
+        <p class="lessons-start-here__summary">
+          {gettingStartedCount} lessons on what open source is, how licensing and version control
+          work, and your first contribution.
+        </p>
+        <span class="lessons-start-here__cta">Start here →</span>
+      </a>
+    </div>
+  )}
+
+  <div class="content-container">
+    <EducatorToolkit />
+    <p class="page-intro__note">
+      Teaching one of these lessons? We're here to help, email
+      <a href="mailto:tdennis@library.ucla.edu">tdennis@library.ucla.edu</a> or
+      <a href="https://github.com/UC-OSPO-Network/education/discussions" target="_blank" rel="noopener noreferrer">start a discussion on GitHub</a>.
+    </p>
+  </div>
 
   {activeLessons.length === 0 ? (
     <div class="content-container">

@@ -55,7 +55,7 @@ test("keyboard users can skip to main content and operate the desktop nav", asyn
   await page.keyboard.press("Enter");
   await expect(educationTrigger).toHaveAttribute("aria-expanded", "true");
   const primaryNav = page.getByRole("navigation", { name: /primary/i });
-  await expect(primaryNav.getByRole("link", { name: "All Lessons" })).toBeVisible();
+  await expect(primaryNav.getByRole("link", { name: "Lessons", exact: true })).toBeVisible();
   await expect(primaryNav.getByRole("link", { name: "Glossary" })).toBeVisible();
   await expect(primaryNav.getByRole("link", { name: "Search", exact: true })).toHaveCount(0);
   await page.waitForTimeout(250);
@@ -146,6 +146,42 @@ test("lesson filter query params initialize controls and clear from the URL", as
   await expect(count).not.toHaveText(filteredCount || "");
 });
 
+test("workshop plan tray: keyboard selection, reorder focus, and download", async ({ page }) => {
+  await gotoEducation(page, "./lessons/");
+
+  const checkboxes = page.locator(".lesson-card__select-input");
+  await checkboxes.nth(0).focus();
+  await page.keyboard.press("Space");
+  await checkboxes.nth(1).focus();
+  await page.keyboard.press("Space");
+
+  const tray = page.getByRole("region", { name: /workshop plan selection/i });
+  await expect(tray).toBeVisible();
+  await expect(page.locator(".workshop-tray__count")).toHaveText("2 lessons selected");
+  await expect(tray.getByRole("listitem")).toHaveCount(2);
+
+  // Boundary reorder: moving the first item "up" is a no-op button (disabled), so exercise
+  // moving it down twice — the second move lands it at the end, disabling its own "later"
+  // button, which is exactly the focus-loss case the implementation guards against.
+  const firstItemDown = tray.getByRole("listitem").first().getByRole("button", { name: /later in the plan/i });
+  await firstItemDown.focus();
+  await page.keyboard.press("Enter");
+  await page.keyboard.press("Enter");
+  await expect(page.evaluate(() => document.activeElement?.tagName.toLowerCase())).resolves.toBe("button");
+  await expect(page.evaluate(() => document.activeElement === document.body)).resolves.toBe(false);
+
+  const downloadPromise = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Download Worksheet" }).click();
+  const download = await downloadPromise;
+  expect(download.suggestedFilename()).toMatch(/^workshop-planning-worksheet-\d{4}-\d{2}-\d{2}\.md$/);
+
+  await page.getByRole("button", { name: "Clear" }).click();
+  await expect(tray).not.toBeVisible();
+
+  // NOTE: not calling expectNoAxeViolations here — /lessons/ has a pre-existing color-contrast
+  // violation (.page-intro__note, unrelated to this feature) that isn't this test's job to fix.
+});
+
 test("mobile navigation opens, closes, and passes axe in expanded state", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await gotoEducation(page);
@@ -162,7 +198,7 @@ test("mobile navigation opens, closes, and passes axe in expanded state", async 
   await expect(educationTrigger).toHaveAttribute("aria-expanded", "true");
   await expect(headerSearch(page)).toBeVisible();
   const primaryNav = page.getByRole("navigation", { name: /primary/i });
-  await expect(primaryNav.getByRole("link", { name: /browse pathways/i })).toBeVisible();
+  await expect(primaryNav.getByRole("link", { name: "Pathways", exact: true })).toBeVisible();
   await expect(primaryNav.getByRole("link", { name: "Search", exact: true })).toHaveCount(0);
   await page.waitForTimeout(250);
   await expectNoAxeViolations(page);

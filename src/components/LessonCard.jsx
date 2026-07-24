@@ -42,9 +42,18 @@ function formatUrlLabel(url) {
  *   lessonIndex?: Record<string, { name: string; url: string }>;
  *   headingLevel?: number;
  *   health?: HealthRecord | null;
+ *   isSelected?: boolean;
+ *   onToggle?: (slug: string) => void;
  * }} props
  */
-export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3, health = null }) {
+export default function LessonCard({
+  lesson,
+  lessonIndex = {},
+  headingLevel = 3,
+  health = null,
+  isSelected = false,
+  onToggle,
+}) {
   if (!lesson) return null;
 
   const lessonName = lesson.name || "Untitled Lesson";
@@ -86,6 +95,21 @@ export default function LessonCard({ lesson, lessonIndex = {}, headingLevel = 3,
     <article className="lesson-card">
       <a className="lesson-card__cover-link" href={lessonHref} aria-label="Open lesson page"></a>
 
+      {onToggle && (
+        <label className="lesson-card__select">
+          <input
+            type="checkbox"
+            className="lesson-card__select-input"
+            checked={isSelected}
+            onChange={() => onToggle(lesson.slug)}
+          />
+          <span className="sr-only">
+            {isSelected
+              ? `Remove "${lessonName}" from workshop plan`
+              : `Add "${lessonName}" to workshop plan`}
+          </span>
+        </label>
+      )}
 
       {/* Colored level band */}
       <div className="lesson-card__band" style={{ background: level.bg }}>

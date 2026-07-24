@@ -105,6 +105,9 @@ const pathways = defineCollection({
     description: z.string(),
     icon: z.string().default(''),
     order: z.number().default(99),
+    // Optional expository intro, paragraph-split on \n\n like concepts' body.
+    // Most pathways don't need this — description + lesson grid is enough.
+    body: z.string().default(''),
   }),
 });
 

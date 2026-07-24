@@ -1,0 +1,194 @@
+name: Suggest or Contribute a Lesson
+description: Suggest an existing open source lesson for the catalog, or submit one you maintain
+title: "[LESSON SUGGESTION]: "
+labels: ["lesson-submission", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Suggest or Contribute a Lesson
+
+        The UC OSPO Education catalog links out to open source lessons hosted elsewhere —
+        we don't have capacity right now to help develop new lessons from scratch, or to
+        host and maintain lesson content ourselves. (If you're looking to co-develop a new
+        lesson with UC OSPO support, see the separate **Lesson Development Proposal**
+        template instead.)
+
+        What we can offer today: if you know of, or maintain, an existing open source
+        lesson that fits the catalog, we can **list it** — add it with a link to where it
+        already lives, credited to its original author(s). We're not taking ownership or
+        committing to maintain it. (This may change as the program grows — it's where we
+        are today, not a permanent limit.)
+
+        The **Education Committee** reviews every submission for fit and quality before
+        it's added, and will follow up on this issue either way.
+
+        ---
+
+  - type: dropdown
+    id: relationship
+    attributes:
+      label: Your relationship to this lesson
+      options:
+        - I'm the author or maintainer
+        - I found this and I'm suggesting it (not affiliated)
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: lesson-title
+    attributes:
+      label: Lesson title
+      placeholder: e.g., "Introduction to Software Testing"
+    validations:
+      required: true
+
+  - type: input
+    id: lesson-url
+    attributes:
+      label: Link to the lesson
+      description: Where learners would actually go to take it
+      placeholder: https://...
+    validations:
+      required: true
+
+  - type: input
+    id: repo-url
+    attributes:
+      label: Source repository (if applicable)
+      placeholder: https://github.com/...
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Brief description
+      description: What does this lesson cover, and why does it belong in the catalog?
+      placeholder: 2-4 sentences
+    validations:
+      required: true
+
+  - type: input
+    id: authors
+    attributes:
+      label: Author(s) / maintainer(s)
+      placeholder: Name(s) and affiliation, if known
+    validations:
+      required: true
+
+  - type: dropdown
+    id: license
+    attributes:
+      label: License
+      description: The catalog only lists openly-licensed lessons
+      options:
+        - CC-BY 4.0
+        - CC-BY-SA
+        - CC0
+        - MIT
+        - Other open license (describe in additional context)
+        - Not sure — need to check
+        - Not currently openly licensed
+    validations:
+      required: true
+
+  - type: dropdown
+    id: educational-level
+    attributes:
+      label: Skill level
+      options:
+        - Beginner
+        - Intermediate
+        - Advanced
+        - Mixed
+    validations:
+      required: true
+
+  - type: input
+    id: time-required
+    attributes:
+      label: How long does it take?
+      placeholder: e.g., "45 minutes", "2 hours", "self-paced, ~1 week"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: audience
+    attributes:
+      label: Who is this lesson designed for?
+      description: Select all that apply
+      options:
+        - label: Researcher
+        - label: Research Software Engineer / Developer
+        - label: Open Source Contributor
+        - label: Open Source Maintainer
+        - label: Project / Program Lead
+        - label: Community Manager
+        - label: Librarian / Information Professional
+        - label: Educator
+    validations:
+      required: true
+
+  - type: dropdown
+    id: resource-type
+    attributes:
+      label: Format
+      options:
+        - Workshop
+        - Course
+        - Guide
+        - Tutorial
+        - Presentation
+        - Handout
+        - Video lecture
+        - e-Learning module
+        - Quiz
+        - Exercise
+    validations:
+      required: true
+
+  - type: dropdown
+    id: journey-stage
+    attributes:
+      label: Journey stage (if you have a sense of it — the committee makes the final call)
+      options:
+        - Getting Started with Open Source
+        - Contributing to a Project
+        - Maintaining & Sustaining Software
+        - Strategic Practices & Career Development
+        - Not sure
+    validations:
+      required: false
+
+  - type: textarea
+    id: topics
+    attributes:
+      label: Topics covered
+      description: Free text is fine — we'll map it to the catalog's controlled topic vocabulary
+      placeholder: e.g., version control, licensing, code review
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Anything else worth knowing — license details, prerequisites, related lessons, etc.
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+        ## What happens next
+
+        The Education Committee reviews submissions for fit, quality, and licensing, and
+        will comment on this issue with a decision or follow-up questions. If accepted,
+        it'll be added to the catalog with a link back to where it lives and credit to its
+        author(s).
+
+        Thank you for helping grow the catalog!

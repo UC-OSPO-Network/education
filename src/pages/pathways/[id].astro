@@ -17,6 +17,7 @@ interface Props {
   name: string;
   description: string;
   icon: string;
+  body: string;
   lessons: Lesson[];
 }
 
@@ -33,12 +34,14 @@ export async function getStaticPaths() {
       name: pathway.data.name,
       description: pathway.data.description,
       icon: pathway.data.icon,
+      body: pathway.data.body,
       lessons,
     } satisfies Props,
   }));
 }
 
-const { id, name, description, lessons } = Astro.props as Props;
+const { id, name, description, body, lessons } = Astro.props as Props;
+const bodyParagraphs = body.split("\n\n").filter((p) => p.trim());
 
 const pathwayLessons = lessons.filter(
   (lesson) =>
@@ -136,6 +139,17 @@ if (aboutTerms.length > 0) pathwayJsonLd.about = aboutTerms;
   .pathway-empty p {
     margin: 0;
   }
+
+  .pathway-body {
+    margin: 1.5rem 0;
+  }
+  .pathway-body p {
+    margin: 0 0 1rem;
+    color: var(--text-primary);
+  }
+  .pathway-body p:last-child {
+    margin-bottom: 0;
+  }
 </style>
 
 <BaseLayout title={name} description={description}>
@@ -158,6 +172,13 @@ if (aboutTerms.length > 0) pathwayJsonLd.about = aboutTerms;
       <p class="page-intro__eyebrow">Pathway</p>
       <h1 class="page-intro__title">{name}</h1>
       <p class="page-intro__summary">{description}</p>
+      {bodyParagraphs.length > 0 && (
+        <div class="pathway-body">
+          {bodyParagraphs.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+        </div>
+      )}
       <div class="page-intro__actions">
         <a class="button-secondary" href={`${import.meta.env.BASE_URL}pathways`}>Back to All Pathways</a>
         <a class="button-link" href={`${import.meta.env.BASE_URL}lessons`}>Browse all lessons</a>

@@ -2,5 +2,6 @@
     "name": "Getting Started with Open Source",
     "description": "For learners new to open source and open collaboration.",
     "icon": "🧩",
-    "order": 1
+    "order": 1,
+    "body": "Open source software is code that anyone can view, use, modify, and share, released under a license that guarantees those rights. It's built in the open — usually on platforms like GitHub — by contributors who range from solo hobbyists to paid engineers at large companies, all working on the same shared codebase.\n\nMost of the software you rely on every day sits on an open source foundation: operating systems, programming languages, web frameworks, research tools. Participating in it, even in small ways, is one of the most direct ways to build real skills, work with people outside your own institution, and get practice that shows up on a resume or in a portfolio.\n\nThe lessons below are ordered for someone starting from zero: what open source actually is, how licensing and version control work, and how to make your first contribution. Work through them in sequence, or jump to whichever one covers a gap in what you already know."
 }
