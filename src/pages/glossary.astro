@@ -1,9 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { TOPIC_TERMS } from "../data/topics";
 
 const title = "Glossary";
 const description =
-  "Definitions of terms used across the UC OSPO Education catalog — resource types, skill levels, pathways, time estimates, and prerequisites explained in plain language.";
+  "Definitions of terms used across the UC OSPO Education catalog — resource types, skill levels, topics, time estimates, and prerequisites explained in plain language.";
 ---
 
 <BaseLayout title={title} description={description}>
@@ -100,26 +101,22 @@ const description =
         </dl>
       </section>
 
-      <section aria-labelledby="pathways-heading">
-        <h2 id="pathways-heading">Pathways</h2>
+      <section aria-labelledby="topics-heading">
+        <h2 id="topics-heading">Topics</h2>
         <p>
-          Pathways are curated sequences of lessons organized around a goal or role. Each pathway brings
-          together workshops, courses, and guides in a suggested order so you can build skills
-          progressively rather than searching through the full catalog on your own.
+          Every lesson is tagged with one or more topics, a controlled vocabulary of subjects grounded
+          in external standards (ACM, CHAOSS, FAIR4RS, OpenSSF, WCAG, and others). Topics are the primary
+          way to browse the catalog by subject rather than searching through the full list.
         </p>
         <p>
-          A lesson can appear in more than one pathway when its content is relevant to multiple goals.
-          You do not have to follow a pathway from beginning to end — dip in wherever your current
-          knowledge and goals suggest.
-        </p>
-        <p>
-          Current pathways:
+          A lesson can carry more than one topic when its content spans multiple subjects. See the
+          <a href={`${import.meta.env.BASE_URL}lessons/topic`}>full topic list</a> for descriptions and
+          lesson counts. Current topics:
         </p>
         <ul>
-          <li><strong>Getting Started with Open Source</strong> — for learners new to open source and open collaboration</li>
-          <li><strong>Contributing to a Project</strong> — for those ready to write code, open issues, or create documentation</li>
-          <li><strong>Maintaining &amp; Sustaining Software</strong> — for maintainers, project leads, and tech stewards</li>
-          <li><strong>Strategic Practices &amp; Career Development</strong> — for project leaders, RSEs, and open science strategists</li>
+          {TOPIC_TERMS.map((term) => (
+            <li><strong>{term.name}</strong> — {term.description}</li>
+          ))}
         </ul>
       </section>
 

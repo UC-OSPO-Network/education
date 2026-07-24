@@ -2,6 +2,8 @@ name: Suggest or Contribute a Lesson
 description: Suggest an existing open source lesson for the catalog, or submit one you maintain
 title: "[LESSON SUGGESTION]: "
 labels: ["lesson-submission", "needs-triage"]
+assignees:
+  - LauraLangdon
 body:
   - type: markdown
     attributes:

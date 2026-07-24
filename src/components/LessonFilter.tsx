@@ -40,7 +40,6 @@ type PagefindModule = {
 type FacetKey =
   | "role"
   | "educationalLevel"
-  | "pathway"
   | "domain"
   | "learningResourceType"
   | "audience"
@@ -49,7 +48,6 @@ type FacetKey =
 const FACETS: { key: FacetKey; label: string; param: string }[] = [
   { key: "role", label: "OSS Role", param: "role" },
   { key: "educationalLevel", label: "Skill Level", param: "level" },
-  { key: "pathway", label: "Pathway", param: "pathway" },
   { key: "domain", label: "Domain", param: "domain" },
   { key: "learningResourceType", label: "Learning Type", param: "type" },
   { key: "audience", label: "Designed for", param: "audience" },
@@ -67,8 +65,6 @@ function lessonValues(lesson: Lesson, key: FacetKey): string[] {
       return lesson.roles;
     case "educationalLevel":
       return lesson.educationalLevel ? [lesson.educationalLevel] : [];
-    case "pathway":
-      return lesson.pathways;
     case "domain":
       return lesson.domain ? [lesson.domain] : [];
     case "learningResourceType":
@@ -93,7 +89,6 @@ type Filters = Record<FacetKey, string[]> & { search: string };
 const emptyFilters: Filters = {
   role: [],
   educationalLevel: [],
-  pathway: [],
   domain: [],
   learningResourceType: [],
   audience: [],
@@ -209,7 +204,6 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
     const sets: Record<FacetKey, Set<string>> = {
       role: new Set(),
       educationalLevel: new Set(),
-      pathway: new Set(),
       domain: new Set(),
       learningResourceType: new Set(),
       audience: new Set(),
@@ -356,7 +350,6 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
   }
 
   function displayValue(key: FacetKey, value: string): string {
-    if (key === "pathway") return pathwayNames[value] ?? titleCase(value.replace(/-/g, " "));
     if (key === "learningResourceType") return titleCase(value);
     return value;
   }
@@ -379,11 +372,11 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
     return null;
   }
 
-  // Audience and pathway are promoted out of the collapsed-facet grid into always-visible
+  // Audience and topic are promoted out of the collapsed-facet grid into always-visible
   // button rows — same filters/toggleValue/facetCounts state as every other facet, just a
-  // different rendering. See docs/validation-prompt-instructor-context-2026-07-14.md-adjacent
-  // ia-review artifact for why these two specifically: at 43 lessons, "who is this for" and
-  // "what stage" are the two questions visitors actually ask first.
+  // different rendering. Pathway used to hold this second slot ("what stage"), retired in
+  // favor of Topic ("what subject") since 43 lessons doesn't justify a separate
+  // curated-sequence layer alongside a subject-matter one — see the 2026-07-14 committee notes.
   function renderPromotedFacet(key: FacetKey, legend: string) {
     const options = filterOptions[key];
     if (options.length === 0) return null;
@@ -442,10 +435,10 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
         </div>
 
         {renderPromotedFacet("audience", "Who are the learners?")}
-        {renderPromotedFacet("pathway", "What do they need?")}
+        {renderPromotedFacet("topic", "What subject?")}
 
         <div className="lessons-filter__grid">
-          {FACETS.filter(({ key }) => key !== "audience" && key !== "pathway").map(({ key, label }) => {
+          {FACETS.filter(({ key }) => key !== "audience" && key !== "topic").map(({ key, label }) => {
             const options = filterOptions[key];
             if (options.length === 0) return null;
             const selected = filters[key];

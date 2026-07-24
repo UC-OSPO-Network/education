@@ -1,9 +1,7 @@
 ---
 import type { Lesson } from "../lib/lessons";
 import { isCreatedByUs, CREATOR_ORG } from "../lib/provenance";
-import { getCollection } from "astro:content";
 import { topicByName, termId, termSetId } from "../data/topics";
-import { absoluteUrl } from "../lib/urls";
 
 interface Props {
   lesson: Lesson;
@@ -12,9 +10,6 @@ interface Props {
 
 const { lesson, canonicalUrl } = Astro.props as Props;
 const createdByUs = isCreatedByUs(lesson);
-
-const pathways = await getCollection("pathways");
-const pathwayMap = Object.fromEntries(pathways.map((p) => [p.id, p.data.name]));
 
 function nonEmpty(value: unknown): boolean {
   if (value === null || value === undefined) return false;
@@ -82,14 +77,6 @@ if (lesson.roles.length > 0) {
   ];
 } else {
   data.audience = educationalAudience;
-}
-
-if (lesson.pathways.length > 0) {
-  data.isPartOf = lesson.pathways.map((id) => ({
-    "@type": "Course",
-    "@id": absoluteUrl(Astro.site, `pathways/${id}`),
-    name: pathwayMap[id] ?? id,
-  }));
 }
 
 const prereqLabels = lesson.prerequisites
