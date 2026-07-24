@@ -784,6 +784,39 @@
   .lesson-card {
     min-height: auto;
   }
+
+  /* Short, curated lists (Getting Started, the promoted facet rows) read better
+     as a swipeable carousel than a stack on narrow screens — the full 43-lesson
+     catalog grid above stays a stack, scrolling through all of it horizontally
+     would be worse, not better. Mask-fade signals there's more to scroll. */
+  .lessons-grid--carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.25rem;
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 2rem), transparent 100%);
+    mask-image: linear-gradient(to right, black calc(100% - 2rem), transparent 100%);
+  }
+
+  .lessons-grid--carousel .lesson-card {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+  }
+
+  .lessons-promoted-facet__options {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.25rem;
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 2rem), transparent 100%);
+    mask-image: linear-gradient(to right, black calc(100% - 2rem), transparent 100%);
+  }
+
+  .lessons-promoted-facet__button {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
 }
 
 /* ── Workshop Planning Worksheet tray ── */
