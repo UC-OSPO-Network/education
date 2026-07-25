@@ -108,7 +108,6 @@ function getInitialFilters(): Filters {
 }
 
 export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath, pathwayNames = {} }: LessonFilterProps) {
-  const [isLoading, setIsLoading] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
   const [searchSlugs, setSearchSlugs] = useState<Set<string> | null>(null);
   const [filters, setFilters] = useState<Filters>(getInitialFilters);
@@ -126,10 +125,6 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
 
   const pagefindRef = useRef<PagefindModule | null>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => {
-    setIsLoading(false);
-  }, []);
 
   const loadPagefind = useCallback(async (): Promise<PagefindModule | null> => {
     if (pagefindRef.current) return pagefindRef.current;
@@ -410,14 +405,6 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
 
   const activeFilterCount =
     FACET_KEYS.reduce((sum, k) => sum + filters[k].length, 0) + (filters.search.trim() ? 1 : 0);
-
-  if (isLoading) {
-    return (
-      <div className="lessons-loading">
-        <p>Loading lessons…</p>
-      </div>
-    );
-  }
 
   return (
     <div className={`lessons-page${selectedSlugs.length > 0 ? " lessons-page--tray-open" : ""}`}>

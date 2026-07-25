@@ -6,7 +6,7 @@ const pagefindPath = `${base}pagefind/`;
 <div class="site-search" data-pagefind-ignore>
   <div id="site-search" class="site-search__mount">
     <form class="site-search__fallback" action={`${base}lessons/`} method="get">
-      <label class="sr-only" for="site-search-fallback-input">Search lessons, pathways, and resources</label>
+      <label class="sr-only" for="site-search-fallback-input">Search lessons and resources</label>
       <input
         id="site-search-fallback-input"
         class="site-search__fallback-input"
@@ -25,7 +25,7 @@ const pagefindPath = `${base}pagefind/`;
     const el = document.getElementById("site-search");
     if (!el) return;
 
-    const searchInputLabel = "Search lessons, pathways, and resources";
+    const searchInputLabel = "Search lessons and resources";
 
     function ensureSearchInputAccessibleName() {
       const input = el.querySelector(".pf-searchbox-input");
