@@ -29,19 +29,16 @@ export interface PlanOptions {
 
 export function buildPlanMarkdown(
   lessons: Lesson[],
-  pathwayNames: Record<string, string>,
   opts: PlanOptions,
 ): string {
   const today = new Date().toISOString().slice(0, 10);
 
   const lessonBlocks = lessons.map((lesson, i) => {
-    const pathway = lesson.pathways.length
-      ? lesson.pathways.map((p) => pathwayNames[p] ?? p).join(", ")
-      : NOT_SUPPLIED;
+    const topics = lesson.topics.length ? lesson.topics.join(", ") : NOT_SUPPLIED;
     const duration = ns(teachingTime(lesson)); // excludes self-study by design — see SELF_STUDY_TYPES
 
     return `### ${i + 1}. ${lesson.name || "Untitled Lesson"}
-- **Pathway:** ${pathway}
+- **Topics:** ${topics}
 - **Sub-topic:** ${ns(lesson.subTopic)}
 - **Level:** ${ns(lesson.educationalLevel)} · **Duration:** ${duration}
 - **URL:** ${ns(lesson.url)}

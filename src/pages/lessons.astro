@@ -14,12 +14,11 @@ const healthData = githubHealthRaw as unknown as HealthSnapshot;
 const healthBySlug = healthData.lessons ?? {};
 const pagefindPath = `${import.meta.env.BASE_URL}pagefind/`;
 
-// Pathway pages are retired (43 lessons doesn't justify a separate curated-sequence
-// layer alongside Topics), but the collection itself stays: pathwayNames still labels
-// the Workshop Planning Worksheet export, and Getting Started's intro copy lives in
+// Pathway pages and the Workshop Planning Worksheet's pathway labeling are both
+// retired (43 lessons doesn't justify a separate curated-sequence layer alongside
+// Topics), but the collection itself stays: Getting Started's intro copy lives in
 // its pathway record.
 const pathways = await getCollection("pathways");
-const pathwayNames = Object.fromEntries(pathways.map((p) => [p.id, p.data.name]));
 
 const gettingStartedLessons = activeLessons
   .filter((l) => l.pathways.includes("getting-started"))
@@ -44,7 +43,7 @@ const datasetJsonLd = {
   "@id": canonicalUrl,
   name: "UC OSPO Education: Lesson Catalog",
   description:
-    "Catalog of curated open source and research software education lessons from the UC OSPO Network, with topics, pathways, audiences, and repository health.",
+    "Catalog of curated open source and research software education lessons from the UC OSPO Network, with topics, audiences, and repository health.",
   url: canonicalUrl,
   isAccessibleForFree: true,
   creator: { "@type": "Organization", name: "UC OSPO Network", url: new URL(base, site).href },
@@ -141,6 +140,6 @@ const datasetJsonLd = {
       </div>
     </div>
   ) : (
-    <LessonFilter lessons={activeLessons} healthBySlug={healthBySlug} pagefindPath={pagefindPath} pathwayNames={pathwayNames} client:load />
+    <LessonFilter lessons={activeLessons} healthBySlug={healthBySlug} pagefindPath={pagefindPath} client:load />
   )}
 </BaseLayout>

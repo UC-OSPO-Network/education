@@ -8,7 +8,6 @@ interface LessonFilterProps {
   lessons: Lesson[];
   healthBySlug?: Record<string, HealthRecord | null>;
   pagefindPath: string;
-  pathwayNames?: Record<string, string>;
 }
 
 // learningResourceType is free text in schema.org, so we define our own values.
@@ -107,7 +106,7 @@ function getInitialFilters(): Filters {
   return next;
 }
 
-export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath, pathwayNames = {} }: LessonFilterProps) {
+export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath }: LessonFilterProps) {
   const [isSearching, setIsSearching] = useState(false);
   const [searchSlugs, setSearchSlugs] = useState<Set<string> | null>(null);
   const [filters, setFilters] = useState<Filters>(getInitialFilters);
@@ -282,7 +281,7 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
       typeof window !== "undefined"
         ? `${window.location.origin}${import.meta.env.BASE_URL}lessons`
         : "";
-    const markdown = buildPlanMarkdown(selectedLessons, pathwayNames, { workshopTitle, sourceUrl });
+    const markdown = buildPlanMarkdown(selectedLessons, { workshopTitle, sourceUrl });
     const dateStr = new Date().toISOString().slice(0, 10);
     downloadPlan(`workshop-planning-worksheet-${dateStr}.md`, markdown);
     setTrayAnnouncement(`Downloaded worksheet with ${selectedLessons.length} lessons.`);
