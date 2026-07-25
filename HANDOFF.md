@@ -1,29 +1,25 @@
-# Session Handoff — 2026-07-14
+# Session Handoff — 2026-07-25
 
 ## Accomplished
-- Composed guide pages: `pathways.body` schema field, real intro prose on `/pathways/getting-started`, `for-educators.astro` pathway names now pulled live (no more hardcoded drift)
-- `EducatorToolkit.astro` rebuilt twice: removed fake lesson tracks + wrong domain, now shows an "Using externally hosted lessons in your teaching" adoption checklist
-- New `.github/ISSUE_TEMPLATE/suggest-lesson.yml` (list-not-develop lesson intake) + footer "Suggest a Lesson" link, replacing the old external blog CTA
-- Nav labels normalized to bare nouns in `siteChrome.ts`
-- Workshop Planning Worksheet shipped (rebuild of stale issue #117): selection checkboxes on `LessonCard.jsx`, sticky tray + reorder + Markdown export in `LessonFilter.tsx`, new `src/lib/exportPlan.ts` and `src/lib/lessonDisplay.ts` (client-safe split from `lessons.ts`)
-- `/lessons` front-door redesign: "Start Here" hero, `audience`/`pathway` promoted to compact pill-button rows, remaining facet dropdowns restyled to match (was two clashing UI styles, now one)
-- ia-review artifact published and revised twice against two independent external cross-validation passes: https://claude.ai/code/artifact/082a9861-17e1-4651-8f45-0cfe63d90cef
+- Fixed a real crawlability bug: `/lessons` served "Loading lessons…" to any non-JS crawler (verified live), `LessonFilter`'s `isLoading` gate never resolved during SSR; removed it, catalog now renders in raw HTML
+- Fixed `HeaderSearch.astro`'s stale "pathways" placeholder copy
+- Rebuilt the homepage: retired the 4-tab `PathwayShowcase` (and its 7 supporting components) built around the retired pathways, replaced with a lean orientation page (value prop, real-data proof line, 3 intent-based routes, topics summary)
+- Cross-validated the homepage decision with ChatGPT (2 rounds, docs/validation-prompt-homepage-rebuild-2026-07-25.md + follow-up); chose Option C over a Topics-driven showcase rebuild (A) or bare welcome+CTA (B)
+- 2 commits made (`1ec2872`, `76c595c`), all local on `feat/concept-pages-prototype`, nothing pushed
 
 ## Pending — pick up here next session
-1. Commit and push to `jt14den-fork` — nothing committed all session, everything is local working-tree changes on `feat/concept-pages-prototype`
-2. Laura's GitHub handle + the group's lesson-inclusion criteria — needed for `suggest-lesson.yml`, still unresolved
-3. Pre-existing a11y debt found but not fixed (not this session's job): color-contrast violation on `/lessons`' topic-link note; 3 stale Playwright assertions in `tests/a11y/flows.spec.ts` expecting the pre-PR#156 single-select filter UI
-4. `lesson-proposal.yml`'s pathway dropdown still lists 2 retired pathways
-5. Nav/`/pathways/*` destination-page demotion — explicitly deferred, not done
-6. `getting-started` pathway lesson order is auto-sorted (level + sortingId), not hand-curated — intro copy was softened but a real curated `sortingId` pass is still the cleaner fix
+1. Lesson-detail-page pathway badge/breadcrumb in `src/pages/lessons/[slug].astro` — still references the retired pathway concept, works via redirect today, lowest priority remaining item
+2. Glossary tooltips on topic picks — explicitly non-blocking per 2026-07-14 committee notes
+3. Confirm whether the Toby/Carpentries CLDT scheduling email actually went out (draft at `~/projects/ospo/network-docs/drafts/cldt-toby-scheduling-email.md`)
+4. Consider running the same live-site crawlability check (fetch without JS) against other pages as a general audit — the `isLoading` pattern might exist elsewhere
 
 ## Decisions made
-- `suggest-lesson.yml` is the durable lesson-intake path; `lesson-proposal.yml` (CLDT) is Sloan-funded and temporary, retire it when CLDT sunsets
-- Reverted `Educator` from `audiences[]` — conflates "who's browsing" with "who a lesson teaches"; For Educators stays a task workflow, not an audience facet
-- Everything stays on `jt14den-fork`, no PR to `origin`, nothing near production
+- Homepage's job is orientation/credibility + fast handoff to `/lessons`, not a second browsing surface — confirmed via external cross-validation, not just internal instinct
+- Ship the crawlability fix in the same pass as the homepage change rather than leaving a window where neither surface is crawlable
+- Kept the 8-lesson Getting Started content only on `/lessons` itself (anchor-linked from home), not duplicated on the homepage
 
 ## Files modified
-See `git status` — 14 modified, 5 new (`suggest-lesson.yml`, `exportPlan.ts`, `lessonDisplay.ts`, this file, `docs/validation-prompt-instructor-context-2026-07-14.md`)
+See `git log` on `feat/concept-pages-prototype` (5 commits across today and yesterday) for the full diff.
 
 ## Blockers / waiting on
-None. Browser automation extension was flaky mid-session (screenshot/click errors) but resolved with a fresh tab group — not a real blocker.
+- Lesson-inclusion criteria for `suggest-lesson.yml` review — still needs the group's decision, not something to build around
