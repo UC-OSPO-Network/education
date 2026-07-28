@@ -38,6 +38,20 @@ body:
     validations:
       required: true
 
+  - type: dropdown
+    id: prior-experience
+    attributes:
+      label: Your experience teaching this lesson
+      description: How familiar are you with delivering this material?
+      options:
+        - I routinely teach this lesson
+        - I've taught this lesson multiple times
+        - I've taught this lesson once
+        - I haven't taught this lesson, but I like it and/or plan to
+        - Not applicable, I'm not an instructor for this lesson
+    validations:
+      required: true
+
   - type: input
     id: lesson-title
     attributes:
@@ -69,6 +83,18 @@ body:
       label: Brief description
       description: What does this lesson cover, and why does it belong in the catalog?
       placeholder: 2-4 sentences
+    validations:
+      required: true
+
+  - type: textarea
+    id: learning-objectives
+    attributes:
+      label: Target learning objectives
+      description: By the end of this lesson, what will learners be able to do? List 2-4 objectives.
+      placeholder: |
+        1.
+        2.
+        3.
     validations:
       required: true
 
