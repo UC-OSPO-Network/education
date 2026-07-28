@@ -78,7 +78,7 @@ const lessons = defineCollection({
 
     // Optional bioschemas / schema.org fields
     // `audience` = raw "designed for" text (kept for search). `audiences` =
-    // canonical 7-term persona vocab derived via scripts/normalize-audience.mjs;
+    // canonical 8-term persona vocab derived via scripts/normalize-audience.mjs;
     // drives the "Designed for" filter. Distinct from `roles` (OSS-role
     // competency the lesson builds toward).
     audience: z.string().default(''),
@@ -90,12 +90,20 @@ const lessons = defineCollection({
       'Project / Program Lead',
       'Community Manager',
       'Librarian / Information Professional',
+      'Educator',
     ])).default([]),
     competencyRequired: z.string().default(''),
     contributor: z.string().default(''),
     teaches: z.string().default(''),
     version: z.string().default(''),
-  }).passthrough(),
+  }).passthrough()
+    .refine(
+      (lesson) => !lesson.audiences.includes('Educator') || ['workshop', 'course'].includes(lesson.learningResourceType),
+      {
+        message: "audiences cannot include 'Educator' unless learningResourceType is 'workshop' or 'course' — self-study guides aren't delivered by an instructor",
+        path: ['audiences'],
+      },
+    ),
 });
 
 const pathways = defineCollection({
