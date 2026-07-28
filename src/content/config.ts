@@ -105,26 +105,10 @@ const pathways = defineCollection({
     description: z.string(),
     icon: z.string().default(''),
     order: z.number().default(99),
-    // Optional expository intro, paragraph-split on \n\n like concepts' body.
+    // Optional expository intro, paragraph-split on \n\n.
     // Most pathways don't need this — description + lesson grid is enough.
     body: z.string().default(''),
   }),
 });
 
-const concepts = defineCollection({
-  type: 'data',
-  schema: z.object({
-    slug: z.string(),
-    name: z.string(),
-    // 1-2 sentence standalone definition — the AI-answer-engine payload.
-    quotableDefinition: z.string(),
-    body: z.string(),
-    faq: z.array(z.object({ question: z.string(), answer: z.string() })).default([]),
-    relatedLessonSlugs: z.array(z.string()).default([]),
-    relatedTopicCodes: z.array(z.string()).default([]),
-    relatedConceptSlugs: z.array(z.string()).default([]),
-    dateModified: z.string().default(''),
-  }),
-});
-
-export const collections = { lessons, pathways, concepts };
+export const collections = { lessons, pathways };

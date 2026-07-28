@@ -56,7 +56,6 @@ test("keyboard users can skip to main content and operate the desktop nav", asyn
   await expect(educationTrigger).toHaveAttribute("aria-expanded", "true");
   const primaryNav = page.getByRole("navigation", { name: /primary/i });
   await expect(primaryNav.getByRole("link", { name: "Lessons", exact: true })).toBeVisible();
-  await expect(primaryNav.getByRole("link", { name: "Glossary" })).toBeVisible();
   await expect(primaryNav.getByRole("link", { name: "Search", exact: true })).toHaveCount(0);
   await page.waitForTimeout(250);
   await expectNoAxeViolations(page);
