@@ -1,25 +1,31 @@
-# Session Handoff — 2026-07-25
+# Session Handoff — 2026-08-06
 
 ## Accomplished
-- Fixed a real crawlability bug: `/lessons` served "Loading lessons…" to any non-JS crawler (verified live), `LessonFilter`'s `isLoading` gate never resolved during SSR; removed it, catalog now renders in raw HTML
-- Fixed `HeaderSearch.astro`'s stale "pathways" placeholder copy
-- Rebuilt the homepage: retired the 4-tab `PathwayShowcase` (and its 7 supporting components) built around the retired pathways, replaced with a lean orientation page (value prop, real-data proof line, 3 intent-based routes, topics summary)
-- Cross-validated the homepage decision with ChatGPT (2 rounds, docs/validation-prompt-homepage-rebuild-2026-07-25.md + follow-up); chose Option C over a Topics-driven showcase rebuild (A) or bare welcome+CTA (B)
-- 2 commits made (`1ec2872`, `76c595c`), all local on `feat/concept-pages-prototype`, nothing pushed
+- Rebuilt `/lessons` facet UI: all 6 facets now render through new `FacetCombobox.tsx` (Radix popover+checkbox, no Tailwind) instead of the old promoted-button-row/`<details>`-accordion split. Resolves #197 and #201.
+- Moved this work off `feat/concept-pages-prototype` onto a fresh branch `feat/facet-rebuild` (created from the same commit, nothing lost) since the redesign is separate scope from that branch's in-review work.
+- Found and fixed a pre-existing broken Playwright test (`getByLabel("Topic").toHaveValue(...)` never matched the old markup either). Verified via stashed baseline: 10 pre-existing failures before this change, 8 after, no new regressions.
+- Resolved Phase 0 decisions from `docs/PLAN-lessons-education-redesign-2026-08-04.md` directly with Tim: Getting Started becomes a Topic facet value; Educator becomes an Audience facet value (already in schema, `config.ts:93`); both replace static page sections with facet-conditional content. Diagnosed the root cause of the #195 "stack" complaint: Getting Started's 8-lesson carousel duplicates content already in the main grid below.
+- Updated `docs/PLAN-lessons-education-redesign-2026-08-04.md` with all resolved decisions and Phase 2 scope, in build order.
 
 ## Pending — pick up here next session
-1. Lesson-detail-page pathway badge/breadcrumb in `src/pages/lessons/[slug].astro` — still references the retired pathway concept, works via redirect today, lowest priority remaining item
-2. Glossary tooltips on topic picks — explicitly non-blocking per 2026-07-14 committee notes
-3. Confirm whether the Toby/Carpentries CLDT scheduling email actually went out (draft at `~/projects/ospo/network-docs/drafts/cldt-toby-scheduling-email.md`)
-4. Consider running the same live-site crawlability check (fetch without JS) against other pages as a general audit — the `isLoading` pattern might exist elsewhere
+1. Tim reviews the uncommitted Phase 1 work on `feat/facet-rebuild`; commit once approved (nothing committed yet this session).
+2. Start Phase 2: add Getting Started as a Topic value and Educator as an Audience value, both with conditional copy rendering; remove the two hardcoded sections in `lessons.astro` (Getting Started ~lines 103-124, EducatorToolkit ~lines 126-132); relink homepage's 3 cards (`index.astro` lines 36-56) — fixes "Browse all lessons" and "Planning instruction?" currently pointing at the identical `/lessons` URL.
+3. Open implementation question for Phase 2: where facet-conditional copy renders relative to the grid (above it vs. inline near the facet trigger) — needs a quick visual comparison before/during build.
+4. Re-assess Phase 3 (#195 density cleanup) after Phase 2 ships — likely much smaller than originally filed.
 
 ## Decisions made
-- Homepage's job is orientation/credibility + fast handoff to `/lessons`, not a second browsing surface — confirmed via external cross-validation, not just internal instinct
-- Ship the crawlability fix in the same pass as the homepage change rather than leaving a window where neither surface is crawlable
-- Kept the 8-lesson Getting Started content only on `/lessons` itself (anchor-linked from home), not duplicated on the homepage
+- Getting Started → Topic facet value (not its own axis, not an Audience value).
+- Nav model (#198): one browsing mechanism (facets + grid); all entry points are preset deep-links into facet state, not separate static destinations.
+- Educator → Audience facet value, reusing existing schema; `EducatorToolkit` copy becomes conditional on that selection instead of always-rendered.
+- Sidebar (#199) population still open, but must be preset facet-state links, not new curated content.
 
 ## Files modified
-See `git log` on `feat/concept-pages-prototype` (5 commits across today and yesterday) for the full diff.
+- `src/components/FacetCombobox.tsx` — new, shared facet control
+- `src/components/LessonFilter.tsx` — uses FacetCombobox for all 6 facets, removed old rendering
+- `src/components/lessons/lessons.css` — new combobox styles, removed dead promoted-facet/accordion styles
+- `tests/a11y/flows.spec.ts` — rewrote facet-label assertions to match new markup
+- `package.json` / `package-lock.json` — added `@radix-ui/react-popover`, `@radix-ui/react-checkbox`
+- `docs/PLAN-lessons-education-redesign-2026-08-04.md` — Phase 0 decisions resolved, Phase 2 scoped
 
 ## Blockers / waiting on
-- Lesson-inclusion criteria for `suggest-lesson.yml` review — still needs the group's decision, not something to build around
+- None. Everything pending is implementation work, not waiting on anyone.
