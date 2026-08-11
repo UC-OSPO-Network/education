@@ -1,6 +1,6 @@
 # Plan: /education + /lessons IA redesign (2026-08-04 WG meeting)
 
-Status: Phase 0 decided, Phase 1 and Phase 2 shipped. Written 2026-08-04, updated 2026-08-11.
+Status: all 4 phases shipped in code. #195 closed on GitHub 2026-08-11; #196-#201 are implemented but still open on GitHub pending Tim's call on closing them. Written 2026-08-04, updated 2026-08-11.
 
 Tracks GitHub issue [#194](https://github.com/UC-OSPO-Network/education/issues/194) and its seven sub-issues (#195-#201), filed from 2026-08-04 WG meeting feedback.
 
@@ -49,9 +49,9 @@ Phase 1 — Facet system rebuild (#197, #201)             ✅ shipped 2026-08-11
   ↓
 Phase 2 — Facet-conditional entry points (#196, #198, #200, Educator/EducatorToolkit)  ✅ shipped 2026-08-11
   ↓
-Phase 3 — /lessons page density cleanup (#195)
+Phase 3 — /lessons page density cleanup (#195)          ✅ shipped 2026-08-11, issue closed
   ↓
-Phase 4 — Sidebar navigation (#199)  [can start after Phase 1, doesn't block on 2/3]
+Phase 4 — Sidebar navigation (#199)                     ✅ shipped 2026-08-11
 ```
 
 ### Phase 1 — Facet system rebuild (#197, #201) — done
@@ -84,15 +84,17 @@ Shipped 2026-08-11 on `feat/facet-rebuild` (same branch as Phase 1, per the "tig
 
 ---
 
-### Phase 3 — /lessons page density cleanup (#195)
+### Phase 3 — /lessons page density cleanup (#195) — done
 
-Re-assess *after* Phase 2 lands. Most of the original "stack" complaint was the Getting Started section and EducatorToolkit block, both gone as static content by then. What's left to look at: the `page-intro` note paragraphs, and whether the remaining page reads as a single coherent tool rather than a stack at all — may need little to no further cutting once Phase 2 ships.
+Re-assessed after Phase 2 landed: confirmed live (screenshot + `gh issue view`) that /lessons now goes straight from the page intro (title + summary + 1 provenance note) into the filter panel and grid — down from the 4 stacked layers the issue described to 2. No code change was needed beyond what Phase 2 already did. Closed the issue with a comment explaining why (2026-08-11, [comment](https://github.com/UC-OSPO-Network/education/issues/195#issuecomment-5258237891)).
 
 ---
 
-### Phase 4 — Sidebar navigation (#199)
+### Phase 4 — Sidebar navigation (#199) — done
 
-Can start any time after Phase 1 (needs the rebuilt facet/URL shape to link into). Population is still undecided (Section 2, decision 5) but must be preset facet-state links per the unifying principle — not a second curated list. Revisit scope once Phase 2's actual facet values (Getting Started, Educator) exist to link to.
+Shipped 2026-08-11. Population question (Section 2, decision 5) resolved with Tim: **top 6 Topic facet values by live lesson count**, not a hand-curated list — computed the same way as `/lessons/topic`'s own sort, so it tracks tagging changes automatically rather than becoming a second thing to maintain. New `LessonsCategoryNav.astro`, two-column layout on `/lessons` (sidebar + filter/grid, styled after the existing global `.site-sidebar`), collapses to a horizontal scroll row under 768px. The page-intro's old "browse by subject" note was dropped as redundant with the sidebar's own "view all topics" link.
+
+Considered and rejected: a mixed topic+audience list ("who are you / what are you doing" framing) — went with the simpler, purely-computed option instead.
 
 ---
 
@@ -112,8 +114,8 @@ Facet-rebuild work (Phase 1, and everything in this plan going forward) lives on
 
 ## 6. Resuming this work
 
-Phases 1 and 2 are both shipped (committed, pushed to `jt14den-fork/feat/facet-rebuild`), not yet opened as a PR against `origin`.
+All 4 phases are shipped (committed, pushed to `jt14den-fork/feat/facet-rebuild`), not yet opened as a PR against `origin`. #195 is closed on GitHub; #196-#201 are implemented but still open — Tim hasn't said whether to close them too.
 
-1. Re-assess Phase 3 scope (#195) now that Getting Started and EducatorToolkit no longer render as static stacked sections — likely much smaller than originally filed, per Section 3.
-2. Phase 4 (sidebar navigation, #199) can start any time — population is still undecided, scoped by the unifying principle (preset facet-state links, not a second curated list).
-3. Open a PR from `feat/facet-rebuild` once `feat/concept-pages-prototype` lands on `main`, or accept it'll carry that branch's unmerged commits until then (see Phase 1 branch note).
+1. Decide whether to close #196, #197, #198, #199, #200, #201 (and maybe #194 itself) now that all 4 phases are implemented, or leave them open until the PR merges.
+2. Open a PR from `feat/facet-rebuild` once `feat/concept-pages-prototype` lands on `main`, or accept it'll carry that branch's unmerged commits until then (see Phase 1 branch note).
+3. Nothing else from this plan is outstanding.
