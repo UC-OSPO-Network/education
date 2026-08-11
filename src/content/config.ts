@@ -39,6 +39,7 @@ const lessons = defineCollection({
       'Project Health, Metrics & Assessment',
       'Security & Supply Chain',
       'Accessibility & Inclusive Design',
+      'Getting Started with Open Source',
     ])).default([]),
 
     // Canonical field. learnerCategory kept for back-compat with existing JSON files.

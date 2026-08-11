@@ -61,11 +61,13 @@
   "provider": "CodeRefinery",
   "topics": [
     "Community, Governance & Conduct",
-    "Version Control & Collaborative Development"
+    "Version Control & Collaborative Development",
+    "Getting Started with Open Source"
   ],
   "audiences": [
     "Open Source Contributor",
     "Research Software Engineer / Developer",
-    "Researcher"
+    "Researcher",
+    "Educator"
   ]
 }
