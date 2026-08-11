@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import LessonCard from "./LessonCard.jsx";
+import FacetCombobox, { type FacetOption } from "./FacetCombobox";
 import type { Lesson } from "../lib/lessons";
 import type { HealthRecord } from "../lib/githubHealth";
 import { buildPlanMarkdown, downloadPlan } from "../lib/exportPlan";
@@ -110,9 +111,6 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath 
   const [isSearching, setIsSearching] = useState(false);
   const [searchSlugs, setSearchSlugs] = useState<Set<string> | null>(null);
   const [filters, setFilters] = useState<Filters>(getInitialFilters);
-  const [openFacets, setOpenFacets] = useState<Set<FacetKey>>(
-    () => new Set(FACET_KEYS.filter((k) => getInitialFilters()[k].length > 0)),
-  );
 
   // Workshop Planning Worksheet selection — independent of the active filters, so a
   // selection made under one facet state survives narrowing/widening the visible grid.
@@ -334,15 +332,6 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath 
     setFilters(emptyFilters);
   }
 
-  function onFacetToggle(key: FacetKey, open: boolean) {
-    setOpenFacets((prev) => {
-      const next = new Set(prev);
-      if (open) next.add(key);
-      else next.delete(key);
-      return next;
-    });
-  }
-
   function displayValue(key: FacetKey, value: string): string {
     if (key === "learningResourceType") return titleCase(value);
     return value;
@@ -366,40 +355,13 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath 
     return null;
   }
 
-  // Audience and topic are promoted out of the collapsed-facet grid into always-visible
-  // button rows — same filters/toggleValue/facetCounts state as every other facet, just a
-  // different rendering. Pathway used to hold this second slot ("what stage"), retired in
-  // favor of Topic ("what subject") since 43 lessons doesn't justify a separate
-  // curated-sequence layer alongside a subject-matter one — see the 2026-07-14 committee notes.
-  function renderPromotedFacet(key: FacetKey, legend: string) {
-    const options = filterOptions[key];
-    if (options.length === 0) return null;
-    const selected = filters[key];
+  function facetOptions(key: FacetKey): FacetOption[] {
     const counts = facetCounts[key];
-    return (
-      <fieldset className="lessons-promoted-facet">
-        <legend className="lessons-promoted-facet__legend">{legend}</legend>
-        <div className="lessons-promoted-facet__options">
-          {options.map((value) => {
-            const count = counts.get(value) ?? 0;
-            const isSelected = selected.includes(value);
-            const disabled = count === 0 && !isSelected;
-            return (
-              <button
-                key={value}
-                type="button"
-                className="lessons-promoted-facet__button"
-                aria-pressed={isSelected}
-                disabled={disabled}
-                onClick={() => toggleValue(key, value)}
-              >
-                {displayValue(key, value)} <span className="lessons-promoted-facet__count">{count}</span>
-              </button>
-            );
-          })}
-        </div>
-      </fieldset>
-    );
+    return filterOptions[key].map((value) => ({
+      value,
+      label: displayValue(key, value),
+      count: counts.get(value) ?? 0,
+    }));
   }
 
   const activeFilterCount =
@@ -420,57 +382,20 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath 
           />
         </div>
 
-        {renderPromotedFacet("audience", "Who are the learners?")}
-        {renderPromotedFacet("topic", "What subject?")}
-
         <div className="lessons-filter__grid">
-          {FACETS.filter(({ key }) => key !== "audience" && key !== "topic").map(({ key, label }) => {
-            const options = filterOptions[key];
+          {FACETS.map(({ key, label }) => {
+            const options = facetOptions(key);
             if (options.length === 0) return null;
-            const selected = filters[key];
-            const counts = facetCounts[key];
             return (
-              <details
+              <FacetCombobox
                 key={key}
-                className="lessons-filter__facet"
-                open={openFacets.has(key)}
-                onToggle={(e) => onFacetToggle(key, e.currentTarget.open)}
-              >
-                <summary className="lessons-filter__facet-summary">
-                  <span className="lessons-filter__label">{label}</span>
-                  {selected.length > 0 && (
-                    <span className="lessons-filter__facet-badge">{selected.length}</span>
-                  )}
-                </summary>
-                <div className="lessons-filter__facet-body">
-                  {renderHelp(key)}
-                  <ul className="lessons-filter__options">
-                    {options.map((value) => {
-                      const count = counts.get(value) ?? 0;
-                      const checked = selected.includes(value);
-                      const disabled = count === 0 && !checked;
-                      return (
-                        <li key={value}>
-                          <label
-                            className={`lessons-filter__option${disabled ? " is-disabled" : ""}`}
-                          >
-                            <input
-                              type="checkbox"
-                              checked={checked}
-                              disabled={disabled}
-                              onChange={() => toggleValue(key, value)}
-                            />
-                            <span className="lessons-filter__option-label">
-                              {displayValue(key, value)}
-                            </span>
-                            <span className="lessons-filter__option-count">{count}</span>
-                          </label>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </details>
+                facetKey={key}
+                label={label}
+                options={options}
+                selected={filters[key]}
+                onToggle={(value) => toggleValue(key, value)}
+                helpText={renderHelp(key)}
+              />
             );
           })}
         </div>
