@@ -1,7 +1,122 @@
-/* ── Page Container ── */
-.lessons-page {
+/* ── Category sidebar + page layout (#199) ── */
+.lessons-layout {
   width: min(100% - 2rem, var(--content-width));
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 14rem minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.lessons-category-nav {
+  position: sticky;
+  top: 5.35rem;
+  border-right: 1px solid var(--border-light);
+  padding: 1.75rem 1.25rem 1.5rem 0;
+}
+
+.lessons-category-nav__eyebrow {
+  margin: 0 0 0.85rem;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lessons-category-nav__list {
+  list-style: none;
+  margin: 0 0 0.85rem;
+  padding: 0;
+}
+
+.lessons-category-nav__link {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.45rem 0.65rem;
+  margin: 0 -0.65rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.lessons-category-nav__link:hover {
+  background: var(--bg-subtle);
+  color: var(--uc-blue);
+}
+
+.lessons-category-nav__count {
+  flex: none;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.lessons-category-nav__all {
+  display: inline-block;
+  color: var(--uc-blue);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.lessons-category-nav__all:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .lessons-layout {
+    display: block;
+  }
+
+  .lessons-category-nav {
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border-light);
+    padding: 0 0 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .lessons-category-nav__eyebrow {
+    padding: 0 0.65rem;
+  }
+
+  .lessons-category-nav__list {
+    display: flex;
+    overflow-x: auto;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0 0.65rem 0.25rem;
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 1.5rem), transparent 100%);
+    mask-image: linear-gradient(to right, black calc(100% - 1.5rem), transparent 100%);
+  }
+
+  .lessons-category-nav__link {
+    flex: none;
+    margin: 0;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+  }
+
+  .lessons-category-nav__all {
+    margin: 0.75rem 0 0;
+    padding: 0 0.65rem;
+  }
+}
+
+/* ── Page Container ── */
+/* Width is constrained by the .lessons-layout wrapper (#199 category sidebar
+   grid) that now always surrounds this component, not by this rule itself. */
+.lessons-page {
+  width: 100%;
   padding-top: 1.5rem;
   padding-bottom: 4rem;
 }

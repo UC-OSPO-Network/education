@@ -1,0 +1,40 @@
+---
+// Persistent side navigation for /lessons (#199). Explicitly not an exhaustive
+// facet dump — a curated-feeling set of entry points computed live from the
+// Topic facet's own data (top 6 by lesson count), so it's a second view onto
+// facet state rather than a second curated content list to maintain. See
+// Phase 0 decision 2 ("one browsing mechanism") in
+// docs/PLAN-lessons-education-redesign-2026-08-04.md.
+import { TOPIC_TERMS } from "../data/topics";
+
+interface Props {
+  countByName: Record<string, number>;
+}
+
+const { countByName } = Astro.props as Props;
+const base = import.meta.env.BASE_URL;
+
+const topTopics = [...TOPIC_TERMS]
+  .sort(
+    (a, b) => (countByName[b.name] ?? 0) - (countByName[a.name] ?? 0) || a.name.localeCompare(b.name),
+  )
+  .slice(0, 6);
+---
+
+<nav class="lessons-category-nav" aria-label="Browse lessons by category">
+  <p class="lessons-category-nav__eyebrow">Browse by category</p>
+  <ul class="lessons-category-nav__list">
+    {topTopics.map((term) => (
+      <li>
+        <a
+          class="lessons-category-nav__link"
+          href={`${base}lessons?topic=${encodeURIComponent(term.name)}`}
+        >
+          <span class="lessons-category-nav__name">{term.name}</span>
+          <span class="lessons-category-nav__count">{countByName[term.name] ?? 0}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+  <a class="lessons-category-nav__all" href={`${base}lessons/topic`}>View all topics</a>
+</nav>

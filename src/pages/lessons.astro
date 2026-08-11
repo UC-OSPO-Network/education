@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import LessonFilter from "../components/LessonFilter.tsx";
+import LessonsCategoryNav from "../components/LessonsCategoryNav.astro";
 import { getActiveLessons } from "../lib/lessons";
 import { getCollection } from "astro:content";
 import githubHealthRaw from "../data/github-health.json";
@@ -11,6 +12,13 @@ const activeLessons = await getActiveLessons();
 const healthData = githubHealthRaw as unknown as HealthSnapshot;
 const healthBySlug = healthData.lessons ?? {};
 const pagefindPath = `${import.meta.env.BASE_URL}pagefind/`;
+
+// Category sidebar (#199): top Topics by lesson count, computed live so it
+// tracks tagging changes instead of needing hand maintenance.
+const topicCounts: Record<string, number> = {};
+for (const lesson of activeLessons) {
+  for (const topic of lesson.topics) topicCounts[topic] = (topicCounts[topic] ?? 0) + 1;
+}
 
 // Pathway pages are retired (43 lessons doesn't justify a separate curated-sequence
 // layer alongside Topics), but the collection itself stays: Getting Started's intro
@@ -85,26 +93,24 @@ const datasetJsonLd = {
         Except where marked <strong>Created</strong>, these are external resources curated by the
         UC OSPO Network: selected and organized by us, but authored by others.
       </p>
-      <p class="page-intro__note">
-        Prefer to browse by subject? See <a href={`${base}lessons/topic`}>all lesson topics</a>.
-      </p>
     </div>
   </section>
 
-  {activeLessons.length === 0 ? (
-    <div class="content-container">
+  <div class="lessons-layout">
+    <LessonsCategoryNav countByName={topicCounts} />
+    {activeLessons.length === 0 ? (
       <div class="page-section empty-state">
         <h2>No lessons found</h2>
         <p>No lessons are currently available.</p>
       </div>
-    </div>
-  ) : (
-    <LessonFilter
-      lessons={activeLessons}
-      healthBySlug={healthBySlug}
-      pagefindPath={pagefindPath}
-      gettingStartedIntro={gettingStartedIntro}
-      client:load
-    />
-  )}
+    ) : (
+      <LessonFilter
+        lessons={activeLessons}
+        healthBySlug={healthBySlug}
+        pagefindPath={pagefindPath}
+        gettingStartedIntro={gettingStartedIntro}
+        client:load
+      />
+    )}
+  </div>
 </BaseLayout>
