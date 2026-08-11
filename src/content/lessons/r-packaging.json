@@ -63,6 +63,7 @@
     "Packaging, Release & Distribution"
   ],
   "audiences": [
-    "Researcher"
+    "Researcher",
+    "Educator"
   ]
 }
