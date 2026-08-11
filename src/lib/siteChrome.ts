@@ -3,10 +3,11 @@ export type ChromeLink = {
   href: string;
   external?: boolean;
   matchPrefixes?: string[];
+  count?: number;
 };
 
 export type ChromeNavItem = ChromeLink & {
-  children?: ChromeLink[];
+  children?: ChromeNavItem[];
   currentSite?: boolean;
 };
 

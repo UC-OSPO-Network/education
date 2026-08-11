@@ -106,7 +106,10 @@ function getInitialFilters(): Filters {
   const params = new URLSearchParams(window.location.search);
   const next: Filters = { ...emptyFilters, search: params.get("q") ?? "" };
   FACETS.forEach(({ key, param }) => {
-    next[key] = (params.get(param) ?? "").split(",").map((v) => v.trim()).filter(Boolean);
+    // Repeated params (?topic=A&topic=B), not comma-joined — several Topic
+    // values contain literal commas (e.g. "Licensing, Copyright & Reuse"),
+    // which a comma delimiter can't distinguish from a value separator.
+    next[key] = params.getAll(param).map((v) => v.trim()).filter(Boolean);
   });
   return next;
 }
@@ -190,7 +193,7 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath,
 
     if (filters.search.trim()) url.searchParams.set("q", filters.search.trim());
     FACETS.forEach(({ key, param }) => {
-      if (filters[key].length) url.searchParams.set(param, filters[key].join(","));
+      filters[key].forEach((v) => url.searchParams.append(param, v));
     });
 
     window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
