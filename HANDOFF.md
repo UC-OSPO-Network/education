@@ -1,31 +1,33 @@
-# Session Handoff — 2026-08-06
+# Session Handoff — 2026-08-11
 
 ## Accomplished
-- Rebuilt `/lessons` facet UI: all 6 facets now render through new `FacetCombobox.tsx` (Radix popover+checkbox, no Tailwind) instead of the old promoted-button-row/`<details>`-accordion split. Resolves #197 and #201.
-- Moved this work off `feat/concept-pages-prototype` onto a fresh branch `feat/facet-rebuild` (created from the same commit, nothing lost) since the redesign is separate scope from that branch's in-review work.
-- Found and fixed a pre-existing broken Playwright test (`getByLabel("Topic").toHaveValue(...)` never matched the old markup either). Verified via stashed baseline: 10 pre-existing failures before this change, 8 after, no new regressions.
-- Resolved Phase 0 decisions from `docs/PLAN-lessons-education-redesign-2026-08-04.md` directly with Tim: Getting Started becomes a Topic facet value; Educator becomes an Audience facet value (already in schema, `config.ts:93`); both replace static page sections with facet-conditional content. Diagnosed the root cause of the #195 "stack" complaint: Getting Started's 8-lesson carousel duplicates content already in the main grid below.
-- Updated `docs/PLAN-lessons-education-redesign-2026-08-04.md` with all resolved decisions and Phase 2 scope, in build order.
+- Committed and pushed Phase 1 (facet-rebuild, from 2026-08-06) to `jt14den-fork/feat/facet-rebuild` as 3 commits: deps, the `FacetCombobox` rebuild, and docs/handoff.
+- Shipped Phase 2 (facet-conditional entry points, #196/#198/#200) as 4 commits on the same branch: Getting Started added as a Topic value (schema + `data/topics.ts` crosswalk + tagged the 8 pathway lessons), Educator audience tagging, the conditional-copy wiring in `LessonFilter`, and the homepage's 3 intent cards deep-linked into scoped `/lessons` views.
+- `EducatorToolkit.astro` retired; its checklist moved to `src/data/educatorToolkit.ts` and now renders inside `LessonFilter` (a React island can't render an Astro component), conditional on `audience=Educator`. The "teaching one of these? start a discussion" note that used to sit next to it was preserved, not dropped.
+- Found live during verification: the `Educator` audience value existed in the schema (`57218fc`) but had never been applied to any lesson, so the new `audience=Educator` deep link would have sent visitors to an empty grid (0 of 43). Tagged all 25 lessons that are schema-eligible (`learningResourceType` workshop/course) with `Educator`, confirmed with Tim before applying.
+- Verified in a real browser (not just build output): both new deep links (`?topic=Getting+Started+with+Open+Source`, `?audience=Educator`) render the correct conditional copy and filtered counts; homepage cards click through correctly.
+- `npm run build` clean (62 pages, new topic landing page generated); a11y suite still at the known 8 pre-existing failures, no new regressions.
+- Along the way: killed a stray 18-day-old R `sandpaper::serve()` process that was squatting on port 4321 (blocking Playwright), and a 17-day-old stale `astro dev` server on 4322 whose Vite module graph couldn't hydrate the new component (restarted clean).
 
 ## Pending — pick up here next session
-1. Tim reviews the uncommitted Phase 1 work on `feat/facet-rebuild`; commit once approved (nothing committed yet this session).
-2. Start Phase 2: add Getting Started as a Topic value and Educator as an Audience value, both with conditional copy rendering; remove the two hardcoded sections in `lessons.astro` (Getting Started ~lines 103-124, EducatorToolkit ~lines 126-132); relink homepage's 3 cards (`index.astro` lines 36-56) — fixes "Browse all lessons" and "Planning instruction?" currently pointing at the identical `/lessons` URL.
-3. Open implementation question for Phase 2: where facet-conditional copy renders relative to the grid (above it vs. inline near the facet trigger) — needs a quick visual comparison before/during build.
-4. Re-assess Phase 3 (#195 density cleanup) after Phase 2 ships — likely much smaller than originally filed.
+1. Re-assess Phase 3 (#195 density cleanup) now that Getting Started and EducatorToolkit no longer render as static stacked sections — likely much smaller than originally filed.
+2. Phase 4 (#199 sidebar navigation) can start any time — population still undecided, must be preset facet-state links per the unifying principle.
+3. Open a PR from `feat/facet-rebuild` once `feat/concept-pages-prototype` lands on `main` (or accept it'll carry that branch's unmerged commits until then).
 
 ## Decisions made
-- Getting Started → Topic facet value (not its own axis, not an Audience value).
-- Nav model (#198): one browsing mechanism (facets + grid); all entry points are preset deep-links into facet state, not separate static destinations.
-- Educator → Audience facet value, reusing existing schema; `EducatorToolkit` copy becomes conditional on that selection instead of always-rendered.
-- Sidebar (#199) population still open, but must be preset facet-state links, not new curated content.
+- Getting Started → Topic facet value; Educator → Audience facet value (both from Phase 0, resolved 2026-08-06).
+- Educator audience tag applies to all lessons where `learningResourceType` is `workshop` or `course` — the refine() rule's own definition of "delivered by an instructor" — rather than a hand-picked subset.
+- Conditional copy renders above the grid (Getting Started's old position), not inline near the facet trigger — built one way, can revisit if it reads wrong live.
 
-## Files modified
-- `src/components/FacetCombobox.tsx` — new, shared facet control
-- `src/components/LessonFilter.tsx` — uses FacetCombobox for all 6 facets, removed old rendering
-- `src/components/lessons/lessons.css` — new combobox styles, removed dead promoted-facet/accordion styles
-- `tests/a11y/flows.spec.ts` — rewrote facet-label assertions to match new markup
-- `package.json` / `package-lock.json` — added `@radix-ui/react-popover`, `@radix-ui/react-checkbox`
-- `docs/PLAN-lessons-education-redesign-2026-08-04.md` — Phase 0 decisions resolved, Phase 2 scoped
+## Files modified (this session, Phase 2)
+- `src/content/config.ts`, `src/data/topics.ts` — 14th Topic value
+- `src/data/educatorToolkit.ts` — new, checklist data moved out of the retired Astro component
+- `src/components/LessonFilter.tsx` — conditional-copy rendering for both facets
+- `src/components/lessons/lessons.css` — toolkit/checklist styles moved in as global classes
+- `src/pages/lessons.astro` — hardcoded Getting Started + EducatorToolkit sections removed
+- `src/pages/index.astro` — 3 intent cards deep-link into scoped `/lessons` states
+- `src/components/EducatorToolkit.astro` — deleted, no longer used
+- 33 lesson JSON files — Topic and/or Educator audience tags
 
 ## Blockers / waiting on
-- None. Everything pending is implementation work, not waiting on anyone.
+- None.

@@ -1,6 +1,6 @@
 # Plan: /education + /lessons IA redesign (2026-08-04 WG meeting)
 
-Status: Phase 0 decided, Phase 1 implemented (uncommitted). Written 2026-08-04, updated 2026-08-06.
+Status: Phase 0 decided, Phase 1 and Phase 2 shipped. Written 2026-08-04, updated 2026-08-11.
 
 Tracks GitHub issue [#194](https://github.com/UC-OSPO-Network/education/issues/194) and its seven sub-issues (#195-#201), filed from 2026-08-04 WG meeting feedback.
 
@@ -45,9 +45,9 @@ Only the top `page-intro` block stays permanent; it's page-level framing, not du
 ```
 Phase 0 — Decisions                                    ✅ done 2026-08-06
   ↓
-Phase 1 — Facet system rebuild (#197, #201)             ✅ implemented, uncommitted
+Phase 1 — Facet system rebuild (#197, #201)             ✅ shipped 2026-08-11
   ↓
-Phase 2 — Facet-conditional entry points (#196, #198, #200, Educator/EducatorToolkit)
+Phase 2 — Facet-conditional entry points (#196, #198, #200, Educator/EducatorToolkit)  ✅ shipped 2026-08-11
   ↓
 Phase 3 — /lessons page density cleanup (#195)
   ↓
@@ -62,11 +62,17 @@ Preserved: URL param sync (`FILTER_QUERY_PARAMS`), live facet counts, the `noind
 
 Found and fixed in the same pass: a pre-existing broken assertion in `tests/a11y/flows.spec.ts` (`getByLabel("Topic").toHaveValue(...)` never matched the old button/details markup either — stale test, not a regression). Verified via a stashed baseline comparison: 10 pre-existing Playwright failures before this change, 8 after (the 2 fixed are exactly the ones rewritten); no new failures introduced. Remaining 8 are unrelated pre-existing issues (header search/pagefind indexing in the local preview build, a documented `.page-intro__note` color-contrast bug, a stale homepage-heading assertion from the 07-28 homepage rebuild).
 
-**Branch note:** built on `feat/concept-pages-prototype` initially, then moved to a fresh branch `feat/facet-rebuild` (created from the same commit, so nothing was lost) once it became clear the redesign work shouldn't stack onto the prototype branch's in-review scope. Since `feat/concept-pages-prototype` hasn't merged to `main` yet, a PR from `feat/facet-rebuild` will currently carry its unmerged commits too (Educator persona addition, template fixes, etc.) until that branch lands — unavoidable for now, but at least the new commits don't live on the prototype branch's own ref. **Not yet committed** — Tim is reviewing the working tree before commit.
+**Branch note:** built on `feat/concept-pages-prototype` initially, then moved to a fresh branch `feat/facet-rebuild` (created from the same commit, so nothing was lost) once it became clear the redesign work shouldn't stack onto the prototype branch's in-review scope. Since `feat/concept-pages-prototype` hasn't merged to `main` yet, a PR from `feat/facet-rebuild` will currently carry its unmerged commits too (Educator persona addition, template fixes, etc.) until that branch lands — unavoidable for now, but at least the new commits don't live on the prototype branch's own ref. Committed 2026-08-11 (3 commits) and pushed to `jt14den-fork`.
 
 ---
 
-### Phase 2 — Facet-conditional entry points (#196, #198, #200, Educator)
+### Phase 2 — Facet-conditional entry points (#196, #198, #200, Educator) — done
+
+Shipped 2026-08-11 on `feat/facet-rebuild` (same branch as Phase 1, per the "tightly coupled" call in Section 4). 4 commits: Getting Started Topic value + tagging, Educator audience tagging (see note below), the conditional-copy wiring in `LessonFilter`, and the homepage relink.
+
+**Found during verification, not in original scope:** the Educator audience value existed in the schema (added in `57218fc`) but had never been applied to any lesson — `audience=Educator` filtered to 0 of 43. Tagged all 25 lessons that are schema-eligible (`learningResourceType` is `workshop` or `course`, the refine() rule's own definition of "delivered by an instructor") with `Educator`, per Tim's call when this was flagged live in the browser check. Without this, Phase 2's new homepage "Planning instruction?" deep link would have sent visitors to an empty grid.
+
+**Open implementation question, resolved:** conditional copy renders above the grid (same visual position Getting Started held before), not inline near the facet trigger — built one way, not revisited since; can still change if it reads wrong live.
 
 **Why bundled:** all of these are implementations of the same decision (Section 2, principle above) — a static section becomes conditional content driven by facet selection. Building them separately risks the same "half-migrated" state Phase 1 avoided by bundling #197/#201.
 
@@ -75,8 +81,6 @@ Found and fixed in the same pass: a pre-existing broken assertion in `tests/a11y
 2. Make `EducatorToolkit`'s checklist conditional on `audience=Educator` being selected, same mechanism as (1). Remove its current always-rendered placement in `lessons.astro` (~lines 126-132).
 3. Rewrite the homepage's 3 route cards (`src/pages/index.astro` lines 36-56) to deep-link into real filtered `/lessons?...` states: "New to open source?" → `?topic=Getting+Started+with+Open+Source`, "Planning instruction?" → `?audience=Educator` (replacing its current duplicate-of-"Browse all" link with a genuinely distinct destination), "Browse all lessons" stays unscoped.
 4. Confirm resulting copy/labels are consistent across both pages — mostly a pass once 1-3 are built, not separate engineering.
-
-**Open implementation question, not yet decided:** where the conditional copy renders relative to the grid — above it (current Getting Started position) vs. inline within the facet panel itself (nearer the trigger that caused it to appear). Worth a quick look at both before committing.
 
 ---
 
@@ -108,7 +112,8 @@ Facet-rebuild work (Phase 1, and everything in this plan going forward) lives on
 
 ## 6. Resuming this work
 
-1. Tim reviews the uncommitted Phase 1 work on `feat/facet-rebuild` (`FacetCombobox.tsx`, `LessonFilter.tsx`, `lessons.css`, `tests/a11y/flows.spec.ts`, `package.json`). Commit once approved.
-2. Start Phase 2: Getting-Started-as-Topic-value and Educator-as-Audience-value, both with conditional copy rendering; remove the two hardcoded sections in `lessons.astro`; relink the homepage's 3 cards (fixes the duplicate-URL bug on "Browse all lessons" / "Planning instruction?" identified above).
-3. Resolve the Phase 2 open question (conditional-copy placement) before or during implementation — quick visual comparison, not a big decision.
-4. After Phase 2 ships, re-assess Phase 3 scope — likely much smaller than originally filed.
+Phases 1 and 2 are both shipped (committed, pushed to `jt14den-fork/feat/facet-rebuild`), not yet opened as a PR against `origin`.
+
+1. Re-assess Phase 3 scope (#195) now that Getting Started and EducatorToolkit no longer render as static stacked sections — likely much smaller than originally filed, per Section 3.
+2. Phase 4 (sidebar navigation, #199) can start any time — population is still undecided, scoped by the unifying principle (preset facet-state links, not a second curated list).
+3. Open a PR from `feat/facet-rebuild` once `feat/concept-pages-prototype` lands on `main`, or accept it'll carry that branch's unmerged commits until then (see Phase 1 branch note).
