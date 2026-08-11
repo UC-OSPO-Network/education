@@ -40,7 +40,7 @@ const gettingStartedCount = activeLessons.filter((l) => l.pathways.includes('get
           </p>
         </a>
 
-        <a class="home-route-card" href={`${base}lessons#getting-started-heading`}>
+        <a class="home-route-card" href={`${base}lessons?topic=${encodeURIComponent('Getting Started with Open Source')}`}>
           <h2 class="home-route-card__title">New to open source?</h2>
           <p class="home-route-card__body">
             Start with {gettingStartedCount} introductory lessons on what open source is and how
@@ -48,10 +48,10 @@ const gettingStartedCount = activeLessons.filter((l) => l.pathways.includes('get
           </p>
         </a>
 
-        <a class="home-route-card" href={`${base}lessons`}>
+        <a class="home-route-card" href={`${base}lessons?audience=${encodeURIComponent('Educator')}`}>
           <h2 class="home-route-card__title">Planning instruction?</h2>
           <p class="home-route-card__body">
-            Select lessons on the catalog page and build a teaching plan with the Workshop
+            Filter to lessons designed for educators, and build a teaching plan with the Workshop
             Planning Worksheet.
           </p>
         </a>
