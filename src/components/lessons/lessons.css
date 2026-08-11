@@ -809,6 +809,60 @@
   }
 }
 
+/* ── Facet-conditional notes ── */
+/* Getting Started intro copy and the Educator toolkit checklist, shown above
+   the grid when their driving facet value is selected (Phase 2, see
+   docs/PLAN-lessons-education-redesign-2026-08-04.md). */
+.facet-note {
+  margin-bottom: 1.5rem;
+}
+
+.toolkit-container {
+  margin-bottom: 1.5rem;
+}
+
+.toolkit-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--uc-blue);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.toolkit-subhead {
+  margin: 0 auto 2rem;
+  max-width: 42rem;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.checklist {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.checklist-item {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-left: 4px solid var(--uc-blue);
+  border-radius: var(--radius-sm);
+  padding: 1.5rem;
+}
+
+.checklist-item h3 {
+  color: var(--uc-blue);
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+.checklist-item p {
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin: 0;
+}
+
 /* ── Workshop Planning Worksheet tray ── */
 .workshop-tray {
   position: fixed;

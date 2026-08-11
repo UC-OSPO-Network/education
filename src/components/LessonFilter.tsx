@@ -4,11 +4,15 @@ import FacetCombobox, { type FacetOption } from "./FacetCombobox";
 import type { Lesson } from "../lib/lessons";
 import type { HealthRecord } from "../lib/githubHealth";
 import { buildPlanMarkdown, downloadPlan } from "../lib/exportPlan";
+import { EDUCATOR_TOOLKIT_ITEMS } from "../data/educatorToolkit";
+
+const GETTING_STARTED_TOPIC = "Getting Started with Open Source";
 
 interface LessonFilterProps {
   lessons: Lesson[];
   healthBySlug?: Record<string, HealthRecord | null>;
   pagefindPath: string;
+  gettingStartedIntro?: string[];
 }
 
 // learningResourceType is free text in schema.org, so we define our own values.
@@ -107,7 +111,7 @@ function getInitialFilters(): Filters {
   return next;
 }
 
-export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath }: LessonFilterProps) {
+export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath, gettingStartedIntro = [] }: LessonFilterProps) {
   const [isSearching, setIsSearching] = useState(false);
   const [searchSlugs, setSearchSlugs] = useState<Set<string> | null>(null);
   const [filters, setFilters] = useState<Filters>(getInitialFilters);
@@ -367,6 +371,13 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath 
   const activeFilterCount =
     FACET_KEYS.reduce((sum, k) => sum + filters[k].length, 0) + (filters.search.trim() ? 1 : 0);
 
+  // Facet-conditional entry-point copy: a static section becomes visible
+  // content only when the facet value that motivates it is selected, instead
+  // of always rendering above the catalog. See Phase 2 of
+  // docs/PLAN-lessons-education-redesign-2026-08-04.md.
+  const showGettingStartedNote = filters.topic.includes(GETTING_STARTED_TOPIC) && gettingStartedIntro.length > 0;
+  const showEducatorToolkit = filters.audience.includes("Educator");
+
   return (
     <div className={`lessons-page${selectedSlugs.length > 0 ? " lessons-page--tray-open" : ""}`}>
       <div className="lessons-filter">
@@ -478,6 +489,41 @@ export default function LessonFilter({ lessons, healthBySlug = {}, pagefindPath 
               </li>
             ))}
           </ol>
+        </section>
+      )}
+
+      {showGettingStartedNote && (
+        <section className="page-section facet-note" aria-labelledby="getting-started-note-heading">
+          <p className="page-intro__eyebrow">New to open source?</p>
+          <h2 id="getting-started-note-heading" className="section-heading">Getting Started with Open Source</h2>
+          {gettingStartedIntro.map((paragraph, i) => (
+            <p key={i} className="section-copy">{paragraph}</p>
+          ))}
+        </section>
+      )}
+
+      {showEducatorToolkit && (
+        <section className="toolkit-container" aria-labelledby="educator-toolkit-heading">
+          <h2 id="educator-toolkit-heading" className="toolkit-heading">Using Externally Hosted Lessons in Your Teaching</h2>
+          <p className="toolkit-subhead">
+            This catalog is a curated index, not a content host — every lesson links to a resource
+            maintained elsewhere. That means adoption is on you to verify. Here's what to check first.
+          </p>
+          <div className="checklist">
+            {EDUCATOR_TOOLKIT_ITEMS.map((item) => (
+              <div key={item.title} className="checklist-item">
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </div>
+            ))}
+          </div>
+          <p className="page-intro__note">
+            Teaching one of these lessons? We're here to help,{" "}
+            <a href="https://github.com/UC-OSPO-Network/education/discussions" target="_blank" rel="noopener noreferrer">
+              start a discussion on GitHub
+            </a>
+            .
+          </p>
         </section>
       )}
 
