@@ -12,8 +12,7 @@ const CRITICAL_PAGES = [
   'index.html',
   'lessons/index.html',
   'pathways/index.html',
-  'for-educators/index.html',
-  'develop-a-lesson/index.html'
+  'search/index.html'
 ];
 
 // Critical assets
