@@ -200,4 +200,3 @@ Use this section to mention useful resources and libraries that you've leaned on
 
 - [Richard Littauer's Standard Readme](https://github.com/RichardLitt/standard-readme/?tab=readme-ov-file#usage)
 - [Awesome Readme Template](https://github.com/Louis3797/awesome-readme-template)
-- [GitLab's "How to start a great OSS project"](https://about.gitlab.com/blog/2022/10/18/how-to-start-a-great-oss-project/)
