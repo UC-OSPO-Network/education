@@ -1,78 +1,71 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import WelcomeHeader from '../components/home/WelcomeHeader.astro';
-import BrowseAllLessonsPanel from '../components/home/BrowseAllLessonsPanel.astro';
-import PathwayShowcase from '../components/home/PathwayShowcase';
 import '../components/home/home.css';
-import '../components/lessons/lessons.css';
-import { getCollection } from 'astro:content';
-import { getActiveLessons, type Lesson } from '../lib/lessons';
-import githubHealthRaw from '../data/github-health.json';
-import type { HealthSnapshot } from '../lib/githubHealth';
-import type { CategoryIconName, HomepagePathwayItem, HomepagePathwaySection } from '../components/home/types';
+import { getActiveLessons } from '../lib/lessons';
+import { TOPIC_TERMS } from '../data/topics';
 
-const healthData = githubHealthRaw as unknown as HealthSnapshot;
-const healthBySlug = healthData.lessons ?? {};
-
-const [activeLessons, pathways] = await Promise.all([
-  getActiveLessons(),
-  getCollection('pathways'),
-]);
-
-const sortedPathways = pathways.sort((a, b) => a.data.order - b.data.order);
-
-function getSectionSortKey(lessons: Lesson[]) {
-  return lessons
-    .map((lesson) => lesson.sortingId?.trim())
-    .filter(Boolean)
-    .sort((a, b) => a!.localeCompare(b!, undefined, { numeric: true }))[0] ?? null;
-}
-
-function buildHomepageSections(pathwayId: string): HomepagePathwaySection[] {
-  const grouped = activeLessons
-    .filter((lesson) => lesson.pathways.includes(pathwayId))
-    .reduce<Record<string, Lesson[]>>((acc, lesson) => {
-      const title = lesson.subTopic?.trim() || 'Other';
-      acc[title] ??= [];
-      acc[title].push(lesson);
-      return acc;
-    }, {});
-
-  return Object.entries(grouped)
-    .sort(([titleA, lessonsA], [titleB, lessonsB]) => {
-      const keyA = getSectionSortKey(lessonsA);
-      const keyB = getSectionSortKey(lessonsB);
-      if (keyA && keyB) return keyA.localeCompare(keyB, undefined, { numeric: true });
-      if (keyA) return -1;
-      if (keyB) return 1;
-      return titleA.localeCompare(titleB);
-    })
-    .map(([title, lessons]) => ({ title, lessons: lessons.slice(0, 4) }))
-    .slice(0, 2);
-}
-
-const homepagePathways: HomepagePathwayItem[] = sortedPathways.map((pathway) => ({
-  id: pathway.id,
-  title: pathway.data.name,
-  description: pathway.data.description,
-  iconName: pathway.id as CategoryIconName,
-  sections: buildHomepageSections(pathway.id),
-}));
-
-const defaultHomepagePathwayId =
-  homepagePathways.find((pathway) => pathway.sections.length > 0)?.id ??
-  homepagePathways[0]?.id ??
-  '';
+const base = import.meta.env.BASE_URL;
+const activeLessons = await getActiveLessons();
+const lessonCount = activeLessons.length;
+const topicCount = TOPIC_TERMS.length;
+const gettingStartedCount = activeLessons.filter((l) => l.pathways.includes('getting-started')).length;
 ---
 
-<BaseLayout title="Open Source Learning Pathways">
+<BaseLayout title="UC OSPO Education">
   <div class="home-page">
-    <WelcomeHeader />
+    <section class="home-hero">
+      <div class="content-container">
+        <h1 class="home-hero__title">Open source learning for research and teaching</h1>
+        <p class="home-hero__lede">
+          Explore {lessonCount} free lessons curated by the UC OSPO Network for researchers,
+          developers, maintainers, project leads, librarians, and instructors.
+        </p>
+        <p class="home-hero__proof">
+          {lessonCount} curated resources &middot; {topicCount} standards-informed topics &middot;
+          Six UC campuses &middot; Workshops, courses, and practical guides
+        </p>
+        <p class="home-hero__transparency">
+          We curate and describe these resources — the original organizations host and maintain
+          the lessons themselves.
+        </p>
+      </div>
+    </section>
 
-    <section class="home-showcase" aria-labelledby="pathways-heading">
-      <h2 id="pathways-heading" class="sr-only">Learning pathways</h2>
-      <PathwayShowcase items={homepagePathways} defaultActiveId={defaultHomepagePathwayId} healthBySlug={healthBySlug} client:load />
-      <BrowseAllLessonsPanel />
+    <section class="home-routes" aria-label="Get started">
+      <div class="content-container home-routes__grid">
+        <a class="home-route-card" href={`${base}lessons`}>
+          <h2 class="home-route-card__title">Browse all lessons</h2>
+          <p class="home-route-card__body">
+            Search and filter the complete catalog by topic, role, or skill level.
+          </p>
+        </a>
+
+        <a class="home-route-card" href={`${base}lessons?topic=${encodeURIComponent('Getting Started with Open Source')}`}>
+          <h2 class="home-route-card__title">New to open source?</h2>
+          <p class="home-route-card__body">
+            Start with {gettingStartedCount} introductory lessons on what open source is and how
+            to make your first contribution.
+          </p>
+        </a>
+
+        <a class="home-route-card" href={`${base}lessons?audience=${encodeURIComponent('Educator')}`}>
+          <h2 class="home-route-card__title">Planning instruction?</h2>
+          <p class="home-route-card__body">
+            Filter to lessons designed for educators, and build a teaching plan with the Workshop
+            Planning Worksheet.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <section class="home-topics">
+      <div class="content-container">
+        <p class="home-topics__summary">
+          Find material on version control, licensing and reuse, testing and automation, security
+          and supply chains, governance, sustainability, research software, and more.
+          <a href={`${base}lessons/topic`}>Explore all {topicCount} topics</a>.
+        </p>
+      </div>
     </section>
   </div>
 </BaseLayout>

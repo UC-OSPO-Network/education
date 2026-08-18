@@ -23,10 +23,9 @@ Check:
 - `/education/`
 - `/education/lessons/`
 - One lesson detail page, such as `/education/lessons/introduction-to-git/`
-- `/education/pathways/`
-- One pathway detail page, such as `/education/pathways/getting-started/`
-- `/education/develop-a-lesson/`
-- `/education/for-educators/`
+- `/education/lessons/topic/`
+- One topic detail page, such as `/education/lessons/topic/version-control-collaborative-development/`
+- `/education/glossary/`
 
 ## Required Checks
 

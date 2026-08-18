@@ -46,9 +46,11 @@
   "teaches": "Execute a basic upstream open source code contribution entirely using browser-based GitHub interfaces.",
   "competencyRequired": "Open source basics",
   "topics": [
-    "Version Control & Collaborative Development"
+    "Version Control & Collaborative Development",
+    "Getting Started with Open Source"
   ],
   "audiences": [
-    "Research Software Engineer / Developer"
+    "Research Software Engineer / Developer",
+    "Educator"
   ]
 }

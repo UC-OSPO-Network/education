@@ -164,7 +164,10 @@ One sentence completing "After this lesson you will be able to…". This is the 
 Comma-separated list of assumed competencies. Plain English — not formal ontology. Example: `"Git, Python basics, command line"`. Complements `prerequisites` (which links to specific lessons); this field names skills that may have been acquired outside the catalog.
 
 **`audience`** (string, recommended)
-Comma-separated list of intended audiences. Example: `"Graduate Students, Research Software Engineers, Librarians"`.
+Comma-separated list of intended audiences. Example: `"Graduate Students, Research Software Engineers, Librarians"`. Free text kept for search; superseded by `audiences` for filtering.
+
+**`audiences`** (string[], recommended)
+Canonical "Designed for" facet — the persona a learner already brings. One or more of: `Researcher`, `Research Software Engineer / Developer`, `Open Source Contributor`, `Open Source Maintainer`, `Project / Program Lead`, `Community Manager`, `Librarian / Information Professional`, `Educator`. `Educator` is restricted to `workshop`/`course` lessons — self-study `guide`s aren't delivered by an instructor, so the schema rejects `Educator` on anything else.
 
 **`keywords`** (string[], required)
 3–8 terms used for search and discovery. Include technology names, method names, and topic names. No duplicates of `name` or `teaches`.

@@ -12,10 +12,13 @@ const healthData = githubHealthRaw as unknown as HealthSnapshot;
 const healthBySlug = healthData.lessons ?? {};
 const pagefindPath = `${import.meta.env.BASE_URL}pagefind/`;
 
-// Map pathway slug -> display name so the filter shows "Contributing to a
-// Project" rather than the raw "contributing" slug.
+// Pathway pages are retired (43 lessons doesn't justify a separate curated-sequence
+// layer alongside Topics), but the collection itself stays: Getting Started's intro
+// copy lives in its pathway record and renders in LessonFilter when the "Getting
+// Started with Open Source" Topic facet is selected.
 const pathways = await getCollection("pathways");
-const pathwayNames = Object.fromEntries(pathways.map((p) => [p.id, p.data.name]));
+const gettingStartedIntro =
+  pathways.find((p) => p.id === "getting-started")?.data.body.split("\n\n") ?? [];
 
 const site = Astro.site ?? new URL("https://ucospo.net");
 const base = import.meta.env.BASE_URL;
@@ -31,7 +34,7 @@ const datasetJsonLd = {
   "@id": canonicalUrl,
   name: "UC OSPO Education: Lesson Catalog",
   description:
-    "Catalog of curated open source and research software education lessons from the UC OSPO Network, with topics, pathways, audiences, and repository health.",
+    "Catalog of curated open source and research software education lessons from the UC OSPO Network, with topics, audiences, and repository health.",
   url: canonicalUrl,
   isAccessibleForFree: true,
   creator: { "@type": "Organization", name: "UC OSPO Network", url: new URL(base, site).href },
@@ -76,14 +79,11 @@ const datasetJsonLd = {
       <h1 class="page-intro__title">All Lessons</h1>
       <p class="page-intro__summary">
         Browse the full library of curated open source learning materials, then filter by role,
-        pathway, skill level, or topic.
+        topic, or skill level.
       </p>
       <p class="page-intro__note">
         Except where marked <strong>Created</strong>, these are external resources curated by the
         UC OSPO Network: selected and organized by us, but authored by others.
-      </p>
-      <p class="page-intro__note">
-        Prefer to browse by subject? See <a href={`${base}lessons/topic`}>all lesson topics</a>.
       </p>
     </div>
   </section>
@@ -96,6 +96,12 @@ const datasetJsonLd = {
       </div>
     </div>
   ) : (
-    <LessonFilter lessons={activeLessons} healthBySlug={healthBySlug} pagefindPath={pagefindPath} pathwayNames={pathwayNames} client:load />
+    <LessonFilter
+      lessons={activeLessons}
+      healthBySlug={healthBySlug}
+      pagefindPath={pagefindPath}
+      gettingStartedIntro={gettingStartedIntro}
+      client:load
+    />
   )}
 </BaseLayout>

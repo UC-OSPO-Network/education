@@ -59,11 +59,13 @@
   ],
   "provider": "INTERSECT",
   "topics": [
-    "Licensing, Copyright & Reuse"
+    "Licensing, Copyright & Reuse",
+    "Getting Started with Open Source"
   ],
   "audiences": [
     "Open Source Contributor",
     "Research Software Engineer / Developer",
-    "Researcher"
+    "Researcher",
+    "Educator"
   ]
 }

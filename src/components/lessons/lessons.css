@@ -6,6 +6,23 @@
   padding-bottom: 4rem;
 }
 
+/* Extra clearance so the fixed workshop tray doesn't cover the last grid row. */
+.lessons-page--tray-open {
+  padding-bottom: 14rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ── Filter Panel ── */
 .lessons-filter {
   background: var(--bg-surface);
@@ -16,10 +33,60 @@
   box-shadow: 0 6px 18px rgba(18, 24, 33, 0.06);
 }
 
+/* ── Start Here hero ── */
+.lessons-start-here {
+  display: block;
+  background: linear-gradient(135deg, var(--uc-dark-blue), var(--uc-blue));
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+  transition: box-shadow 0.2s ease;
+}
+
+.lessons-start-here:hover,
+.lessons-start-here:focus-visible {
+  box-shadow: var(--shadow-strong);
+}
+
+.lessons-start-here__eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--uc-light-blue);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.lessons-start-here__title {
+  margin: 0 0 0.5rem;
+  color: #ffffff;
+  font-size: 1.3rem;
+}
+
+.lessons-start-here__summary {
+  margin: 0 0 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.92rem;
+  max-width: 42rem;
+}
+
+.lessons-start-here__cta {
+  display: inline-block;
+  background: var(--uc-light-gold);
+  color: #3a2e00;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-pill);
+}
+
 .lessons-filter__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.6rem;
   margin-bottom: 1.25rem;
 }
 
@@ -118,102 +185,182 @@
   margin-bottom: 1rem;
 }
 
-/* ── Multi-select facets ── */
-.lessons-filter__facet {
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  background: var(--bg-primary);
+/* ── Facet comboboxes ── */
+/* One shared control for all 6 facets: a labeled trigger showing the current
+   selection as badges, opening a searchable multi-select checkbox list. */
+.lessons-facet {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 11rem;
 }
 
-.lessons-filter__facet[open] {
-  border-color: var(--border-strong);
-}
-
-.lessons-filter__facet-summary {
+.lessons-facet__trigger {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.6rem 0.75rem;
+  gap: 0.5rem;
+  min-height: 2.5rem;
+  padding: 0.4rem 0.75rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
   cursor: pointer;
-  list-style: none;
+  text-align: left;
+  transition: border-color 0.2s ease;
 }
 
-.lessons-filter__facet-summary::-webkit-details-marker {
-  display: none;
+.lessons-facet__trigger:hover {
+  border-color: var(--uc-blue);
 }
 
-.lessons-filter__facet-summary::after {
-  content: "▾";
-  margin-left: auto;
-  font-size: 0.7rem;
-  color: var(--text-secondary);
-  transition: transform 0.2s ease;
-}
-
-.lessons-filter__facet[open] .lessons-filter__facet-summary::after {
-  transform: rotate(180deg);
-}
-
-.lessons-filter__facet-summary:focus-visible {
+.lessons-facet__trigger:focus-visible {
   outline: 2px solid var(--uc-blue);
-  outline-offset: -2px;
+  outline-offset: 1px;
 }
 
-.lessons-filter__facet-badge {
+.lessons-facet__trigger[data-state="open"] {
+  border-color: var(--uc-blue);
+}
+
+.lessons-facet__placeholder {
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+}
+
+.lessons-facet__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  flex: 1 1 auto;
+}
+
+.lessons-facet__badge {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  min-width: 1.25rem;
-  height: 1.25rem;
-  padding: 0 0.35rem;
+  padding: 0.15rem 0.55rem;
   border-radius: var(--radius-pill);
   background: var(--uc-blue);
   color: #fff;
   font-family: var(--font-sans);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 600;
 }
 
-.lessons-filter__facet-body {
-  padding: 0 0.75rem 0.6rem;
+.lessons-facet__chevron {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+  margin-left: auto;
+  color: var(--text-secondary);
 }
 
-.lessons-filter__options {
+.lessons-facet__content {
+  z-index: 40;
+  width: 18rem;
+  max-width: calc(100vw - 2rem);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-strong);
+  padding: 0.75rem;
+}
+
+.lessons-facet__search-label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.lessons-facet__search {
+  width: 100%;
+  padding: 0.45rem 0.65rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+}
+
+.lessons-facet__search:focus {
+  outline: none;
+  border-color: var(--uc-blue);
+}
+
+.lessons-facet__options {
   list-style: none;
   margin: 0;
   padding: 0;
-  max-height: 12rem;
+  max-height: 14rem;
   overflow-y: auto;
 }
 
-.lessons-filter__option {
+.lessons-facet__empty {
+  padding: 0.4rem 0.1rem;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+}
+
+.lessons-facet__checkbox {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--bg-primary);
+}
+
+.lessons-facet__checkbox[data-state="checked"] {
+  background: var(--uc-blue);
+  border-color: var(--uc-blue);
+}
+
+.lessons-facet__checkbox:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.lessons-facet__checkbox:focus-visible {
+  outline: 2px solid var(--uc-blue);
+  outline-offset: 1px;
+}
+
+.lessons-facet__checkbox-indicator {
+  display: flex;
+  color: #fff;
+}
+
+.lessons-facet__checkbox-indicator svg {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.lessons-facet__option {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.3rem 0;
+  padding: 0.35rem 0;
   font-family: var(--font-sans);
   font-size: 0.85rem;
   color: var(--text-primary);
   cursor: pointer;
 }
 
-.lessons-filter__option input {
-  margin: 0;
-  flex: none;
-  accent-color: var(--uc-blue);
-}
-
-.lessons-filter__option.is-disabled {
+.lessons-facet__option.is-disabled {
   color: var(--text-secondary);
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-.lessons-filter__option-label {
+.lessons-facet__option-label {
   flex: 1 1 auto;
 }
 
-.lessons-filter__option-count {
+.lessons-facet__option-count {
   flex: none;
   font-size: 0.75rem;
   color: var(--text-secondary);
@@ -302,6 +449,33 @@
   inset: 0;
   z-index: 1;
   border-radius: inherit;
+}
+
+/* Sibling of cover-link, not nested in .lesson-card__body — the body has its own
+   full-cover overlay via .lesson-card__title-link::after (z-index:2), so this needs to
+   sit above both to win hit-testing outright. See lesson-card__prereq-link /
+   lesson-card__health-link below for the same z-index:3 pattern against that overlay. */
+.lesson-card__select {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+}
+
+.lesson-card__select-input {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0;
+  accent-color: var(--uc-blue);
 }
 
 .lesson-card:hover {
@@ -613,5 +787,213 @@
 
   .lesson-card {
     min-height: auto;
+  }
+
+  /* Short, curated lists (Getting Started, the promoted facet rows) read better
+     as a swipeable carousel than a stack on narrow screens — the full 43-lesson
+     catalog grid above stays a stack, scrolling through all of it horizontally
+     would be worse, not better. Mask-fade signals there's more to scroll. */
+  .lessons-grid--carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.25rem;
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 2rem), transparent 100%);
+    mask-image: linear-gradient(to right, black calc(100% - 2rem), transparent 100%);
+  }
+
+  .lessons-grid--carousel .lesson-card {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+  }
+}
+
+/* ── Facet-conditional notes ── */
+/* Getting Started intro copy and the Educator toolkit checklist, shown above
+   the grid when their driving facet value is selected (Phase 2, see
+   docs/PLAN-lessons-education-redesign-2026-08-04.md). */
+.facet-note {
+  margin-bottom: 1.5rem;
+}
+
+.toolkit-container {
+  margin-bottom: 1.5rem;
+}
+
+.toolkit-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--uc-blue);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.toolkit-subhead {
+  margin: 0 auto 2rem;
+  max-width: 42rem;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.checklist {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.checklist-item {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-left: 4px solid var(--uc-blue);
+  border-radius: var(--radius-sm);
+  padding: 1.5rem;
+}
+
+.checklist-item h3 {
+  color: var(--uc-blue);
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+.checklist-item p {
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Workshop Planning Worksheet tray ── */
+.workshop-tray {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  background: var(--bg-surface);
+  border-top: 2px solid var(--uc-blue);
+  box-shadow: var(--shadow-strong);
+  padding: 1rem 1.5rem;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.workshop-tray__summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.workshop-tray__count {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.workshop-tray__title-field input {
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  min-width: 16rem;
+}
+
+.workshop-tray__actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-left: auto;
+}
+
+.workshop-tray__download {
+  padding: 0.5rem 1.1rem;
+  background: var(--uc-blue);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: background 0.2s ease;
+}
+
+.workshop-tray__download:hover {
+  background: var(--uc-dark-blue);
+}
+
+.workshop-tray__list {
+  list-style: none;
+  margin: 0.85rem auto 0;
+  padding: 0;
+  max-width: var(--content-width);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.workshop-tray__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.4rem 0.6rem;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+}
+
+.workshop-tray__item-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.workshop-tray__item-controls {
+  display: flex;
+  gap: 0.3rem;
+  flex-shrink: 0;
+}
+
+.workshop-tray__item-controls button {
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-surface);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.workshop-tray__item-controls button:hover:not(:disabled) {
+  background: var(--bg-surface-strong);
+}
+
+.workshop-tray__item-controls button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .workshop-tray__summary {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .workshop-tray__actions {
+    margin-left: 0;
+  }
+
+  .workshop-tray__title-field input {
+    min-width: 0;
+    width: 100%;
   }
 }

@@ -115,6 +115,12 @@ export const TOPIC_TERMS: TopicTerm[] = [
     description: "Making software and its documentation usable by everyone, including people with disabilities.",
     crosswalk: { label: "WCAG (W3C)", uri: "https://www.w3.org/WAI/standards-guidelines/wcag/" },
   },
+  {
+    name: "Getting Started with Open Source",
+    termCode: "getting-started-with-open-source",
+    description: "Orientation for newcomers: what open source is, how licensing and version control work, and how to make a first contribution.",
+    crosswalk: { label: "Open Source Guide (GitHub)", uri: "https://opensource.guide/" },
+  },
 ];
 
 const BY_NAME = new Map(TOPIC_TERMS.map((t) => [t.name, t]));

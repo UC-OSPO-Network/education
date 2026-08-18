@@ -7,7 +7,7 @@
   "topic": "Research, Python",
   "subTopic": "Software Design Patterns",
   "educationalLevel": "Intermediate",
-  "learningResourceType": "workshop",
+  "learningResourceType": "course",
   "author": "The Alan Turing Institute",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "inLanguage": [
@@ -66,6 +66,7 @@
   ],
   "audiences": [
     "Research Software Engineer / Developer",
-    "Researcher"
+    "Researcher",
+    "Educator"
   ]
 }

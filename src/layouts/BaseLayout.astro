@@ -1,6 +1,8 @@
 ---
 import UnifiedNav from "../components/UnifiedNav.astro";
-import { isCurrentItem, isCurrentLink, siteChrome, withBasePath } from "../lib/siteChrome";
+import { isCurrentItem, isCurrentLink, siteChrome, withBasePath, type ChromeNavItem } from "../lib/siteChrome";
+import { getActiveLessons } from "../lib/lessons";
+import { TOPIC_TERMS } from "../data/topics";
 
 interface Props {
   title: string;
@@ -13,15 +15,46 @@ const {
 } = Astro.props as Props;
 
 const basePath = import.meta.env.BASE_URL === "/" ? "" : import.meta.env.BASE_URL.replace(/\/$/, "");
+
+// Category sub-nav under "Lessons" (#199): top 6 Topics by live lesson count,
+// computed here rather than hand-curated so it tracks tagging changes.
+// Not a second browsing mechanism — same data the Topic facet on /lessons
+// itself uses, just surfaced as preset deep-links in the persistent sidebar.
+const activeLessons = await getActiveLessons();
+const topicCounts: Record<string, number> = {};
+for (const lesson of activeLessons) {
+  for (const topic of lesson.topics) topicCounts[topic] = (topicCounts[topic] ?? 0) + 1;
+}
+const topTopics = [...TOPIC_TERMS]
+  .sort((a, b) => (topicCounts[b.name] ?? 0) - (topicCounts[a.name] ?? 0) || a.name.localeCompare(b.name))
+  .slice(0, 6);
+const lessonsTopicChildren: ChromeNavItem[] = [
+  ...topTopics.map((term) => ({
+    label: term.name,
+    href: `/lessons?topic=${encodeURIComponent(term.name)}`,
+    count: topicCounts[term.name] ?? 0,
+  })),
+  { label: "View all topics", href: "/lessons/topic" },
+];
+
 const sidebarItems = siteChrome.nav.map((item) => ({
   ...item,
   current: isCurrentItem(basePath, Astro.url.pathname, item),
   hrefResolved: item.external ? item.href : withBasePath(import.meta.env.BASE_URL, item.href),
-  childrenResolved: (item.children ?? []).map((child) => ({
-    ...child,
-    current: isCurrentLink(basePath, Astro.url.pathname, child.href),
-    hrefResolved: child.external ? child.href : withBasePath(import.meta.env.BASE_URL, child.href),
-  })),
+  childrenResolved: (item.children ?? []).map((child) => {
+    const grandchildren = child.href === "/lessons" ? lessonsTopicChildren : (child.children ?? []);
+    return {
+      ...child,
+      current: isCurrentLink(basePath, Astro.url.pathname, child.href),
+      hrefResolved: child.external ? child.href : withBasePath(import.meta.env.BASE_URL, child.href),
+      childrenResolved: grandchildren.map((grandchild) => ({
+        ...grandchild,
+        hrefResolved: grandchild.external
+          ? grandchild.href
+          : withBasePath(import.meta.env.BASE_URL, grandchild.href),
+      })),
+    };
+  }),
 }));
 ---
 
@@ -102,6 +135,25 @@ const sidebarItems = siteChrome.nav.map((item) => ({
                                 >
                                   {child.label}
                                 </a>
+                                {child.childrenResolved.length > 0 && (
+                                  <ul class="site-sidebar__subsublist">
+                                    {child.childrenResolved.map((grandchild) => (
+                                      <li class="site-sidebar__subsubitem">
+                                        <a
+                                          class="site-sidebar__subsublink"
+                                          href={grandchild.hrefResolved}
+                                          target={grandchild.external ? "_blank" : undefined}
+                                          rel={grandchild.external ? "noopener noreferrer" : undefined}
+                                        >
+                                          <span>{grandchild.label}</span>
+                                          {grandchild.count !== undefined && (
+                                            <span class="site-sidebar__subsublink-count">{grandchild.count}</span>
+                                          )}
+                                        </a>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
                               </li>
                             ))}
                           </ul>
@@ -153,8 +205,13 @@ const sidebarItems = siteChrome.nav.map((item) => ({
             <a href={`${import.meta.env.BASE_URL}accessibility`} class="site-footer__legal-link">
               Accessibility
             </a>
-            <a href={`${import.meta.env.BASE_URL}glossary`} class="site-footer__legal-link">
-              Glossary
+            <a
+              href="https://github.com/UC-OSPO-Network/education/issues/new?template=suggest-lesson.yml"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="site-footer__legal-link"
+            >
+              Suggest a Lesson
             </a>
             <a
               href="https://github.com/UC-OSPO-Network/education/issues/new?template=lesson-feedback.yml"

@@ -303,6 +303,42 @@ summary:focus-visible {
   font-size: 0.92rem;
 }
 
+.site-sidebar__subsublist {
+  list-style: none;
+  margin: 0.3rem 0 0.3rem 0.4rem;
+  padding-left: 0.8rem;
+  border-left: 1px solid var(--border-light);
+}
+
+.site-sidebar__subsubitem + .site-sidebar__subsubitem {
+  margin-top: 0.1rem;
+}
+
+.site-sidebar__subsublink {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  text-decoration: none;
+}
+
+.site-sidebar__subsublink:hover {
+  background: var(--bg-subtle);
+  color: var(--uc-blue);
+  text-decoration: none;
+}
+
+.site-sidebar__subsublink-count {
+  flex: none;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
 .site-content {
   min-width: 0;
 }
