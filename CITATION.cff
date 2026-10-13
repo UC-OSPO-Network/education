@@ -33,4 +33,8 @@ authors:
 title: "UC OSPO Education Lesson & Pathways Website"
 version: 0.1.0
 date-released: 2026-10-12
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23330022
+    description: Concept DOI for all versions of the site (always resolves to the latest release)
 url: "https://github.com/UC-OSPO-Network/education"
