@@ -1,20 +1,11 @@
 # Pull Request Build Check
-# Runs comprehensive tests on PRs to ensure changes don't break the site
+# Runs comprehensive tests on PRs to ensure changes don't break the site.
+# No paths filter: `validate` is a required check on main, so it must report on every PR.
 name: PR Build Check
 
 on:
   pull_request:
     branches: [ main ]
-    paths:
-      - 'src/**'
-      - 'public/**'
-      - 'scripts/**'
-      - 'keystatic.config.ts'
-      - 'astro.config.mjs'
-      - 'package*.json'
-      - 'tsconfig.json'
-      - '.github/workflows/pr-check.yml'
-      - '.github/scripts/**'
 
 permissions:
   contents: read
