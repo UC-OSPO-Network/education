@@ -1,5 +1,7 @@
 # UC OSPO Education Lesson & Pathways Website
 
+[![DOI](https://zenodo.org/badge/845809755.svg)](https://doi.org/10.5281/zenodo.23330022)
+
 Work regarding the education subgroup. This repository hosts the Astro-based website for the UC OSPO Education Lesson & Pathways.
 
 - [GitHub Issues](https://github.com/UC-OSPO-Network/education/issues) - active task tracking and contribution opportunities.
